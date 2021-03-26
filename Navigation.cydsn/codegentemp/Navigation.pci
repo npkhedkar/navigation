@@ -1,5 +1,5 @@
 # Navigation
-# 2021-03-24 01:23:02Z
+# 2021-03-26 06:18:52Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -19,7 +19,9 @@ set_io "\LCD:LCDPort(5)\" iocell 2 5
 set_io "\LCD:LCDPort(6)\" iocell 2 6
 set_io "HallEffect(0)" iocell 12 0
 set_io "CamOut(0)" iocell 4 4
-set_io "OddEven(0)" iocell 4 2
+set_io "VerifyLeftBlackEdge(0)" iocell 0 2
 set_io "HSync(0)" iocell 4 6
-set_location "\Comp:ctComp\" comparatorcell -1 -1 2
-set_location "\VDAC8_1:viDAC8\" vidaccell -1 -1 2
+set_io "OddEven(0)" iocell 4 2
+set_io "VerifyCompOut(0)" iocell 0 0
+set_io "Vcomp_225V(0)" iocell 4 5
+set_location "\Comp_1:ctComp\" comparatorcell -1 -1 2

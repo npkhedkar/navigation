@@ -169,7 +169,7 @@ void VideoTimer_Wakeup(void)        ;
 ***************************************/
 
 #define VideoTimer_INIT_PERIOD             65535u
-#define VideoTimer_INIT_CAPTURE_MODE       ((uint8)((uint8)1u << VideoTimer_CTRL_CAP_MODE_SHIFT))
+#define VideoTimer_INIT_CAPTURE_MODE       ((uint8)((uint8)2u << VideoTimer_CTRL_CAP_MODE_SHIFT))
 #define VideoTimer_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << VideoTimer_CTRL_TRIG_MODE_SHIFT))
 #if (VideoTimer_UsingFixedFunction)
     #define VideoTimer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << VideoTimer_STATUS_TC_INT_MASK_SHIFT)) | \

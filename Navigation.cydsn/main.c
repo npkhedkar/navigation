@@ -164,12 +164,12 @@ int main(void)
         }
         if (blackFlag == 1) { // collect data
             blackTime = COUNTDOWN - VideoTimer_ReadCapture();
-            /*
+            
             sprintf(uartbuf, "Black pixel location: %d,", blackTime);
             UART_PutString(uartbuf);
             sprintf(strbuf, "Location: %d,", blackTime);
             LCD_PrintString(strbuf);
-            */
+           
             VideoTimer_Stop();
             Counter_Stop();
         }

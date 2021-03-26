@@ -1,5 +1,5 @@
 -- Project:   Navigation
--- Generated: 03/23/2021 21:23:02
+-- Generated: 03/26/2021 02:18:52
 -- PSoC Creator  4.2
 
 ENTITY Navigation IS
@@ -15,10 +15,10 @@ ENTITY Navigation IS
         \LCD:LCDPort(5)_PAD\ : OUT std_ulogic;
         \LCD:LCDPort(6)_PAD\ : OUT std_ulogic;
         HallEffect(0)_PAD : IN std_ulogic;
-        OddEven(0)_PAD : IN std_ulogic;
+        VerifyLeftBlackEdge(0)_PAD : OUT std_ulogic;
         HSync(0)_PAD : IN std_ulogic;
-        Pin_1(0)_PAD : IN std_ulogic;
-        Pin_2(0)_PAD : IN std_ulogic);
+        OddEven(0)_PAD : IN std_ulogic;
+        VerifyCompOut(0)_PAD : OUT std_ulogic);
     ATTRIBUTE voltage_VDDABUF OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDA OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VUSB OF __DEFAULT__ : ENTITY IS 5e0;
@@ -53,25 +53,26 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     SIGNAL Motor(0)__PA : bit;
     SIGNAL Net_179 : bit;
     ATTRIBUTE GROUND OF Net_179 : SIGNAL IS true;
-    SIGNAL Net_1821 : bit;
-    ATTRIBUTE udbclken_assigned OF Net_1821 : SIGNAL IS "True";
-    ATTRIBUTE global_signal OF Net_1821 : SIGNAL IS true;
-    SIGNAL Net_1821_local : bit;
     SIGNAL Net_184 : bit;
     SIGNAL Net_185 : bit;
-    SIGNAL Net_1858 : bit;
+    SIGNAL Net_1857 : bit;
     SIGNAL Net_187 : bit;
-    SIGNAL Net_1883_0 : bit;
-    SIGNAL Net_1883_1 : bit;
-    SIGNAL Net_1883_2 : bit;
-    SIGNAL Net_1883_3 : bit;
-    SIGNAL Net_1883_4 : bit;
-    SIGNAL Net_1883_5 : bit;
-    SIGNAL Net_1883_6 : bit;
     SIGNAL Net_1886 : bit;
-    SIGNAL Net_1890 : bit;
     SIGNAL Net_1895 : bit;
     SIGNAL Net_1895__SYNC_OUT : bit;
+    SIGNAL Net_1904 : bit;
+    SIGNAL Net_1905 : bit;
+    SIGNAL Net_2102_0 : bit;
+    SIGNAL Net_2102_1 : bit;
+    SIGNAL Net_2102_2 : bit;
+    SIGNAL Net_2102_3 : bit;
+    SIGNAL Net_2102_4 : bit;
+    SIGNAL Net_2102_5 : bit;
+    SIGNAL Net_2102_6 : bit;
+    SIGNAL Net_2106 : bit;
+    ATTRIBUTE udbclken_assigned OF Net_2106 : SIGNAL IS "True";
+    ATTRIBUTE global_signal OF Net_2106 : SIGNAL IS true;
+    SIGNAL Net_2106_local : bit;
     SIGNAL Net_243 : bit;
     SIGNAL Net_248 : bit;
     SIGNAL Net_811 : bit;
@@ -79,11 +80,11 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     ATTRIBUTE global_signal OF Net_811 : SIGNAL IS true;
     SIGNAL Net_811_local : bit;
     SIGNAL OddEven(0)__PA : bit;
-    SIGNAL Pin_1(0)__PA : bit;
-    SIGNAL Pin_2(0)__PA : bit;
     SIGNAL Rx_1(0)__PA : bit;
     SIGNAL Tx_1(0)__PA : bit;
-    SIGNAL \Comp:Net_1\ : bit;
+    SIGNAL Vcomp_225V(0)__PA : bit;
+    SIGNAL VerifyCompOut(0)__PA : bit;
+    SIGNAL VerifyLeftBlackEdge(0)__PA : bit;
     SIGNAL \\\LCD:LCDPort(0)\\__PA\ : bit;
     SIGNAL \\\LCD:LCDPort(1)\\__PA\ : bit;
     SIGNAL \\\LCD:LCDPort(2)\\__PA\ : bit;
@@ -233,10 +234,16 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     ATTRIBUTE Location OF HallEffect(0) : LABEL IS "P12[0]";
     ATTRIBUTE lib_model OF CamOut(0) : LABEL IS "iocell12";
     ATTRIBUTE Location OF CamOut(0) : LABEL IS "P4[4]";
-    ATTRIBUTE lib_model OF OddEven(0) : LABEL IS "iocell13";
-    ATTRIBUTE Location OF OddEven(0) : LABEL IS "P4[2]";
+    ATTRIBUTE lib_model OF VerifyLeftBlackEdge(0) : LABEL IS "iocell13";
+    ATTRIBUTE Location OF VerifyLeftBlackEdge(0) : LABEL IS "P0[2]";
     ATTRIBUTE lib_model OF HSync(0) : LABEL IS "iocell14";
     ATTRIBUTE Location OF HSync(0) : LABEL IS "P4[6]";
+    ATTRIBUTE lib_model OF OddEven(0) : LABEL IS "iocell15";
+    ATTRIBUTE Location OF OddEven(0) : LABEL IS "P4[2]";
+    ATTRIBUTE lib_model OF VerifyCompOut(0) : LABEL IS "iocell16";
+    ATTRIBUTE Location OF VerifyCompOut(0) : LABEL IS "P0[0]";
+    ATTRIBUTE lib_model OF Vcomp_225V(0) : LABEL IS "iocell17";
+    ATTRIBUTE Location OF Vcomp_225V(0) : LABEL IS "P4[5]";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:status_2\ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF Net_243 : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \UART:BUART:counter_load_not\ : LABEL IS "macrocell3";
@@ -251,7 +258,6 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:capt_fifo_load\ : LABEL IS "macrocell12";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:run_mode\ : LABEL IS "macrocell13";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:status_tc\ : LABEL IS "macrocell14";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell15";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:sP8:pwmdp:u0\ : LABEL IS "datapathcell1";
@@ -264,39 +270,38 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     ATTRIBUTE lib_model OF \Timer:TimerUDB:rstSts:stsreg\ : LABEL IS "statusicell4";
     ATTRIBUTE lib_model OF \Timer:TimerUDB:sT16:timerdp:u0\ : LABEL IS "datapathcell5";
     ATTRIBUTE lib_model OF \Timer:TimerUDB:sT16:timerdp:u1\ : LABEL IS "datapathcell6";
-    ATTRIBUTE Location OF \Comp:ctComp\ : LABEL IS "F(Comparator,2)";
-    ATTRIBUTE Location OF \VDAC8_1:viDAC8\ : LABEL IS "F(VIDAC,2)";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\ : LABEL IS "controlcell3";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:rstSts:stsreg\ : LABEL IS "statusicell5";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:sT16:timerdp:u0\ : LABEL IS "datapathcell7";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:sT16:timerdp:u1\ : LABEL IS "datapathcell8";
-    ATTRIBUTE lib_model OF \PWM:PWMUDB:runmode_enable\ : LABEL IS "macrocell16";
-    ATTRIBUTE lib_model OF \PWM:PWMUDB:prevCompare1\ : LABEL IS "macrocell17";
-    ATTRIBUTE lib_model OF \PWM:PWMUDB:status_0\ : LABEL IS "macrocell18";
-    ATTRIBUTE lib_model OF Net_187 : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell20";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell25";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_0\ : LABEL IS "macrocell26";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_load_fifo\ : LABEL IS "macrocell27";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_3\ : LABEL IS "macrocell28";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_2\ : LABEL IS "macrocell29";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_bitclk_enable\ : LABEL IS "macrocell30";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell31";
-    ATTRIBUTE lib_model OF \UART:BUART:pollcount_1\ : LABEL IS "macrocell32";
-    ATTRIBUTE lib_model OF \UART:BUART:pollcount_0\ : LABEL IS "macrocell33";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_status_3\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_last\ : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF \Timer:TimerUDB:capture_last\ : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF Net_184 : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF MODIN6_1 : LABEL IS "macrocell38";
-    ATTRIBUTE lib_model OF MODIN6_0 : LABEL IS "macrocell39";
-    ATTRIBUTE lib_model OF \Timer:TimerUDB:capt_int_temp\ : LABEL IS "macrocell40";
-    ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:capture_last\ : LABEL IS "macrocell41";
-    ATTRIBUTE lib_model OF Net_1858 : LABEL IS "macrocell42";
+    ATTRIBUTE Location OF \Comp_1:ctComp\ : LABEL IS "F(Comparator,2)";
+    ATTRIBUTE lib_model OF \PWM:PWMUDB:runmode_enable\ : LABEL IS "macrocell15";
+    ATTRIBUTE lib_model OF \PWM:PWMUDB:prevCompare1\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \PWM:PWMUDB:status_0\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF Net_187 : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell24";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_0\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_load_fifo\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_3\ : LABEL IS "macrocell27";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_2\ : LABEL IS "macrocell28";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_bitclk_enable\ : LABEL IS "macrocell29";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell30";
+    ATTRIBUTE lib_model OF \UART:BUART:pollcount_1\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF \UART:BUART:pollcount_0\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_status_3\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_last\ : LABEL IS "macrocell34";
+    ATTRIBUTE lib_model OF \Timer:TimerUDB:capture_last\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF Net_184 : LABEL IS "macrocell36";
+    ATTRIBUTE lib_model OF MODIN6_1 : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF MODIN6_0 : LABEL IS "macrocell38";
+    ATTRIBUTE lib_model OF \Timer:TimerUDB:capt_int_temp\ : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:capture_last\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF Net_1905 : LABEL IS "macrocell41";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -639,22 +644,6 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     END COMPONENT;
     ATTRIBUTE udb_clk OF synccell : COMPONENT IS "clock,clock_n,extclk,extclk_n";
     ATTRIBUTE udb_clken OF synccell : COMPONENT IS "clk_en";
-    COMPONENT vidaccell
-        PORT (
-            data_0 : IN std_ulogic;
-            data_1 : IN std_ulogic;
-            data_2 : IN std_ulogic;
-            data_3 : IN std_ulogic;
-            data_4 : IN std_ulogic;
-            data_5 : IN std_ulogic;
-            data_6 : IN std_ulogic;
-            data_7 : IN std_ulogic;
-            strobe : IN std_ulogic;
-            strobe_udb : IN std_ulogic;
-            reset : IN std_ulogic;
-            idir : IN std_ulogic;
-            ioff : IN std_ulogic);
-    END COMPONENT;
 BEGIN
 
     ClockBlock:clockblockcell
@@ -672,8 +661,8 @@ BEGIN
             clk_bus => ClockBlock_BUS_CLK_local,
             dsi_clkin_div => open,
             dsi_glb_div => open,
-            dclk_glb_0 => Net_1821,
-            dclk_0 => Net_1821_local,
+            dclk_glb_0 => Net_2106,
+            dclk_0 => Net_2106_local,
             dclk_glb_1 => \UART:Net_9\,
             dclk_1 => \UART:Net_9_local\,
             dclk_glb_2 => Net_811,
@@ -1252,10 +1241,10 @@ BEGIN
 
     CamOut:logicalport
         GENERIC MAP(
-            drive_mode => "010",
+            drive_mode => "011",
             ibuf_enabled => "0",
             id => "cc78ecae-57a4-414b-ade0-9bf26a79be98",
-            init_dr_st => "1",
+            init_dr_st => "0",
             input_buffer_sel => "00",
             input_clk_en => 0,
             input_sync => "1",
@@ -1339,15 +1328,15 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    OddEven:logicalport
+    VerifyLeftBlackEdge:logicalport
         GENERIC MAP(
             drive_mode => "010",
             ibuf_enabled => "1",
-            id => "0ed46d7f-1aaa-43e2-8c80-6a3add727572",
+            id => "3588e5c1-78a2-413b-9149-1ea4f7ccbc20",
             init_dr_st => "1",
             input_buffer_sel => "00",
             input_clk_en => 0,
-            input_sync => "0",
+            input_sync => "1",
             input_sync_mode => "0",
             intr_mode => "00",
             invert_in_clock => 0,
@@ -1363,7 +1352,7 @@ BEGIN
             oe_sync => "0",
             output_clk_en => 0,
             output_clock_mode => "0",
-            output_conn => "0",
+            output_conn => "1",
             output_mode => "0",
             output_reset => 0,
             output_sync => "0",
@@ -1377,7 +1366,7 @@ BEGIN
             pa_out_clock_en => -1,
             pa_out_reset => -1,
             pin_aliases => "",
-            pin_mode => "I",
+            pin_mode => "O",
             por_state => 4,
             port_alias_group => "",
             port_alias_required => 0,
@@ -1394,7 +1383,7 @@ BEGIN
             spanning => 0,
             sw_only => 0,
             use_annotation => "0",
-            vtrip => "00",
+            vtrip => "10",
             width => 1,
             in_clk_inv => 0,
             in_clken_inv => 0,
@@ -1410,19 +1399,20 @@ BEGIN
             out_clock_en => open,
             out_reset => open);
 
-    OddEven(0):iocell
+    VerifyLeftBlackEdge(0):iocell
         GENERIC MAP(
             in_sync_mode => 0,
             out_sync_mode => 0,
             oe_sync_mode => 0,
-            logicalport => "OddEven",
+            logicalport => "VerifyLeftBlackEdge",
             logicalport_pin_id => 0,
             io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
-            pa_out => OddEven(0)__PA,
+            pa_out => VerifyLeftBlackEdge(0)__PA,
             oe => open,
-            fb => Net_1890,
-            pad_in => OddEven(0)_PAD,
+            pin_input => Net_1905,
+            pad_out => VerifyLeftBlackEdge(0)_PAD,
+            pad_in => VerifyLeftBlackEdge(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
@@ -1521,11 +1511,11 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    Pin_1:logicalport
+    OddEven:logicalport
         GENERIC MAP(
             drive_mode => "001",
             ibuf_enabled => "1",
-            id => "ead56969-a621-433e-845a-85ef6fc17d26",
+            id => "9faa5c1b-acf9-43e0-9dcb-4ee370a7efb2",
             init_dr_st => "0",
             input_buffer_sel => "00",
             input_clk_en => 0,
@@ -1592,18 +1582,19 @@ BEGIN
             out_clock_en => open,
             out_reset => open);
 
-    Pin_1(0):iocell
+    OddEven(0):iocell
         GENERIC MAP(
             in_sync_mode => 0,
             out_sync_mode => 0,
             oe_sync_mode => 0,
-            logicalport => "Pin_1",
+            logicalport => "OddEven",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
-            pa_out => Pin_1(0)__PA,
+            pa_out => OddEven(0)__PA,
             oe => open,
-            pad_in => Pin_1(0)_PAD,
+            fb => Net_1904,
+            pad_in => OddEven(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
@@ -1611,15 +1602,107 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    Pin_2:logicalport
+    VerifyCompOut:logicalport
         GENERIC MAP(
             drive_mode => "001",
             ibuf_enabled => "1",
-            id => "62f3a023-5c08-4145-92c5-8f6faf03e0ce",
+            id => "a72f7013-54cb-48bb-8909-ab4bc0506397",
             init_dr_st => "0",
             input_buffer_sel => "00",
             input_clk_en => 0,
-            input_sync => "0",
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    VerifyCompOut(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "VerifyCompOut",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => VerifyCompOut(0)__PA,
+            oe => open,
+            pin_input => Net_1857,
+            pad_out => VerifyCompOut(0)_PAD,
+            pad_in => VerifyCompOut(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    Vcomp_225V:logicalport
+        GENERIC MAP(
+            drive_mode => "000",
+            ibuf_enabled => "0",
+            id => "56cea22b-f70a-4583-bc3c-0a9e4cff6313",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
             input_sync_mode => "0",
             intr_mode => "00",
             invert_in_clock => 0,
@@ -1649,7 +1732,7 @@ BEGIN
             pa_out_clock_en => -1,
             pa_out_reset => -1,
             pin_aliases => "",
-            pin_mode => "I",
+            pin_mode => "A",
             por_state => 4,
             port_alias_group => "",
             port_alias_required => 0,
@@ -1665,8 +1748,8 @@ BEGIN
             slew_rate => "0",
             spanning => 0,
             sw_only => 0,
-            use_annotation => "0",
-            vtrip => "00",
+            use_annotation => "1",
+            vtrip => "10",
             width => 1,
             in_clk_inv => 0,
             in_clken_inv => 0,
@@ -1682,18 +1765,17 @@ BEGIN
             out_clock_en => open,
             out_reset => open);
 
-    Pin_2(0):iocell
+    Vcomp_225V(0):iocell
         GENERIC MAP(
             in_sync_mode => 0,
             out_sync_mode => 0,
             oe_sync_mode => 0,
-            logicalport => "Pin_2",
+            logicalport => "Vcomp_225V",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
         PORT MAP(
-            pa_out => Pin_2(0)__PA,
+            pa_out => Vcomp_225V(0)__PA,
             oe => open,
-            pad_in => Pin_2(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
@@ -1831,13 +1913,13 @@ BEGIN
 
     \VideoTimer:TimerUDB:capt_fifo_load\:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * main_1 * !main_2 * main_3)",
+            eqn_main => "(main_0 * !main_1 * main_2 * main_3)",
             regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \VideoTimer:TimerUDB:capt_fifo_load\,
-            main_0 => \Comp:Net_1\,
-            main_1 => \VideoTimer:TimerUDB:control_7\,
+            main_0 => \VideoTimer:TimerUDB:control_7\,
+            main_1 => Net_1857,
             main_2 => \VideoTimer:TimerUDB:capture_last\,
             main_3 => Net_1886);
 
@@ -1861,14 +1943,6 @@ BEGIN
             main_0 => \VideoTimer:TimerUDB:control_7\,
             main_1 => \VideoTimer:TimerUDB:per_zero\,
             main_2 => Net_1886);
-
-    __ONE__:macrocell
-        GENERIC MAP(
-            eqn_main => "1'b0",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => __ONE__);
 
     \PWM:PWMUDB:genblk1:ctrlreg\:controlcell
         GENERIC MAP(
@@ -2258,48 +2332,6 @@ BEGIN
             interrupt => Net_184,
             clock => ClockBlock_BUS_CLK);
 
-    \Comp:ctComp\:comparatorcell
-        GENERIC MAP(
-            cy_registers => "")
-        PORT MAP(
-            clk_udb => Net_1821_local,
-            out => \Comp:Net_1\);
-
-    Black:interrupt
-        GENERIC MAP(
-            int_type => "10",
-            is_nmi => 0)
-        PORT MAP(
-            interrupt => Net_1858,
-            clock => ClockBlock_BUS_CLK);
-
-    StartFrame:interrupt
-        GENERIC MAP(
-            int_type => "00",
-            is_nmi => 0)
-        PORT MAP(
-            interrupt => Net_1890,
-            clock => ClockBlock_BUS_CLK);
-
-    \VDAC8_1:viDAC8\:vidaccell
-        GENERIC MAP(
-            cy_registers => "",
-            is_all_if_any => 0,
-            reg_data => 1)
-        PORT MAP(
-            reset => open,
-            idir => open,
-            ioff => open,
-            data_7 => __ONE__,
-            data_6 => open,
-            data_5 => open,
-            data_4 => open,
-            data_3 => open,
-            data_2 => open,
-            data_1 => open,
-            data_0 => open,
-            strobe_udb => Net_1821_local);
-
     \VideoTimer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\:controlcell
         GENERIC MAP(
             cy_ctrl_mode_0 => "11111111",
@@ -2310,7 +2342,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_1821,
+            clock => Net_2106,
             control_7 => \VideoTimer:TimerUDB:control_7\,
             control_6 => \VideoTimer:TimerUDB:control_6\,
             control_5 => \VideoTimer:TimerUDB:control_5\,
@@ -2331,7 +2363,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             reset => Net_1886,
-            clock => Net_1821,
+            clock => Net_2106,
             status_6 => open,
             status_5 => open,
             status_4 => open,
@@ -2368,7 +2400,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_1821,
+            clock => Net_2106,
             cs_addr_2 => Net_1886,
             cs_addr_1 => \VideoTimer:TimerUDB:run_mode\,
             cs_addr_0 => \VideoTimer:TimerUDB:per_zero\,
@@ -2416,7 +2448,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_1821,
+            clock => Net_2106,
             cs_addr_2 => Net_1886,
             cs_addr_1 => \VideoTimer:TimerUDB:run_mode\,
             cs_addr_0 => \VideoTimer:TimerUDB:per_zero\,
@@ -2453,15 +2485,37 @@ BEGIN
             clock => ClockBlock_BUS_CLK,
             load => open,
             enable => open,
-            count_6 => Net_1883_6,
-            count_5 => Net_1883_5,
-            count_4 => Net_1883_4,
-            count_3 => Net_1883_3,
-            count_2 => Net_1883_2,
-            count_1 => Net_1883_1,
-            count_0 => Net_1883_0,
+            count_6 => Net_2102_6,
+            count_5 => Net_2102_5,
+            count_4 => Net_2102_4,
+            count_3 => Net_2102_3,
+            count_2 => Net_2102_2,
+            count_1 => Net_2102_1,
+            count_0 => Net_2102_0,
             tc => Net_1886,
             clk_en => Net_1895__SYNC_OUT);
+
+    StartFrame:interrupt
+        GENERIC MAP(
+            int_type => "00",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_1904,
+            clock => ClockBlock_BUS_CLK);
+
+    \Comp_1:ctComp\:comparatorcell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            out => Net_1857);
+
+    Black:interrupt
+        GENERIC MAP(
+            int_type => "00",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_1905,
+            clock => ClockBlock_BUS_CLK);
 
     \PWM:PWMUDB:runmode_enable\:macrocell
         GENERIC MAP(
@@ -2831,26 +2885,26 @@ BEGIN
 
     \VideoTimer:TimerUDB:capture_last\:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0)",
+            eqn_main => "(main_0)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
             q => \VideoTimer:TimerUDB:capture_last\,
-            clock_0 => Net_1821,
-            main_0 => \Comp:Net_1\);
+            clock_0 => Net_2106,
+            main_0 => Net_1857);
 
-    Net_1858:macrocell
+    Net_1905:macrocell
         GENERIC MAP(
-            eqn_main => "(!main_0 * main_1 * !main_2 * main_3)",
+            eqn_main => "(main_0 * !main_1 * main_2 * main_3)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            q => Net_1858,
-            clock_0 => Net_1821,
-            main_0 => \Comp:Net_1\,
-            main_1 => \VideoTimer:TimerUDB:control_7\,
+            q => Net_1905,
+            clock_0 => Net_2106,
+            main_0 => \VideoTimer:TimerUDB:control_7\,
+            main_1 => Net_1857,
             main_2 => \VideoTimer:TimerUDB:capture_last\,
             main_3 => Net_1886);
 
