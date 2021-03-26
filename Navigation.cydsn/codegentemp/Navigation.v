@@ -1,6 +1,6 @@
 // ======================================================================
 // Navigation.v generated from TopDesign.cysch
-// 03/26/2021 at 02:18
+// 03/26/2021 at 19:23
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -680,7 +680,7 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\Count7_v1_0\Count7_v1_0.v"
 `endif
 
-// Comp_v2_0(Hysteresis=0, Pd_Override=0, Polarity=0, PSOC5A=false, Speed=0, Sync=1, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=Comp_v2_0, CY_CONFIG_TITLE=Comp_1, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Comp_1, CY_INSTANCE_SHORT_NAME=Comp_1, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.2, INSTANCE_NAME=Comp_1, )
+// Comp_v2_0(Hysteresis=0, Pd_Override=0, Polarity=1, PSOC5A=false, Speed=2, Sync=1, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=Comp_v2_0, CY_CONFIG_TITLE=Comp_1, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Comp_1, CY_INSTANCE_SHORT_NAME=Comp_1, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.2, INSTANCE_NAME=Comp_1, )
 module Comp_v2_0_5 (
     Vplus,
     CmpOut,
@@ -705,7 +705,7 @@ module Comp_v2_0_5 (
         .clock(clock));
 
 	// VirtualMux_1 (cy_virtualmux_v1_0)
-	assign CmpOut = Net_1;
+	assign CmpOut = Net_9;
 
 
     assign Net_9 = ~Net_1;
@@ -714,11 +714,39 @@ module Comp_v2_0_5 (
 
 endmodule
 
+// Component: DigitalComp_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0\DigitalComp_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DigitalComp_v1_0\DigitalComp_v1_0.v"
+`endif
+
+// Component: BasicCounter_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\BasicCounter_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\BasicCounter_v1_0\BasicCounter_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\BasicCounter_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\BasicCounter_v1_0\BasicCounter_v1_0.v"
+`endif
+
 // top
 module top ;
 
+          wire  Net_2528;
           wire  Net_2099;
           wire [6:0] Net_2102;
+          wire  Net_1898;
           wire  Net_2101;
           wire  Net_2100;
           wire  Net_2105;
@@ -754,6 +782,11 @@ module top ;
           wire  Net_2512;
           wire  Net_2511;
           wire  Net_2510;
+          wire  Net_2535;
+          wire [7:0] Net_2540;
+          wire [7:0] Net_2536;
+          wire  Net_1904;
+          wire  Net_2533;
           wire  Net_1905;
           wire  Net_248;
           wire  Net_243;
@@ -763,17 +796,14 @@ module top ;
           wire  Net_184;
           wire  Net_187;
           wire  Net_811;
-          wire  Net_1904;
     electrical  Net_2037;
     electrical  Net_1922;
     electrical  Net_2068;
     electrical  Net_1824;
     electrical  Net_2067;
-          wire  Net_1097;
-          wire  Net_1898;
           wire  Net_1893;
-          wire  Net_1895;
           wire  Net_1886;
+          wire  Net_1895;
           wire  Net_1857;
 
     assign Net_179 = 1'h0;
@@ -1252,7 +1282,7 @@ module top ;
     cy_UDB_clockenable_v1_0 UDBClkEn_1 (
         .clock_in(Net_1895),
         .enable(Net_1893),
-        .clock_out(Net_1097));
+        .clock_out(Net_2533));
     defparam UDBClkEn_1.ClockOutSync = 1;
 
 	wire [0:0] tmpOE__VerifyLeftBlackEdge_net;
@@ -1428,7 +1458,7 @@ module top ;
     Timer_v2_80_4 VideoTimer (
         .reset(Net_1886),
         .interrupt(Net_2103),
-        .enable(Net_1886),
+        .enable(Net_2535),
         .trigger(1'b1),
         .capture(Net_1857),
         .capture_out(Net_1905),
@@ -1445,7 +1475,7 @@ module top ;
     Count7_v1_0 Counter (
         .en(1'b1),
         .load(1'b0),
-        .clock(Net_1097),
+        .clock(Net_2533),
         .reset(Net_1898),
         .cnt(Net_2102[6:0]),
         .tc(Net_1886));
@@ -1710,6 +1740,17 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__Vcomp_225V_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+    assign Net_2535 = (Net_2536[7:0] == Net_2540[7:0]);
+
+    BasicCounter_v1_0 BasicCounter_1 (
+        .en(1'b1),
+        .cnt(Net_2536[7:0]),
+        .reset(Net_1904),
+        .clock(Net_2533));
+    defparam BasicCounter_1.Width = 8;
+
+    assign Net_2540[7:0] = 8'h10;
 
 
 

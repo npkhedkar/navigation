@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
   28:Generated_Source\PSoC5/Counter_PM.c **** * Summary:
   29:Generated_Source\PSoC5/Counter_PM.c **** *  This function saves the component configuration and non-retention registers.
   30:Generated_Source\PSoC5/Counter_PM.c **** *  This function is called by the Count7_Sleep() function.
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 2
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 2
 
 
   31:Generated_Source\PSoC5/Counter_PM.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
   58:Generated_Source\PSoC5/Counter_PM.c **** * Parameters:
   59:Generated_Source\PSoC5/Counter_PM.c **** *  None
   60:Generated_Source\PSoC5/Counter_PM.c **** *
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 3
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 3
 
 
   61:Generated_Source\PSoC5/Counter_PM.c **** * Return:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
   92              	.LFE1:
   93              		.size	Counter_Sleep, .-Counter_Sleep
   94              		.section	.text.Counter_RestoreConfig,"ax",%progbits
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 4
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 4
 
 
   95              		.align	2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  124              		.thumb
  125              		.thumb_func
  126              		.type	Counter_Wakeup, %function
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 5
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 5
 
 
  127              	Counter_Wakeup:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  154              	.LFE3:
  155              		.size	Counter_Wakeup, .-Counter_Wakeup
  156              		.comm	Counter_backup,2,4
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 6
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 6
 
 
  157              		.text
@@ -312,37 +312,37 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  165 0006 00000000 		.4byte	.Ldebug_abbrev0
  166 000a 04       		.byte	0x4
  167 000b 01       		.uleb128 0x1
- 168 000c A9000000 		.4byte	.LASF25
+ 168 000c 67000000 		.4byte	.LASF25
  169 0010 0C       		.byte	0xc
- 170 0011 FA010000 		.4byte	.LASF26
- 171 0015 0E000000 		.4byte	.LASF27
+ 170 0011 B8010000 		.4byte	.LASF26
+ 171 0015 DC010000 		.4byte	.LASF27
  172 0019 00000000 		.4byte	.Ldebug_ranges0+0
  173 001d 00000000 		.4byte	0
  174 0021 00000000 		.4byte	.Ldebug_line0
  175 0025 02       		.uleb128 0x2
  176 0026 01       		.byte	0x1
  177 0027 06       		.byte	0x6
- 178 0028 E2010000 		.4byte	.LASF0
+ 178 0028 A0010000 		.4byte	.LASF0
  179 002c 02       		.uleb128 0x2
  180 002d 01       		.byte	0x1
  181 002e 08       		.byte	0x8
- 182 002f 97010000 		.4byte	.LASF1
+ 182 002f 55010000 		.4byte	.LASF1
  183 0033 02       		.uleb128 0x2
  184 0034 02       		.byte	0x2
  185 0035 05       		.byte	0x5
- 186 0036 1E020000 		.4byte	.LASF2
+ 186 0036 32020000 		.4byte	.LASF2
  187 003a 02       		.uleb128 0x2
  188 003b 02       		.byte	0x2
  189 003c 07       		.byte	0x7
- 190 003d CF010000 		.4byte	.LASF3
+ 190 003d 8D010000 		.4byte	.LASF3
  191 0041 02       		.uleb128 0x2
  192 0042 04       		.byte	0x4
  193 0043 05       		.byte	0x5
- 194 0044 B0010000 		.4byte	.LASF4
+ 194 0044 6E010000 		.4byte	.LASF4
  195 0048 02       		.uleb128 0x2
  196 0049 04       		.byte	0x4
  197 004a 07       		.byte	0x7
- 198 004b 59010000 		.4byte	.LASF5
+ 198 004b 17010000 		.4byte	.LASF5
  199 004f 02       		.uleb128 0x2
  200 0050 08       		.byte	0x8
  201 0051 05       		.byte	0x5
@@ -350,7 +350,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  203 0056 02       		.uleb128 0x2
  204 0057 08       		.byte	0x8
  205 0058 07       		.byte	0x7
- 206 0059 6B010000 		.4byte	.LASF7
+ 206 0059 29010000 		.4byte	.LASF7
  207 005d 03       		.uleb128 0x3
  208 005e 04       		.byte	0x4
  209 005f 05       		.byte	0x5
@@ -358,29 +358,29 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  211 0064 02       		.uleb128 0x2
  212 0065 04       		.byte	0x4
  213 0066 07       		.byte	0x7
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 7
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 7
 
 
- 214 0067 2D020000 		.4byte	.LASF8
+ 214 0067 41020000 		.4byte	.LASF8
  215 006b 04       		.uleb128 0x4
- 216 006c 53010000 		.4byte	.LASF12
+ 216 006c 11010000 		.4byte	.LASF12
  217 0070 02       		.byte	0x2
  218 0071 E401     		.2byte	0x1e4
  219 0073 2C000000 		.4byte	0x2c
  220 0077 02       		.uleb128 0x2
  221 0078 04       		.byte	0x4
  222 0079 04       		.byte	0x4
- 223 007a 91010000 		.4byte	.LASF9
+ 223 007a 4F010000 		.4byte	.LASF9
  224 007e 02       		.uleb128 0x2
  225 007f 08       		.byte	0x8
  226 0080 04       		.byte	0x4
- 227 0081 B9010000 		.4byte	.LASF10
+ 227 0081 77010000 		.4byte	.LASF10
  228 0085 02       		.uleb128 0x2
  229 0086 01       		.byte	0x1
  230 0087 08       		.byte	0x8
- 231 0088 A5010000 		.4byte	.LASF11
+ 231 0088 63010000 		.4byte	.LASF11
  232 008c 04       		.uleb128 0x4
- 233 008d 28020000 		.4byte	.LASF13
+ 233 008d 3C020000 		.4byte	.LASF13
  234 0091 02       		.byte	0x2
  235 0092 8E02     		.2byte	0x28e
  236 0094 98000000 		.4byte	0x98
@@ -389,39 +389,39 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  239 009d 02       		.uleb128 0x2
  240 009e 08       		.byte	0x8
  241 009f 04       		.byte	0x4
- 242 00a0 EE010000 		.4byte	.LASF14
+ 242 00a0 AC010000 		.4byte	.LASF14
  243 00a4 02       		.uleb128 0x2
  244 00a5 04       		.byte	0x4
  245 00a6 07       		.byte	0x7
- 246 00a7 3A020000 		.4byte	.LASF15
+ 246 00a7 4E020000 		.4byte	.LASF15
  247 00ab 06       		.uleb128 0x6
  248 00ac 02       		.byte	0x2
  249 00ad 03       		.byte	0x3
  250 00ae 36       		.byte	0x36
  251 00af CC000000 		.4byte	0xcc
  252 00b3 07       		.uleb128 0x7
- 253 00b4 50000000 		.4byte	.LASF16
+ 253 00b4 0E000000 		.4byte	.LASF16
  254 00b8 03       		.byte	0x3
  255 00b9 38       		.byte	0x38
  256 00ba 6B000000 		.4byte	0x6b
  257 00be 00       		.byte	0
  258 00bf 07       		.uleb128 0x7
- 259 00c0 AA010000 		.4byte	.LASF17
+ 259 00c0 68010000 		.4byte	.LASF17
  260 00c4 03       		.byte	0x3
  261 00c5 39       		.byte	0x39
  262 00c6 6B000000 		.4byte	0x6b
  263 00ca 01       		.byte	0x1
  264 00cb 00       		.byte	0
  265 00cc 08       		.uleb128 0x8
- 266 00cd 72000000 		.4byte	.LASF18
+ 266 00cd 30000000 		.4byte	.LASF18
  267 00d1 03       		.byte	0x3
  268 00d2 3A       		.byte	0x3a
  269 00d3 AB000000 		.4byte	0xab
  270 00d7 09       		.uleb128 0x9
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 8
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 8
 
 
- 271 00d8 96000000 		.4byte	.LASF19
+ 271 00d8 54000000 		.4byte	.LASF19
  272 00dc 01       		.byte	0x1
  273 00dd 2B       		.byte	0x2b
  274 00de 00000000 		.4byte	.LFB0
@@ -429,7 +429,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  276 00e6 01       		.uleb128 0x1
  277 00e7 9C       		.byte	0x9c
  278 00e8 0A       		.uleb128 0xa
- 279 00e9 88000000 		.4byte	.LASF21
+ 279 00e9 46000000 		.4byte	.LASF21
  280 00ed 01       		.byte	0x1
  281 00ee 41       		.byte	0x41
  282 00ef 00000000 		.4byte	.LFB1
@@ -445,7 +445,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  292 010b D7000000 		.4byte	0xd7
  293 010f 00       		.byte	0
  294 0110 09       		.uleb128 0x9
- 295 0111 5C000000 		.4byte	.LASF20
+ 295 0111 1A000000 		.4byte	.LASF20
  296 0115 01       		.byte	0x1
  297 0116 64       		.byte	0x64
  298 0117 00000000 		.4byte	.LFB2
@@ -453,7 +453,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  300 011f 01       		.uleb128 0x1
  301 0120 9C       		.byte	0x9c
  302 0121 0A       		.uleb128 0xa
- 303 0122 C0010000 		.4byte	.LASF22
+ 303 0122 7E010000 		.4byte	.LASF22
  304 0126 01       		.byte	0x1
  305 0127 7A       		.byte	0x7a
  306 0128 00000000 		.4byte	.LFB3
@@ -469,7 +469,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  316 0144 65010000 		.4byte	0x165
  317 0148 00       		.byte	0
  318 0149 0C       		.uleb128 0xc
- 319 014a 82010000 		.4byte	.LASF28
+ 319 014a 40010000 		.4byte	.LASF28
  320 014e 01       		.byte	0x1
  321 014f 15       		.byte	0x15
  322 0150 CC000000 		.4byte	0xcc
@@ -477,16 +477,16 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  324 0155 03       		.byte	0x3
  325 0156 00000000 		.4byte	Counter_backup
  326 015a 0D       		.uleb128 0xd
- 327 015b 46010000 		.4byte	.LASF23
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 9
+ 327 015b 04010000 		.4byte	.LASF23
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 9
 
 
- 328 015f 46010000 		.4byte	.LASF23
+ 328 015f 04010000 		.4byte	.LASF23
  329 0163 03       		.byte	0x3
  330 0164 27       		.byte	0x27
  331 0165 0D       		.uleb128 0xd
- 332 0166 37010000 		.4byte	.LASF24
- 333 016a 37010000 		.4byte	.LASF24
+ 332 0166 F5000000 		.4byte	.LASF24
+ 333 016a F5000000 		.4byte	.LASF24
  334 016e 03       		.byte	0x3
  335 016f 25       		.byte	0x25
  336 0170 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  382 002b 00       		.byte	0
  383 002c 03       		.uleb128 0x3
  384 002d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 10
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 10
 
 
  385 002e 3A       		.uleb128 0x3a
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  439 0064 00       		.byte	0
  440 0065 00       		.byte	0
  441 0066 09       		.uleb128 0x9
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 11
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 11
 
 
  442 0067 2E       		.uleb128 0x2e
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  496 00a1 00       		.byte	0
  497 00a2 00       		.byte	0
  498 00a3 0C       		.uleb128 0xc
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 12
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 12
 
 
  499 00a4 34       		.uleb128 0x34
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  553 0000 00000000 		.4byte	.LFB0
  554 0004 14000000 		.4byte	.LFE0
  555 0008 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 13
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 13
 
 
  556 000c 2C000000 		.4byte	.LFE1
@@ -740,156 +740,156 @@ ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 1
  567      206C6F6E 
  567      6720696E 
  567      7400
- 568              	.LASF27:
- 569 000e 433A5C55 		.ascii	"C:\\Users\\Dhyan\\Documents\\PSoC Creator\\navigati"
- 569      73657273 
- 569      5C446879 
- 569      616E5C44 
- 569      6F63756D 
- 570 003c 6F6E5C4E 		.ascii	"on\\Navigation.cydsn\000"
- 570      61766967 
- 570      6174696F 
- 570      6E2E6379 
- 570      64736E00 
- 571              	.LASF16:
- 572 0050 656E6162 		.ascii	"enableState\000"
- 572      6C655374 
- 572      61746500 
- 573              	.LASF20:
- 574 005c 436F756E 		.ascii	"Counter_RestoreConfig\000"
- 574      7465725F 
- 574      52657374 
- 574      6F726543 
- 574      6F6E6669 
- 575              	.LASF18:
- 576 0072 436F756E 		.ascii	"Counter_BACKUP_STRUCT\000"
- 576      7465725F 
- 576      4241434B 
- 576      55505F53 
- 576      54525543 
- 577              	.LASF21:
- 578 0088 436F756E 		.ascii	"Counter_Sleep\000"
- 578      7465725F 
- 578      536C6565 
- 578      7000
- 579              	.LASF19:
- 580 0096 436F756E 		.ascii	"Counter_SaveConfig\000"
- 580      7465725F 
- 580      53617665 
- 580      436F6E66 
- 580      696700
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 14
+ 568              	.LASF16:
+ 569 000e 656E6162 		.ascii	"enableState\000"
+ 569      6C655374 
+ 569      61746500 
+ 570              	.LASF20:
+ 571 001a 436F756E 		.ascii	"Counter_RestoreConfig\000"
+ 571      7465725F 
+ 571      52657374 
+ 571      6F726543 
+ 571      6F6E6669 
+ 572              	.LASF18:
+ 573 0030 436F756E 		.ascii	"Counter_BACKUP_STRUCT\000"
+ 573      7465725F 
+ 573      4241434B 
+ 573      55505F53 
+ 573      54525543 
+ 574              	.LASF21:
+ 575 0046 436F756E 		.ascii	"Counter_Sleep\000"
+ 575      7465725F 
+ 575      536C6565 
+ 575      7000
+ 576              	.LASF19:
+ 577 0054 436F756E 		.ascii	"Counter_SaveConfig\000"
+ 577      7465725F 
+ 577      53617665 
+ 577      436F6E66 
+ 577      696700
+ 578              	.LASF25:
+ 579 0067 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 579      43313120 
+ 579      352E342E 
+ 579      31203230 
+ 579      31363036 
+ 580 009a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 580      20726576 
+ 580      6973696F 
+ 580      6E203233 
+ 580      37373135 
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 14
 
 
- 581              	.LASF25:
- 582 00a9 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 582      43313120 
- 582      352E342E 
- 582      31203230 
- 582      31363036 
- 583 00dc 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 583      20726576 
- 583      6973696F 
- 583      6E203233 
- 583      37373135 
- 584 010f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 584      66756E63 
- 584      74696F6E 
- 584      2D736563 
- 584      74696F6E 
- 585              	.LASF24:
- 586 0137 436F756E 		.ascii	"Counter_Enable\000"
- 586      7465725F 
- 586      456E6162 
- 586      6C6500
- 587              	.LASF23:
- 588 0146 436F756E 		.ascii	"Counter_Stop\000"
- 588      7465725F 
- 588      53746F70 
- 588      00
- 589              	.LASF12:
- 590 0153 75696E74 		.ascii	"uint8\000"
- 590      3800
- 591              	.LASF5:
- 592 0159 6C6F6E67 		.ascii	"long unsigned int\000"
- 592      20756E73 
- 592      69676E65 
- 592      6420696E 
- 592      7400
- 593              	.LASF7:
- 594 016b 6C6F6E67 		.ascii	"long long unsigned int\000"
- 594      206C6F6E 
- 594      6720756E 
- 594      7369676E 
- 594      65642069 
- 595              	.LASF28:
- 596 0182 436F756E 		.ascii	"Counter_backup\000"
- 596      7465725F 
- 596      6261636B 
- 596      757000
- 597              	.LASF9:
- 598 0191 666C6F61 		.ascii	"float\000"
- 598      7400
- 599              	.LASF1:
- 600 0197 756E7369 		.ascii	"unsigned char\000"
- 600      676E6564 
- 600      20636861 
- 600      7200
- 601              	.LASF11:
- 602 01a5 63686172 		.ascii	"char\000"
- 602      00
-ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccP1aecZ.s 			page 15
+ 581 00cd 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 581      66756E63 
+ 581      74696F6E 
+ 581      2D736563 
+ 581      74696F6E 
+ 582              	.LASF24:
+ 583 00f5 436F756E 		.ascii	"Counter_Enable\000"
+ 583      7465725F 
+ 583      456E6162 
+ 583      6C6500
+ 584              	.LASF23:
+ 585 0104 436F756E 		.ascii	"Counter_Stop\000"
+ 585      7465725F 
+ 585      53746F70 
+ 585      00
+ 586              	.LASF12:
+ 587 0111 75696E74 		.ascii	"uint8\000"
+ 587      3800
+ 588              	.LASF5:
+ 589 0117 6C6F6E67 		.ascii	"long unsigned int\000"
+ 589      20756E73 
+ 589      69676E65 
+ 589      6420696E 
+ 589      7400
+ 590              	.LASF7:
+ 591 0129 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 591      206C6F6E 
+ 591      6720756E 
+ 591      7369676E 
+ 591      65642069 
+ 592              	.LASF28:
+ 593 0140 436F756E 		.ascii	"Counter_backup\000"
+ 593      7465725F 
+ 593      6261636B 
+ 593      757000
+ 594              	.LASF9:
+ 595 014f 666C6F61 		.ascii	"float\000"
+ 595      7400
+ 596              	.LASF1:
+ 597 0155 756E7369 		.ascii	"unsigned char\000"
+ 597      676E6564 
+ 597      20636861 
+ 597      7200
+ 598              	.LASF11:
+ 599 0163 63686172 		.ascii	"char\000"
+ 599      00
+ 600              	.LASF17:
+ 601 0168 636F756E 		.ascii	"count\000"
+ 601      7400
+ 602              	.LASF4:
+ 603 016e 6C6F6E67 		.ascii	"long int\000"
+ 603      20696E74 
+ 603      00
+ 604              	.LASF10:
+ 605 0177 646F7562 		.ascii	"double\000"
+ 605      6C6500
+ 606              	.LASF22:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccs299tO.s 			page 15
 
 
- 603              	.LASF17:
- 604 01aa 636F756E 		.ascii	"count\000"
- 604      7400
- 605              	.LASF4:
- 606 01b0 6C6F6E67 		.ascii	"long int\000"
- 606      20696E74 
- 606      00
- 607              	.LASF10:
- 608 01b9 646F7562 		.ascii	"double\000"
- 608      6C6500
- 609              	.LASF22:
- 610 01c0 436F756E 		.ascii	"Counter_Wakeup\000"
- 610      7465725F 
- 610      57616B65 
- 610      757000
- 611              	.LASF3:
- 612 01cf 73686F72 		.ascii	"short unsigned int\000"
- 612      7420756E 
- 612      7369676E 
- 612      65642069 
- 612      6E7400
- 613              	.LASF0:
- 614 01e2 7369676E 		.ascii	"signed char\000"
- 614      65642063 
- 614      68617200 
- 615              	.LASF14:
- 616 01ee 6C6F6E67 		.ascii	"long double\000"
- 616      20646F75 
- 616      626C6500 
- 617              	.LASF26:
- 618 01fa 47656E65 		.ascii	"Generated_Source\\PSoC5\\Counter_PM.c\000"
- 618      72617465 
- 618      645F536F 
- 618      75726365 
- 618      5C50536F 
+ 607 017e 436F756E 		.ascii	"Counter_Wakeup\000"
+ 607      7465725F 
+ 607      57616B65 
+ 607      757000
+ 608              	.LASF3:
+ 609 018d 73686F72 		.ascii	"short unsigned int\000"
+ 609      7420756E 
+ 609      7369676E 
+ 609      65642069 
+ 609      6E7400
+ 610              	.LASF0:
+ 611 01a0 7369676E 		.ascii	"signed char\000"
+ 611      65642063 
+ 611      68617200 
+ 612              	.LASF14:
+ 613 01ac 6C6F6E67 		.ascii	"long double\000"
+ 613      20646F75 
+ 613      626C6500 
+ 614              	.LASF26:
+ 615 01b8 47656E65 		.ascii	"Generated_Source\\PSoC5\\Counter_PM.c\000"
+ 615      72617465 
+ 615      645F536F 
+ 615      75726365 
+ 615      5C50536F 
+ 616              	.LASF27:
+ 617 01dc 433A5C55 		.ascii	"C:\\Users\\nkhedkar\\Documents\\PSoC Creator\\ELE30"
+ 617      73657273 
+ 617      5C6E6B68 
+ 617      65646B61 
+ 617      725C446F 
+ 618 020a 3220576F 		.ascii	"2 Workspace\\navigation\\Navigation.cydsn\000"
+ 618      726B7370 
+ 618      6163655C 
+ 618      6E617669 
+ 618      67617469 
  619              	.LASF2:
- 620 021e 73686F72 		.ascii	"short int\000"
+ 620 0232 73686F72 		.ascii	"short int\000"
  620      7420696E 
  620      7400
  621              	.LASF13:
- 622 0228 72656738 		.ascii	"reg8\000"
+ 622 023c 72656738 		.ascii	"reg8\000"
  622      00
  623              	.LASF8:
- 624 022d 756E7369 		.ascii	"unsigned int\000"
+ 624 0241 756E7369 		.ascii	"unsigned int\000"
  624      676E6564 
  624      20696E74 
  624      00
  625              	.LASF15:
- 626 023a 73697A65 		.ascii	"sizetype\000"
+ 626 024e 73697A65 		.ascii	"sizetype\000"
  626      74797065 
  626      00
  627              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

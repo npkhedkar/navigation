@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Navigation\Navigation\TopDesign">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Navigation\Navigation\Source Files\main.c">
 <ExpandedNodeIds>
 <v>Navigation</v>
 <v>Navigation\Navigation</v>
@@ -65,8 +65,8 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_1.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_1_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Counter.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Counter_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
@@ -88,8 +88,6 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\OddEven.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_2.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\StartFrame.lst</v>
@@ -100,8 +98,9 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_IntClock.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Vcomp_225V.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VerifyCompOut.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VerifyLeftBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimer.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimer_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Navigation.elf</v>
@@ -123,8 +122,8 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_1.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_1_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Counter.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Counter_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
@@ -146,7 +145,10 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\OddEven.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\StartFrame.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -161,6 +163,7 @@
 <v>Navigation\Navigation\CY8C58LP Family Datasheet</v>
 <v>Navigation\Navigation\System Reference Guides</v>
 <v>Navigation\Navigation\System Reference Guides\cy_boot_v5_70</v>
+<v>Navigation\Navigation\BasicCounter_v1_0.pdf</v>
 <v>Navigation\Navigation\CharLCD_v2_20.pdf</v>
 <v>Navigation\Navigation\Comp_v2_0.pdf</v>
 <v>Navigation\Navigation\Count7_v1_0.pdf</v>
@@ -168,18 +171,20 @@
 <v>Navigation\Navigation\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Navigation\Navigation\cy_constant_v1_0</v>
 <v>Navigation\Navigation\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
-<v>Navigation\Navigation\cy_isr_v1_70.pdf</v>
-<v>Navigation\Navigation\cy_isr_v1_71</v>
-<v>Navigation\Navigation\cy_isr_v1_71\cy_isr_v1_71.pdf</v>
+<v>Navigation\Navigation\cy_isr_v1_70</v>
+<v>Navigation\Navigation\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
 <v>Navigation\Navigation\cy_pins_v2_20</v>
 <v>Navigation\Navigation\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>Navigation\Navigation\cy_UDB_clockenable_v1_0.pdf</v>
+<v>Navigation\Navigation\DigitalComp_v1_0.pdf</v>
+<v>Navigation\Navigation\Gnd_v1_0.pdf</v>
 <v>Navigation\Navigation\not_v1_0.pdf</v>
+<v>Navigation\Navigation\Potentiometer_v1_0.pdf</v>
 <v>Navigation\Navigation\PWM_v3_30.pdf</v>
 <v>Navigation\Navigation\Timer_v2_80</v>
 <v>Navigation\Navigation\Timer_v2_80\Timer_v2_80.pdf</v>
 <v>Navigation\Navigation\UART_v2_50.pdf</v>
-<v>Navigation\Navigation\VDAC8_v1_90.pdf</v>
+<v>Navigation\Navigation\VSource_v1_0.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Navigation</v>
@@ -208,7 +213,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="982, 500" SelectedTabbedMdiWindow="f43f986d-6e81-4725-9a24-e716a6a25836"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="b417a40f-5b36-479f-aa4f-4e058cc73410" /><DocumentWindow Key="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\TopDesign\TopDesign.cysch" Guid="f43f986d-6e81-4725-9a24-e716a6a25836" /><DocumentWindow Key="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\main.c" Guid="8e6f0f40-cac9-4119-a67c-757f6846ef41" /><DocumentWindow Key="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\Navigation.cydwr" Guid="42a768e2-7c06-4555-9a8d-42e9198e3bf8" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="982, 372" SelectedTabbedMdiWindow="f43f986d-6e81-4725-9a24-e716a6a25836"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="b417a40f-5b36-479f-aa4f-4e058cc73410" /><DocumentWindow Key="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\TopDesign\TopDesign.cysch" Guid="f43f986d-6e81-4725-9a24-e716a6a25836" /><DocumentWindow Key="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\main.c" Guid="8e6f0f40-cac9-4119-a67c-757f6846ef41" /><DocumentWindow Key="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\Navigation.cydwr" Guid="42a768e2-7c06-4555-9a8d-42e9198e3bf8" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

@@ -50,6 +50,7 @@
 #include "UART_IntClock.h"
 #include "LCD_LCDPort_aliases.h"
 #include "LCD_LCDPort.h"
+#include "cy_em_eeprom.h"
 #include "core_cm3_psoc5.h"
 #include "CyDmac.h"
 #include "CyFlash.h"
@@ -58,7 +59,6 @@
 #include "cyPm.h"
 #include "CySpc.h"
 #include "cytypes.h"
-#include "cy_em_eeprom.h"
 
 /*[]*/
 

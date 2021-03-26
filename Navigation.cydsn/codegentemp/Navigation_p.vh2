@@ -1,5 +1,5 @@
 -- Project:   Navigation
--- Generated: 03/26/2021 02:18:52
+-- Generated: 03/26/2021 19:23:50
 -- PSoC Creator  4.2
 
 ENTITY Navigation IS
@@ -75,6 +75,14 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     SIGNAL Net_2106_local : bit;
     SIGNAL Net_243 : bit;
     SIGNAL Net_248 : bit;
+    SIGNAL Net_2536_0 : bit;
+    SIGNAL Net_2536_1 : bit;
+    SIGNAL Net_2536_2 : bit;
+    SIGNAL Net_2536_3 : bit;
+    SIGNAL Net_2536_4 : bit;
+    SIGNAL Net_2536_5 : bit;
+    SIGNAL Net_2536_6 : bit;
+    SIGNAL Net_2536_7 : bit;
     SIGNAL Net_811 : bit;
     ATTRIBUTE udbclken_assigned OF Net_811 : SIGNAL IS "True";
     ATTRIBUTE global_signal OF Net_811 : SIGNAL IS true;
@@ -85,6 +93,7 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     SIGNAL Vcomp_225V(0)__PA : bit;
     SIGNAL VerifyCompOut(0)__PA : bit;
     SIGNAL VerifyLeftBlackEdge(0)__PA : bit;
+    SIGNAL \Comp_1:Net_1\ : bit;
     SIGNAL \\\LCD:LCDPort(0)\\__PA\ : bit;
     SIGNAL \\\LCD:LCDPort(1)\\__PA\ : bit;
     SIGNAL \\\LCD:LCDPort(2)\\__PA\ : bit;
@@ -258,6 +267,7 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:capt_fifo_load\ : LABEL IS "macrocell12";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:run_mode\ : LABEL IS "macrocell13";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:status_tc\ : LABEL IS "macrocell14";
+    ATTRIBUTE lib_model OF Net_1857 : LABEL IS "macrocell15";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \PWM:PWMUDB:sP8:pwmdp:u0\ : LABEL IS "datapathcell1";
@@ -275,33 +285,41 @@ ARCHITECTURE __DEFAULT__ OF Navigation IS
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:sT16:timerdp:u0\ : LABEL IS "datapathcell7";
     ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:sT16:timerdp:u1\ : LABEL IS "datapathcell8";
     ATTRIBUTE Location OF \Comp_1:ctComp\ : LABEL IS "F(Comparator,2)";
-    ATTRIBUTE lib_model OF \PWM:PWMUDB:runmode_enable\ : LABEL IS "macrocell15";
-    ATTRIBUTE lib_model OF \PWM:PWMUDB:prevCompare1\ : LABEL IS "macrocell16";
-    ATTRIBUTE lib_model OF \PWM:PWMUDB:status_0\ : LABEL IS "macrocell17";
-    ATTRIBUTE lib_model OF Net_187 : LABEL IS "macrocell18";
-    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell20";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_0\ : LABEL IS "macrocell25";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_load_fifo\ : LABEL IS "macrocell26";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_3\ : LABEL IS "macrocell27";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_2\ : LABEL IS "macrocell28";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_bitclk_enable\ : LABEL IS "macrocell29";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell30";
-    ATTRIBUTE lib_model OF \UART:BUART:pollcount_1\ : LABEL IS "macrocell31";
-    ATTRIBUTE lib_model OF \UART:BUART:pollcount_0\ : LABEL IS "macrocell32";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_status_3\ : LABEL IS "macrocell33";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_last\ : LABEL IS "macrocell34";
-    ATTRIBUTE lib_model OF \Timer:TimerUDB:capture_last\ : LABEL IS "macrocell35";
-    ATTRIBUTE lib_model OF Net_184 : LABEL IS "macrocell36";
-    ATTRIBUTE lib_model OF MODIN6_1 : LABEL IS "macrocell37";
-    ATTRIBUTE lib_model OF MODIN6_0 : LABEL IS "macrocell38";
-    ATTRIBUTE lib_model OF \Timer:TimerUDB:capt_int_temp\ : LABEL IS "macrocell39";
-    ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:capture_last\ : LABEL IS "macrocell40";
-    ATTRIBUTE lib_model OF Net_1905 : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF \PWM:PWMUDB:runmode_enable\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \PWM:PWMUDB:prevCompare1\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF \PWM:PWMUDB:status_0\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF Net_187 : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell24";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_0\ : LABEL IS "macrocell26";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_load_fifo\ : LABEL IS "macrocell27";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_3\ : LABEL IS "macrocell28";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_2\ : LABEL IS "macrocell29";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_bitclk_enable\ : LABEL IS "macrocell30";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell31";
+    ATTRIBUTE lib_model OF \UART:BUART:pollcount_1\ : LABEL IS "macrocell32";
+    ATTRIBUTE lib_model OF \UART:BUART:pollcount_0\ : LABEL IS "macrocell33";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_status_3\ : LABEL IS "macrocell34";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_last\ : LABEL IS "macrocell35";
+    ATTRIBUTE lib_model OF \Timer:TimerUDB:capture_last\ : LABEL IS "macrocell36";
+    ATTRIBUTE lib_model OF Net_184 : LABEL IS "macrocell37";
+    ATTRIBUTE lib_model OF MODIN6_1 : LABEL IS "macrocell38";
+    ATTRIBUTE lib_model OF MODIN6_0 : LABEL IS "macrocell39";
+    ATTRIBUTE lib_model OF \Timer:TimerUDB:capt_int_temp\ : LABEL IS "macrocell40";
+    ATTRIBUTE lib_model OF \VideoTimer:TimerUDB:capture_last\ : LABEL IS "macrocell41";
+    ATTRIBUTE lib_model OF Net_1905 : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF Net_2536_7 : LABEL IS "macrocell43";
+    ATTRIBUTE lib_model OF Net_2536_6 : LABEL IS "macrocell44";
+    ATTRIBUTE lib_model OF Net_2536_5 : LABEL IS "macrocell45";
+    ATTRIBUTE lib_model OF Net_2536_4 : LABEL IS "macrocell46";
+    ATTRIBUTE lib_model OF Net_2536_3 : LABEL IS "macrocell47";
+    ATTRIBUTE lib_model OF Net_2536_2 : LABEL IS "macrocell48";
+    ATTRIBUTE lib_model OF Net_2536_1 : LABEL IS "macrocell49";
+    ATTRIBUTE lib_model OF Net_2536_0 : LABEL IS "macrocell50";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -1913,36 +1931,66 @@ BEGIN
 
     \VideoTimer:TimerUDB:capt_fifo_load\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * main_2 * main_3)",
+            eqn_main => "(main_0 * main_1 * main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_8 * !main_9 * !main_10)",
             regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \VideoTimer:TimerUDB:capt_fifo_load\,
             main_0 => \VideoTimer:TimerUDB:control_7\,
-            main_1 => Net_1857,
-            main_2 => \VideoTimer:TimerUDB:capture_last\,
-            main_3 => Net_1886);
+            main_1 => \VideoTimer:TimerUDB:capture_last\,
+            main_2 => \Comp_1:Net_1\,
+            main_3 => Net_2536_7,
+            main_4 => Net_2536_6,
+            main_5 => Net_2536_5,
+            main_6 => Net_2536_4,
+            main_7 => Net_2536_3,
+            main_8 => Net_2536_2,
+            main_9 => Net_2536_1,
+            main_10 => Net_2536_0);
 
     \VideoTimer:TimerUDB:run_mode\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * main_1)",
+            eqn_main => "(main_0 * !main_1 * !main_2 * !main_3 * main_4 * !main_5 * !main_6 * !main_7 * !main_8)",
             regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \VideoTimer:TimerUDB:run_mode\,
             main_0 => \VideoTimer:TimerUDB:control_7\,
-            main_1 => Net_1886);
+            main_1 => Net_2536_7,
+            main_2 => Net_2536_6,
+            main_3 => Net_2536_5,
+            main_4 => Net_2536_4,
+            main_5 => Net_2536_3,
+            main_6 => Net_2536_2,
+            main_7 => Net_2536_1,
+            main_8 => Net_2536_0);
 
     \VideoTimer:TimerUDB:status_tc\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * main_1 * main_2)",
+            eqn_main => "(main_0 * main_1 * !main_2 * !main_3 * !main_4 * main_5 * !main_6 * !main_7 * !main_8 * !main_9)",
             regmode => 0,
             clken_mode => 1)
         PORT MAP(
             q => \VideoTimer:TimerUDB:status_tc\,
             main_0 => \VideoTimer:TimerUDB:control_7\,
             main_1 => \VideoTimer:TimerUDB:per_zero\,
-            main_2 => Net_1886);
+            main_2 => Net_2536_7,
+            main_3 => Net_2536_6,
+            main_4 => Net_2536_5,
+            main_5 => Net_2536_4,
+            main_6 => Net_2536_3,
+            main_7 => Net_2536_2,
+            main_8 => Net_2536_1,
+            main_9 => Net_2536_0);
+
+    Net_1857:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0)",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1857,
+            main_0 => \Comp_1:Net_1\);
 
     \PWM:PWMUDB:genblk1:ctrlreg\:controlcell
         GENERIC MAP(
@@ -2507,7 +2555,7 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            out => Net_1857);
+            out => \Comp_1:Net_1\);
 
     Black:interrupt
         GENERIC MAP(
@@ -2885,18 +2933,18 @@ BEGIN
 
     \VideoTimer:TimerUDB:capture_last\:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0)",
+            eqn_main => "(!main_0)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
             q => \VideoTimer:TimerUDB:capture_last\,
             clock_0 => Net_2106,
-            main_0 => Net_1857);
+            main_0 => \Comp_1:Net_1\);
 
     Net_1905:macrocell
         GENERIC MAP(
-            eqn_main => "(main_0 * !main_1 * main_2 * main_3)",
+            eqn_main => "(main_0 * main_1 * main_2 * !main_3 * !main_4 * !main_5 * main_6 * !main_7 * !main_8 * !main_9 * !main_10)",
             regmode => 1,
             clk_inv => '0',
             clken_mode => 1)
@@ -2904,8 +2952,155 @@ BEGIN
             q => Net_1905,
             clock_0 => Net_2106,
             main_0 => \VideoTimer:TimerUDB:control_7\,
-            main_1 => Net_1857,
-            main_2 => \VideoTimer:TimerUDB:capture_last\,
-            main_3 => Net_1886);
+            main_1 => \VideoTimer:TimerUDB:capture_last\,
+            main_2 => \Comp_1:Net_1\,
+            main_3 => Net_2536_7,
+            main_4 => Net_2536_6,
+            main_5 => Net_2536_5,
+            main_6 => Net_2536_4,
+            main_7 => Net_2536_3,
+            main_8 => Net_2536_2,
+            main_9 => Net_2536_1,
+            main_10 => Net_2536_0);
+
+    Net_2536_7:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_2 * main_3 * main_4 * main_5 * main_6 * main_7 * main_8) + (main_0 * main_1)",
+            regmode => 2,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_7,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_7,
+            main_2 => Net_2536_6,
+            main_3 => Net_2536_5,
+            main_4 => Net_2536_4,
+            main_5 => Net_2536_3,
+            main_6 => Net_2536_2,
+            main_7 => Net_2536_1,
+            main_8 => Net_2536_0);
+
+    Net_2536_6:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_2 * main_3 * main_4 * main_5 * main_6 * main_7) + (main_0 * main_1)",
+            regmode => 2,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_6,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_6,
+            main_2 => Net_2536_5,
+            main_3 => Net_2536_4,
+            main_4 => Net_2536_3,
+            main_5 => Net_2536_2,
+            main_6 => Net_2536_1,
+            main_7 => Net_2536_0);
+
+    Net_2536_5:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_2 * main_3 * main_4 * main_5 * main_6) + (main_0 * main_1)",
+            regmode => 2,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_5,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_5,
+            main_2 => Net_2536_4,
+            main_3 => Net_2536_3,
+            main_4 => Net_2536_2,
+            main_5 => Net_2536_1,
+            main_6 => Net_2536_0);
+
+    Net_2536_4:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_2 * main_3 * main_4 * main_5) + (main_0 * main_1)",
+            regmode => 2,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_4,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_4,
+            main_2 => Net_2536_3,
+            main_3 => Net_2536_2,
+            main_4 => Net_2536_1,
+            main_5 => Net_2536_0);
+
+    Net_2536_3:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_2 * main_3 * main_4) + (main_0 * main_1)",
+            regmode => 2,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_3,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_3,
+            main_2 => Net_2536_2,
+            main_3 => Net_2536_1,
+            main_4 => Net_2536_0);
+
+    Net_2536_2:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_2 * main_3) + (main_0 * main_1)",
+            regmode => 2,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_2,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_2,
+            main_2 => Net_2536_1,
+            main_3 => Net_2536_0);
+
+    Net_2536_1:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1 * main_2) + (!main_0 * main_1 * !main_2)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_1,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_1,
+            main_2 => Net_2536_0);
+
+    Net_2536_0:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 2)
+        PORT MAP(
+            q => Net_2536_0,
+            clk_en => Net_1895__SYNC_OUT,
+            clock_0 => ClockBlock_BUS_CLK,
+            main_0 => Net_1904,
+            main_1 => Net_2536_0);
 
 END __DEFAULT__;
