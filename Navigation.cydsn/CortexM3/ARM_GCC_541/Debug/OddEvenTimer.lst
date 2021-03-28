@@ -1,0 +1,2442 @@
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"OddEvenTimer.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.OddEvenTimer_Enable,"ax",%progbits
+  20              		.align	2
+  21              		.global	OddEvenTimer_Enable
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	OddEvenTimer_Enable, %function
+  25              	OddEvenTimer_Enable:
+  26              	.LFB1:
+  27              		.file 1 "Generated_Source\\PSoC5\\OddEvenTimer.c"
+   1:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/OddEvenTimer.c **** * File Name: OddEvenTimer.c
+   3:Generated_Source\PSoC5/OddEvenTimer.c **** * Version 2.80
+   4:Generated_Source\PSoC5/OddEvenTimer.c **** *
+   5:Generated_Source\PSoC5/OddEvenTimer.c **** * Description:
+   6:Generated_Source\PSoC5/OddEvenTimer.c **** *  The Timer component consists of a 8, 16, 24 or 32-bit timer with
+   7:Generated_Source\PSoC5/OddEvenTimer.c **** *  a selectable period between 2 and 2^Width - 1.  The timer may free run
+   8:Generated_Source\PSoC5/OddEvenTimer.c **** *  or be used as a capture timer as well.  The capture can be initiated
+   9:Generated_Source\PSoC5/OddEvenTimer.c **** *  by a positive or negative edge signal as well as via software.
+  10:Generated_Source\PSoC5/OddEvenTimer.c **** *  A trigger input can be programmed to enable the timer on rising edge
+  11:Generated_Source\PSoC5/OddEvenTimer.c **** *  falling edge, either edge or continous run.
+  12:Generated_Source\PSoC5/OddEvenTimer.c **** *  Interrupts may be generated due to a terminal count condition
+  13:Generated_Source\PSoC5/OddEvenTimer.c **** *  or a capture event.
+  14:Generated_Source\PSoC5/OddEvenTimer.c **** *
+  15:Generated_Source\PSoC5/OddEvenTimer.c **** * Note:
+  16:Generated_Source\PSoC5/OddEvenTimer.c **** *
+  17:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+  18:Generated_Source\PSoC5/OddEvenTimer.c **** * Copyright 2008-2017, Cypress Semiconductor Corporation.  All rights reserved.
+  19:Generated_Source\PSoC5/OddEvenTimer.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:Generated_Source\PSoC5/OddEvenTimer.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:Generated_Source\PSoC5/OddEvenTimer.c **** * the software package with which this file was provided.
+  22:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************/
+  23:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  24:Generated_Source\PSoC5/OddEvenTimer.c **** #include "OddEvenTimer.h"
+  25:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  26:Generated_Source\PSoC5/OddEvenTimer.c **** uint8 OddEvenTimer_initVar = 0u;
+  27:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  28:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  29:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+  30:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_Init
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 2
+
+
+  31:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+  32:Generated_Source\PSoC5/OddEvenTimer.c **** *
+  33:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+  34:Generated_Source\PSoC5/OddEvenTimer.c **** *  Initialize to the schematic state
+  35:Generated_Source\PSoC5/OddEvenTimer.c **** *
+  36:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+  37:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+  38:Generated_Source\PSoC5/OddEvenTimer.c **** *
+  39:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+  40:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+  41:Generated_Source\PSoC5/OddEvenTimer.c **** *
+  42:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+  43:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_Init(void) 
+  44:Generated_Source\PSoC5/OddEvenTimer.c **** {
+  45:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(!OddEvenTimer_UsingFixedFunction)
+  46:Generated_Source\PSoC5/OddEvenTimer.c ****             /* Interrupt State Backup for Critical Region*/
+  47:Generated_Source\PSoC5/OddEvenTimer.c ****             uint8 OddEvenTimer_interruptState;
+  48:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Interrupt state back up for Fixed Function only */
+  49:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  50:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (OddEvenTimer_UsingFixedFunction)
+  51:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Clear all bits but the enable bit (if it's already set) for Timer operation */
+  52:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL &= OddEvenTimer_CTRL_ENABLE;
+  53:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  54:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Clear the mode bits for continuous run mode */
+  55:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (CY_PSOC5A)
+  56:Generated_Source\PSoC5/OddEvenTimer.c ****             OddEvenTimer_CONTROL2 &= ((uint8)(~OddEvenTimer_CTRL_MODE_MASK));
+  57:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Clear bits in CONTROL2 only in PSOC5A */
+  58:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  59:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (CY_PSOC3 || CY_PSOC5LP)
+  60:Generated_Source\PSoC5/OddEvenTimer.c ****             OddEvenTimer_CONTROL3 &= ((uint8)(~OddEvenTimer_CTRL_MODE_MASK));
+  61:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* CONTROL3 register exists only in PSoC3 OR PSoC5LP */
+  62:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  63:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Check if One Shot mode is enabled i.e. RunMode !=0*/
+  64:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_RunModeUsed != 0x0u)
+  65:Generated_Source\PSoC5/OddEvenTimer.c ****             /* Set 3rd bit of Control register to enable one shot mode */
+  66:Generated_Source\PSoC5/OddEvenTimer.c ****             OddEvenTimer_CONTROL |= 0x04u;
+  67:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* One Shot enabled only when RunModeUsed is not Continuous*/
+  68:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  69:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_RunModeUsed == 2)
+  70:Generated_Source\PSoC5/OddEvenTimer.c ****             #if (CY_PSOC5A)
+  71:Generated_Source\PSoC5/OddEvenTimer.c ****                 /* Set last 2 bits of control2 register if one shot(halt on
+  72:Generated_Source\PSoC5/OddEvenTimer.c ****                 interrupt) is enabled*/
+  73:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL2 |= 0x03u;
+  74:Generated_Source\PSoC5/OddEvenTimer.c ****             #endif /* Set One-Shot Halt on Interrupt bit in CONTROL2 for PSoC5A */
+  75:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  76:Generated_Source\PSoC5/OddEvenTimer.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  77:Generated_Source\PSoC5/OddEvenTimer.c ****                 /* Set last 2 bits of control3 register if one shot(halt on
+  78:Generated_Source\PSoC5/OddEvenTimer.c ****                 interrupt) is enabled*/
+  79:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL3 |= 0x03u;
+  80:Generated_Source\PSoC5/OddEvenTimer.c ****             #endif /* Set One-Shot Halt on Interrupt bit in CONTROL3 for PSoC3 or PSoC5LP */
+  81:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  82:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Remove section if One Shot Halt on Interrupt is not enabled */
+  83:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  84:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_UsingHWEnable != 0)
+  85:Generated_Source\PSoC5/OddEvenTimer.c ****             #if (CY_PSOC5A)
+  86:Generated_Source\PSoC5/OddEvenTimer.c ****                 /* Set the default Run Mode of the Timer to Continuous */
+  87:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL2 |= OddEvenTimer_CTRL_MODE_PULSEWIDTH;
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 3
+
+
+  88:Generated_Source\PSoC5/OddEvenTimer.c ****             #endif /* Set Continuous Run Mode in CONTROL2 for PSoC5A */
+  89:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  90:Generated_Source\PSoC5/OddEvenTimer.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  91:Generated_Source\PSoC5/OddEvenTimer.c ****                 /* Clear and Set ROD and COD bits of CFG2 register */
+  92:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL3 &= ((uint8)(~OddEvenTimer_CTRL_RCOD_MASK));
+  93:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL3 |= OddEvenTimer_CTRL_RCOD;
+  94:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  95:Generated_Source\PSoC5/OddEvenTimer.c ****                 /* Clear and Enable the HW enable bit in CFG2 register */
+  96:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL3 &= ((uint8)(~OddEvenTimer_CTRL_ENBL_MASK));
+  97:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL3 |= OddEvenTimer_CTRL_ENBL;
+  98:Generated_Source\PSoC5/OddEvenTimer.c **** 
+  99:Generated_Source\PSoC5/OddEvenTimer.c ****                 /* Set the default Run Mode of the Timer to Continuous */
+ 100:Generated_Source\PSoC5/OddEvenTimer.c ****                 OddEvenTimer_CONTROL3 |= OddEvenTimer_CTRL_MODE_CONTINUOUS;
+ 101:Generated_Source\PSoC5/OddEvenTimer.c ****             #endif /* Set Continuous Run Mode in CONTROL3 for PSoC3ES3 or PSoC5A */
+ 102:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 103:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Configure Run Mode with hardware enable */
+ 104:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 105:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 106:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_RT1 &= ((uint8)(~OddEvenTimer_RT1_MASK));
+ 107:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_RT1 |= OddEvenTimer_SYNC;
+ 108:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 109:Generated_Source\PSoC5/OddEvenTimer.c ****         /*Enable DSI Sync all all inputs of the Timer*/
+ 110:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_RT1 &= ((uint8)(~OddEvenTimer_SYNCDSI_MASK));
+ 111:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_RT1 |= OddEvenTimer_SYNCDSI_EN;
+ 112:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 113:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Set the IRQ to use the status register interrupts */
+ 114:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL2 |= OddEvenTimer_CTRL2_IRQ_SEL;
+ 115:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Configuring registers of fixed function implementation */
+ 116:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 117:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Set Initial values from Configuration */
+ 118:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_WritePeriod(OddEvenTimer_INIT_PERIOD);
+ 119:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_WriteCounter(OddEvenTimer_INIT_PERIOD);
+ 120:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 121:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (OddEvenTimer_UsingHWCaptureCounter)/* Capture counter is enabled */
+ 122:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CAPTURE_COUNT_CTRL |= OddEvenTimer_CNTR_ENABLE;
+ 123:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_SetCaptureCount(OddEvenTimer_INIT_CAPTURE_COUNT);
+ 124:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Configure capture counter value */
+ 125:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 126:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UsingFixedFunction)
+ 127:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_SoftwareCaptureMode)
+ 128:Generated_Source\PSoC5/OddEvenTimer.c ****             OddEvenTimer_SetCaptureMode(OddEvenTimer_INIT_CAPTURE_MODE);
+ 129:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Set Capture Mode for UDB implementation if capture mode is software controlled */
+ 130:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 131:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_SoftwareTriggerMode)
+ 132:Generated_Source\PSoC5/OddEvenTimer.c ****             #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED)
+ 133:Generated_Source\PSoC5/OddEvenTimer.c ****                 if (0u == (OddEvenTimer_CONTROL & OddEvenTimer__B_TIMER__TM_SOFTWARE))
+ 134:Generated_Source\PSoC5/OddEvenTimer.c ****                 {
+ 135:Generated_Source\PSoC5/OddEvenTimer.c ****                     OddEvenTimer_SetTriggerMode(OddEvenTimer_INIT_TRIGGER_MODE);
+ 136:Generated_Source\PSoC5/OddEvenTimer.c ****                 }
+ 137:Generated_Source\PSoC5/OddEvenTimer.c ****             #endif /* (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) */
+ 138:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Set trigger mode for UDB Implementation if trigger mode is software controlled */
+ 139:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 140:Generated_Source\PSoC5/OddEvenTimer.c ****         /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region critica
+ 141:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Enter Critical Region*/
+ 142:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_interruptState = CyEnterCriticalSection();
+ 143:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 144:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Use the interrupt output of the status register for IRQ output */
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 4
+
+
+ 145:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_STATUS_AUX_CTRL |= OddEvenTimer_STATUS_ACTL_INT_EN_MASK;
+ 146:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 147:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Exit Critical Region*/
+ 148:Generated_Source\PSoC5/OddEvenTimer.c ****         CyExitCriticalSection(OddEvenTimer_interruptState);
+ 149:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 150:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_EnableTriggerMode)
+ 151:Generated_Source\PSoC5/OddEvenTimer.c ****             OddEvenTimer_EnableTrigger();
+ 152:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Set Trigger enable bit for UDB implementation in the control register*/
+ 153:Generated_Source\PSoC5/OddEvenTimer.c **** 		
+ 154:Generated_Source\PSoC5/OddEvenTimer.c **** 		
+ 155:Generated_Source\PSoC5/OddEvenTimer.c ****         #if (OddEvenTimer_InterruptOnCaptureCount && !OddEvenTimer_UDB_CONTROL_REG_REMOVED)
+ 156:Generated_Source\PSoC5/OddEvenTimer.c ****             OddEvenTimer_SetInterruptCount(OddEvenTimer_INIT_INT_CAPTURE_COUNT);
+ 157:Generated_Source\PSoC5/OddEvenTimer.c ****         #endif /* Set interrupt count in UDB implementation if interrupt count feature is checked.*
+ 158:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 159:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_ClearFIFO();
+ 160:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Configure additional features of UDB implementation */
+ 161:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 162:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_SetInterruptMode(OddEvenTimer_INIT_INTERRUPT_MODE);
+ 163:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 164:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 165:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 166:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 167:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_Enable
+ 168:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 169:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 170:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 171:Generated_Source\PSoC5/OddEvenTimer.c **** *  Enable the Timer
+ 172:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 173:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 174:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 175:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 176:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 177:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 178:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 179:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 180:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_Enable(void) 
+ 181:Generated_Source\PSoC5/OddEvenTimer.c **** {
+  28              		.loc 1 181 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 182:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 183:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (OddEvenTimer_UsingFixedFunction)
+ 184:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_GLOBAL_ENABLE |= OddEvenTimer_BLOCK_EN_MASK;
+ 185:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_GLOBAL_STBY_ENABLE |= OddEvenTimer_BLOCK_STBY_EN_MASK;
+ 186:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Set Enable bit for enabling Fixed function timer*/
+ 187:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 188:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Remove assignment if control register is removed */
+ 189:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED || OddEvenTimer_UsingFixedFunction)
+ 190:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL |= OddEvenTimer_CTRL_ENABLE;
+  33              		.loc 1 190 0
+  34 0000 024A     		ldr	r2, .L2
+  35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  36 0004 43F08003 		orr	r3, r3, #128
+  37 0008 1370     		strb	r3, [r2]
+  38 000a 7047     		bx	lr
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 5
+
+
+  39              	.L3:
+  40              		.align	2
+  41              	.L2:
+  42 000c 7D640040 		.word	1073767549
+  43              		.cfi_endproc
+  44              	.LFE1:
+  45              		.size	OddEvenTimer_Enable, .-OddEvenTimer_Enable
+  46              		.section	.text.OddEvenTimer_Stop,"ax",%progbits
+  47              		.align	2
+  48              		.global	OddEvenTimer_Stop
+  49              		.thumb
+  50              		.thumb_func
+  51              		.type	OddEvenTimer_Stop, %function
+  52              	OddEvenTimer_Stop:
+  53              	.LFB3:
+ 191:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Remove assignment if control register is removed */
+ 192:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 193:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 194:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 195:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 196:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_Start
+ 197:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 198:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 199:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 200:Generated_Source\PSoC5/OddEvenTimer.c **** *  The start function initializes the timer with the default values, the
+ 201:Generated_Source\PSoC5/OddEvenTimer.c **** *  enables the timerto begin counting.  It does not enable interrupts,
+ 202:Generated_Source\PSoC5/OddEvenTimer.c **** *  the EnableInt command should be called if interrupt generation is required.
+ 203:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 204:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 205:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 206:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 207:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 208:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 209:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 210:Generated_Source\PSoC5/OddEvenTimer.c **** * Global variables:
+ 211:Generated_Source\PSoC5/OddEvenTimer.c **** *  OddEvenTimer_initVar: Is modified when this function is called for the
+ 212:Generated_Source\PSoC5/OddEvenTimer.c **** *   first time. Is used to ensure that initialization happens only once.
+ 213:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 214:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 215:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_Start(void) 
+ 216:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 217:Generated_Source\PSoC5/OddEvenTimer.c ****     if(OddEvenTimer_initVar == 0u)
+ 218:Generated_Source\PSoC5/OddEvenTimer.c ****     {
+ 219:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_Init();
+ 220:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 221:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_initVar = 1u;   /* Clear this bit for Initialization */
+ 222:Generated_Source\PSoC5/OddEvenTimer.c ****     }
+ 223:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 224:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Enable the Timer */
+ 225:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_Enable();
+ 226:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 227:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 228:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 229:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 230:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_Stop
+ 231:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 232:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 6
+
+
+ 233:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 234:Generated_Source\PSoC5/OddEvenTimer.c **** *  The stop function halts the timer, but does not change any modes or disable
+ 235:Generated_Source\PSoC5/OddEvenTimer.c **** *  interrupts.
+ 236:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 237:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 238:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 239:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 240:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 241:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 242:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 243:Generated_Source\PSoC5/OddEvenTimer.c **** * Side Effects: If the Enable mode is set to Hardware only then this function
+ 244:Generated_Source\PSoC5/OddEvenTimer.c **** *               has no effect on the operation of the timer.
+ 245:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 246:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 247:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_Stop(void) 
+ 248:Generated_Source\PSoC5/OddEvenTimer.c **** {
+  54              		.loc 1 248 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58              		@ link register save eliminated.
+ 249:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Disable Timer */
+ 250:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(!OddEvenTimer_UDB_CONTROL_REG_REMOVED || OddEvenTimer_UsingFixedFunction)
+ 251:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL &= ((uint8)(~OddEvenTimer_CTRL_ENABLE));
+  59              		.loc 1 251 0
+  60 0000 024A     		ldr	r2, .L5
+  61 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  62 0004 03F07F03 		and	r3, r3, #127
+  63 0008 1370     		strb	r3, [r2]
+  64 000a 7047     		bx	lr
+  65              	.L6:
+  66              		.align	2
+  67              	.L5:
+  68 000c 7D640040 		.word	1073767549
+  69              		.cfi_endproc
+  70              	.LFE3:
+  71              		.size	OddEvenTimer_Stop, .-OddEvenTimer_Stop
+  72              		.section	.text.OddEvenTimer_SetInterruptMode,"ax",%progbits
+  73              		.align	2
+  74              		.global	OddEvenTimer_SetInterruptMode
+  75              		.thumb
+  76              		.thumb_func
+  77              		.type	OddEvenTimer_SetInterruptMode, %function
+  78              	OddEvenTimer_SetInterruptMode:
+  79              	.LFB4:
+ 252:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Remove assignment if control register is removed */
+ 253:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 254:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Globally disable the Fixed Function Block chosen */
+ 255:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (OddEvenTimer_UsingFixedFunction)
+ 256:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_GLOBAL_ENABLE &= ((uint8)(~OddEvenTimer_BLOCK_EN_MASK));
+ 257:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_GLOBAL_STBY_ENABLE &= ((uint8)(~OddEvenTimer_BLOCK_STBY_EN_MASK));
+ 258:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Disable global enable for the Timer Fixed function block to stop the Timer*/
+ 259:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 260:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 261:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 262:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 263:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_SetInterruptMode
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 7
+
+
+ 264:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 265:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 266:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 267:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function selects which of the interrupt inputs may cause an interrupt.
+ 268:Generated_Source\PSoC5/OddEvenTimer.c **** *  The twosources are caputure and terminal.  One, both or neither may
+ 269:Generated_Source\PSoC5/OddEvenTimer.c **** *  be selected.
+ 270:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 271:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 272:Generated_Source\PSoC5/OddEvenTimer.c **** *  interruptMode:   This parameter is used to enable interrups on either/or
+ 273:Generated_Source\PSoC5/OddEvenTimer.c **** *                   terminal count or capture.
+ 274:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 275:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 276:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 277:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 278:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 279:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_SetInterruptMode(uint8 interruptMode) 
+ 280:Generated_Source\PSoC5/OddEvenTimer.c **** {
+  80              		.loc 1 280 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		@ link register save eliminated.
+  85              	.LVL0:
+ 281:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_STATUS_MASK = interruptMode;
+  86              		.loc 1 281 0
+  87 0000 014B     		ldr	r3, .L8
+  88 0002 1870     		strb	r0, [r3]
+  89 0004 7047     		bx	lr
+  90              	.L9:
+  91 0006 00BF     		.align	2
+  92              	.L8:
+  93 0008 8D640040 		.word	1073767565
+  94              		.cfi_endproc
+  95              	.LFE4:
+  96              		.size	OddEvenTimer_SetInterruptMode, .-OddEvenTimer_SetInterruptMode
+  97              		.section	.text.OddEvenTimer_SoftwareCapture,"ax",%progbits
+  98              		.align	2
+  99              		.global	OddEvenTimer_SoftwareCapture
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.type	OddEvenTimer_SoftwareCapture, %function
+ 103              	OddEvenTimer_SoftwareCapture:
+ 104              	.LFB5:
+ 282:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 283:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 284:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 285:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 286:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_SoftwareCapture
+ 287:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 288:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 289:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 290:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function forces a capture independent of the capture signal.
+ 291:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 292:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 293:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 294:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 295:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 8
+
+
+ 296:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 297:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 298:Generated_Source\PSoC5/OddEvenTimer.c **** * Side Effects:
+ 299:Generated_Source\PSoC5/OddEvenTimer.c **** *  An existing hardware capture could be overwritten.
+ 300:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 301:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 302:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_SoftwareCapture(void) 
+ 303:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 105              		.loc 1 303 0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109              		@ link register save eliminated.
+ 304:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Generate a software capture by reading the counter register */
+ 305:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(OddEvenTimer_UsingFixedFunction)
+ 306:Generated_Source\PSoC5/OddEvenTimer.c ****         (void)CY_GET_REG16(OddEvenTimer_COUNTER_LSB_PTR);
+ 307:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 308:Generated_Source\PSoC5/OddEvenTimer.c ****         (void)CY_GET_REG8(OddEvenTimer_COUNTER_LSB_PTR_8BIT);
+ 110              		.loc 1 308 0
+ 111 0000 014B     		ldr	r3, .L11
+ 112 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 113 0004 7047     		bx	lr
+ 114              	.L12:
+ 115 0006 00BF     		.align	2
+ 116              	.L11:
+ 117 0008 0A640040 		.word	1073767434
+ 118              		.cfi_endproc
+ 119              	.LFE5:
+ 120              		.size	OddEvenTimer_SoftwareCapture, .-OddEvenTimer_SoftwareCapture
+ 121              		.section	.text.OddEvenTimer_ReadStatusRegister,"ax",%progbits
+ 122              		.align	2
+ 123              		.global	OddEvenTimer_ReadStatusRegister
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.type	OddEvenTimer_ReadStatusRegister, %function
+ 127              	OddEvenTimer_ReadStatusRegister:
+ 128              	.LFB6:
+ 309:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif/* (OddEvenTimer_UsingFixedFunction) */
+ 310:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Capture Data is now in the FIFO */
+ 311:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 312:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 313:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 314:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 315:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ReadStatusRegister
+ 316:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 317:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 318:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 319:Generated_Source\PSoC5/OddEvenTimer.c **** *  Reads the status register and returns it's state. This function should use
+ 320:Generated_Source\PSoC5/OddEvenTimer.c **** *  defined types for the bit-field information as the bits in this register may
+ 321:Generated_Source\PSoC5/OddEvenTimer.c **** *  be permuteable.
+ 322:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 323:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 324:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 325:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 326:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 327:Generated_Source\PSoC5/OddEvenTimer.c **** *  The contents of the status register
+ 328:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 9
+
+
+ 329:Generated_Source\PSoC5/OddEvenTimer.c **** * Side Effects:
+ 330:Generated_Source\PSoC5/OddEvenTimer.c **** *  Status register bits may be clear on read.
+ 331:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 332:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 333:Generated_Source\PSoC5/OddEvenTimer.c **** uint8   OddEvenTimer_ReadStatusRegister(void) 
+ 334:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 129              		.loc 1 334 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+ 335:Generated_Source\PSoC5/OddEvenTimer.c ****     return (OddEvenTimer_STATUS);
+ 134              		.loc 1 335 0
+ 135 0000 014B     		ldr	r3, .L14
+ 136 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 336:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 137              		.loc 1 336 0
+ 138 0004 7047     		bx	lr
+ 139              	.L15:
+ 140 0006 00BF     		.align	2
+ 141              	.L14:
+ 142 0008 6D640040 		.word	1073767533
+ 143              		.cfi_endproc
+ 144              	.LFE6:
+ 145              		.size	OddEvenTimer_ReadStatusRegister, .-OddEvenTimer_ReadStatusRegister
+ 146              		.section	.text.OddEvenTimer_ReadControlRegister,"ax",%progbits
+ 147              		.align	2
+ 148              		.global	OddEvenTimer_ReadControlRegister
+ 149              		.thumb
+ 150              		.thumb_func
+ 151              		.type	OddEvenTimer_ReadControlRegister, %function
+ 152              	OddEvenTimer_ReadControlRegister:
+ 153              	.LFB7:
+ 337:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 338:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 339:Generated_Source\PSoC5/OddEvenTimer.c **** #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) /* Remove API if control register is unused */
+ 340:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 341:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 342:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 343:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ReadControlRegister
+ 344:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 345:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 346:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 347:Generated_Source\PSoC5/OddEvenTimer.c **** *  Reads the control register and returns it's value.
+ 348:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 349:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 350:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 351:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 352:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 353:Generated_Source\PSoC5/OddEvenTimer.c **** *  The contents of the control register
+ 354:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 355:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 356:Generated_Source\PSoC5/OddEvenTimer.c **** uint8 OddEvenTimer_ReadControlRegister(void) 
+ 357:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 154              		.loc 1 357 0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 10
+
+
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		@ link register save eliminated.
+ 358:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) 
+ 359:Generated_Source\PSoC5/OddEvenTimer.c ****         return ((uint8)OddEvenTimer_CONTROL);
+ 159              		.loc 1 359 0
+ 160 0000 014B     		ldr	r3, .L17
+ 161 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 360:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 361:Generated_Source\PSoC5/OddEvenTimer.c ****         return (0);
+ 362:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) */
+ 363:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 162              		.loc 1 363 0
+ 163 0004 7047     		bx	lr
+ 164              	.L18:
+ 165 0006 00BF     		.align	2
+ 166              	.L17:
+ 167 0008 7D640040 		.word	1073767549
+ 168              		.cfi_endproc
+ 169              	.LFE7:
+ 170              		.size	OddEvenTimer_ReadControlRegister, .-OddEvenTimer_ReadControlRegister
+ 171              		.section	.text.OddEvenTimer_WriteControlRegister,"ax",%progbits
+ 172              		.align	2
+ 173              		.global	OddEvenTimer_WriteControlRegister
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.type	OddEvenTimer_WriteControlRegister, %function
+ 177              	OddEvenTimer_WriteControlRegister:
+ 178              	.LFB8:
+ 364:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 365:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 366:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 367:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_WriteControlRegister
+ 368:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 369:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 370:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 371:Generated_Source\PSoC5/OddEvenTimer.c **** *  Sets the bit-field of the control register.
+ 372:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 373:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 374:Generated_Source\PSoC5/OddEvenTimer.c **** *  control: The contents of the control register
+ 375:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 376:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 377:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 378:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 379:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_WriteControlRegister(uint8 control) 
+ 380:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 179              		.loc 1 380 0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 184              	.LVL1:
+ 381:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) 
+ 382:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL = control;
+ 185              		.loc 1 382 0
+ 186 0000 014B     		ldr	r3, .L20
+ 187 0002 1870     		strb	r0, [r3]
+ 188 0004 7047     		bx	lr
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 11
+
+
+ 189              	.L21:
+ 190 0006 00BF     		.align	2
+ 191              	.L20:
+ 192 0008 7D640040 		.word	1073767549
+ 193              		.cfi_endproc
+ 194              	.LFE8:
+ 195              		.size	OddEvenTimer_WriteControlRegister, .-OddEvenTimer_WriteControlRegister
+ 196              		.section	.text.OddEvenTimer_ReadPeriod,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	OddEvenTimer_ReadPeriod
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.type	OddEvenTimer_ReadPeriod, %function
+ 202              	OddEvenTimer_ReadPeriod:
+ 203              	.LFB9:
+ 383:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 384:Generated_Source\PSoC5/OddEvenTimer.c ****         control = 0u;
+ 385:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) */
+ 386:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 387:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 388:Generated_Source\PSoC5/OddEvenTimer.c **** #endif /* Remove API if control register is unused */
+ 389:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 390:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 391:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 392:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ReadPeriod
+ 393:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 394:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 395:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 396:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function returns the current value of the Period.
+ 397:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 398:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 399:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 400:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 401:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 402:Generated_Source\PSoC5/OddEvenTimer.c **** *  The present value of the counter.
+ 403:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 404:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 405:Generated_Source\PSoC5/OddEvenTimer.c **** uint32 OddEvenTimer_ReadPeriod(void) 
+ 406:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 204              		.loc 1 406 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 407:Generated_Source\PSoC5/OddEvenTimer.c ****    #if(OddEvenTimer_UsingFixedFunction)
+ 408:Generated_Source\PSoC5/OddEvenTimer.c ****        return ((uint32)CY_GET_REG16(OddEvenTimer_PERIOD_LSB_PTR));
+ 409:Generated_Source\PSoC5/OddEvenTimer.c ****    #else
+ 410:Generated_Source\PSoC5/OddEvenTimer.c ****        return (CY_GET_REG32(OddEvenTimer_PERIOD_LSB_PTR));
+ 209              		.loc 1 410 0
+ 210 0000 014B     		ldr	r3, .L23
+ 211 0002 1868     		ldr	r0, [r3]	@ unaligned
+ 411:Generated_Source\PSoC5/OddEvenTimer.c ****    #endif /* (OddEvenTimer_UsingFixedFunction) */
+ 412:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 212              		.loc 1 412 0
+ 213 0004 7047     		bx	lr
+ 214              	.L24:
+ 215 0006 00BF     		.align	2
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 12
+
+
+ 216              	.L23:
+ 217 0008 2A640040 		.word	1073767466
+ 218              		.cfi_endproc
+ 219              	.LFE9:
+ 220              		.size	OddEvenTimer_ReadPeriod, .-OddEvenTimer_ReadPeriod
+ 221              		.section	.text.OddEvenTimer_WritePeriod,"ax",%progbits
+ 222              		.align	2
+ 223              		.global	OddEvenTimer_WritePeriod
+ 224              		.thumb
+ 225              		.thumb_func
+ 226              		.type	OddEvenTimer_WritePeriod, %function
+ 227              	OddEvenTimer_WritePeriod:
+ 228              	.LFB10:
+ 413:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 414:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 415:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 416:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_WritePeriod
+ 417:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 418:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 419:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 420:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function is used to change the period of the counter.  The new period
+ 421:Generated_Source\PSoC5/OddEvenTimer.c **** *  will be loaded the next time terminal count is detected.
+ 422:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 423:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 424:Generated_Source\PSoC5/OddEvenTimer.c **** *  period: This value may be between 1 and (2^Resolution)-1.  A value of 0 will
+ 425:Generated_Source\PSoC5/OddEvenTimer.c **** *          result in the counter remaining at zero.
+ 426:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 427:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 428:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 429:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 430:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 431:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_WritePeriod(uint32 period) 
+ 432:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 229              		.loc 1 432 0
+ 230              		.cfi_startproc
+ 231              		@ args = 0, pretend = 0, frame = 0
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+ 233              		@ link register save eliminated.
+ 234              	.LVL2:
+ 433:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(OddEvenTimer_UsingFixedFunction)
+ 434:Generated_Source\PSoC5/OddEvenTimer.c ****         uint16 period_temp = (uint16)period;
+ 435:Generated_Source\PSoC5/OddEvenTimer.c ****         CY_SET_REG16(OddEvenTimer_PERIOD_LSB_PTR, period_temp);
+ 436:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 437:Generated_Source\PSoC5/OddEvenTimer.c ****         CY_SET_REG32(OddEvenTimer_PERIOD_LSB_PTR, period);
+ 235              		.loc 1 437 0
+ 236 0000 014B     		ldr	r3, .L26
+ 237 0002 1860     		str	r0, [r3]	@ unaligned
+ 238 0004 7047     		bx	lr
+ 239              	.L27:
+ 240 0006 00BF     		.align	2
+ 241              	.L26:
+ 242 0008 2A640040 		.word	1073767466
+ 243              		.cfi_endproc
+ 244              	.LFE10:
+ 245              		.size	OddEvenTimer_WritePeriod, .-OddEvenTimer_WritePeriod
+ 246              		.section	.text.OddEvenTimer_ReadCapture,"ax",%progbits
+ 247              		.align	2
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 13
+
+
+ 248              		.global	OddEvenTimer_ReadCapture
+ 249              		.thumb
+ 250              		.thumb_func
+ 251              		.type	OddEvenTimer_ReadCapture, %function
+ 252              	OddEvenTimer_ReadCapture:
+ 253              	.LFB11:
+ 438:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /*Write Period value with appropriate resolution suffix depending on UDB or fixed functi
+ 439:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 440:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 441:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 442:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 443:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ReadCapture
+ 444:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 445:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 446:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 447:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function returns the last value captured.
+ 448:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 449:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 450:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 451:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 452:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 453:Generated_Source\PSoC5/OddEvenTimer.c **** *  Present Capture value.
+ 454:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 455:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 456:Generated_Source\PSoC5/OddEvenTimer.c **** uint32 OddEvenTimer_ReadCapture(void) 
+ 457:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 254              		.loc 1 457 0
+ 255              		.cfi_startproc
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258              		@ link register save eliminated.
+ 458:Generated_Source\PSoC5/OddEvenTimer.c ****    #if(OddEvenTimer_UsingFixedFunction)
+ 459:Generated_Source\PSoC5/OddEvenTimer.c ****        return ((uint32)CY_GET_REG16(OddEvenTimer_CAPTURE_LSB_PTR));
+ 460:Generated_Source\PSoC5/OddEvenTimer.c ****    #else
+ 461:Generated_Source\PSoC5/OddEvenTimer.c ****        return (CY_GET_REG32(OddEvenTimer_CAPTURE_LSB_PTR));
+ 259              		.loc 1 461 0
+ 260 0000 014B     		ldr	r3, .L29
+ 261 0002 1868     		ldr	r0, [r3]	@ unaligned
+ 462:Generated_Source\PSoC5/OddEvenTimer.c ****    #endif /* (OddEvenTimer_UsingFixedFunction) */
+ 463:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 262              		.loc 1 463 0
+ 263 0004 7047     		bx	lr
+ 264              	.L30:
+ 265 0006 00BF     		.align	2
+ 266              	.L29:
+ 267 0008 4A640040 		.word	1073767498
+ 268              		.cfi_endproc
+ 269              	.LFE11:
+ 270              		.size	OddEvenTimer_ReadCapture, .-OddEvenTimer_ReadCapture
+ 271              		.section	.text.OddEvenTimer_WriteCounter,"ax",%progbits
+ 272              		.align	2
+ 273              		.global	OddEvenTimer_WriteCounter
+ 274              		.thumb
+ 275              		.thumb_func
+ 276              		.type	OddEvenTimer_WriteCounter, %function
+ 277              	OddEvenTimer_WriteCounter:
+ 278              	.LFB12:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 14
+
+
+ 464:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 465:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 466:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 467:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_WriteCounter
+ 468:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 469:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 470:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 471:Generated_Source\PSoC5/OddEvenTimer.c **** *  This funtion is used to set the counter to a specific value
+ 472:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 473:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 474:Generated_Source\PSoC5/OddEvenTimer.c **** *  counter:  New counter value.
+ 475:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 476:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 477:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 478:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 479:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 480:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_WriteCounter(uint32 counter) 
+ 481:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 279              		.loc 1 481 0
+ 280              		.cfi_startproc
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283              		@ link register save eliminated.
+ 284              	.LVL3:
+ 482:Generated_Source\PSoC5/OddEvenTimer.c ****    #if(OddEvenTimer_UsingFixedFunction)
+ 483:Generated_Source\PSoC5/OddEvenTimer.c ****         /* This functionality is removed until a FixedFunction HW update to
+ 484:Generated_Source\PSoC5/OddEvenTimer.c ****          * allow this register to be written
+ 485:Generated_Source\PSoC5/OddEvenTimer.c ****          */
+ 486:Generated_Source\PSoC5/OddEvenTimer.c ****         CY_SET_REG16(OddEvenTimer_COUNTER_LSB_PTR, (uint16)counter);
+ 487:Generated_Source\PSoC5/OddEvenTimer.c ****         
+ 488:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 489:Generated_Source\PSoC5/OddEvenTimer.c ****         CY_SET_REG32(OddEvenTimer_COUNTER_LSB_PTR, counter);
+ 285              		.loc 1 489 0
+ 286 0000 014B     		ldr	r3, .L32
+ 287 0002 1860     		str	r0, [r3]	@ unaligned
+ 288 0004 7047     		bx	lr
+ 289              	.L33:
+ 290 0006 00BF     		.align	2
+ 291              	.L32:
+ 292 0008 0A640040 		.word	1073767434
+ 293              		.cfi_endproc
+ 294              	.LFE12:
+ 295              		.size	OddEvenTimer_WriteCounter, .-OddEvenTimer_WriteCounter
+ 296              		.section	.text.OddEvenTimer_ReadCounter,"ax",%progbits
+ 297              		.align	2
+ 298              		.global	OddEvenTimer_ReadCounter
+ 299              		.thumb
+ 300              		.thumb_func
+ 301              		.type	OddEvenTimer_ReadCounter, %function
+ 302              	OddEvenTimer_ReadCounter:
+ 303              	.LFB13:
+ 490:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Set Write Counter only for the UDB implementation (Write Counter not available in fix
+ 491:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 492:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 493:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 494:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 495:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ReadCounter
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 15
+
+
+ 496:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 497:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 498:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 499:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function returns the current counter value.
+ 500:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 501:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 502:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 503:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 504:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 505:Generated_Source\PSoC5/OddEvenTimer.c **** *  Present compare value.
+ 506:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 507:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 508:Generated_Source\PSoC5/OddEvenTimer.c **** uint32 OddEvenTimer_ReadCounter(void) 
+ 509:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 304              		.loc 1 509 0
+ 305              		.cfi_startproc
+ 306              		@ args = 0, pretend = 0, frame = 0
+ 307              		@ frame_needed = 0, uses_anonymous_args = 0
+ 308              		@ link register save eliminated.
+ 510:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Force capture by reading Accumulator */
+ 511:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Must first do a software capture to be able to read the counter */
+ 512:Generated_Source\PSoC5/OddEvenTimer.c ****     /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 513:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(OddEvenTimer_UsingFixedFunction)
+ 514:Generated_Source\PSoC5/OddEvenTimer.c ****         (void)CY_GET_REG16(OddEvenTimer_COUNTER_LSB_PTR);
+ 515:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 516:Generated_Source\PSoC5/OddEvenTimer.c ****         (void)CY_GET_REG8(OddEvenTimer_COUNTER_LSB_PTR_8BIT);
+ 309              		.loc 1 516 0
+ 310 0000 024B     		ldr	r3, .L35
+ 311 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 517:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif/* (OddEvenTimer_UsingFixedFunction) */
+ 518:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 519:Generated_Source\PSoC5/OddEvenTimer.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
+ 520:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(OddEvenTimer_UsingFixedFunction)
+ 521:Generated_Source\PSoC5/OddEvenTimer.c ****         return ((uint32)CY_GET_REG16(OddEvenTimer_CAPTURE_LSB_PTR));
+ 522:Generated_Source\PSoC5/OddEvenTimer.c ****     #else
+ 523:Generated_Source\PSoC5/OddEvenTimer.c ****         return (CY_GET_REG32(OddEvenTimer_CAPTURE_LSB_PTR));
+ 312              		.loc 1 523 0
+ 313 0004 024B     		ldr	r3, .L35+4
+ 314 0006 1868     		ldr	r0, [r3]	@ unaligned
+ 524:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* (OddEvenTimer_UsingFixedFunction) */
+ 525:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 315              		.loc 1 525 0
+ 316 0008 7047     		bx	lr
+ 317              	.L36:
+ 318 000a 00BF     		.align	2
+ 319              	.L35:
+ 320 000c 0A640040 		.word	1073767434
+ 321 0010 4A640040 		.word	1073767498
+ 322              		.cfi_endproc
+ 323              	.LFE13:
+ 324              		.size	OddEvenTimer_ReadCounter, .-OddEvenTimer_ReadCounter
+ 325              		.section	.text.OddEvenTimer_SetCaptureCount,"ax",%progbits
+ 326              		.align	2
+ 327              		.global	OddEvenTimer_SetCaptureCount
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.type	OddEvenTimer_SetCaptureCount, %function
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 16
+
+
+ 331              	OddEvenTimer_SetCaptureCount:
+ 332              	.LFB14:
+ 526:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 527:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 528:Generated_Source\PSoC5/OddEvenTimer.c **** #if(!OddEvenTimer_UsingFixedFunction) /* UDB Specific Functions */
+ 529:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 530:Generated_Source\PSoC5/OddEvenTimer.c ****     
+ 531:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 532:Generated_Source\PSoC5/OddEvenTimer.c ****  * The functions below this point are only available using the UDB
+ 533:Generated_Source\PSoC5/OddEvenTimer.c ****  * implementation.  If a feature is selected, then the API is enabled.
+ 534:Generated_Source\PSoC5/OddEvenTimer.c ****  ******************************************************************************/
+ 535:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 536:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 537:Generated_Source\PSoC5/OddEvenTimer.c **** #if (OddEvenTimer_SoftwareCaptureMode)
+ 538:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 539:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 540:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 541:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_SetCaptureMode
+ 542:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 543:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 544:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 545:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function sets the capture mode to either rising or falling edge.
+ 546:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 547:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 548:Generated_Source\PSoC5/OddEvenTimer.c **** *  captureMode: This parameter sets the capture mode of the UDB capture feature
+ 549:Generated_Source\PSoC5/OddEvenTimer.c **** *  The parameter values are defined using the
+ 550:Generated_Source\PSoC5/OddEvenTimer.c **** *  #define OddEvenTimer__B_TIMER__CM_NONE 0
+ 551:Generated_Source\PSoC5/OddEvenTimer.c **** #define OddEvenTimer__B_TIMER__CM_RISINGEDGE 1
+ 552:Generated_Source\PSoC5/OddEvenTimer.c **** #define OddEvenTimer__B_TIMER__CM_FALLINGEDGE 2
+ 553:Generated_Source\PSoC5/OddEvenTimer.c **** #define OddEvenTimer__B_TIMER__CM_EITHEREDGE 3
+ 554:Generated_Source\PSoC5/OddEvenTimer.c **** #define OddEvenTimer__B_TIMER__CM_SOFTWARE 4
+ 555:Generated_Source\PSoC5/OddEvenTimer.c ****  identifiers
+ 556:Generated_Source\PSoC5/OddEvenTimer.c **** *  The following are the possible values of the parameter
+ 557:Generated_Source\PSoC5/OddEvenTimer.c **** *  OddEvenTimer__B_TIMER__CM_NONE        - Set Capture mode to None
+ 558:Generated_Source\PSoC5/OddEvenTimer.c **** *  OddEvenTimer__B_TIMER__CM_RISINGEDGE  - Rising edge of Capture input
+ 559:Generated_Source\PSoC5/OddEvenTimer.c **** *  OddEvenTimer__B_TIMER__CM_FALLINGEDGE - Falling edge of Capture input
+ 560:Generated_Source\PSoC5/OddEvenTimer.c **** *  OddEvenTimer__B_TIMER__CM_EITHEREDGE  - Either edge of Capture input
+ 561:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 562:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 563:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 564:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 565:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 566:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_SetCaptureMode(uint8 captureMode) 
+ 567:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 568:Generated_Source\PSoC5/OddEvenTimer.c ****     /* This must only set to two bits of the control register associated */
+ 569:Generated_Source\PSoC5/OddEvenTimer.c ****     captureMode = ((uint8)((uint8)captureMode << OddEvenTimer_CTRL_CAP_MODE_SHIFT));
+ 570:Generated_Source\PSoC5/OddEvenTimer.c ****     captureMode &= (OddEvenTimer_CTRL_CAP_MODE_MASK);
+ 571:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 572:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED)
+ 573:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Clear the Current Setting */
+ 574:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL &= ((uint8)(~OddEvenTimer_CTRL_CAP_MODE_MASK));
+ 575:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 576:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Write The New Setting */
+ 577:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL |= captureMode;
+ 578:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) */
+ 579:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 580:Generated_Source\PSoC5/OddEvenTimer.c **** #endif /* Remove API if Capture Mode is not Software Controlled */
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 17
+
+
+ 581:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 582:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 583:Generated_Source\PSoC5/OddEvenTimer.c **** #if (OddEvenTimer_SoftwareTriggerMode)
+ 584:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 585:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 586:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 587:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_SetTriggerMode
+ 588:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 589:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 590:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 591:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function sets the trigger input mode
+ 592:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 593:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 594:Generated_Source\PSoC5/OddEvenTimer.c **** *  triggerMode: Pass one of the pre-defined Trigger Modes (except Software)
+ 595:Generated_Source\PSoC5/OddEvenTimer.c ****     #define OddEvenTimer__B_TIMER__TM_NONE 0x00u
+ 596:Generated_Source\PSoC5/OddEvenTimer.c ****     #define OddEvenTimer__B_TIMER__TM_RISINGEDGE 0x04u
+ 597:Generated_Source\PSoC5/OddEvenTimer.c ****     #define OddEvenTimer__B_TIMER__TM_FALLINGEDGE 0x08u
+ 598:Generated_Source\PSoC5/OddEvenTimer.c ****     #define OddEvenTimer__B_TIMER__TM_EITHEREDGE 0x0Cu
+ 599:Generated_Source\PSoC5/OddEvenTimer.c ****     #define OddEvenTimer__B_TIMER__TM_SOFTWARE 0x10u
+ 600:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 601:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 602:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 603:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 604:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 605:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_SetTriggerMode(uint8 triggerMode) 
+ 606:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 607:Generated_Source\PSoC5/OddEvenTimer.c ****     /* This must only set to two bits of the control register associated */
+ 608:Generated_Source\PSoC5/OddEvenTimer.c ****     triggerMode &= OddEvenTimer_CTRL_TRIG_MODE_MASK;
+ 609:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 610:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED)   /* Remove assignment if control register is remov
+ 611:Generated_Source\PSoC5/OddEvenTimer.c ****     
+ 612:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Clear the Current Setting */
+ 613:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL &= ((uint8)(~OddEvenTimer_CTRL_TRIG_MODE_MASK));
+ 614:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 615:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Write The New Setting */
+ 616:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL |= (triggerMode | OddEvenTimer__B_TIMER__TM_SOFTWARE);
+ 617:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Remove code section if control register is not used */
+ 618:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 619:Generated_Source\PSoC5/OddEvenTimer.c **** #endif /* Remove API if Trigger Mode is not Software Controlled */
+ 620:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 621:Generated_Source\PSoC5/OddEvenTimer.c **** #if (OddEvenTimer_EnableTriggerMode)
+ 622:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 623:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 624:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 625:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_EnableTrigger
+ 626:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 627:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 628:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 629:Generated_Source\PSoC5/OddEvenTimer.c **** *  Sets the control bit enabling Hardware Trigger mode
+ 630:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 631:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 632:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 633:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 634:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 635:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 636:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 637:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 18
+
+
+ 638:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_EnableTrigger(void) 
+ 639:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 640:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED)   /* Remove assignment if control register is remov
+ 641:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL |= OddEvenTimer_CTRL_TRIG_EN;
+ 642:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Remove code section if control register is not used */
+ 643:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 644:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 645:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 646:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 647:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_DisableTrigger
+ 648:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 649:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 650:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 651:Generated_Source\PSoC5/OddEvenTimer.c **** *  Clears the control bit enabling Hardware Trigger mode
+ 652:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 653:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 654:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 655:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 656:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 657:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 658:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 659:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 660:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_DisableTrigger(void) 
+ 661:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 662:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED )   /* Remove assignment if control register is remo
+ 663:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL &= ((uint8)(~OddEvenTimer_CTRL_TRIG_EN));
+ 664:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Remove code section if control register is not used */
+ 665:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 666:Generated_Source\PSoC5/OddEvenTimer.c **** #endif /* Remove API is Trigger Mode is set to None */
+ 667:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 668:Generated_Source\PSoC5/OddEvenTimer.c **** #if(OddEvenTimer_InterruptOnCaptureCount)
+ 669:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 670:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 671:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 672:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_SetInterruptCount
+ 673:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 674:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 675:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 676:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function sets the capture count before an interrupt is triggered.
+ 677:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 678:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 679:Generated_Source\PSoC5/OddEvenTimer.c **** *  interruptCount:  A value between 0 and 3 is valid.  If the value is 0, then
+ 680:Generated_Source\PSoC5/OddEvenTimer.c **** *                   an interrupt will occur each time a capture occurs.
+ 681:Generated_Source\PSoC5/OddEvenTimer.c **** *                   A value of 1 to 3 will cause the interrupt
+ 682:Generated_Source\PSoC5/OddEvenTimer.c **** *                   to delay by the same number of captures.
+ 683:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 684:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 685:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 686:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 687:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 688:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_SetInterruptCount(uint8 interruptCount) 
+ 689:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 690:Generated_Source\PSoC5/OddEvenTimer.c ****     /* This must only set to two bits of the control register associated */
+ 691:Generated_Source\PSoC5/OddEvenTimer.c ****     interruptCount &= OddEvenTimer_CTRL_INTCNT_MASK;
+ 692:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 693:Generated_Source\PSoC5/OddEvenTimer.c ****     #if (!OddEvenTimer_UDB_CONTROL_REG_REMOVED)
+ 694:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Clear the Current Setting */
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 19
+
+
+ 695:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL &= ((uint8)(~OddEvenTimer_CTRL_INTCNT_MASK));
+ 696:Generated_Source\PSoC5/OddEvenTimer.c ****         /* Write The New Setting */
+ 697:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_CONTROL |= interruptCount;
+ 698:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* (!OddEvenTimer_UDB_CONTROL_REG_REMOVED) */
+ 699:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 700:Generated_Source\PSoC5/OddEvenTimer.c **** #endif /* OddEvenTimer_InterruptOnCaptureCount */
+ 701:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 702:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 703:Generated_Source\PSoC5/OddEvenTimer.c **** #if (OddEvenTimer_UsingHWCaptureCounter)
+ 704:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 705:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 706:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 707:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_SetCaptureCount
+ 708:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 709:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 710:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 711:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function sets the capture count
+ 712:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 713:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 714:Generated_Source\PSoC5/OddEvenTimer.c **** *  captureCount: A value between 2 and 127 inclusive is valid.  A value of 1
+ 715:Generated_Source\PSoC5/OddEvenTimer.c **** *                to 127 will cause the interrupt to delay by the same number of
+ 716:Generated_Source\PSoC5/OddEvenTimer.c **** *                captures.
+ 717:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 718:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 719:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 720:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 721:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 722:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_SetCaptureCount(uint8 captureCount) 
+ 723:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 333              		.loc 1 723 0
+ 334              		.cfi_startproc
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 337              		@ link register save eliminated.
+ 338              	.LVL4:
+ 724:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_CAP_COUNT = captureCount;
+ 339              		.loc 1 724 0
+ 340 0000 014B     		ldr	r3, .L38
+ 341 0002 1870     		strb	r0, [r3]
+ 342 0004 7047     		bx	lr
+ 343              	.L39:
+ 344 0006 00BF     		.align	2
+ 345              	.L38:
+ 346 0008 8A640040 		.word	1073767562
+ 347              		.cfi_endproc
+ 348              	.LFE14:
+ 349              		.size	OddEvenTimer_SetCaptureCount, .-OddEvenTimer_SetCaptureCount
+ 350              		.section	.text.OddEvenTimer_ReadCaptureCount,"ax",%progbits
+ 351              		.align	2
+ 352              		.global	OddEvenTimer_ReadCaptureCount
+ 353              		.thumb
+ 354              		.thumb_func
+ 355              		.type	OddEvenTimer_ReadCaptureCount, %function
+ 356              	OddEvenTimer_ReadCaptureCount:
+ 357              	.LFB15:
+ 725:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 726:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 20
+
+
+ 727:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 728:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 729:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ReadCaptureCount
+ 730:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 731:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 732:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 733:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function reads the capture count setting
+ 734:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 735:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 736:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 737:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 738:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 739:Generated_Source\PSoC5/OddEvenTimer.c **** *  Returns the Capture Count Setting
+ 740:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 741:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 742:Generated_Source\PSoC5/OddEvenTimer.c **** uint8 OddEvenTimer_ReadCaptureCount(void) 
+ 743:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 358              		.loc 1 743 0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		@ link register save eliminated.
+ 744:Generated_Source\PSoC5/OddEvenTimer.c ****     return ((uint8)OddEvenTimer_CAP_COUNT);
+ 363              		.loc 1 744 0
+ 364 0000 014B     		ldr	r3, .L41
+ 365 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 745:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 366              		.loc 1 745 0
+ 367 0004 7047     		bx	lr
+ 368              	.L42:
+ 369 0006 00BF     		.align	2
+ 370              	.L41:
+ 371 0008 8A640040 		.word	1073767562
+ 372              		.cfi_endproc
+ 373              	.LFE15:
+ 374              		.size	OddEvenTimer_ReadCaptureCount, .-OddEvenTimer_ReadCaptureCount
+ 375              		.section	.text.OddEvenTimer_ClearFIFO,"ax",%progbits
+ 376              		.align	2
+ 377              		.global	OddEvenTimer_ClearFIFO
+ 378              		.thumb
+ 379              		.thumb_func
+ 380              		.type	OddEvenTimer_ClearFIFO, %function
+ 381              	OddEvenTimer_ClearFIFO:
+ 382              	.LFB16:
+ 746:Generated_Source\PSoC5/OddEvenTimer.c **** #endif /* OddEvenTimer_UsingHWCaptureCounter */
+ 747:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 748:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 749:Generated_Source\PSoC5/OddEvenTimer.c **** /*******************************************************************************
+ 750:Generated_Source\PSoC5/OddEvenTimer.c **** * Function Name: OddEvenTimer_ClearFIFO
+ 751:Generated_Source\PSoC5/OddEvenTimer.c **** ********************************************************************************
+ 752:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 753:Generated_Source\PSoC5/OddEvenTimer.c **** * Summary:
+ 754:Generated_Source\PSoC5/OddEvenTimer.c **** *  This function clears all capture data from the capture FIFO
+ 755:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 756:Generated_Source\PSoC5/OddEvenTimer.c **** * Parameters:
+ 757:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 758:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 21
+
+
+ 759:Generated_Source\PSoC5/OddEvenTimer.c **** * Return:
+ 760:Generated_Source\PSoC5/OddEvenTimer.c **** *  void
+ 761:Generated_Source\PSoC5/OddEvenTimer.c **** *
+ 762:Generated_Source\PSoC5/OddEvenTimer.c **** *******************************************************************************/
+ 763:Generated_Source\PSoC5/OddEvenTimer.c **** void OddEvenTimer_ClearFIFO(void) 
+ 764:Generated_Source\PSoC5/OddEvenTimer.c **** {
+ 383              		.loc 1 764 0
+ 384              		.cfi_startproc
+ 385              		@ args = 0, pretend = 0, frame = 0
+ 386              		@ frame_needed = 0, uses_anonymous_args = 0
+ 387 0000 08B5     		push	{r3, lr}
+ 388              		.cfi_def_cfa_offset 8
+ 389              		.cfi_offset 3, -8
+ 390              		.cfi_offset 14, -4
+ 765:Generated_Source\PSoC5/OddEvenTimer.c ****     while(0u != (OddEvenTimer_ReadStatusRegister() & OddEvenTimer_STATUS_FIFONEMP))
+ 391              		.loc 1 765 0
+ 392 0002 01E0     		b	.L44
+ 393              	.L45:
+ 766:Generated_Source\PSoC5/OddEvenTimer.c ****     {
+ 767:Generated_Source\PSoC5/OddEvenTimer.c ****         (void)OddEvenTimer_ReadCapture();
+ 394              		.loc 1 767 0
+ 395 0004 FFF7FEFF 		bl	OddEvenTimer_ReadCapture
+ 396              	.LVL5:
+ 397              	.L44:
+ 765:Generated_Source\PSoC5/OddEvenTimer.c ****     while(0u != (OddEvenTimer_ReadStatusRegister() & OddEvenTimer_STATUS_FIFONEMP))
+ 398              		.loc 1 765 0
+ 399 0008 FFF7FEFF 		bl	OddEvenTimer_ReadStatusRegister
+ 400              	.LVL6:
+ 401 000c 10F0080F 		tst	r0, #8
+ 402 0010 F8D1     		bne	.L45
+ 768:Generated_Source\PSoC5/OddEvenTimer.c ****     }
+ 769:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 403              		.loc 1 769 0
+ 404 0012 08BD     		pop	{r3, pc}
+ 405              		.cfi_endproc
+ 406              	.LFE16:
+ 407              		.size	OddEvenTimer_ClearFIFO, .-OddEvenTimer_ClearFIFO
+ 408              		.section	.text.OddEvenTimer_Init,"ax",%progbits
+ 409              		.align	2
+ 410              		.global	OddEvenTimer_Init
+ 411              		.thumb
+ 412              		.thumb_func
+ 413              		.type	OddEvenTimer_Init, %function
+ 414              	OddEvenTimer_Init:
+ 415              	.LFB0:
+  44:Generated_Source\PSoC5/OddEvenTimer.c ****     #if(!OddEvenTimer_UsingFixedFunction)
+ 416              		.loc 1 44 0
+ 417              		.cfi_startproc
+ 418              		@ args = 0, pretend = 0, frame = 0
+ 419              		@ frame_needed = 0, uses_anonymous_args = 0
+ 420 0000 08B5     		push	{r3, lr}
+ 421              		.cfi_def_cfa_offset 8
+ 422              		.cfi_offset 3, -8
+ 423              		.cfi_offset 14, -4
+ 118:Generated_Source\PSoC5/OddEvenTimer.c ****     OddEvenTimer_WriteCounter(OddEvenTimer_INIT_PERIOD);
+ 424              		.loc 1 118 0
+ 425 0002 4FF6FF70 		movw	r0, #65535
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 22
+
+
+ 426 0006 FFF7FEFF 		bl	OddEvenTimer_WritePeriod
+ 427              	.LVL7:
+ 119:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 428              		.loc 1 119 0
+ 429 000a 4FF6FF70 		movw	r0, #65535
+ 430 000e FFF7FEFF 		bl	OddEvenTimer_WriteCounter
+ 431              	.LVL8:
+ 122:Generated_Source\PSoC5/OddEvenTimer.c ****         OddEvenTimer_SetCaptureCount(OddEvenTimer_INIT_CAPTURE_COUNT);
+ 432              		.loc 1 122 0
+ 433 0012 0B4A     		ldr	r2, .L49
+ 434 0014 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 435 0016 43F02003 		orr	r3, r3, #32
+ 436 001a 1370     		strb	r3, [r2]
+ 123:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Configure capture counter value */
+ 437              		.loc 1 123 0
+ 438 001c 2320     		movs	r0, #35
+ 439 001e FFF7FEFF 		bl	OddEvenTimer_SetCaptureCount
+ 440              	.LVL9:
+ 142:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 441              		.loc 1 142 0
+ 442 0022 FFF7FEFF 		bl	CyEnterCriticalSection
+ 443              	.LVL10:
+ 145:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 444              		.loc 1 145 0
+ 445 0026 074A     		ldr	r2, .L49+4
+ 446 0028 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 447 002a 43F01003 		orr	r3, r3, #16
+ 448 002e 1370     		strb	r3, [r2]
+ 148:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 449              		.loc 1 148 0
+ 450 0030 FFF7FEFF 		bl	CyExitCriticalSection
+ 451              	.LVL11:
+ 159:Generated_Source\PSoC5/OddEvenTimer.c ****     #endif /* Configure additional features of UDB implementation */
+ 452              		.loc 1 159 0
+ 453 0034 FFF7FEFF 		bl	OddEvenTimer_ClearFIFO
+ 454              	.LVL12:
+ 162:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 455              		.loc 1 162 0
+ 456 0038 0020     		movs	r0, #0
+ 457 003a FFF7FEFF 		bl	OddEvenTimer_SetInterruptMode
+ 458              	.LVL13:
+ 459 003e 08BD     		pop	{r3, pc}
+ 460              	.L50:
+ 461              		.align	2
+ 462              	.L49:
+ 463 0040 9A640040 		.word	1073767578
+ 464 0044 9D640040 		.word	1073767581
+ 465              		.cfi_endproc
+ 466              	.LFE0:
+ 467              		.size	OddEvenTimer_Init, .-OddEvenTimer_Init
+ 468              		.section	.text.OddEvenTimer_Start,"ax",%progbits
+ 469              		.align	2
+ 470              		.global	OddEvenTimer_Start
+ 471              		.thumb
+ 472              		.thumb_func
+ 473              		.type	OddEvenTimer_Start, %function
+ 474              	OddEvenTimer_Start:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 23
+
+
+ 475              	.LFB2:
+ 216:Generated_Source\PSoC5/OddEvenTimer.c ****     if(OddEvenTimer_initVar == 0u)
+ 476              		.loc 1 216 0
+ 477              		.cfi_startproc
+ 478              		@ args = 0, pretend = 0, frame = 0
+ 479              		@ frame_needed = 0, uses_anonymous_args = 0
+ 480 0000 08B5     		push	{r3, lr}
+ 481              		.cfi_def_cfa_offset 8
+ 482              		.cfi_offset 3, -8
+ 483              		.cfi_offset 14, -4
+ 217:Generated_Source\PSoC5/OddEvenTimer.c ****     {
+ 484              		.loc 1 217 0
+ 485 0002 054B     		ldr	r3, .L54
+ 486 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 487 0006 23B9     		cbnz	r3, .L52
+ 219:Generated_Source\PSoC5/OddEvenTimer.c **** 
+ 488              		.loc 1 219 0
+ 489 0008 FFF7FEFF 		bl	OddEvenTimer_Init
+ 490              	.LVL14:
+ 221:Generated_Source\PSoC5/OddEvenTimer.c ****     }
+ 491              		.loc 1 221 0
+ 492 000c 0122     		movs	r2, #1
+ 493 000e 024B     		ldr	r3, .L54
+ 494 0010 1A70     		strb	r2, [r3]
+ 495              	.L52:
+ 225:Generated_Source\PSoC5/OddEvenTimer.c **** }
+ 496              		.loc 1 225 0
+ 497 0012 FFF7FEFF 		bl	OddEvenTimer_Enable
+ 498              	.LVL15:
+ 499 0016 08BD     		pop	{r3, pc}
+ 500              	.L55:
+ 501              		.align	2
+ 502              	.L54:
+ 503 0018 00000000 		.word	.LANCHOR0
+ 504              		.cfi_endproc
+ 505              	.LFE2:
+ 506              		.size	OddEvenTimer_Start, .-OddEvenTimer_Start
+ 507              		.global	OddEvenTimer_initVar
+ 508              		.bss
+ 509              		.set	.LANCHOR0,. + 0
+ 510              		.type	OddEvenTimer_initVar, %object
+ 511              		.size	OddEvenTimer_initVar, 1
+ 512              	OddEvenTimer_initVar:
+ 513 0000 00       		.space	1
+ 514              		.text
+ 515              	.Letext0:
+ 516              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 517              		.file 3 "Generated_Source\\PSoC5\\CyLib.h"
+ 518              		.section	.debug_info,"",%progbits
+ 519              	.Ldebug_info0:
+ 520 0000 3B030000 		.4byte	0x33b
+ 521 0004 0400     		.2byte	0x4
+ 522 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 523 000a 04       		.byte	0x4
+ 524 000b 01       		.uleb128 0x1
+ 525 000c D1000000 		.4byte	.LASF42
+ 526 0010 0C       		.byte	0xc
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 24
+
+
+ 527 0011 06000000 		.4byte	.LASF43
+ 528 0015 5F010000 		.4byte	.LASF44
+ 529 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 530 001d 00000000 		.4byte	0
+ 531 0021 00000000 		.4byte	.Ldebug_line0
+ 532 0025 02       		.uleb128 0x2
+ 533 0026 01       		.byte	0x1
+ 534 0027 06       		.byte	0x6
+ 535 0028 8F030000 		.4byte	.LASF0
+ 536 002c 02       		.uleb128 0x2
+ 537 002d 01       		.byte	0x1
+ 538 002e 08       		.byte	0x8
+ 539 002f C3000000 		.4byte	.LASF1
+ 540 0033 02       		.uleb128 0x2
+ 541 0034 02       		.byte	0x2
+ 542 0035 05       		.byte	0x5
+ 543 0036 5E030000 		.4byte	.LASF2
+ 544 003a 02       		.uleb128 0x2
+ 545 003b 02       		.byte	0x2
+ 546 003c 07       		.byte	0x7
+ 547 003d 8B000000 		.4byte	.LASF3
+ 548 0041 02       		.uleb128 0x2
+ 549 0042 04       		.byte	0x4
+ 550 0043 05       		.byte	0x5
+ 551 0044 75030000 		.4byte	.LASF4
+ 552 0048 02       		.uleb128 0x2
+ 553 0049 04       		.byte	0x4
+ 554 004a 07       		.byte	0x7
+ 555 004b BA010000 		.4byte	.LASF5
+ 556 004f 02       		.uleb128 0x2
+ 557 0050 08       		.byte	0x8
+ 558 0051 05       		.byte	0x5
+ 559 0052 14030000 		.4byte	.LASF6
+ 560 0056 02       		.uleb128 0x2
+ 561 0057 08       		.byte	0x8
+ 562 0058 07       		.byte	0x7
+ 563 0059 AC000000 		.4byte	.LASF7
+ 564 005d 03       		.uleb128 0x3
+ 565 005e 04       		.byte	0x4
+ 566 005f 05       		.byte	0x5
+ 567 0060 696E7400 		.ascii	"int\000"
+ 568 0064 02       		.uleb128 0x2
+ 569 0065 04       		.byte	0x4
+ 570 0066 07       		.byte	0x7
+ 571 0067 90020000 		.4byte	.LASF8
+ 572 006b 04       		.uleb128 0x4
+ 573 006c EA010000 		.4byte	.LASF9
+ 574 0070 02       		.byte	0x2
+ 575 0071 E401     		.2byte	0x1e4
+ 576 0073 2C000000 		.4byte	0x2c
+ 577 0077 04       		.uleb128 0x4
+ 578 0078 51020000 		.4byte	.LASF10
+ 579 007c 02       		.byte	0x2
+ 580 007d E601     		.2byte	0x1e6
+ 581 007f 48000000 		.4byte	0x48
+ 582 0083 02       		.uleb128 0x2
+ 583 0084 04       		.byte	0x4
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 25
+
+
+ 584 0085 04       		.byte	0x4
+ 585 0086 9E000000 		.4byte	.LASF11
+ 586 008a 02       		.uleb128 0x2
+ 587 008b 08       		.byte	0x8
+ 588 008c 04       		.byte	0x4
+ 589 008d 4A020000 		.4byte	.LASF12
+ 590 0091 02       		.uleb128 0x2
+ 591 0092 01       		.byte	0x1
+ 592 0093 08       		.byte	0x8
+ 593 0094 7E030000 		.4byte	.LASF13
+ 594 0098 04       		.uleb128 0x4
+ 595 0099 B5010000 		.4byte	.LASF14
+ 596 009d 02       		.byte	0x2
+ 597 009e 8E02     		.2byte	0x28e
+ 598 00a0 A4000000 		.4byte	0xa4
+ 599 00a4 05       		.uleb128 0x5
+ 600 00a5 6B000000 		.4byte	0x6b
+ 601 00a9 04       		.uleb128 0x4
+ 602 00aa 00000000 		.4byte	.LASF15
+ 603 00ae 02       		.byte	0x2
+ 604 00af 9002     		.2byte	0x290
+ 605 00b1 B5000000 		.4byte	0xb5
+ 606 00b5 05       		.uleb128 0x5
+ 607 00b6 77000000 		.4byte	0x77
+ 608 00ba 02       		.uleb128 0x2
+ 609 00bb 08       		.byte	0x8
+ 610 00bc 04       		.byte	0x4
+ 611 00bd 83030000 		.4byte	.LASF16
+ 612 00c1 02       		.uleb128 0x2
+ 613 00c2 04       		.byte	0x4
+ 614 00c3 07       		.byte	0x7
+ 615 00c4 F1020000 		.4byte	.LASF17
+ 616 00c8 06       		.uleb128 0x6
+ 617 00c9 EF030000 		.4byte	.LASF18
+ 618 00cd 01       		.byte	0x1
+ 619 00ce B4       		.byte	0xb4
+ 620 00cf 00000000 		.4byte	.LFB1
+ 621 00d3 10000000 		.4byte	.LFE1-.LFB1
+ 622 00d7 01       		.uleb128 0x1
+ 623 00d8 9C       		.byte	0x9c
+ 624 00d9 06       		.uleb128 0x6
+ 625 00da 03040000 		.4byte	.LASF19
+ 626 00de 01       		.byte	0x1
+ 627 00df F7       		.byte	0xf7
+ 628 00e0 00000000 		.4byte	.LFB3
+ 629 00e4 10000000 		.4byte	.LFE3-.LFB3
+ 630 00e8 01       		.uleb128 0x1
+ 631 00e9 9C       		.byte	0x9c
+ 632 00ea 07       		.uleb128 0x7
+ 633 00eb 14020000 		.4byte	.LASF23
+ 634 00ef 01       		.byte	0x1
+ 635 00f0 1701     		.2byte	0x117
+ 636 00f2 00000000 		.4byte	.LFB4
+ 637 00f6 0C000000 		.4byte	.LFE4-.LFB4
+ 638 00fa 01       		.uleb128 0x1
+ 639 00fb 9C       		.byte	0x9c
+ 640 00fc 0F010000 		.4byte	0x10f
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 26
+
+
+ 641 0100 08       		.uleb128 0x8
+ 642 0101 3B030000 		.4byte	.LASF25
+ 643 0105 01       		.byte	0x1
+ 644 0106 1701     		.2byte	0x117
+ 645 0108 6B000000 		.4byte	0x6b
+ 646 010c 01       		.uleb128 0x1
+ 647 010d 50       		.byte	0x50
+ 648 010e 00       		.byte	0
+ 649 010f 09       		.uleb128 0x9
+ 650 0110 9B030000 		.4byte	.LASF20
+ 651 0114 01       		.byte	0x1
+ 652 0115 2E01     		.2byte	0x12e
+ 653 0117 00000000 		.4byte	.LFB5
+ 654 011b 0C000000 		.4byte	.LFE5-.LFB5
+ 655 011f 01       		.uleb128 0x1
+ 656 0120 9C       		.byte	0x9c
+ 657 0121 0A       		.uleb128 0xa
+ 658 0122 CF030000 		.4byte	.LASF21
+ 659 0126 01       		.byte	0x1
+ 660 0127 4D01     		.2byte	0x14d
+ 661 0129 6B000000 		.4byte	0x6b
+ 662 012d 00000000 		.4byte	.LFB6
+ 663 0131 0C000000 		.4byte	.LFE6-.LFB6
+ 664 0135 01       		.uleb128 0x1
+ 665 0136 9C       		.byte	0x9c
+ 666 0137 0A       		.uleb128 0xa
+ 667 0138 58020000 		.4byte	.LASF22
+ 668 013c 01       		.byte	0x1
+ 669 013d 6401     		.2byte	0x164
+ 670 013f 6B000000 		.4byte	0x6b
+ 671 0143 00000000 		.4byte	.LFB7
+ 672 0147 0C000000 		.4byte	.LFE7-.LFB7
+ 673 014b 01       		.uleb128 0x1
+ 674 014c 9C       		.byte	0x9c
+ 675 014d 07       		.uleb128 0x7
+ 676 014e 49000000 		.4byte	.LASF24
+ 677 0152 01       		.byte	0x1
+ 678 0153 7B01     		.2byte	0x17b
+ 679 0155 00000000 		.4byte	.LFB8
+ 680 0159 0C000000 		.4byte	.LFE8-.LFB8
+ 681 015d 01       		.uleb128 0x1
+ 682 015e 9C       		.byte	0x9c
+ 683 015f 72010000 		.4byte	0x172
+ 684 0163 08       		.uleb128 0x8
+ 685 0164 F0010000 		.4byte	.LASF26
+ 686 0168 01       		.byte	0x1
+ 687 0169 7B01     		.2byte	0x17b
+ 688 016b 6B000000 		.4byte	0x6b
+ 689 016f 01       		.uleb128 0x1
+ 690 0170 50       		.byte	0x50
+ 691 0171 00       		.byte	0
+ 692 0172 0A       		.uleb128 0xa
+ 693 0173 32020000 		.4byte	.LASF27
+ 694 0177 01       		.byte	0x1
+ 695 0178 9501     		.2byte	0x195
+ 696 017a 77000000 		.4byte	0x77
+ 697 017e 00000000 		.4byte	.LFB9
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 27
+
+
+ 698 0182 0C000000 		.4byte	.LFE9-.LFB9
+ 699 0186 01       		.uleb128 0x1
+ 700 0187 9C       		.byte	0x9c
+ 701 0188 07       		.uleb128 0x7
+ 702 0189 72000000 		.4byte	.LASF28
+ 703 018d 01       		.byte	0x1
+ 704 018e AF01     		.2byte	0x1af
+ 705 0190 00000000 		.4byte	.LFB10
+ 706 0194 0C000000 		.4byte	.LFE10-.LFB10
+ 707 0198 01       		.uleb128 0x1
+ 708 0199 9C       		.byte	0x9c
+ 709 019a AD010000 		.4byte	0x1ad
+ 710 019e 08       		.uleb128 0x8
+ 711 019f 6B000000 		.4byte	.LASF29
+ 712 01a3 01       		.byte	0x1
+ 713 01a4 AF01     		.2byte	0x1af
+ 714 01a6 77000000 		.4byte	0x77
+ 715 01aa 01       		.uleb128 0x1
+ 716 01ab 50       		.byte	0x50
+ 717 01ac 00       		.byte	0
+ 718 01ad 0A       		.uleb128 0xa
+ 719 01ae B3020000 		.4byte	.LASF30
+ 720 01b2 01       		.byte	0x1
+ 721 01b3 C801     		.2byte	0x1c8
+ 722 01b5 77000000 		.4byte	0x77
+ 723 01b9 00000000 		.4byte	.LFB11
+ 724 01bd 0C000000 		.4byte	.LFE11-.LFB11
+ 725 01c1 01       		.uleb128 0x1
+ 726 01c2 9C       		.byte	0x9c
+ 727 01c3 07       		.uleb128 0x7
+ 728 01c4 FA020000 		.4byte	.LASF31
+ 729 01c8 01       		.byte	0x1
+ 730 01c9 E001     		.2byte	0x1e0
+ 731 01cb 00000000 		.4byte	.LFB12
+ 732 01cf 0C000000 		.4byte	.LFE12-.LFB12
+ 733 01d3 01       		.uleb128 0x1
+ 734 01d4 9C       		.byte	0x9c
+ 735 01d5 E8010000 		.4byte	0x1e8
+ 736 01d9 08       		.uleb128 0x8
+ 737 01da A4000000 		.4byte	.LASF32
+ 738 01de 01       		.byte	0x1
+ 739 01df E001     		.2byte	0x1e0
+ 740 01e1 77000000 		.4byte	0x77
+ 741 01e5 01       		.uleb128 0x1
+ 742 01e6 50       		.byte	0x50
+ 743 01e7 00       		.byte	0
+ 744 01e8 0A       		.uleb128 0xa
+ 745 01e9 22030000 		.4byte	.LASF33
+ 746 01ed 01       		.byte	0x1
+ 747 01ee FC01     		.2byte	0x1fc
+ 748 01f0 77000000 		.4byte	0x77
+ 749 01f4 00000000 		.4byte	.LFB13
+ 750 01f8 14000000 		.4byte	.LFE13-.LFB13
+ 751 01fc 01       		.uleb128 0x1
+ 752 01fd 9C       		.byte	0x9c
+ 753 01fe 07       		.uleb128 0x7
+ 754 01ff 2C000000 		.4byte	.LASF34
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 28
+
+
+ 755 0203 01       		.byte	0x1
+ 756 0204 D202     		.2byte	0x2d2
+ 757 0206 00000000 		.4byte	.LFB14
+ 758 020a 0C000000 		.4byte	.LFE14-.LFB14
+ 759 020e 01       		.uleb128 0x1
+ 760 020f 9C       		.byte	0x9c
+ 761 0210 23020000 		.4byte	0x223
+ 762 0214 08       		.uleb128 0x8
+ 763 0215 68030000 		.4byte	.LASF35
+ 764 0219 01       		.byte	0x1
+ 765 021a D202     		.2byte	0x2d2
+ 766 021c 6B000000 		.4byte	0x6b
+ 767 0220 01       		.uleb128 0x1
+ 768 0221 50       		.byte	0x50
+ 769 0222 00       		.byte	0
+ 770 0223 0A       		.uleb128 0xa
+ 771 0224 CC010000 		.4byte	.LASF36
+ 772 0228 01       		.byte	0x1
+ 773 0229 E602     		.2byte	0x2e6
+ 774 022b 6B000000 		.4byte	0x6b
+ 775 022f 00000000 		.4byte	.LFB15
+ 776 0233 0C000000 		.4byte	.LFE15-.LFB15
+ 777 0237 01       		.uleb128 0x1
+ 778 0238 9C       		.byte	0x9c
+ 779 0239 07       		.uleb128 0x7
+ 780 023a B8030000 		.4byte	.LASF37
+ 781 023e 01       		.byte	0x1
+ 782 023f FB02     		.2byte	0x2fb
+ 783 0241 00000000 		.4byte	.LFB16
+ 784 0245 14000000 		.4byte	.LFE16-.LFB16
+ 785 0249 01       		.uleb128 0x1
+ 786 024a 9C       		.byte	0x9c
+ 787 024b 62020000 		.4byte	0x262
+ 788 024f 0B       		.uleb128 0xb
+ 789 0250 08000000 		.4byte	.LVL5
+ 790 0254 AD010000 		.4byte	0x1ad
+ 791 0258 0B       		.uleb128 0xb
+ 792 0259 0C000000 		.4byte	.LVL6
+ 793 025d 21010000 		.4byte	0x121
+ 794 0261 00       		.byte	0
+ 795 0262 0C       		.uleb128 0xc
+ 796 0263 CC020000 		.4byte	.LASF38
+ 797 0267 01       		.byte	0x1
+ 798 0268 2B       		.byte	0x2b
+ 799 0269 00000000 		.4byte	.LFB0
+ 800 026d 48000000 		.4byte	.LFE0-.LFB0
+ 801 0271 01       		.uleb128 0x1
+ 802 0272 9C       		.byte	0x9c
+ 803 0273 EF020000 		.4byte	0x2ef
+ 804 0277 0D       		.uleb128 0xd
+ 805 0278 F8010000 		.4byte	.LASF45
+ 806 027c 01       		.byte	0x1
+ 807 027d 2F       		.byte	0x2f
+ 808 027e 6B000000 		.4byte	0x6b
+ 809 0282 00000000 		.4byte	.LLST0
+ 810 0286 0E       		.uleb128 0xe
+ 811 0287 0A000000 		.4byte	.LVL7
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 29
+
+
+ 812 028b 88010000 		.4byte	0x188
+ 813 028f 9B020000 		.4byte	0x29b
+ 814 0293 0F       		.uleb128 0xf
+ 815 0294 01       		.uleb128 0x1
+ 816 0295 50       		.byte	0x50
+ 817 0296 03       		.uleb128 0x3
+ 818 0297 0A       		.byte	0xa
+ 819 0298 FFFF     		.2byte	0xffff
+ 820 029a 00       		.byte	0
+ 821 029b 0E       		.uleb128 0xe
+ 822 029c 12000000 		.4byte	.LVL8
+ 823 02a0 C3010000 		.4byte	0x1c3
+ 824 02a4 B0020000 		.4byte	0x2b0
+ 825 02a8 0F       		.uleb128 0xf
+ 826 02a9 01       		.uleb128 0x1
+ 827 02aa 50       		.byte	0x50
+ 828 02ab 03       		.uleb128 0x3
+ 829 02ac 0A       		.byte	0xa
+ 830 02ad FFFF     		.2byte	0xffff
+ 831 02af 00       		.byte	0
+ 832 02b0 0E       		.uleb128 0xe
+ 833 02b1 22000000 		.4byte	.LVL9
+ 834 02b5 FE010000 		.4byte	0x1fe
+ 835 02b9 C4020000 		.4byte	0x2c4
+ 836 02bd 0F       		.uleb128 0xf
+ 837 02be 01       		.uleb128 0x1
+ 838 02bf 50       		.byte	0x50
+ 839 02c0 02       		.uleb128 0x2
+ 840 02c1 08       		.byte	0x8
+ 841 02c2 23       		.byte	0x23
+ 842 02c3 00       		.byte	0
+ 843 02c4 0B       		.uleb128 0xb
+ 844 02c5 26000000 		.4byte	.LVL10
+ 845 02c9 28030000 		.4byte	0x328
+ 846 02cd 0B       		.uleb128 0xb
+ 847 02ce 34000000 		.4byte	.LVL11
+ 848 02d2 33030000 		.4byte	0x333
+ 849 02d6 0B       		.uleb128 0xb
+ 850 02d7 38000000 		.4byte	.LVL12
+ 851 02db 39020000 		.4byte	0x239
+ 852 02df 10       		.uleb128 0x10
+ 853 02e0 3E000000 		.4byte	.LVL13
+ 854 02e4 EA000000 		.4byte	0xea
+ 855 02e8 0F       		.uleb128 0xf
+ 856 02e9 01       		.uleb128 0x1
+ 857 02ea 50       		.byte	0x50
+ 858 02eb 01       		.uleb128 0x1
+ 859 02ec 30       		.byte	0x30
+ 860 02ed 00       		.byte	0
+ 861 02ee 00       		.byte	0
+ 862 02ef 0C       		.uleb128 0xc
+ 863 02f0 DE020000 		.4byte	.LASF39
+ 864 02f4 01       		.byte	0x1
+ 865 02f5 D7       		.byte	0xd7
+ 866 02f6 00000000 		.4byte	.LFB2
+ 867 02fa 1C000000 		.4byte	.LFE2-.LFB2
+ 868 02fe 01       		.uleb128 0x1
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 30
+
+
+ 869 02ff 9C       		.byte	0x9c
+ 870 0300 17030000 		.4byte	0x317
+ 871 0304 0B       		.uleb128 0xb
+ 872 0305 0C000000 		.4byte	.LVL14
+ 873 0309 62020000 		.4byte	0x262
+ 874 030d 0B       		.uleb128 0xb
+ 875 030e 16000000 		.4byte	.LVL15
+ 876 0312 C8000000 		.4byte	0xc8
+ 877 0316 00       		.byte	0
+ 878 0317 11       		.uleb128 0x11
+ 879 0318 49030000 		.4byte	.LASF46
+ 880 031c 01       		.byte	0x1
+ 881 031d 1A       		.byte	0x1a
+ 882 031e 6B000000 		.4byte	0x6b
+ 883 0322 05       		.uleb128 0x5
+ 884 0323 03       		.byte	0x3
+ 885 0324 00000000 		.4byte	OddEvenTimer_initVar
+ 886 0328 12       		.uleb128 0x12
+ 887 0329 79020000 		.4byte	.LASF40
+ 888 032d 79020000 		.4byte	.LASF40
+ 889 0331 03       		.byte	0x3
+ 890 0332 7D       		.byte	0x7d
+ 891 0333 12       		.uleb128 0x12
+ 892 0334 9D020000 		.4byte	.LASF41
+ 893 0338 9D020000 		.4byte	.LASF41
+ 894 033c 03       		.byte	0x3
+ 895 033d 7E       		.byte	0x7e
+ 896 033e 00       		.byte	0
+ 897              		.section	.debug_abbrev,"",%progbits
+ 898              	.Ldebug_abbrev0:
+ 899 0000 01       		.uleb128 0x1
+ 900 0001 11       		.uleb128 0x11
+ 901 0002 01       		.byte	0x1
+ 902 0003 25       		.uleb128 0x25
+ 903 0004 0E       		.uleb128 0xe
+ 904 0005 13       		.uleb128 0x13
+ 905 0006 0B       		.uleb128 0xb
+ 906 0007 03       		.uleb128 0x3
+ 907 0008 0E       		.uleb128 0xe
+ 908 0009 1B       		.uleb128 0x1b
+ 909 000a 0E       		.uleb128 0xe
+ 910 000b 55       		.uleb128 0x55
+ 911 000c 17       		.uleb128 0x17
+ 912 000d 11       		.uleb128 0x11
+ 913 000e 01       		.uleb128 0x1
+ 914 000f 10       		.uleb128 0x10
+ 915 0010 17       		.uleb128 0x17
+ 916 0011 00       		.byte	0
+ 917 0012 00       		.byte	0
+ 918 0013 02       		.uleb128 0x2
+ 919 0014 24       		.uleb128 0x24
+ 920 0015 00       		.byte	0
+ 921 0016 0B       		.uleb128 0xb
+ 922 0017 0B       		.uleb128 0xb
+ 923 0018 3E       		.uleb128 0x3e
+ 924 0019 0B       		.uleb128 0xb
+ 925 001a 03       		.uleb128 0x3
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 31
+
+
+ 926 001b 0E       		.uleb128 0xe
+ 927 001c 00       		.byte	0
+ 928 001d 00       		.byte	0
+ 929 001e 03       		.uleb128 0x3
+ 930 001f 24       		.uleb128 0x24
+ 931 0020 00       		.byte	0
+ 932 0021 0B       		.uleb128 0xb
+ 933 0022 0B       		.uleb128 0xb
+ 934 0023 3E       		.uleb128 0x3e
+ 935 0024 0B       		.uleb128 0xb
+ 936 0025 03       		.uleb128 0x3
+ 937 0026 08       		.uleb128 0x8
+ 938 0027 00       		.byte	0
+ 939 0028 00       		.byte	0
+ 940 0029 04       		.uleb128 0x4
+ 941 002a 16       		.uleb128 0x16
+ 942 002b 00       		.byte	0
+ 943 002c 03       		.uleb128 0x3
+ 944 002d 0E       		.uleb128 0xe
+ 945 002e 3A       		.uleb128 0x3a
+ 946 002f 0B       		.uleb128 0xb
+ 947 0030 3B       		.uleb128 0x3b
+ 948 0031 05       		.uleb128 0x5
+ 949 0032 49       		.uleb128 0x49
+ 950 0033 13       		.uleb128 0x13
+ 951 0034 00       		.byte	0
+ 952 0035 00       		.byte	0
+ 953 0036 05       		.uleb128 0x5
+ 954 0037 35       		.uleb128 0x35
+ 955 0038 00       		.byte	0
+ 956 0039 49       		.uleb128 0x49
+ 957 003a 13       		.uleb128 0x13
+ 958 003b 00       		.byte	0
+ 959 003c 00       		.byte	0
+ 960 003d 06       		.uleb128 0x6
+ 961 003e 2E       		.uleb128 0x2e
+ 962 003f 00       		.byte	0
+ 963 0040 3F       		.uleb128 0x3f
+ 964 0041 19       		.uleb128 0x19
+ 965 0042 03       		.uleb128 0x3
+ 966 0043 0E       		.uleb128 0xe
+ 967 0044 3A       		.uleb128 0x3a
+ 968 0045 0B       		.uleb128 0xb
+ 969 0046 3B       		.uleb128 0x3b
+ 970 0047 0B       		.uleb128 0xb
+ 971 0048 27       		.uleb128 0x27
+ 972 0049 19       		.uleb128 0x19
+ 973 004a 11       		.uleb128 0x11
+ 974 004b 01       		.uleb128 0x1
+ 975 004c 12       		.uleb128 0x12
+ 976 004d 06       		.uleb128 0x6
+ 977 004e 40       		.uleb128 0x40
+ 978 004f 18       		.uleb128 0x18
+ 979 0050 9742     		.uleb128 0x2117
+ 980 0052 19       		.uleb128 0x19
+ 981 0053 00       		.byte	0
+ 982 0054 00       		.byte	0
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 32
+
+
+ 983 0055 07       		.uleb128 0x7
+ 984 0056 2E       		.uleb128 0x2e
+ 985 0057 01       		.byte	0x1
+ 986 0058 3F       		.uleb128 0x3f
+ 987 0059 19       		.uleb128 0x19
+ 988 005a 03       		.uleb128 0x3
+ 989 005b 0E       		.uleb128 0xe
+ 990 005c 3A       		.uleb128 0x3a
+ 991 005d 0B       		.uleb128 0xb
+ 992 005e 3B       		.uleb128 0x3b
+ 993 005f 05       		.uleb128 0x5
+ 994 0060 27       		.uleb128 0x27
+ 995 0061 19       		.uleb128 0x19
+ 996 0062 11       		.uleb128 0x11
+ 997 0063 01       		.uleb128 0x1
+ 998 0064 12       		.uleb128 0x12
+ 999 0065 06       		.uleb128 0x6
+ 1000 0066 40       		.uleb128 0x40
+ 1001 0067 18       		.uleb128 0x18
+ 1002 0068 9742     		.uleb128 0x2117
+ 1003 006a 19       		.uleb128 0x19
+ 1004 006b 01       		.uleb128 0x1
+ 1005 006c 13       		.uleb128 0x13
+ 1006 006d 00       		.byte	0
+ 1007 006e 00       		.byte	0
+ 1008 006f 08       		.uleb128 0x8
+ 1009 0070 05       		.uleb128 0x5
+ 1010 0071 00       		.byte	0
+ 1011 0072 03       		.uleb128 0x3
+ 1012 0073 0E       		.uleb128 0xe
+ 1013 0074 3A       		.uleb128 0x3a
+ 1014 0075 0B       		.uleb128 0xb
+ 1015 0076 3B       		.uleb128 0x3b
+ 1016 0077 05       		.uleb128 0x5
+ 1017 0078 49       		.uleb128 0x49
+ 1018 0079 13       		.uleb128 0x13
+ 1019 007a 02       		.uleb128 0x2
+ 1020 007b 18       		.uleb128 0x18
+ 1021 007c 00       		.byte	0
+ 1022 007d 00       		.byte	0
+ 1023 007e 09       		.uleb128 0x9
+ 1024 007f 2E       		.uleb128 0x2e
+ 1025 0080 00       		.byte	0
+ 1026 0081 3F       		.uleb128 0x3f
+ 1027 0082 19       		.uleb128 0x19
+ 1028 0083 03       		.uleb128 0x3
+ 1029 0084 0E       		.uleb128 0xe
+ 1030 0085 3A       		.uleb128 0x3a
+ 1031 0086 0B       		.uleb128 0xb
+ 1032 0087 3B       		.uleb128 0x3b
+ 1033 0088 05       		.uleb128 0x5
+ 1034 0089 27       		.uleb128 0x27
+ 1035 008a 19       		.uleb128 0x19
+ 1036 008b 11       		.uleb128 0x11
+ 1037 008c 01       		.uleb128 0x1
+ 1038 008d 12       		.uleb128 0x12
+ 1039 008e 06       		.uleb128 0x6
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 33
+
+
+ 1040 008f 40       		.uleb128 0x40
+ 1041 0090 18       		.uleb128 0x18
+ 1042 0091 9742     		.uleb128 0x2117
+ 1043 0093 19       		.uleb128 0x19
+ 1044 0094 00       		.byte	0
+ 1045 0095 00       		.byte	0
+ 1046 0096 0A       		.uleb128 0xa
+ 1047 0097 2E       		.uleb128 0x2e
+ 1048 0098 00       		.byte	0
+ 1049 0099 3F       		.uleb128 0x3f
+ 1050 009a 19       		.uleb128 0x19
+ 1051 009b 03       		.uleb128 0x3
+ 1052 009c 0E       		.uleb128 0xe
+ 1053 009d 3A       		.uleb128 0x3a
+ 1054 009e 0B       		.uleb128 0xb
+ 1055 009f 3B       		.uleb128 0x3b
+ 1056 00a0 05       		.uleb128 0x5
+ 1057 00a1 27       		.uleb128 0x27
+ 1058 00a2 19       		.uleb128 0x19
+ 1059 00a3 49       		.uleb128 0x49
+ 1060 00a4 13       		.uleb128 0x13
+ 1061 00a5 11       		.uleb128 0x11
+ 1062 00a6 01       		.uleb128 0x1
+ 1063 00a7 12       		.uleb128 0x12
+ 1064 00a8 06       		.uleb128 0x6
+ 1065 00a9 40       		.uleb128 0x40
+ 1066 00aa 18       		.uleb128 0x18
+ 1067 00ab 9742     		.uleb128 0x2117
+ 1068 00ad 19       		.uleb128 0x19
+ 1069 00ae 00       		.byte	0
+ 1070 00af 00       		.byte	0
+ 1071 00b0 0B       		.uleb128 0xb
+ 1072 00b1 898201   		.uleb128 0x4109
+ 1073 00b4 00       		.byte	0
+ 1074 00b5 11       		.uleb128 0x11
+ 1075 00b6 01       		.uleb128 0x1
+ 1076 00b7 31       		.uleb128 0x31
+ 1077 00b8 13       		.uleb128 0x13
+ 1078 00b9 00       		.byte	0
+ 1079 00ba 00       		.byte	0
+ 1080 00bb 0C       		.uleb128 0xc
+ 1081 00bc 2E       		.uleb128 0x2e
+ 1082 00bd 01       		.byte	0x1
+ 1083 00be 3F       		.uleb128 0x3f
+ 1084 00bf 19       		.uleb128 0x19
+ 1085 00c0 03       		.uleb128 0x3
+ 1086 00c1 0E       		.uleb128 0xe
+ 1087 00c2 3A       		.uleb128 0x3a
+ 1088 00c3 0B       		.uleb128 0xb
+ 1089 00c4 3B       		.uleb128 0x3b
+ 1090 00c5 0B       		.uleb128 0xb
+ 1091 00c6 27       		.uleb128 0x27
+ 1092 00c7 19       		.uleb128 0x19
+ 1093 00c8 11       		.uleb128 0x11
+ 1094 00c9 01       		.uleb128 0x1
+ 1095 00ca 12       		.uleb128 0x12
+ 1096 00cb 06       		.uleb128 0x6
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 34
+
+
+ 1097 00cc 40       		.uleb128 0x40
+ 1098 00cd 18       		.uleb128 0x18
+ 1099 00ce 9742     		.uleb128 0x2117
+ 1100 00d0 19       		.uleb128 0x19
+ 1101 00d1 01       		.uleb128 0x1
+ 1102 00d2 13       		.uleb128 0x13
+ 1103 00d3 00       		.byte	0
+ 1104 00d4 00       		.byte	0
+ 1105 00d5 0D       		.uleb128 0xd
+ 1106 00d6 34       		.uleb128 0x34
+ 1107 00d7 00       		.byte	0
+ 1108 00d8 03       		.uleb128 0x3
+ 1109 00d9 0E       		.uleb128 0xe
+ 1110 00da 3A       		.uleb128 0x3a
+ 1111 00db 0B       		.uleb128 0xb
+ 1112 00dc 3B       		.uleb128 0x3b
+ 1113 00dd 0B       		.uleb128 0xb
+ 1114 00de 49       		.uleb128 0x49
+ 1115 00df 13       		.uleb128 0x13
+ 1116 00e0 02       		.uleb128 0x2
+ 1117 00e1 17       		.uleb128 0x17
+ 1118 00e2 00       		.byte	0
+ 1119 00e3 00       		.byte	0
+ 1120 00e4 0E       		.uleb128 0xe
+ 1121 00e5 898201   		.uleb128 0x4109
+ 1122 00e8 01       		.byte	0x1
+ 1123 00e9 11       		.uleb128 0x11
+ 1124 00ea 01       		.uleb128 0x1
+ 1125 00eb 31       		.uleb128 0x31
+ 1126 00ec 13       		.uleb128 0x13
+ 1127 00ed 01       		.uleb128 0x1
+ 1128 00ee 13       		.uleb128 0x13
+ 1129 00ef 00       		.byte	0
+ 1130 00f0 00       		.byte	0
+ 1131 00f1 0F       		.uleb128 0xf
+ 1132 00f2 8A8201   		.uleb128 0x410a
+ 1133 00f5 00       		.byte	0
+ 1134 00f6 02       		.uleb128 0x2
+ 1135 00f7 18       		.uleb128 0x18
+ 1136 00f8 9142     		.uleb128 0x2111
+ 1137 00fa 18       		.uleb128 0x18
+ 1138 00fb 00       		.byte	0
+ 1139 00fc 00       		.byte	0
+ 1140 00fd 10       		.uleb128 0x10
+ 1141 00fe 898201   		.uleb128 0x4109
+ 1142 0101 01       		.byte	0x1
+ 1143 0102 11       		.uleb128 0x11
+ 1144 0103 01       		.uleb128 0x1
+ 1145 0104 31       		.uleb128 0x31
+ 1146 0105 13       		.uleb128 0x13
+ 1147 0106 00       		.byte	0
+ 1148 0107 00       		.byte	0
+ 1149 0108 11       		.uleb128 0x11
+ 1150 0109 34       		.uleb128 0x34
+ 1151 010a 00       		.byte	0
+ 1152 010b 03       		.uleb128 0x3
+ 1153 010c 0E       		.uleb128 0xe
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 35
+
+
+ 1154 010d 3A       		.uleb128 0x3a
+ 1155 010e 0B       		.uleb128 0xb
+ 1156 010f 3B       		.uleb128 0x3b
+ 1157 0110 0B       		.uleb128 0xb
+ 1158 0111 49       		.uleb128 0x49
+ 1159 0112 13       		.uleb128 0x13
+ 1160 0113 3F       		.uleb128 0x3f
+ 1161 0114 19       		.uleb128 0x19
+ 1162 0115 02       		.uleb128 0x2
+ 1163 0116 18       		.uleb128 0x18
+ 1164 0117 00       		.byte	0
+ 1165 0118 00       		.byte	0
+ 1166 0119 12       		.uleb128 0x12
+ 1167 011a 2E       		.uleb128 0x2e
+ 1168 011b 00       		.byte	0
+ 1169 011c 3F       		.uleb128 0x3f
+ 1170 011d 19       		.uleb128 0x19
+ 1171 011e 3C       		.uleb128 0x3c
+ 1172 011f 19       		.uleb128 0x19
+ 1173 0120 6E       		.uleb128 0x6e
+ 1174 0121 0E       		.uleb128 0xe
+ 1175 0122 03       		.uleb128 0x3
+ 1176 0123 0E       		.uleb128 0xe
+ 1177 0124 3A       		.uleb128 0x3a
+ 1178 0125 0B       		.uleb128 0xb
+ 1179 0126 3B       		.uleb128 0x3b
+ 1180 0127 0B       		.uleb128 0xb
+ 1181 0128 00       		.byte	0
+ 1182 0129 00       		.byte	0
+ 1183 012a 00       		.byte	0
+ 1184              		.section	.debug_loc,"",%progbits
+ 1185              	.Ldebug_loc0:
+ 1186              	.LLST0:
+ 1187 0000 26000000 		.4byte	.LVL10
+ 1188 0004 33000000 		.4byte	.LVL11-1
+ 1189 0008 0100     		.2byte	0x1
+ 1190 000a 50       		.byte	0x50
+ 1191 000b 00000000 		.4byte	0
+ 1192 000f 00000000 		.4byte	0
+ 1193              		.section	.debug_aranges,"",%progbits
+ 1194 0000 9C000000 		.4byte	0x9c
+ 1195 0004 0200     		.2byte	0x2
+ 1196 0006 00000000 		.4byte	.Ldebug_info0
+ 1197 000a 04       		.byte	0x4
+ 1198 000b 00       		.byte	0
+ 1199 000c 0000     		.2byte	0
+ 1200 000e 0000     		.2byte	0
+ 1201 0010 00000000 		.4byte	.LFB1
+ 1202 0014 10000000 		.4byte	.LFE1-.LFB1
+ 1203 0018 00000000 		.4byte	.LFB3
+ 1204 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1205 0020 00000000 		.4byte	.LFB4
+ 1206 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1207 0028 00000000 		.4byte	.LFB5
+ 1208 002c 0C000000 		.4byte	.LFE5-.LFB5
+ 1209 0030 00000000 		.4byte	.LFB6
+ 1210 0034 0C000000 		.4byte	.LFE6-.LFB6
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 36
+
+
+ 1211 0038 00000000 		.4byte	.LFB7
+ 1212 003c 0C000000 		.4byte	.LFE7-.LFB7
+ 1213 0040 00000000 		.4byte	.LFB8
+ 1214 0044 0C000000 		.4byte	.LFE8-.LFB8
+ 1215 0048 00000000 		.4byte	.LFB9
+ 1216 004c 0C000000 		.4byte	.LFE9-.LFB9
+ 1217 0050 00000000 		.4byte	.LFB10
+ 1218 0054 0C000000 		.4byte	.LFE10-.LFB10
+ 1219 0058 00000000 		.4byte	.LFB11
+ 1220 005c 0C000000 		.4byte	.LFE11-.LFB11
+ 1221 0060 00000000 		.4byte	.LFB12
+ 1222 0064 0C000000 		.4byte	.LFE12-.LFB12
+ 1223 0068 00000000 		.4byte	.LFB13
+ 1224 006c 14000000 		.4byte	.LFE13-.LFB13
+ 1225 0070 00000000 		.4byte	.LFB14
+ 1226 0074 0C000000 		.4byte	.LFE14-.LFB14
+ 1227 0078 00000000 		.4byte	.LFB15
+ 1228 007c 0C000000 		.4byte	.LFE15-.LFB15
+ 1229 0080 00000000 		.4byte	.LFB16
+ 1230 0084 14000000 		.4byte	.LFE16-.LFB16
+ 1231 0088 00000000 		.4byte	.LFB0
+ 1232 008c 48000000 		.4byte	.LFE0-.LFB0
+ 1233 0090 00000000 		.4byte	.LFB2
+ 1234 0094 1C000000 		.4byte	.LFE2-.LFB2
+ 1235 0098 00000000 		.4byte	0
+ 1236 009c 00000000 		.4byte	0
+ 1237              		.section	.debug_ranges,"",%progbits
+ 1238              	.Ldebug_ranges0:
+ 1239 0000 00000000 		.4byte	.LFB1
+ 1240 0004 10000000 		.4byte	.LFE1
+ 1241 0008 00000000 		.4byte	.LFB3
+ 1242 000c 10000000 		.4byte	.LFE3
+ 1243 0010 00000000 		.4byte	.LFB4
+ 1244 0014 0C000000 		.4byte	.LFE4
+ 1245 0018 00000000 		.4byte	.LFB5
+ 1246 001c 0C000000 		.4byte	.LFE5
+ 1247 0020 00000000 		.4byte	.LFB6
+ 1248 0024 0C000000 		.4byte	.LFE6
+ 1249 0028 00000000 		.4byte	.LFB7
+ 1250 002c 0C000000 		.4byte	.LFE7
+ 1251 0030 00000000 		.4byte	.LFB8
+ 1252 0034 0C000000 		.4byte	.LFE8
+ 1253 0038 00000000 		.4byte	.LFB9
+ 1254 003c 0C000000 		.4byte	.LFE9
+ 1255 0040 00000000 		.4byte	.LFB10
+ 1256 0044 0C000000 		.4byte	.LFE10
+ 1257 0048 00000000 		.4byte	.LFB11
+ 1258 004c 0C000000 		.4byte	.LFE11
+ 1259 0050 00000000 		.4byte	.LFB12
+ 1260 0054 0C000000 		.4byte	.LFE12
+ 1261 0058 00000000 		.4byte	.LFB13
+ 1262 005c 14000000 		.4byte	.LFE13
+ 1263 0060 00000000 		.4byte	.LFB14
+ 1264 0064 0C000000 		.4byte	.LFE14
+ 1265 0068 00000000 		.4byte	.LFB15
+ 1266 006c 0C000000 		.4byte	.LFE15
+ 1267 0070 00000000 		.4byte	.LFB16
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 37
+
+
+ 1268 0074 14000000 		.4byte	.LFE16
+ 1269 0078 00000000 		.4byte	.LFB0
+ 1270 007c 48000000 		.4byte	.LFE0
+ 1271 0080 00000000 		.4byte	.LFB2
+ 1272 0084 1C000000 		.4byte	.LFE2
+ 1273 0088 00000000 		.4byte	0
+ 1274 008c 00000000 		.4byte	0
+ 1275              		.section	.debug_line,"",%progbits
+ 1276              	.Ldebug_line0:
+ 1277 0000 98010000 		.section	.debug_str,"MS",%progbits,1
+ 1277      02005400 
+ 1277      00000201 
+ 1277      FB0E0D00 
+ 1277      01010101 
+ 1278              	.LASF15:
+ 1279 0000 72656733 		.ascii	"reg32\000"
+ 1279      3200
+ 1280              	.LASF43:
+ 1281 0006 47656E65 		.ascii	"Generated_Source\\PSoC5\\OddEvenTimer.c\000"
+ 1281      72617465 
+ 1281      645F536F 
+ 1281      75726365 
+ 1281      5C50536F 
+ 1282              	.LASF34:
+ 1283 002c 4F646445 		.ascii	"OddEvenTimer_SetCaptureCount\000"
+ 1283      76656E54 
+ 1283      696D6572 
+ 1283      5F536574 
+ 1283      43617074 
+ 1284              	.LASF24:
+ 1285 0049 4F646445 		.ascii	"OddEvenTimer_WriteControlRegister\000"
+ 1285      76656E54 
+ 1285      696D6572 
+ 1285      5F577269 
+ 1285      7465436F 
+ 1286              	.LASF29:
+ 1287 006b 70657269 		.ascii	"period\000"
+ 1287      6F6400
+ 1288              	.LASF28:
+ 1289 0072 4F646445 		.ascii	"OddEvenTimer_WritePeriod\000"
+ 1289      76656E54 
+ 1289      696D6572 
+ 1289      5F577269 
+ 1289      74655065 
+ 1290              	.LASF3:
+ 1291 008b 73686F72 		.ascii	"short unsigned int\000"
+ 1291      7420756E 
+ 1291      7369676E 
+ 1291      65642069 
+ 1291      6E7400
+ 1292              	.LASF11:
+ 1293 009e 666C6F61 		.ascii	"float\000"
+ 1293      7400
+ 1294              	.LASF32:
+ 1295 00a4 636F756E 		.ascii	"counter\000"
+ 1295      74657200 
+ 1296              	.LASF7:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 38
+
+
+ 1297 00ac 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1297      206C6F6E 
+ 1297      6720756E 
+ 1297      7369676E 
+ 1297      65642069 
+ 1298              	.LASF1:
+ 1299 00c3 756E7369 		.ascii	"unsigned char\000"
+ 1299      676E6564 
+ 1299      20636861 
+ 1299      7200
+ 1300              	.LASF42:
+ 1301 00d1 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1301      43313120 
+ 1301      352E342E 
+ 1301      31203230 
+ 1301      31363036 
+ 1302 0104 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1302      20726576 
+ 1302      6973696F 
+ 1302      6E203233 
+ 1302      37373135 
+ 1303 0137 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1303      66756E63 
+ 1303      74696F6E 
+ 1303      2D736563 
+ 1303      74696F6E 
+ 1304              	.LASF44:
+ 1305 015f 433A5C55 		.ascii	"C:\\Users\\nkhedkar\\Documents\\PSoC Creator\\ELE30"
+ 1305      73657273 
+ 1305      5C6E6B68 
+ 1305      65646B61 
+ 1305      725C446F 
+ 1306 018d 3220576F 		.ascii	"2 Workspace\\navigation\\Navigation.cydsn\000"
+ 1306      726B7370 
+ 1306      6163655C 
+ 1306      6E617669 
+ 1306      67617469 
+ 1307              	.LASF14:
+ 1308 01b5 72656738 		.ascii	"reg8\000"
+ 1308      00
+ 1309              	.LASF5:
+ 1310 01ba 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1310      20756E73 
+ 1310      69676E65 
+ 1310      6420696E 
+ 1310      7400
+ 1311              	.LASF36:
+ 1312 01cc 4F646445 		.ascii	"OddEvenTimer_ReadCaptureCount\000"
+ 1312      76656E54 
+ 1312      696D6572 
+ 1312      5F526561 
+ 1312      64436170 
+ 1313              	.LASF9:
+ 1314 01ea 75696E74 		.ascii	"uint8\000"
+ 1314      3800
+ 1315              	.LASF26:
+ 1316 01f0 636F6E74 		.ascii	"control\000"
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 39
+
+
+ 1316      726F6C00 
+ 1317              	.LASF45:
+ 1318 01f8 4F646445 		.ascii	"OddEvenTimer_interruptState\000"
+ 1318      76656E54 
+ 1318      696D6572 
+ 1318      5F696E74 
+ 1318      65727275 
+ 1319              	.LASF23:
+ 1320 0214 4F646445 		.ascii	"OddEvenTimer_SetInterruptMode\000"
+ 1320      76656E54 
+ 1320      696D6572 
+ 1320      5F536574 
+ 1320      496E7465 
+ 1321              	.LASF27:
+ 1322 0232 4F646445 		.ascii	"OddEvenTimer_ReadPeriod\000"
+ 1322      76656E54 
+ 1322      696D6572 
+ 1322      5F526561 
+ 1322      64506572 
+ 1323              	.LASF12:
+ 1324 024a 646F7562 		.ascii	"double\000"
+ 1324      6C6500
+ 1325              	.LASF10:
+ 1326 0251 75696E74 		.ascii	"uint32\000"
+ 1326      333200
+ 1327              	.LASF22:
+ 1328 0258 4F646445 		.ascii	"OddEvenTimer_ReadControlRegister\000"
+ 1328      76656E54 
+ 1328      696D6572 
+ 1328      5F526561 
+ 1328      64436F6E 
+ 1329              	.LASF40:
+ 1330 0279 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1330      74657243 
+ 1330      72697469 
+ 1330      63616C53 
+ 1330      65637469 
+ 1331              	.LASF8:
+ 1332 0290 756E7369 		.ascii	"unsigned int\000"
+ 1332      676E6564 
+ 1332      20696E74 
+ 1332      00
+ 1333              	.LASF41:
+ 1334 029d 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1334      69744372 
+ 1334      69746963 
+ 1334      616C5365 
+ 1334      6374696F 
+ 1335              	.LASF30:
+ 1336 02b3 4F646445 		.ascii	"OddEvenTimer_ReadCapture\000"
+ 1336      76656E54 
+ 1336      696D6572 
+ 1336      5F526561 
+ 1336      64436170 
+ 1337              	.LASF38:
+ 1338 02cc 4F646445 		.ascii	"OddEvenTimer_Init\000"
+ 1338      76656E54 
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 40
+
+
+ 1338      696D6572 
+ 1338      5F496E69 
+ 1338      7400
+ 1339              	.LASF39:
+ 1340 02de 4F646445 		.ascii	"OddEvenTimer_Start\000"
+ 1340      76656E54 
+ 1340      696D6572 
+ 1340      5F537461 
+ 1340      727400
+ 1341              	.LASF17:
+ 1342 02f1 73697A65 		.ascii	"sizetype\000"
+ 1342      74797065 
+ 1342      00
+ 1343              	.LASF31:
+ 1344 02fa 4F646445 		.ascii	"OddEvenTimer_WriteCounter\000"
+ 1344      76656E54 
+ 1344      696D6572 
+ 1344      5F577269 
+ 1344      7465436F 
+ 1345              	.LASF6:
+ 1346 0314 6C6F6E67 		.ascii	"long long int\000"
+ 1346      206C6F6E 
+ 1346      6720696E 
+ 1346      7400
+ 1347              	.LASF33:
+ 1348 0322 4F646445 		.ascii	"OddEvenTimer_ReadCounter\000"
+ 1348      76656E54 
+ 1348      696D6572 
+ 1348      5F526561 
+ 1348      64436F75 
+ 1349              	.LASF25:
+ 1350 033b 696E7465 		.ascii	"interruptMode\000"
+ 1350      72727570 
+ 1350      744D6F64 
+ 1350      6500
+ 1351              	.LASF46:
+ 1352 0349 4F646445 		.ascii	"OddEvenTimer_initVar\000"
+ 1352      76656E54 
+ 1352      696D6572 
+ 1352      5F696E69 
+ 1352      74566172 
+ 1353              	.LASF2:
+ 1354 035e 73686F72 		.ascii	"short int\000"
+ 1354      7420696E 
+ 1354      7400
+ 1355              	.LASF35:
+ 1356 0368 63617074 		.ascii	"captureCount\000"
+ 1356      75726543 
+ 1356      6F756E74 
+ 1356      00
+ 1357              	.LASF4:
+ 1358 0375 6C6F6E67 		.ascii	"long int\000"
+ 1358      20696E74 
+ 1358      00
+ 1359              	.LASF13:
+ 1360 037e 63686172 		.ascii	"char\000"
+ 1360      00
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\cc2CUEny.s 			page 41
+
+
+ 1361              	.LASF16:
+ 1362 0383 6C6F6E67 		.ascii	"long double\000"
+ 1362      20646F75 
+ 1362      626C6500 
+ 1363              	.LASF0:
+ 1364 038f 7369676E 		.ascii	"signed char\000"
+ 1364      65642063 
+ 1364      68617200 
+ 1365              	.LASF20:
+ 1366 039b 4F646445 		.ascii	"OddEvenTimer_SoftwareCapture\000"
+ 1366      76656E54 
+ 1366      696D6572 
+ 1366      5F536F66 
+ 1366      74776172 
+ 1367              	.LASF37:
+ 1368 03b8 4F646445 		.ascii	"OddEvenTimer_ClearFIFO\000"
+ 1368      76656E54 
+ 1368      696D6572 
+ 1368      5F436C65 
+ 1368      61724649 
+ 1369              	.LASF21:
+ 1370 03cf 4F646445 		.ascii	"OddEvenTimer_ReadStatusRegister\000"
+ 1370      76656E54 
+ 1370      696D6572 
+ 1370      5F526561 
+ 1370      64537461 
+ 1371              	.LASF18:
+ 1372 03ef 4F646445 		.ascii	"OddEvenTimer_Enable\000"
+ 1372      76656E54 
+ 1372      696D6572 
+ 1372      5F456E61 
+ 1372      626C6500 
+ 1373              	.LASF19:
+ 1374 0403 4F646445 		.ascii	"OddEvenTimer_Stop\000"
+ 1374      76656E54 
+ 1374      696D6572 
+ 1374      5F53746F 
+ 1374      7000
+ 1375              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

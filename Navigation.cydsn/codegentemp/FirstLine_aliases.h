@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: VerifyCompOut.h  
+* File Name: FirstLine.h  
 * Version 2.20
 *
 * Description:
@@ -15,8 +15,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_VerifyCompOut_ALIASES_H) /* Pins VerifyCompOut_ALIASES_H */
-#define CY_PINS_VerifyCompOut_ALIASES_H
+#if !defined(CY_PINS_FirstLine_ALIASES_H) /* Pins FirstLine_ALIASES_H */
+#define CY_PINS_FirstLine_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,12 +25,12 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define VerifyCompOut_0			(VerifyCompOut__0__PC)
-#define VerifyCompOut_0_INTR	((uint16)((uint16)0x0001u << VerifyCompOut__0__SHIFT))
+#define FirstLine_0			(FirstLine__0__PC)
+#define FirstLine_0_INTR	((uint16)((uint16)0x0001u << FirstLine__0__SHIFT))
 
-#define VerifyCompOut_INTR_ALL	 ((uint16)(VerifyCompOut_0_INTR))
+#define FirstLine_INTR_ALL	 ((uint16)(FirstLine_0_INTR))
 
-#endif /* End Pins VerifyCompOut_ALIASES_H */
+#endif /* End Pins FirstLine_ALIASES_H */
 
 
 /* [] END OF FILE */

@@ -78,11 +78,12 @@ CY_ISR(inter1) {
 
 
 CY_ISR(inter2) {
-    
-    sprintf(uartbuf, "true\n");
-    UART_PutString(uartbuf);
-    
     newFrameFlag = 1;
+    LCD_ClearDisplay();
+    double time = (COUNTDOWN - OddEvenTimer_ReadCapture()) / 10000;
+    sprintf(strbuf, "timeE: %.4f\n", time);
+    LCD_PrintString(strbuf);
+    OddEvenTimer_Init();
     /*
     sprintf(uartbuf,  "New frame: %d\n,", newFrameFlag);
     UART_PutString(uartbuf);
@@ -111,10 +112,13 @@ int main(void)
     UART_Start();
     PWM_Start();
     
+    //test
+    OddEvenTimer_Start();
+    
     VideoTimer_Start();
-    VideoTimer_Stop();
+    // VideoTimer_Stop();
     Counter_Start();
-    Counter_Stop();
+    // Counter_Stop();
     StartFrame_Start();
     StartFrame_SetVector(inter2);
     /*
@@ -155,8 +159,7 @@ int main(void)
         */
         
         if (newFrameFlag == 1) {
-            Counter_Enable();
-            
+           
             sprintf(uartbuf,  "Counter: %d\n\n,", Counter_ReadCounter());
             UART_PutString(uartbuf);
             

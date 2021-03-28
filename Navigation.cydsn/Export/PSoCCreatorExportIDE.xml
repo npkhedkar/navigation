@@ -150,9 +150,14 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyLeftBlackEdge_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyLeftBlackEdge.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyLeftBlackEdge.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompOut_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompOut.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompOut.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\FirstLine_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\FirstLine.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\FirstLine.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEvenTimer.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEvenTimer.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEvenTimer_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_3.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\Export\ARM_GCC_Generic">

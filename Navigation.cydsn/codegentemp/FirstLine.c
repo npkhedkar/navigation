@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: VerifyCompOut.c  
+* File Name: FirstLine.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "VerifyCompOut.h"
+#include "FirstLine.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 VerifyCompOut__PORT == 15 && ((VerifyCompOut__MASK & 0xC0) != 0))
+	 FirstLine__PORT == 15 && ((FirstLine__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: VerifyCompOut_Write
+* Function Name: FirstLine_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet VerifyCompOut_SUT.c usage_VerifyCompOut_Write
+*  \snippet FirstLine_SUT.c usage_FirstLine_Write
 *******************************************************************************/
-void VerifyCompOut_Write(uint8 value)
+void FirstLine_Write(uint8 value)
 {
-    uint8 staticBits = (VerifyCompOut_DR & (uint8)(~VerifyCompOut_MASK));
-    VerifyCompOut_DR = staticBits | ((uint8)(value << VerifyCompOut_SHIFT) & VerifyCompOut_MASK);
+    uint8 staticBits = (FirstLine_DR & (uint8)(~FirstLine_MASK));
+    FirstLine_DR = staticBits | ((uint8)(value << FirstLine_SHIFT) & FirstLine_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: VerifyCompOut_SetDriveMode
+* Function Name: FirstLine_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void VerifyCompOut_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet VerifyCompOut_SUT.c usage_VerifyCompOut_SetDriveMode
+*  \snippet FirstLine_SUT.c usage_FirstLine_SetDriveMode
 *******************************************************************************/
-void VerifyCompOut_SetDriveMode(uint8 mode)
+void FirstLine_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(VerifyCompOut_0, mode);
+	CyPins_SetPinDriveMode(FirstLine_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: VerifyCompOut_Read
+* Function Name: FirstLine_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void VerifyCompOut_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet VerifyCompOut_SUT.c usage_VerifyCompOut_Read  
+*  \snippet FirstLine_SUT.c usage_FirstLine_Read  
 *******************************************************************************/
-uint8 VerifyCompOut_Read(void)
+uint8 FirstLine_Read(void)
 {
-    return (VerifyCompOut_PS & VerifyCompOut_MASK) >> VerifyCompOut_SHIFT;
+    return (FirstLine_PS & FirstLine_MASK) >> FirstLine_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: VerifyCompOut_ReadDataReg
+* Function Name: FirstLine_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 VerifyCompOut_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred VerifyCompOut_Read() API because the 
-* VerifyCompOut_ReadDataReg() reads the data register instead of the status 
+* preferred FirstLine_Read() API because the 
+* FirstLine_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 VerifyCompOut_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet VerifyCompOut_SUT.c usage_VerifyCompOut_ReadDataReg 
+*  \snippet FirstLine_SUT.c usage_FirstLine_ReadDataReg 
 *******************************************************************************/
-uint8 VerifyCompOut_ReadDataReg(void)
+uint8 FirstLine_ReadDataReg(void)
 {
-    return (VerifyCompOut_DR & VerifyCompOut_MASK) >> VerifyCompOut_SHIFT;
+    return (FirstLine_DR & FirstLine_MASK) >> FirstLine_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(VerifyCompOut_INTSTAT) 
+#if defined(FirstLine_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: VerifyCompOut_SetInterruptMode
+    * Function Name: FirstLine_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 VerifyCompOut_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use VerifyCompOut_INTR_ALL to configure the
+    *  component. Or you may use FirstLine_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - VerifyCompOut_0_INTR       (First pin in the list)
-    *  - VerifyCompOut_1_INTR       (Second pin in the list)
+    *  - FirstLine_0_INTR       (First pin in the list)
+    *  - FirstLine_1_INTR       (Second pin in the list)
     *  - ...
-    *  - VerifyCompOut_INTR_ALL     (All pins in Pins component)
+    *  - FirstLine_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 VerifyCompOut_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet VerifyCompOut_SUT.c usage_VerifyCompOut_SetInterruptMode
+    *  \snippet FirstLine_SUT.c usage_FirstLine_SetInterruptMode
     *******************************************************************************/
-    void VerifyCompOut_SetInterruptMode(uint16 position, uint16 mode)
+    void FirstLine_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & VerifyCompOut_0_INTR) != 0u) 
+		if((position & FirstLine_0_INTR) != 0u) 
 		{ 
-			 VerifyCompOut_0_INTTYPE_REG = (uint8)mode; 
+			 FirstLine_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: VerifyCompOut_ClearInterrupt
+    * Function Name: FirstLine_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 VerifyCompOut_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet VerifyCompOut_SUT.c usage_VerifyCompOut_ClearInterrupt
+    *  \snippet FirstLine_SUT.c usage_FirstLine_ClearInterrupt
     *******************************************************************************/
-    uint8 VerifyCompOut_ClearInterrupt(void)
+    uint8 FirstLine_ClearInterrupt(void)
     {
-        return (VerifyCompOut_INTSTAT & VerifyCompOut_MASK) >> VerifyCompOut_SHIFT;
+        return (FirstLine_INTSTAT & FirstLine_MASK) >> FirstLine_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

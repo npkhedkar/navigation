@@ -1,80 +1,55 @@
 /*******************************************************************************
-* File Name: Counter_PM.c
-* Version 1.0
+* File Name: Counter_PM.c  
+* Version 3.0
 *
-* Description:
-*  This file provides Low power mode APIs for Count7 component.
+*  Description:
+*    This file provides the power management source code to API for the
+*    Counter.  
 *
-* Note:
-*  None
+*   Note:
+*     None
 *
 ********************************************************************************
-* Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
-* You may use this file only in accordance with the license, terms, conditions,
-* disclaimers, and limitations in the end user license agreement accompanying
+* Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+* You may use this file only in accordance with the license, terms, conditions, 
+* disclaimers, and limitations in the end user license agreement accompanying 
 * the software package with which this file was provided.
 *******************************************************************************/
 
 #include "Counter.h"
 
-
-Counter_BACKUP_STRUCT Counter_backup;
+static Counter_backupStruct Counter_backup;
 
 
 /*******************************************************************************
 * Function Name: Counter_SaveConfig
 ********************************************************************************
-*
 * Summary:
-*  This function saves the component configuration and non-retention registers.
-*  This function is called by the Count7_Sleep() function.
+*     Save the current user configuration
 *
-* Parameters:
-*  None
+* Parameters:  
+*  void
 *
-* Return:
-*  None
+* Return: 
+*  void
 *
-* Global Variables:
-*  Counter_backup - used to save component configuration and non-
-*  retention registers before enter sleep mode.
+* Global variables:
+*  Counter_backup:  Variables of this global structure are modified to 
+*  store the values of non retention configuration registers when Sleep() API is 
+*  called.
 *
 *******************************************************************************/
 void Counter_SaveConfig(void) 
 {
-    Counter_backup.count = Counter_COUNT_REG;
-}
+    #if (!Counter_UsingFixedFunction)
 
+        Counter_backup.CounterUdb = Counter_ReadCounter();
 
-/*******************************************************************************
-* Function Name: Counter_Sleep
-********************************************************************************
-*
-* Summary:
-*  This is the preferred API to prepare the component for low power mode
-*  operation. The Count7_Sleep() API saves the current component state using
-*  Count7_SaveConfig() and disables the counter.
-*
-* Parameters:
-*  None
-*
-* Return:
-*  None
-*
-*******************************************************************************/
-void Counter_Sleep(void) 
-{
-    if(0u != (Counter_AUX_CONTROL_REG & Counter_COUNTER_START))
-    {
-        Counter_backup.enableState = 1u;
-        Counter_Stop();
-    }
-    else
-    {
-        Counter_backup.enableState = 0u;
-    }
+        #if(!Counter_ControlRegRemoved)
+            Counter_backup.CounterControlRegister = Counter_ReadControlRegister();
+        #endif /* (!Counter_ControlRegRemoved) */
 
-    Counter_SaveConfig();
+    #endif /* (!Counter_UsingFixedFunction) */
 }
 
 
@@ -83,23 +58,74 @@ void Counter_Sleep(void)
 ********************************************************************************
 *
 * Summary:
-*  This function restores the component configuration and non-retention
-*  registers. This function is called by the Count7_Wakeup() function.
+*  Restores the current user configuration.
 *
-* Parameters:
-*  None
+* Parameters:  
+*  void
 *
-* Return:
-*  None
+* Return: 
+*  void
 *
-* Global Variables:
-*  Counter_backup - used to save component configuration and
-*  non-retention registers before exit sleep mode.
+* Global variables:
+*  Counter_backup:  Variables of this global structure are used to 
+*  restore the values of non retention registers on wakeup from sleep mode.
 *
 *******************************************************************************/
 void Counter_RestoreConfig(void) 
+{      
+    #if (!Counter_UsingFixedFunction)
+
+       Counter_WriteCounter(Counter_backup.CounterUdb);
+
+        #if(!Counter_ControlRegRemoved)
+            Counter_WriteControlRegister(Counter_backup.CounterControlRegister);
+        #endif /* (!Counter_ControlRegRemoved) */
+
+    #endif /* (!Counter_UsingFixedFunction) */
+}
+
+
+/*******************************************************************************
+* Function Name: Counter_Sleep
+********************************************************************************
+* Summary:
+*     Stop and Save the user configuration
+*
+* Parameters:  
+*  void
+*
+* Return: 
+*  void
+*
+* Global variables:
+*  Counter_backup.enableState:  Is modified depending on the enable 
+*  state of the block before entering sleep mode.
+*
+*******************************************************************************/
+void Counter_Sleep(void) 
 {
-    Counter_COUNT_REG = Counter_backup.count;
+    #if(!Counter_ControlRegRemoved)
+        /* Save Counter's enable state */
+        if(Counter_CTRL_ENABLE == (Counter_CONTROL & Counter_CTRL_ENABLE))
+        {
+            /* Counter is enabled */
+            Counter_backup.CounterEnableState = 1u;
+        }
+        else
+        {
+            /* Counter is disabled */
+            Counter_backup.CounterEnableState = 0u;
+        }
+    #else
+        Counter_backup.CounterEnableState = 1u;
+        if(Counter_backup.CounterEnableState != 0u)
+        {
+            Counter_backup.CounterEnableState = 0u;
+        }
+    #endif /* (!Counter_ControlRegRemoved) */
+    
+    Counter_Stop();
+    Counter_SaveConfig();
 }
 
 
@@ -108,26 +134,30 @@ void Counter_RestoreConfig(void)
 ********************************************************************************
 *
 * Summary:
-*  This is the preferred API to restore the component to the state when
-*  Count7_Sleep() was called. The Count7_Wakeup() function calls the
-*  Count7_RestoreConfig() function to restore the configuration.
+*  Restores and enables the user configuration
+*  
+* Parameters:  
+*  void
 *
-* Parameters:
-*  None
+* Return: 
+*  void
 *
-* Return:
-*  None
+* Global variables:
+*  Counter_backup.enableState:  Is used to restore the enable state of 
+*  block on wakeup from sleep mode.
 *
 *******************************************************************************/
 void Counter_Wakeup(void) 
 {
     Counter_RestoreConfig();
-
-    /* Restore enable state */
-    if (Counter_backup.enableState != 0u)
-    {
-        Counter_Enable();
-    }
+    #if(!Counter_ControlRegRemoved)
+        if(Counter_backup.CounterEnableState == 1u)
+        {
+            /* Enable Counter's operation */
+            Counter_Enable();
+        } /* Do nothing if Counter was disabled before */    
+    #endif /* (!Counter_ControlRegRemoved) */
+    
 }
 
 
