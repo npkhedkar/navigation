@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Vcomp_225V.c  
+* File Name: VerifyCompIn.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "Vcomp_225V.h"
+#include "VerifyCompIn.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 Vcomp_225V__PORT == 15 && ((Vcomp_225V__MASK & 0xC0) != 0))
+	 VerifyCompIn__PORT == 15 && ((VerifyCompIn__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: Vcomp_225V_Write
+* Function Name: VerifyCompIn_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet Vcomp_225V_SUT.c usage_Vcomp_225V_Write
+*  \snippet VerifyCompIn_SUT.c usage_VerifyCompIn_Write
 *******************************************************************************/
-void Vcomp_225V_Write(uint8 value)
+void VerifyCompIn_Write(uint8 value)
 {
-    uint8 staticBits = (Vcomp_225V_DR & (uint8)(~Vcomp_225V_MASK));
-    Vcomp_225V_DR = staticBits | ((uint8)(value << Vcomp_225V_SHIFT) & Vcomp_225V_MASK);
+    uint8 staticBits = (VerifyCompIn_DR & (uint8)(~VerifyCompIn_MASK));
+    VerifyCompIn_DR = staticBits | ((uint8)(value << VerifyCompIn_SHIFT) & VerifyCompIn_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: Vcomp_225V_SetDriveMode
+* Function Name: VerifyCompIn_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void Vcomp_225V_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet Vcomp_225V_SUT.c usage_Vcomp_225V_SetDriveMode
+*  \snippet VerifyCompIn_SUT.c usage_VerifyCompIn_SetDriveMode
 *******************************************************************************/
-void Vcomp_225V_SetDriveMode(uint8 mode)
+void VerifyCompIn_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(Vcomp_225V_0, mode);
+	CyPins_SetPinDriveMode(VerifyCompIn_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: Vcomp_225V_Read
+* Function Name: VerifyCompIn_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void Vcomp_225V_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet Vcomp_225V_SUT.c usage_Vcomp_225V_Read  
+*  \snippet VerifyCompIn_SUT.c usage_VerifyCompIn_Read  
 *******************************************************************************/
-uint8 Vcomp_225V_Read(void)
+uint8 VerifyCompIn_Read(void)
 {
-    return (Vcomp_225V_PS & Vcomp_225V_MASK) >> Vcomp_225V_SHIFT;
+    return (VerifyCompIn_PS & VerifyCompIn_MASK) >> VerifyCompIn_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: Vcomp_225V_ReadDataReg
+* Function Name: VerifyCompIn_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 Vcomp_225V_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred Vcomp_225V_Read() API because the 
-* Vcomp_225V_ReadDataReg() reads the data register instead of the status 
+* preferred VerifyCompIn_Read() API because the 
+* VerifyCompIn_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 Vcomp_225V_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet Vcomp_225V_SUT.c usage_Vcomp_225V_ReadDataReg 
+*  \snippet VerifyCompIn_SUT.c usage_VerifyCompIn_ReadDataReg 
 *******************************************************************************/
-uint8 Vcomp_225V_ReadDataReg(void)
+uint8 VerifyCompIn_ReadDataReg(void)
 {
-    return (Vcomp_225V_DR & Vcomp_225V_MASK) >> Vcomp_225V_SHIFT;
+    return (VerifyCompIn_DR & VerifyCompIn_MASK) >> VerifyCompIn_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(Vcomp_225V_INTSTAT) 
+#if defined(VerifyCompIn_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: Vcomp_225V_SetInterruptMode
+    * Function Name: VerifyCompIn_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 Vcomp_225V_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use Vcomp_225V_INTR_ALL to configure the
+    *  component. Or you may use VerifyCompIn_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - Vcomp_225V_0_INTR       (First pin in the list)
-    *  - Vcomp_225V_1_INTR       (Second pin in the list)
+    *  - VerifyCompIn_0_INTR       (First pin in the list)
+    *  - VerifyCompIn_1_INTR       (Second pin in the list)
     *  - ...
-    *  - Vcomp_225V_INTR_ALL     (All pins in Pins component)
+    *  - VerifyCompIn_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 Vcomp_225V_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet Vcomp_225V_SUT.c usage_Vcomp_225V_SetInterruptMode
+    *  \snippet VerifyCompIn_SUT.c usage_VerifyCompIn_SetInterruptMode
     *******************************************************************************/
-    void Vcomp_225V_SetInterruptMode(uint16 position, uint16 mode)
+    void VerifyCompIn_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & Vcomp_225V_0_INTR) != 0u) 
+		if((position & VerifyCompIn_0_INTR) != 0u) 
 		{ 
-			 Vcomp_225V_0_INTTYPE_REG = (uint8)mode; 
+			 VerifyCompIn_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: Vcomp_225V_ClearInterrupt
+    * Function Name: VerifyCompIn_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 Vcomp_225V_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet Vcomp_225V_SUT.c usage_Vcomp_225V_ClearInterrupt
+    *  \snippet VerifyCompIn_SUT.c usage_VerifyCompIn_ClearInterrupt
     *******************************************************************************/
-    uint8 Vcomp_225V_ClearInterrupt(void)
+    uint8 VerifyCompIn_ClearInterrupt(void)
     {
-        return (Vcomp_225V_INTSTAT & Vcomp_225V_MASK) >> Vcomp_225V_SHIFT;
+        return (VerifyCompIn_INTSTAT & VerifyCompIn_MASK) >> VerifyCompIn_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

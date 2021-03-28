@@ -76,25 +76,12 @@ CY_ISR(inter1) {
     hallFlag = 1;
 }
 
-
+/*
 CY_ISR(inter2) {
     newFrameFlag = 1;
-    LCD_ClearDisplay();
-    double time = (COUNTDOWN - OddEvenTimer_ReadCapture()) / 10000;
-    sprintf(strbuf, "timeE: %.4f\n", time);
-    LCD_PrintString(strbuf);
-    OddEvenTimer_Init();
-    /*
-    sprintf(uartbuf,  "New frame: %d\n,", newFrameFlag);
-    UART_PutString(uartbuf);
-    */
-}
-
-/*
-CY_ISR(inter3) {
-    useCamFlag = 1;
 }
 */
+
 CY_ISR(inter4) {
     blackFlag = 1;
 }
@@ -113,18 +100,27 @@ int main(void)
     PWM_Start();
     
     //test
-    OddEvenTimer_Start();
+    // OddEvenTimer_Start();
     
     VideoTimer_Start();
     // VideoTimer_Stop();
+    /*
     Counter_Start();
     // Counter_Stop();
     StartFrame_Start();
     StartFrame_SetVector(inter2);
-    /*
-    UseCamera_Start();
-    UseCamera_SetVector(inter3);
     */
+    
+    // VDAC
+    VDAC_Start();
+    VDAC_SetSpeed(VDAC_LOWSPEED);
+    VDAC_SetRange(VDAC_RANGE_1V);
+    VDAC_SetValue(162);
+    
+    // Comparator
+    Comp_Start();
+    Comp_SetSpeed(Comp_HIGHSPEED);
+ 
     Black_Start();
     Black_SetVector(inter4);
     
@@ -136,11 +132,6 @@ int main(void)
     LCD_PrintString(strbuf);
     */
     
-    sprintf(uartbuf, "Bl loc:");
-    sprintf(strbuf,  "Bl loc:");
-    UART_PutString(uartbuf);
-    LCD_Position(0, 0);
-    LCD_PrintString(strbuf);
     
     LPS = LPF * FPS; // lines per second
     HFREQ = 1.0 / LPS;// hsync freq
@@ -150,31 +141,22 @@ int main(void)
 
     for(;;)
     { 
-        // sprintf(strbuf, "Counter: %d\n,", Counter_ReadCounter());
-       
-        // LCD_PrintString(strbuf);
-        /*
-        sprintf(uartbuf,  "New frame: %d\n,", newFrameFlag);
-        UART_PutString(uartbuf);
-        */
-        
         if (newFrameFlag == 1) {
-           
-            sprintf(uartbuf,  "Counter: %d\n\n,", Counter_ReadCounter());
-            UART_PutString(uartbuf);
-            
+            //Counter_Start();
+            //OddEvenTimer_Init();
             newFrameFlag = 0;
         }
         if (blackFlag == 1) { // collect data
             blackTime = COUNTDOWN - VideoTimer_ReadCapture();
-            
+            /*
             sprintf(uartbuf, "Black pixel location: %d,", blackTime);
             UART_PutString(uartbuf);
+            */
+            LCD_ClearDisplay();
             sprintf(strbuf, "Location: %d,", blackTime);
             LCD_PrintString(strbuf);
-           
-            VideoTimer_Stop();
-            Counter_Stop();
+            
+            blackFlag = 0;
         }
         /*
         if(hallFlag == 1){

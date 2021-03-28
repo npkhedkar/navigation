@@ -323,7 +323,7 @@ void    Counter_WriteControlRegister(uint8 control)
 *  void 
 *
 *******************************************************************************/
-void Counter_WriteCounter(uint8 counter) \
+void Counter_WriteCounter(uint16 counter) \
                                    
 {
     #if(Counter_UsingFixedFunction)
@@ -334,7 +334,7 @@ void Counter_WriteCounter(uint8 counter) \
         CY_SET_REG16(Counter_COUNTER_LSB_PTR, (uint16)counter);
         Counter_GLOBAL_ENABLE &= ((uint8)(~Counter_BLOCK_EN_MASK));
     #else
-        CY_SET_REG8(Counter_COUNTER_LSB_PTR, counter);
+        CY_SET_REG16(Counter_COUNTER_LSB_PTR, counter);
     #endif /* (Counter_UsingFixedFunction) */
 }
 #endif /* (!(Counter_UsingFixedFunction && (CY_PSOC5A))) */
@@ -351,10 +351,10 @@ void Counter_WriteCounter(uint8 counter) \
 *  void:  
 *
 * Return: 
-*  (uint8) The present value of the counter.
+*  (uint16) The present value of the counter.
 *
 *******************************************************************************/
-uint8 Counter_ReadCounter(void) 
+uint16 Counter_ReadCounter(void) 
 {
     /* Force capture by reading Accumulator */
     /* Must first do a software capture to be able to read the counter */
@@ -367,9 +367,9 @@ uint8 Counter_ReadCounter(void)
     
     /* Read the data from the FIFO (or capture register for Fixed Function)*/
     #if(Counter_UsingFixedFunction)
-        return ((uint8)CY_GET_REG16(Counter_STATICCOUNT_LSB_PTR));
+        return ((uint16)CY_GET_REG16(Counter_STATICCOUNT_LSB_PTR));
     #else
-        return (CY_GET_REG8(Counter_STATICCOUNT_LSB_PTR));
+        return (CY_GET_REG16(Counter_STATICCOUNT_LSB_PTR));
     #endif /* (Counter_UsingFixedFunction) */
 }
 
@@ -384,15 +384,15 @@ uint8 Counter_ReadCounter(void)
 *  void
 *
 * Return: 
-*  (uint8) Present Capture value.
+*  (uint16) Present Capture value.
 *
 *******************************************************************************/
-uint8 Counter_ReadCapture(void) 
+uint16 Counter_ReadCapture(void) 
 {
     #if(Counter_UsingFixedFunction)
-        return ((uint8)CY_GET_REG16(Counter_STATICCOUNT_LSB_PTR));
+        return ((uint16)CY_GET_REG16(Counter_STATICCOUNT_LSB_PTR));
     #else
-        return (CY_GET_REG8(Counter_STATICCOUNT_LSB_PTR));
+        return (CY_GET_REG16(Counter_STATICCOUNT_LSB_PTR));
     #endif /* (Counter_UsingFixedFunction) */
 }
 
@@ -405,19 +405,19 @@ uint8 Counter_ReadCapture(void)
 * will be loaded the next time terminal count is detected.
 *
 * Parameters:  
-*  period: (uint8) A value of 0 will result in
+*  period: (uint16) A value of 0 will result in
 *         the counter remaining at zero.  
 *
 * Return: 
 *  void
 *
 *******************************************************************************/
-void Counter_WritePeriod(uint8 period) 
+void Counter_WritePeriod(uint16 period) 
 {
     #if(Counter_UsingFixedFunction)
         CY_SET_REG16(Counter_PERIOD_LSB_PTR,(uint16)period);
     #else
-        CY_SET_REG8(Counter_PERIOD_LSB_PTR, period);
+        CY_SET_REG16(Counter_PERIOD_LSB_PTR, period);
     #endif /* (Counter_UsingFixedFunction) */
 }
 
@@ -432,15 +432,15 @@ void Counter_WritePeriod(uint8 period)
 *  void:  
 *
 * Return: 
-*  (uint8) Present period value.
+*  (uint16) Present period value.
 *
 *******************************************************************************/
-uint8 Counter_ReadPeriod(void) 
+uint16 Counter_ReadPeriod(void) 
 {
     #if(Counter_UsingFixedFunction)
-        return ((uint8)CY_GET_REG16(Counter_PERIOD_LSB_PTR));
+        return ((uint16)CY_GET_REG16(Counter_PERIOD_LSB_PTR));
     #else
-        return (CY_GET_REG8(Counter_PERIOD_LSB_PTR));
+        return (CY_GET_REG16(Counter_PERIOD_LSB_PTR));
     #endif /* (Counter_UsingFixedFunction) */
 }
 
@@ -462,13 +462,13 @@ uint8 Counter_ReadPeriod(void)
 *  void
 *
 *******************************************************************************/
-void Counter_WriteCompare(uint8 compare) \
+void Counter_WriteCompare(uint16 compare) \
                                    
 {
     #if(Counter_UsingFixedFunction)
         CY_SET_REG16(Counter_COMPARE_LSB_PTR, (uint16)compare);
     #else
-        CY_SET_REG8(Counter_COMPARE_LSB_PTR, compare);
+        CY_SET_REG16(Counter_COMPARE_LSB_PTR, compare);
     #endif /* (Counter_UsingFixedFunction) */
 }
 
@@ -483,12 +483,12 @@ void Counter_WriteCompare(uint8 compare) \
 *  void:
 *
 * Return: 
-*  (uint8) Present compare value.
+*  (uint16) Present compare value.
 *
 *******************************************************************************/
-uint8 Counter_ReadCompare(void) 
+uint16 Counter_ReadCompare(void) 
 {
-    return (CY_GET_REG8(Counter_COMPARE_LSB_PTR));
+    return (CY_GET_REG16(Counter_COMPARE_LSB_PTR));
 }
 
 

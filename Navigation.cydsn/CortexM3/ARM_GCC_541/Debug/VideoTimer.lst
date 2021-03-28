@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
   28:Generated_Source\PSoC5/VideoTimer.c **** 
   29:Generated_Source\PSoC5/VideoTimer.c **** /*******************************************************************************
   30:Generated_Source\PSoC5/VideoTimer.c **** * Function Name: VideoTimer_Init
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 2
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 2
 
 
   31:Generated_Source\PSoC5/VideoTimer.c **** ********************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
   85:Generated_Source\PSoC5/VideoTimer.c ****             #if (CY_PSOC5A)
   86:Generated_Source\PSoC5/VideoTimer.c ****                 /* Set the default Run Mode of the Timer to Continuous */
   87:Generated_Source\PSoC5/VideoTimer.c ****                 VideoTimer_CONTROL2 |= VideoTimer_CTRL_MODE_PULSEWIDTH;
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 3
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 3
 
 
   88:Generated_Source\PSoC5/VideoTimer.c ****             #endif /* Set Continuous Run Mode in CONTROL2 for PSoC5A */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  142:Generated_Source\PSoC5/VideoTimer.c ****         VideoTimer_interruptState = CyEnterCriticalSection();
  143:Generated_Source\PSoC5/VideoTimer.c **** 
  144:Generated_Source\PSoC5/VideoTimer.c ****         /* Use the interrupt output of the status register for IRQ output */
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 4
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 4
 
 
  145:Generated_Source\PSoC5/VideoTimer.c ****         VideoTimer_STATUS_AUX_CTRL |= VideoTimer_STATUS_ACTL_INT_EN_MASK;
@@ -238,13 +238,13 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
   36 0004 43F08003 		orr	r3, r3, #128
   37 0008 1370     		strb	r3, [r2]
   38 000a 7047     		bx	lr
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 5
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 5
 
 
   39              	.L3:
   40              		.align	2
   41              	.L2:
-  42 000c 79650040 		.word	1073767801
+  42 000c 76640040 		.word	1073767542
   43              		.cfi_endproc
   44              	.LFE1:
   45              		.size	VideoTimer_Enable, .-VideoTimer_Enable
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  230:Generated_Source\PSoC5/VideoTimer.c **** * Function Name: VideoTimer_Stop
  231:Generated_Source\PSoC5/VideoTimer.c **** ********************************************************************************
  232:Generated_Source\PSoC5/VideoTimer.c **** *
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 6
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 6
 
 
  233:Generated_Source\PSoC5/VideoTimer.c **** * Summary:
@@ -334,7 +334,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
   65              	.L6:
   66              		.align	2
   67              	.L5:
-  68 000c 79650040 		.word	1073767801
+  68 000c 76640040 		.word	1073767542
   69              		.cfi_endproc
   70              	.LFE3:
   71              		.size	VideoTimer_Stop, .-VideoTimer_Stop
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  261:Generated_Source\PSoC5/VideoTimer.c **** 
  262:Generated_Source\PSoC5/VideoTimer.c **** /*******************************************************************************
  263:Generated_Source\PSoC5/VideoTimer.c **** * Function Name: VideoTimer_SetInterruptMode
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 7
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 7
 
 
  264:Generated_Source\PSoC5/VideoTimer.c **** ********************************************************************************
@@ -392,7 +392,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
   90              	.L9:
   91 0006 00BF     		.align	2
   92              	.L8:
-  93 0008 89650040 		.word	1073767817
+  93 0008 83640040 		.word	1073767555
   94              		.cfi_endproc
   95              	.LFE4:
   96              		.size	VideoTimer_SetInterruptMode, .-VideoTimer_SetInterruptMode
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  293:Generated_Source\PSoC5/VideoTimer.c **** *  void
  294:Generated_Source\PSoC5/VideoTimer.c **** *
  295:Generated_Source\PSoC5/VideoTimer.c **** * Return:
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 8
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 8
 
 
  296:Generated_Source\PSoC5/VideoTimer.c **** *  void
@@ -446,7 +446,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  114              	.L12:
  115 0006 00BF     		.align	2
  116              	.L11:
- 117 0008 08650040 		.word	1073767688
+ 117 0008 02640040 		.word	1073767426
  118              		.cfi_endproc
  119              	.LFE5:
  120              		.size	VideoTimer_SoftwareCapture, .-VideoTimer_SoftwareCapture
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  326:Generated_Source\PSoC5/VideoTimer.c **** * Return:
  327:Generated_Source\PSoC5/VideoTimer.c **** *  The contents of the status register
  328:Generated_Source\PSoC5/VideoTimer.c **** *
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 9
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 9
 
 
  329:Generated_Source\PSoC5/VideoTimer.c **** * Side Effects:
@@ -502,7 +502,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  139              	.L15:
  140 0006 00BF     		.align	2
  141              	.L14:
- 142 0008 69650040 		.word	1073767785
+ 142 0008 63640040 		.word	1073767523
  143              		.cfi_endproc
  144              	.LFE6:
  145              		.size	VideoTimer_ReadStatusRegister, .-VideoTimer_ReadStatusRegister
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  154              		.loc 1 357 0
  155              		.cfi_startproc
  156              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 10
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 10
 
 
  157              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -557,7 +557,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  164              	.L18:
  165 0006 00BF     		.align	2
  166              	.L17:
- 167 0008 79650040 		.word	1073767801
+ 167 0008 76640040 		.word	1073767542
  168              		.cfi_endproc
  169              	.LFE7:
  170              		.size	VideoTimer_ReadControlRegister, .-VideoTimer_ReadControlRegister
@@ -598,13 +598,13 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  186 0000 014B     		ldr	r3, .L20
  187 0002 1870     		strb	r0, [r3]
  188 0004 7047     		bx	lr
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 11
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 11
 
 
  189              	.L21:
  190 0006 00BF     		.align	2
  191              	.L20:
- 192 0008 79650040 		.word	1073767801
+ 192 0008 76640040 		.word	1073767542
  193              		.cfi_endproc
  194              	.LFE8:
  195              		.size	VideoTimer_WriteControlRegister, .-VideoTimer_WriteControlRegister
@@ -658,12 +658,12 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  213 0004 80B2     		uxth	r0, r0
  214 0006 7047     		bx	lr
  215              	.L24:
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 12
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 12
 
 
  216              		.align	2
  217              	.L23:
- 218 0008 506A0040 		.word	1073769040
+ 218 0008 44680040 		.word	1073768516
  219              		.cfi_endproc
  220              	.LFE9:
  221              		.size	VideoTimer_ReadPeriod, .-VideoTimer_ReadPeriod
@@ -713,12 +713,12 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  240              	.L27:
  241 0006 00BF     		.align	2
  242              	.L26:
- 243 0008 506A0040 		.word	1073769040
+ 243 0008 44680040 		.word	1073768516
  244              		.cfi_endproc
  245              	.LFE10:
  246              		.size	VideoTimer_WritePeriod, .-VideoTimer_WritePeriod
  247              		.section	.text.VideoTimer_ReadCapture,"ax",%progbits
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 13
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 13
 
 
  248              		.align	2
@@ -768,7 +768,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  266              	.L30:
  267              		.align	2
  268              	.L29:
- 269 0008 906A0040 		.word	1073769104
+ 269 0008 84680040 		.word	1073768580
  270              		.cfi_endproc
  271              	.LFE11:
  272              		.size	VideoTimer_ReadCapture, .-VideoTimer_ReadCapture
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  276              		.thumb
  277              		.thumb_func
  278              		.type	VideoTimer_WriteCounter, %function
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 14
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 14
 
 
  279              	VideoTimer_WriteCounter:
@@ -822,7 +822,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  291              	.L33:
  292 0006 00BF     		.align	2
  293              	.L32:
- 294 0008 106A0040 		.word	1073768976
+ 294 0008 04680040 		.word	1073768452
  295              		.cfi_endproc
  296              	.LFE12:
  297              		.size	VideoTimer_WriteCounter, .-VideoTimer_WriteCounter
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  491:Generated_Source\PSoC5/VideoTimer.c **** }
  492:Generated_Source\PSoC5/VideoTimer.c **** 
  493:Generated_Source\PSoC5/VideoTimer.c **** 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 15
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 15
 
 
  494:Generated_Source\PSoC5/VideoTimer.c **** /*******************************************************************************
@@ -890,21 +890,21 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  320              	.L36:
  321              		.align	2
  322              	.L35:
- 323 000c 08650040 		.word	1073767688
- 324 0010 906A0040 		.word	1073769104
+ 323 000c 02640040 		.word	1073767426
+ 324 0010 84680040 		.word	1073768580
  325              		.cfi_endproc
  326              	.LFE13:
  327              		.size	VideoTimer_ReadCounter, .-VideoTimer_ReadCounter
- 328              		.section	.text.VideoTimer_ClearFIFO,"ax",%progbits
+ 328              		.section	.text.VideoTimer_SetInterruptCount,"ax",%progbits
  329              		.align	2
- 330              		.global	VideoTimer_ClearFIFO
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 16
+ 330              		.global	VideoTimer_SetInterruptCount
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 16
 
 
  331              		.thumb
  332              		.thumb_func
- 333              		.type	VideoTimer_ClearFIFO, %function
- 334              	VideoTimer_ClearFIFO:
+ 333              		.type	VideoTimer_SetInterruptCount, %function
+ 334              	VideoTimer_SetInterruptCount:
  335              	.LFB14:
  526:Generated_Source\PSoC5/VideoTimer.c **** 
  527:Generated_Source\PSoC5/VideoTimer.c **** 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  575:Generated_Source\PSoC5/VideoTimer.c **** 
  576:Generated_Source\PSoC5/VideoTimer.c ****         /* Write The New Setting */
  577:Generated_Source\PSoC5/VideoTimer.c ****         VideoTimer_CONTROL |= captureMode;
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 17
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 17
 
 
  578:Generated_Source\PSoC5/VideoTimer.c ****     #endif /* (!VideoTimer_UDB_CONTROL_REG_REMOVED) */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  632:Generated_Source\PSoC5/VideoTimer.c **** *  void
  633:Generated_Source\PSoC5/VideoTimer.c **** *
  634:Generated_Source\PSoC5/VideoTimer.c **** * Return:
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 18
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 18
 
 
  635:Generated_Source\PSoC5/VideoTimer.c **** *  void
@@ -1076,17 +1076,52 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  687:Generated_Source\PSoC5/VideoTimer.c **** *******************************************************************************/
  688:Generated_Source\PSoC5/VideoTimer.c **** void VideoTimer_SetInterruptCount(uint8 interruptCount) 
  689:Generated_Source\PSoC5/VideoTimer.c **** {
+ 336              		.loc 1 689 0
+ 337              		.cfi_startproc
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 19
+
+
+ 338              		@ args = 0, pretend = 0, frame = 0
+ 339              		@ frame_needed = 0, uses_anonymous_args = 0
+ 340              		@ link register save eliminated.
+ 341              	.LVL4:
  690:Generated_Source\PSoC5/VideoTimer.c ****     /* This must only set to two bits of the control register associated */
  691:Generated_Source\PSoC5/VideoTimer.c ****     interruptCount &= VideoTimer_CTRL_INTCNT_MASK;
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 19
-
-
+ 342              		.loc 1 691 0
+ 343 0000 00F00300 		and	r0, r0, #3
+ 344              	.LVL5:
  692:Generated_Source\PSoC5/VideoTimer.c **** 
  693:Generated_Source\PSoC5/VideoTimer.c ****     #if (!VideoTimer_UDB_CONTROL_REG_REMOVED)
  694:Generated_Source\PSoC5/VideoTimer.c ****         /* Clear the Current Setting */
  695:Generated_Source\PSoC5/VideoTimer.c ****         VideoTimer_CONTROL &= ((uint8)(~VideoTimer_CTRL_INTCNT_MASK));
+ 345              		.loc 1 695 0
+ 346 0004 044B     		ldr	r3, .L38
+ 347 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 348 0008 02F0FC02 		and	r2, r2, #252
+ 349 000c 1A70     		strb	r2, [r3]
  696:Generated_Source\PSoC5/VideoTimer.c ****         /* Write The New Setting */
  697:Generated_Source\PSoC5/VideoTimer.c ****         VideoTimer_CONTROL |= interruptCount;
+ 350              		.loc 1 697 0
+ 351 000e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 352 0010 1043     		orrs	r0, r0, r2
+ 353              	.LVL6:
+ 354 0012 1870     		strb	r0, [r3]
+ 355 0014 7047     		bx	lr
+ 356              	.L39:
+ 357 0016 00BF     		.align	2
+ 358              	.L38:
+ 359 0018 76640040 		.word	1073767542
+ 360              		.cfi_endproc
+ 361              	.LFE14:
+ 362              		.size	VideoTimer_SetInterruptCount, .-VideoTimer_SetInterruptCount
+ 363              		.section	.text.VideoTimer_ClearFIFO,"ax",%progbits
+ 364              		.align	2
+ 365              		.global	VideoTimer_ClearFIFO
+ 366              		.thumb
+ 367              		.thumb_func
+ 368              		.type	VideoTimer_ClearFIFO, %function
+ 369              	VideoTimer_ClearFIFO:
+ 370              	.LFB15:
  698:Generated_Source\PSoC5/VideoTimer.c ****     #endif /* (!VideoTimer_UDB_CONTROL_REG_REMOVED) */
  699:Generated_Source\PSoC5/VideoTimer.c **** }
  700:Generated_Source\PSoC5/VideoTimer.c **** #endif /* VideoTimer_InterruptOnCaptureCount */
@@ -1103,6 +1138,9 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  711:Generated_Source\PSoC5/VideoTimer.c **** *  This function sets the capture count
  712:Generated_Source\PSoC5/VideoTimer.c **** *
  713:Generated_Source\PSoC5/VideoTimer.c **** * Parameters:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 20
+
+
  714:Generated_Source\PSoC5/VideoTimer.c **** *  captureCount: A value between 2 and 127 inclusive is valid.  A value of 1
  715:Generated_Source\PSoC5/VideoTimer.c **** *                to 127 will cause the interrupt to delay by the same number of
  716:Generated_Source\PSoC5/VideoTimer.c **** *                captures.
@@ -1138,9 +1176,6 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  746:Generated_Source\PSoC5/VideoTimer.c **** #endif /* VideoTimer_UsingHWCaptureCounter */
  747:Generated_Source\PSoC5/VideoTimer.c **** 
  748:Generated_Source\PSoC5/VideoTimer.c **** 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 20
-
-
  749:Generated_Source\PSoC5/VideoTimer.c **** /*******************************************************************************
  750:Generated_Source\PSoC5/VideoTimer.c **** * Function Name: VideoTimer_ClearFIFO
  751:Generated_Source\PSoC5/VideoTimer.c **** ********************************************************************************
@@ -1157,1157 +1192,1235 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 1
  762:Generated_Source\PSoC5/VideoTimer.c **** *******************************************************************************/
  763:Generated_Source\PSoC5/VideoTimer.c **** void VideoTimer_ClearFIFO(void) 
  764:Generated_Source\PSoC5/VideoTimer.c **** {
- 336              		.loc 1 764 0
- 337              		.cfi_startproc
- 338              		@ args = 0, pretend = 0, frame = 0
- 339              		@ frame_needed = 0, uses_anonymous_args = 0
- 340 0000 08B5     		push	{r3, lr}
- 341              		.cfi_def_cfa_offset 8
- 342              		.cfi_offset 3, -8
- 343              		.cfi_offset 14, -4
+ 371              		.loc 1 764 0
+ 372              		.cfi_startproc
+ 373              		@ args = 0, pretend = 0, frame = 0
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375 0000 08B5     		push	{r3, lr}
+ 376              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 21
+
+
+ 377              		.cfi_offset 3, -8
+ 378              		.cfi_offset 14, -4
  765:Generated_Source\PSoC5/VideoTimer.c ****     while(0u != (VideoTimer_ReadStatusRegister() & VideoTimer_STATUS_FIFONEMP))
- 344              		.loc 1 765 0
- 345 0002 01E0     		b	.L38
- 346              	.L39:
+ 379              		.loc 1 765 0
+ 380 0002 01E0     		b	.L41
+ 381              	.L42:
  766:Generated_Source\PSoC5/VideoTimer.c ****     {
  767:Generated_Source\PSoC5/VideoTimer.c ****         (void)VideoTimer_ReadCapture();
- 347              		.loc 1 767 0
- 348 0004 FFF7FEFF 		bl	VideoTimer_ReadCapture
- 349              	.LVL4:
- 350              	.L38:
+ 382              		.loc 1 767 0
+ 383 0004 FFF7FEFF 		bl	VideoTimer_ReadCapture
+ 384              	.LVL7:
+ 385              	.L41:
  765:Generated_Source\PSoC5/VideoTimer.c ****     while(0u != (VideoTimer_ReadStatusRegister() & VideoTimer_STATUS_FIFONEMP))
- 351              		.loc 1 765 0
- 352 0008 FFF7FEFF 		bl	VideoTimer_ReadStatusRegister
- 353              	.LVL5:
- 354 000c 10F0080F 		tst	r0, #8
- 355 0010 F8D1     		bne	.L39
+ 386              		.loc 1 765 0
+ 387 0008 FFF7FEFF 		bl	VideoTimer_ReadStatusRegister
+ 388              	.LVL8:
+ 389 000c 10F0080F 		tst	r0, #8
+ 390 0010 F8D1     		bne	.L42
  768:Generated_Source\PSoC5/VideoTimer.c ****     }
  769:Generated_Source\PSoC5/VideoTimer.c **** }
- 356              		.loc 1 769 0
- 357 0012 08BD     		pop	{r3, pc}
- 358              		.cfi_endproc
- 359              	.LFE14:
- 360              		.size	VideoTimer_ClearFIFO, .-VideoTimer_ClearFIFO
- 361              		.section	.text.VideoTimer_Init,"ax",%progbits
- 362              		.align	2
- 363              		.global	VideoTimer_Init
- 364              		.thumb
- 365              		.thumb_func
- 366              		.type	VideoTimer_Init, %function
- 367              	VideoTimer_Init:
- 368              	.LFB0:
+ 391              		.loc 1 769 0
+ 392 0012 08BD     		pop	{r3, pc}
+ 393              		.cfi_endproc
+ 394              	.LFE15:
+ 395              		.size	VideoTimer_ClearFIFO, .-VideoTimer_ClearFIFO
+ 396              		.section	.text.VideoTimer_Init,"ax",%progbits
+ 397              		.align	2
+ 398              		.global	VideoTimer_Init
+ 399              		.thumb
+ 400              		.thumb_func
+ 401              		.type	VideoTimer_Init, %function
+ 402              	VideoTimer_Init:
+ 403              	.LFB0:
   44:Generated_Source\PSoC5/VideoTimer.c ****     #if(!VideoTimer_UsingFixedFunction)
- 369              		.loc 1 44 0
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 21
-
-
- 370              		.cfi_startproc
- 371              		@ args = 0, pretend = 0, frame = 0
- 372              		@ frame_needed = 0, uses_anonymous_args = 0
- 373 0000 08B5     		push	{r3, lr}
- 374              		.cfi_def_cfa_offset 8
- 375              		.cfi_offset 3, -8
- 376              		.cfi_offset 14, -4
+ 404              		.loc 1 44 0
+ 405              		.cfi_startproc
+ 406              		@ args = 0, pretend = 0, frame = 0
+ 407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 408 0000 08B5     		push	{r3, lr}
+ 409              		.cfi_def_cfa_offset 8
+ 410              		.cfi_offset 3, -8
+ 411              		.cfi_offset 14, -4
  118:Generated_Source\PSoC5/VideoTimer.c ****     VideoTimer_WriteCounter(VideoTimer_INIT_PERIOD);
- 377              		.loc 1 118 0
- 378 0002 4FF6FF70 		movw	r0, #65535
- 379 0006 FFF7FEFF 		bl	VideoTimer_WritePeriod
- 380              	.LVL6:
+ 412              		.loc 1 118 0
+ 413 0002 4FF6FF70 		movw	r0, #65535
+ 414 0006 FFF7FEFF 		bl	VideoTimer_WritePeriod
+ 415              	.LVL9:
  119:Generated_Source\PSoC5/VideoTimer.c **** 
- 381              		.loc 1 119 0
- 382 000a 4FF6FF70 		movw	r0, #65535
- 383 000e FFF7FEFF 		bl	VideoTimer_WriteCounter
- 384              	.LVL7:
+ 416              		.loc 1 119 0
+ 417 000a 4FF6FF70 		movw	r0, #65535
+ 418 000e FFF7FEFF 		bl	VideoTimer_WriteCounter
+ 419              	.LVL10:
  142:Generated_Source\PSoC5/VideoTimer.c **** 
- 385              		.loc 1 142 0
- 386 0012 FFF7FEFF 		bl	CyEnterCriticalSection
- 387              	.LVL8:
+ 420              		.loc 1 142 0
+ 421 0012 FFF7FEFF 		bl	CyEnterCriticalSection
+ 422              	.LVL11:
  145:Generated_Source\PSoC5/VideoTimer.c **** 
- 388              		.loc 1 145 0
- 389 0016 064A     		ldr	r2, .L43
- 390 0018 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 391 001a 43F01003 		orr	r3, r3, #16
- 392 001e 1370     		strb	r3, [r2]
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 22
+
+
+ 423              		.loc 1 145 0
+ 424 0016 084A     		ldr	r2, .L46
+ 425 0018 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 426 001a 43F01003 		orr	r3, r3, #16
+ 427 001e 1370     		strb	r3, [r2]
  148:Generated_Source\PSoC5/VideoTimer.c **** 
- 393              		.loc 1 148 0
- 394 0020 FFF7FEFF 		bl	CyExitCriticalSection
- 395              	.LVL9:
+ 428              		.loc 1 148 0
+ 429 0020 FFF7FEFF 		bl	CyExitCriticalSection
+ 430              	.LVL12:
+ 156:Generated_Source\PSoC5/VideoTimer.c ****         #endif /* Set interrupt count in UDB implementation if interrupt count feature is checked.*
+ 431              		.loc 1 156 0
+ 432 0024 0020     		movs	r0, #0
+ 433 0026 FFF7FEFF 		bl	VideoTimer_SetInterruptCount
+ 434              	.LVL13:
  159:Generated_Source\PSoC5/VideoTimer.c ****     #endif /* Configure additional features of UDB implementation */
- 396              		.loc 1 159 0
- 397 0024 FFF7FEFF 		bl	VideoTimer_ClearFIFO
- 398              	.LVL10:
+ 435              		.loc 1 159 0
+ 436 002a FFF7FEFF 		bl	VideoTimer_ClearFIFO
+ 437              	.LVL14:
  162:Generated_Source\PSoC5/VideoTimer.c **** }
- 399              		.loc 1 162 0
- 400 0028 0020     		movs	r0, #0
- 401 002a FFF7FEFF 		bl	VideoTimer_SetInterruptMode
- 402              	.LVL11:
- 403 002e 08BD     		pop	{r3, pc}
- 404              	.L44:
- 405              		.align	2
- 406              	.L43:
- 407 0030 99650040 		.word	1073767833
- 408              		.cfi_endproc
- 409              	.LFE0:
- 410              		.size	VideoTimer_Init, .-VideoTimer_Init
- 411              		.section	.text.VideoTimer_Start,"ax",%progbits
- 412              		.align	2
- 413              		.global	VideoTimer_Start
- 414              		.thumb
- 415              		.thumb_func
- 416              		.type	VideoTimer_Start, %function
- 417              	VideoTimer_Start:
- 418              	.LFB2:
- 216:Generated_Source\PSoC5/VideoTimer.c ****     if(VideoTimer_initVar == 0u)
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 22
-
-
- 419              		.loc 1 216 0
- 420              		.cfi_startproc
- 421              		@ args = 0, pretend = 0, frame = 0
- 422              		@ frame_needed = 0, uses_anonymous_args = 0
- 423 0000 08B5     		push	{r3, lr}
- 424              		.cfi_def_cfa_offset 8
- 425              		.cfi_offset 3, -8
- 426              		.cfi_offset 14, -4
- 217:Generated_Source\PSoC5/VideoTimer.c ****     {
- 427              		.loc 1 217 0
- 428 0002 054B     		ldr	r3, .L48
- 429 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 430 0006 23B9     		cbnz	r3, .L46
- 219:Generated_Source\PSoC5/VideoTimer.c **** 
- 431              		.loc 1 219 0
- 432 0008 FFF7FEFF 		bl	VideoTimer_Init
- 433              	.LVL12:
- 221:Generated_Source\PSoC5/VideoTimer.c ****     }
- 434              		.loc 1 221 0
- 435 000c 0122     		movs	r2, #1
- 436 000e 024B     		ldr	r3, .L48
- 437 0010 1A70     		strb	r2, [r3]
- 438              	.L46:
- 225:Generated_Source\PSoC5/VideoTimer.c **** }
- 439              		.loc 1 225 0
- 440 0012 FFF7FEFF 		bl	VideoTimer_Enable
- 441              	.LVL13:
- 442 0016 08BD     		pop	{r3, pc}
- 443              	.L49:
- 444              		.align	2
- 445              	.L48:
- 446 0018 00000000 		.word	.LANCHOR0
+ 438              		.loc 1 162 0
+ 439 002e 0220     		movs	r0, #2
+ 440 0030 FFF7FEFF 		bl	VideoTimer_SetInterruptMode
+ 441              	.LVL15:
+ 442 0034 08BD     		pop	{r3, pc}
+ 443              	.L47:
+ 444 0036 00BF     		.align	2
+ 445              	.L46:
+ 446 0038 93640040 		.word	1073767571
  447              		.cfi_endproc
- 448              	.LFE2:
- 449              		.size	VideoTimer_Start, .-VideoTimer_Start
- 450              		.global	VideoTimer_initVar
- 451              		.bss
- 452              		.set	.LANCHOR0,. + 0
- 453              		.type	VideoTimer_initVar, %object
- 454              		.size	VideoTimer_initVar, 1
- 455              	VideoTimer_initVar:
- 456 0000 00       		.space	1
- 457              		.text
- 458              	.Letext0:
- 459              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
- 460              		.file 3 "Generated_Source\\PSoC5\\CyLib.h"
- 461              		.section	.debug_info,"",%progbits
- 462              	.Ldebug_info0:
- 463 0000 EA020000 		.4byte	0x2ea
- 464 0004 0400     		.2byte	0x4
- 465 0006 00000000 		.4byte	.Ldebug_abbrev0
- 466 000a 04       		.byte	0x4
- 467 000b 01       		.uleb128 0x1
- 468 000c AF000000 		.4byte	.LASF39
- 469 0010 0C       		.byte	0xc
- 470 0011 98010000 		.4byte	.LASF40
- 471 0015 3D010000 		.4byte	.LASF41
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 23
+ 448              	.LFE0:
+ 449              		.size	VideoTimer_Init, .-VideoTimer_Init
+ 450              		.section	.text.VideoTimer_Start,"ax",%progbits
+ 451              		.align	2
+ 452              		.global	VideoTimer_Start
+ 453              		.thumb
+ 454              		.thumb_func
+ 455              		.type	VideoTimer_Start, %function
+ 456              	VideoTimer_Start:
+ 457              	.LFB2:
+ 216:Generated_Source\PSoC5/VideoTimer.c ****     if(VideoTimer_initVar == 0u)
+ 458              		.loc 1 216 0
+ 459              		.cfi_startproc
+ 460              		@ args = 0, pretend = 0, frame = 0
+ 461              		@ frame_needed = 0, uses_anonymous_args = 0
+ 462 0000 08B5     		push	{r3, lr}
+ 463              		.cfi_def_cfa_offset 8
+ 464              		.cfi_offset 3, -8
+ 465              		.cfi_offset 14, -4
+ 217:Generated_Source\PSoC5/VideoTimer.c ****     {
+ 466              		.loc 1 217 0
+ 467 0002 054B     		ldr	r3, .L51
+ 468 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 469 0006 23B9     		cbnz	r3, .L49
+ 219:Generated_Source\PSoC5/VideoTimer.c **** 
+ 470              		.loc 1 219 0
+ 471 0008 FFF7FEFF 		bl	VideoTimer_Init
+ 472              	.LVL16:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 23
 
 
- 472 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 473 001d 00000000 		.4byte	0
- 474 0021 00000000 		.4byte	.Ldebug_line0
- 475 0025 02       		.uleb128 0x2
- 476 0026 01       		.byte	0x1
- 477 0027 06       		.byte	0x6
- 478 0028 5F030000 		.4byte	.LASF0
- 479 002c 02       		.uleb128 0x2
- 480 002d 01       		.byte	0x1
- 481 002e 08       		.byte	0x8
- 482 002f A1000000 		.4byte	.LASF1
- 483 0033 02       		.uleb128 0x2
- 484 0034 02       		.byte	0x2
- 485 0035 05       		.byte	0x5
- 486 0036 3B030000 		.4byte	.LASF2
- 487 003a 02       		.uleb128 0x2
- 488 003b 02       		.byte	0x2
- 489 003c 07       		.byte	0x7
- 490 003d 3B000000 		.4byte	.LASF3
- 491 0041 02       		.uleb128 0x2
- 492 0042 04       		.byte	0x4
- 493 0043 05       		.byte	0x5
- 494 0044 45030000 		.4byte	.LASF4
- 495 0048 02       		.uleb128 0x2
- 496 0049 04       		.byte	0x4
- 497 004a 07       		.byte	0x7
- 498 004b BC010000 		.4byte	.LASF5
- 499 004f 02       		.uleb128 0x2
- 500 0050 08       		.byte	0x8
- 501 0051 05       		.byte	0x5
- 502 0052 E9020000 		.4byte	.LASF6
- 503 0056 02       		.uleb128 0x2
- 504 0057 08       		.byte	0x8
- 505 0058 07       		.byte	0x7
- 506 0059 92030000 		.4byte	.LASF7
- 507 005d 03       		.uleb128 0x3
- 508 005e 04       		.byte	0x4
- 509 005f 05       		.byte	0x5
- 510 0060 696E7400 		.ascii	"int\000"
- 511 0064 02       		.uleb128 0x2
- 512 0065 04       		.byte	0x4
- 513 0066 07       		.byte	0x7
- 514 0067 8A020000 		.4byte	.LASF8
- 515 006b 04       		.uleb128 0x4
- 516 006c CE010000 		.4byte	.LASF9
- 517 0070 02       		.byte	0x2
- 518 0071 E401     		.2byte	0x1e4
- 519 0073 2C000000 		.4byte	0x2c
- 520 0077 04       		.uleb128 0x4
- 521 0078 50020000 		.4byte	.LASF10
- 522 007c 02       		.byte	0x2
- 523 007d E501     		.2byte	0x1e5
- 524 007f 3A000000 		.4byte	0x3a
- 525 0083 02       		.uleb128 0x2
- 526 0084 04       		.byte	0x4
- 527 0085 04       		.byte	0x4
- 528 0086 74000000 		.4byte	.LASF11
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 24
+ 221:Generated_Source\PSoC5/VideoTimer.c ****     }
+ 473              		.loc 1 221 0
+ 474 000c 0122     		movs	r2, #1
+ 475 000e 024B     		ldr	r3, .L51
+ 476 0010 1A70     		strb	r2, [r3]
+ 477              	.L49:
+ 225:Generated_Source\PSoC5/VideoTimer.c **** }
+ 478              		.loc 1 225 0
+ 479 0012 FFF7FEFF 		bl	VideoTimer_Enable
+ 480              	.LVL17:
+ 481 0016 08BD     		pop	{r3, pc}
+ 482              	.L52:
+ 483              		.align	2
+ 484              	.L51:
+ 485 0018 00000000 		.word	.LANCHOR0
+ 486              		.cfi_endproc
+ 487              	.LFE2:
+ 488              		.size	VideoTimer_Start, .-VideoTimer_Start
+ 489              		.global	VideoTimer_initVar
+ 490              		.bss
+ 491              		.set	.LANCHOR0,. + 0
+ 492              		.type	VideoTimer_initVar, %object
+ 493              		.size	VideoTimer_initVar, 1
+ 494              	VideoTimer_initVar:
+ 495 0000 00       		.space	1
+ 496              		.text
+ 497              	.Letext0:
+ 498              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 499              		.file 3 "Generated_Source\\PSoC5\\CyLib.h"
+ 500              		.section	.debug_info,"",%progbits
+ 501              	.Ldebug_info0:
+ 502 0000 24030000 		.4byte	0x324
+ 503 0004 0400     		.2byte	0x4
+ 504 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 505 000a 04       		.byte	0x4
+ 506 000b 01       		.uleb128 0x1
+ 507 000c BE000000 		.4byte	.LASF41
+ 508 0010 0C       		.byte	0xc
+ 509 0011 A7010000 		.4byte	.LASF42
+ 510 0015 4C010000 		.4byte	.LASF43
+ 511 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 512 001d 00000000 		.4byte	0
+ 513 0021 00000000 		.4byte	.Ldebug_line0
+ 514 0025 02       		.uleb128 0x2
+ 515 0026 01       		.byte	0x1
+ 516 0027 06       		.byte	0x6
+ 517 0028 8B030000 		.4byte	.LASF0
+ 518 002c 02       		.uleb128 0x2
+ 519 002d 01       		.byte	0x1
+ 520 002e 08       		.byte	0x8
+ 521 002f B0000000 		.4byte	.LASF1
+ 522 0033 02       		.uleb128 0x2
+ 523 0034 02       		.byte	0x2
+ 524 0035 05       		.byte	0x5
+ 525 0036 4A030000 		.4byte	.LASF2
+ 526 003a 02       		.uleb128 0x2
+ 527 003b 02       		.byte	0x2
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 24
 
 
- 529 008a 02       		.uleb128 0x2
- 530 008b 08       		.byte	0x8
- 531 008c 04       		.byte	0x4
- 532 008d 2F020000 		.4byte	.LASF12
- 533 0091 02       		.uleb128 0x2
- 534 0092 01       		.byte	0x1
- 535 0093 08       		.byte	0x8
- 536 0094 4E030000 		.4byte	.LASF13
- 537 0098 04       		.uleb128 0x4
- 538 0099 93010000 		.4byte	.LASF14
- 539 009d 02       		.byte	0x2
- 540 009e 8E02     		.2byte	0x28e
- 541 00a0 A4000000 		.4byte	0xa4
- 542 00a4 05       		.uleb128 0x5
- 543 00a5 6B000000 		.4byte	0x6b
- 544 00a9 04       		.uleb128 0x4
- 545 00aa 00000000 		.4byte	.LASF15
- 546 00ae 02       		.byte	0x2
- 547 00af 8F02     		.2byte	0x28f
- 548 00b1 B5000000 		.4byte	0xb5
- 549 00b5 05       		.uleb128 0x5
- 550 00b6 77000000 		.4byte	0x77
- 551 00ba 02       		.uleb128 0x2
- 552 00bb 08       		.byte	0x8
- 553 00bc 04       		.byte	0x4
- 554 00bd 53030000 		.4byte	.LASF16
- 555 00c1 02       		.uleb128 0x2
- 556 00c2 04       		.byte	0x4
- 557 00c3 07       		.byte	0x7
- 558 00c4 E0020000 		.4byte	.LASF17
- 559 00c8 06       		.uleb128 0x6
- 560 00c9 DC010000 		.4byte	.LASF18
- 561 00cd 01       		.byte	0x1
- 562 00ce B4       		.byte	0xb4
- 563 00cf 00000000 		.4byte	.LFB1
- 564 00d3 10000000 		.4byte	.LFE1-.LFB1
- 565 00d7 01       		.uleb128 0x1
- 566 00d8 9C       		.byte	0x9c
- 567 00d9 06       		.uleb128 0x6
- 568 00da 91000000 		.4byte	.LASF19
- 569 00de 01       		.byte	0x1
- 570 00df F7       		.byte	0xf7
- 571 00e0 00000000 		.4byte	.LFB3
- 572 00e4 10000000 		.4byte	.LFE3-.LFB3
- 573 00e8 01       		.uleb128 0x1
- 574 00e9 9C       		.byte	0x9c
- 575 00ea 07       		.uleb128 0x7
- 576 00eb 57020000 		.4byte	.LASF23
- 577 00ef 01       		.byte	0x1
- 578 00f0 1701     		.2byte	0x117
- 579 00f2 00000000 		.4byte	.LFB4
- 580 00f6 0C000000 		.4byte	.LFE4-.LFB4
- 581 00fa 01       		.uleb128 0x1
- 582 00fb 9C       		.byte	0x9c
- 583 00fc 0F010000 		.4byte	0x10f
- 584 0100 08       		.uleb128 0x8
- 585 0101 F7020000 		.4byte	.LASF25
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 25
+ 528 003c 07       		.byte	0x7
+ 529 003d 3B000000 		.4byte	.LASF3
+ 530 0041 02       		.uleb128 0x2
+ 531 0042 04       		.byte	0x4
+ 532 0043 05       		.byte	0x5
+ 533 0044 71030000 		.4byte	.LASF4
+ 534 0048 02       		.uleb128 0x2
+ 535 0049 04       		.byte	0x4
+ 536 004a 07       		.byte	0x7
+ 537 004b CB010000 		.4byte	.LASF5
+ 538 004f 02       		.uleb128 0x2
+ 539 0050 08       		.byte	0x8
+ 540 0051 05       		.byte	0x5
+ 541 0052 F8020000 		.4byte	.LASF6
+ 542 0056 02       		.uleb128 0x2
+ 543 0057 08       		.byte	0x8
+ 544 0058 07       		.byte	0x7
+ 545 0059 BE030000 		.4byte	.LASF7
+ 546 005d 03       		.uleb128 0x3
+ 547 005e 04       		.byte	0x4
+ 548 005f 05       		.byte	0x5
+ 549 0060 696E7400 		.ascii	"int\000"
+ 550 0064 02       		.uleb128 0x2
+ 551 0065 04       		.byte	0x4
+ 552 0066 07       		.byte	0x7
+ 553 0067 99020000 		.4byte	.LASF8
+ 554 006b 04       		.uleb128 0x4
+ 555 006c DD010000 		.4byte	.LASF9
+ 556 0070 02       		.byte	0x2
+ 557 0071 E401     		.2byte	0x1e4
+ 558 0073 2C000000 		.4byte	0x2c
+ 559 0077 04       		.uleb128 0x4
+ 560 0078 5F020000 		.4byte	.LASF10
+ 561 007c 02       		.byte	0x2
+ 562 007d E501     		.2byte	0x1e5
+ 563 007f 3A000000 		.4byte	0x3a
+ 564 0083 02       		.uleb128 0x2
+ 565 0084 04       		.byte	0x4
+ 566 0085 04       		.byte	0x4
+ 567 0086 83000000 		.4byte	.LASF11
+ 568 008a 02       		.uleb128 0x2
+ 569 008b 08       		.byte	0x8
+ 570 008c 04       		.byte	0x4
+ 571 008d 3E020000 		.4byte	.LASF12
+ 572 0091 02       		.uleb128 0x2
+ 573 0092 01       		.byte	0x1
+ 574 0093 08       		.byte	0x8
+ 575 0094 7A030000 		.4byte	.LASF13
+ 576 0098 04       		.uleb128 0x4
+ 577 0099 A2010000 		.4byte	.LASF14
+ 578 009d 02       		.byte	0x2
+ 579 009e 8E02     		.2byte	0x28e
+ 580 00a0 A4000000 		.4byte	0xa4
+ 581 00a4 05       		.uleb128 0x5
+ 582 00a5 6B000000 		.4byte	0x6b
+ 583 00a9 04       		.uleb128 0x4
+ 584 00aa 00000000 		.4byte	.LASF15
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 25
 
 
- 586 0105 01       		.byte	0x1
- 587 0106 1701     		.2byte	0x117
- 588 0108 6B000000 		.4byte	0x6b
- 589 010c 01       		.uleb128 0x1
- 590 010d 50       		.byte	0x50
- 591 010e 00       		.byte	0
- 592 010f 09       		.uleb128 0x9
- 593 0110 0C020000 		.4byte	.LASF20
- 594 0114 01       		.byte	0x1
- 595 0115 2E01     		.2byte	0x12e
- 596 0117 00000000 		.4byte	.LFB5
- 597 011b 0C000000 		.4byte	.LFE5-.LFB5
- 598 011f 01       		.uleb128 0x1
- 599 0120 9C       		.byte	0x9c
- 600 0121 0A       		.uleb128 0xa
- 601 0122 EE010000 		.4byte	.LASF21
- 602 0126 01       		.byte	0x1
- 603 0127 4D01     		.2byte	0x14d
- 604 0129 6B000000 		.4byte	0x6b
- 605 012d 00000000 		.4byte	.LFB6
- 606 0131 0C000000 		.4byte	.LFE6-.LFB6
- 607 0135 01       		.uleb128 0x1
- 608 0136 9C       		.byte	0x9c
- 609 0137 0A       		.uleb128 0xa
- 610 0138 1C030000 		.4byte	.LASF22
- 611 013c 01       		.byte	0x1
- 612 013d 6401     		.2byte	0x164
- 613 013f 6B000000 		.4byte	0x6b
- 614 0143 00000000 		.4byte	.LFB7
- 615 0147 0C000000 		.4byte	.LFE7-.LFB7
- 616 014b 01       		.uleb128 0x1
- 617 014c 9C       		.byte	0x9c
- 618 014d 07       		.uleb128 0x7
- 619 014e AD020000 		.4byte	.LASF24
- 620 0152 01       		.byte	0x1
- 621 0153 7B01     		.2byte	0x17b
- 622 0155 00000000 		.4byte	.LFB8
- 623 0159 0C000000 		.4byte	.LFE8-.LFB8
- 624 015d 01       		.uleb128 0x1
- 625 015e 9C       		.byte	0x9c
- 626 015f 72010000 		.4byte	0x172
- 627 0163 08       		.uleb128 0x8
- 628 0164 D4010000 		.4byte	.LASF26
- 629 0168 01       		.byte	0x1
- 630 0169 7B01     		.2byte	0x17b
- 631 016b 6B000000 		.4byte	0x6b
- 632 016f 01       		.uleb128 0x1
- 633 0170 50       		.byte	0x50
- 634 0171 00       		.byte	0
- 635 0172 0A       		.uleb128 0xa
- 636 0173 25000000 		.4byte	.LASF27
- 637 0177 01       		.byte	0x1
- 638 0178 9501     		.2byte	0x195
- 639 017a 77000000 		.4byte	0x77
- 640 017e 00000000 		.4byte	.LFB9
- 641 0182 0C000000 		.4byte	.LFE9-.LFB9
- 642 0186 01       		.uleb128 0x1
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 26
+ 585 00ae 02       		.byte	0x2
+ 586 00af 8F02     		.2byte	0x28f
+ 587 00b1 B5000000 		.4byte	0xb5
+ 588 00b5 05       		.uleb128 0x5
+ 589 00b6 77000000 		.4byte	0x77
+ 590 00ba 02       		.uleb128 0x2
+ 591 00bb 08       		.byte	0x8
+ 592 00bc 04       		.byte	0x4
+ 593 00bd 7F030000 		.4byte	.LASF16
+ 594 00c1 02       		.uleb128 0x2
+ 595 00c2 04       		.byte	0x4
+ 596 00c3 07       		.byte	0x7
+ 597 00c4 EF020000 		.4byte	.LASF17
+ 598 00c8 06       		.uleb128 0x6
+ 599 00c9 EB010000 		.4byte	.LASF18
+ 600 00cd 01       		.byte	0x1
+ 601 00ce B4       		.byte	0xb4
+ 602 00cf 00000000 		.4byte	.LFB1
+ 603 00d3 10000000 		.4byte	.LFE1-.LFB1
+ 604 00d7 01       		.uleb128 0x1
+ 605 00d8 9C       		.byte	0x9c
+ 606 00d9 06       		.uleb128 0x6
+ 607 00da A0000000 		.4byte	.LASF19
+ 608 00de 01       		.byte	0x1
+ 609 00df F7       		.byte	0xf7
+ 610 00e0 00000000 		.4byte	.LFB3
+ 611 00e4 10000000 		.4byte	.LFE3-.LFB3
+ 612 00e8 01       		.uleb128 0x1
+ 613 00e9 9C       		.byte	0x9c
+ 614 00ea 07       		.uleb128 0x7
+ 615 00eb 66020000 		.4byte	.LASF23
+ 616 00ef 01       		.byte	0x1
+ 617 00f0 1701     		.2byte	0x117
+ 618 00f2 00000000 		.4byte	.LFB4
+ 619 00f6 0C000000 		.4byte	.LFE4-.LFB4
+ 620 00fa 01       		.uleb128 0x1
+ 621 00fb 9C       		.byte	0x9c
+ 622 00fc 0F010000 		.4byte	0x10f
+ 623 0100 08       		.uleb128 0x8
+ 624 0101 06030000 		.4byte	.LASF25
+ 625 0105 01       		.byte	0x1
+ 626 0106 1701     		.2byte	0x117
+ 627 0108 6B000000 		.4byte	0x6b
+ 628 010c 01       		.uleb128 0x1
+ 629 010d 50       		.byte	0x50
+ 630 010e 00       		.byte	0
+ 631 010f 09       		.uleb128 0x9
+ 632 0110 1B020000 		.4byte	.LASF20
+ 633 0114 01       		.byte	0x1
+ 634 0115 2E01     		.2byte	0x12e
+ 635 0117 00000000 		.4byte	.LFB5
+ 636 011b 0C000000 		.4byte	.LFE5-.LFB5
+ 637 011f 01       		.uleb128 0x1
+ 638 0120 9C       		.byte	0x9c
+ 639 0121 0A       		.uleb128 0xa
+ 640 0122 FD010000 		.4byte	.LASF21
+ 641 0126 01       		.byte	0x1
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 26
 
 
- 643 0187 9C       		.byte	0x9c
- 644 0188 07       		.uleb128 0x7
- 645 0189 7A000000 		.4byte	.LASF28
- 646 018d 01       		.byte	0x1
- 647 018e AF01     		.2byte	0x1af
- 648 0190 00000000 		.4byte	.LFB10
- 649 0194 0C000000 		.4byte	.LFE10-.LFB10
- 650 0198 01       		.uleb128 0x1
- 651 0199 9C       		.byte	0x9c
- 652 019a AD010000 		.4byte	0x1ad
- 653 019e 08       		.uleb128 0x8
- 654 019f 1E000000 		.4byte	.LASF29
- 655 01a3 01       		.byte	0x1
- 656 01a4 AF01     		.2byte	0x1af
- 657 01a6 77000000 		.4byte	0x77
- 658 01aa 01       		.uleb128 0x1
- 659 01ab 50       		.byte	0x50
- 660 01ac 00       		.byte	0
- 661 01ad 0A       		.uleb128 0xa
- 662 01ae 05030000 		.4byte	.LASF30
- 663 01b2 01       		.byte	0x1
- 664 01b3 C801     		.2byte	0x1c8
- 665 01b5 77000000 		.4byte	0x77
- 666 01b9 00000000 		.4byte	.LFB11
- 667 01bd 0C000000 		.4byte	.LFE11-.LFB11
- 668 01c1 01       		.uleb128 0x1
- 669 01c2 9C       		.byte	0x9c
- 670 01c3 07       		.uleb128 0x7
- 671 01c4 06000000 		.4byte	.LASF31
- 672 01c8 01       		.byte	0x1
- 673 01c9 E001     		.2byte	0x1e0
- 674 01cb 00000000 		.4byte	.LFB12
- 675 01cf 0C000000 		.4byte	.LFE12-.LFB12
- 676 01d3 01       		.uleb128 0x1
- 677 01d4 9C       		.byte	0x9c
- 678 01d5 E8010000 		.4byte	0x1e8
- 679 01d9 08       		.uleb128 0x8
- 680 01da 27020000 		.4byte	.LASF32
- 681 01de 01       		.byte	0x1
- 682 01df E001     		.2byte	0x1e0
- 683 01e1 77000000 		.4byte	0x77
- 684 01e5 01       		.uleb128 0x1
- 685 01e6 50       		.byte	0x50
- 686 01e7 00       		.byte	0
- 687 01e8 0A       		.uleb128 0xa
- 688 01e9 7B030000 		.4byte	.LASF33
- 689 01ed 01       		.byte	0x1
- 690 01ee FC01     		.2byte	0x1fc
- 691 01f0 77000000 		.4byte	0x77
- 692 01f4 00000000 		.4byte	.LFB13
- 693 01f8 14000000 		.4byte	.LFE13-.LFB13
- 694 01fc 01       		.uleb128 0x1
- 695 01fd 9C       		.byte	0x9c
- 696 01fe 07       		.uleb128 0x7
- 697 01ff 5F000000 		.4byte	.LASF34
- 698 0203 01       		.byte	0x1
- 699 0204 FB02     		.2byte	0x2fb
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 27
+ 642 0127 4D01     		.2byte	0x14d
+ 643 0129 6B000000 		.4byte	0x6b
+ 644 012d 00000000 		.4byte	.LFB6
+ 645 0131 0C000000 		.4byte	.LFE6-.LFB6
+ 646 0135 01       		.uleb128 0x1
+ 647 0136 9C       		.byte	0x9c
+ 648 0137 0A       		.uleb128 0xa
+ 649 0138 2B030000 		.4byte	.LASF22
+ 650 013c 01       		.byte	0x1
+ 651 013d 6401     		.2byte	0x164
+ 652 013f 6B000000 		.4byte	0x6b
+ 653 0143 00000000 		.4byte	.LFB7
+ 654 0147 0C000000 		.4byte	.LFE7-.LFB7
+ 655 014b 01       		.uleb128 0x1
+ 656 014c 9C       		.byte	0x9c
+ 657 014d 07       		.uleb128 0x7
+ 658 014e BC020000 		.4byte	.LASF24
+ 659 0152 01       		.byte	0x1
+ 660 0153 7B01     		.2byte	0x17b
+ 661 0155 00000000 		.4byte	.LFB8
+ 662 0159 0C000000 		.4byte	.LFE8-.LFB8
+ 663 015d 01       		.uleb128 0x1
+ 664 015e 9C       		.byte	0x9c
+ 665 015f 72010000 		.4byte	0x172
+ 666 0163 08       		.uleb128 0x8
+ 667 0164 E3010000 		.4byte	.LASF26
+ 668 0168 01       		.byte	0x1
+ 669 0169 7B01     		.2byte	0x17b
+ 670 016b 6B000000 		.4byte	0x6b
+ 671 016f 01       		.uleb128 0x1
+ 672 0170 50       		.byte	0x50
+ 673 0171 00       		.byte	0
+ 674 0172 0A       		.uleb128 0xa
+ 675 0173 25000000 		.4byte	.LASF27
+ 676 0177 01       		.byte	0x1
+ 677 0178 9501     		.2byte	0x195
+ 678 017a 77000000 		.4byte	0x77
+ 679 017e 00000000 		.4byte	.LFB9
+ 680 0182 0C000000 		.4byte	.LFE9-.LFB9
+ 681 0186 01       		.uleb128 0x1
+ 682 0187 9C       		.byte	0x9c
+ 683 0188 07       		.uleb128 0x7
+ 684 0189 89000000 		.4byte	.LASF28
+ 685 018d 01       		.byte	0x1
+ 686 018e AF01     		.2byte	0x1af
+ 687 0190 00000000 		.4byte	.LFB10
+ 688 0194 0C000000 		.4byte	.LFE10-.LFB10
+ 689 0198 01       		.uleb128 0x1
+ 690 0199 9C       		.byte	0x9c
+ 691 019a AD010000 		.4byte	0x1ad
+ 692 019e 08       		.uleb128 0x8
+ 693 019f 1E000000 		.4byte	.LASF29
+ 694 01a3 01       		.byte	0x1
+ 695 01a4 AF01     		.2byte	0x1af
+ 696 01a6 77000000 		.4byte	0x77
+ 697 01aa 01       		.uleb128 0x1
+ 698 01ab 50       		.byte	0x50
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 27
 
 
- 700 0206 00000000 		.4byte	.LFB14
- 701 020a 14000000 		.4byte	.LFE14-.LFB14
- 702 020e 01       		.uleb128 0x1
- 703 020f 9C       		.byte	0x9c
- 704 0210 27020000 		.4byte	0x227
- 705 0214 0B       		.uleb128 0xb
- 706 0215 08000000 		.4byte	.LVL4
- 707 0219 AD010000 		.4byte	0x1ad
- 708 021d 0B       		.uleb128 0xb
- 709 021e 0C000000 		.4byte	.LVL5
- 710 0222 21010000 		.4byte	0x121
- 711 0226 00       		.byte	0
- 712 0227 0C       		.uleb128 0xc
- 713 0228 6B030000 		.4byte	.LASF35
- 714 022c 01       		.byte	0x1
- 715 022d 2B       		.byte	0x2b
- 716 022e 00000000 		.4byte	.LFB0
- 717 0232 34000000 		.4byte	.LFE0-.LFB0
- 718 0236 01       		.uleb128 0x1
- 719 0237 9C       		.byte	0x9c
- 720 0238 9E020000 		.4byte	0x29e
- 721 023c 0D       		.uleb128 0xd
- 722 023d 36020000 		.4byte	.LASF42
- 723 0241 01       		.byte	0x1
- 724 0242 2F       		.byte	0x2f
- 725 0243 6B000000 		.4byte	0x6b
- 726 0247 00000000 		.4byte	.LLST0
- 727 024b 0E       		.uleb128 0xe
- 728 024c 0A000000 		.4byte	.LVL6
- 729 0250 88010000 		.4byte	0x188
- 730 0254 5F020000 		.4byte	0x25f
- 731 0258 0F       		.uleb128 0xf
- 732 0259 01       		.uleb128 0x1
- 733 025a 50       		.byte	0x50
- 734 025b 02       		.uleb128 0x2
- 735 025c 09       		.byte	0x9
- 736 025d FF       		.byte	0xff
- 737 025e 00       		.byte	0
- 738 025f 0E       		.uleb128 0xe
- 739 0260 12000000 		.4byte	.LVL7
- 740 0264 C3010000 		.4byte	0x1c3
- 741 0268 73020000 		.4byte	0x273
- 742 026c 0F       		.uleb128 0xf
- 743 026d 01       		.uleb128 0x1
- 744 026e 50       		.byte	0x50
- 745 026f 02       		.uleb128 0x2
- 746 0270 09       		.byte	0x9
- 747 0271 FF       		.byte	0xff
- 748 0272 00       		.byte	0
- 749 0273 0B       		.uleb128 0xb
- 750 0274 16000000 		.4byte	.LVL8
- 751 0278 D7020000 		.4byte	0x2d7
- 752 027c 0B       		.uleb128 0xb
- 753 027d 24000000 		.4byte	.LVL9
- 754 0281 E2020000 		.4byte	0x2e2
- 755 0285 0B       		.uleb128 0xb
- 756 0286 28000000 		.4byte	.LVL10
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 28
+ 699 01ac 00       		.byte	0
+ 700 01ad 0A       		.uleb128 0xa
+ 701 01ae 14030000 		.4byte	.LASF30
+ 702 01b2 01       		.byte	0x1
+ 703 01b3 C801     		.2byte	0x1c8
+ 704 01b5 77000000 		.4byte	0x77
+ 705 01b9 00000000 		.4byte	.LFB11
+ 706 01bd 0C000000 		.4byte	.LFE11-.LFB11
+ 707 01c1 01       		.uleb128 0x1
+ 708 01c2 9C       		.byte	0x9c
+ 709 01c3 07       		.uleb128 0x7
+ 710 01c4 06000000 		.4byte	.LASF31
+ 711 01c8 01       		.byte	0x1
+ 712 01c9 E001     		.2byte	0x1e0
+ 713 01cb 00000000 		.4byte	.LFB12
+ 714 01cf 0C000000 		.4byte	.LFE12-.LFB12
+ 715 01d3 01       		.uleb128 0x1
+ 716 01d4 9C       		.byte	0x9c
+ 717 01d5 E8010000 		.4byte	0x1e8
+ 718 01d9 08       		.uleb128 0x8
+ 719 01da 36020000 		.4byte	.LASF32
+ 720 01de 01       		.byte	0x1
+ 721 01df E001     		.2byte	0x1e0
+ 722 01e1 77000000 		.4byte	0x77
+ 723 01e5 01       		.uleb128 0x1
+ 724 01e6 50       		.byte	0x50
+ 725 01e7 00       		.byte	0
+ 726 01e8 0A       		.uleb128 0xa
+ 727 01e9 A7030000 		.4byte	.LASF33
+ 728 01ed 01       		.byte	0x1
+ 729 01ee FC01     		.2byte	0x1fc
+ 730 01f0 77000000 		.4byte	0x77
+ 731 01f4 00000000 		.4byte	.LFB13
+ 732 01f8 14000000 		.4byte	.LFE13-.LFB13
+ 733 01fc 01       		.uleb128 0x1
+ 734 01fd 9C       		.byte	0x9c
+ 735 01fe 07       		.uleb128 0x7
+ 736 01ff 54030000 		.4byte	.LASF34
+ 737 0203 01       		.byte	0x1
+ 738 0204 B002     		.2byte	0x2b0
+ 739 0206 00000000 		.4byte	.LFB14
+ 740 020a 1C000000 		.4byte	.LFE14-.LFB14
+ 741 020e 01       		.uleb128 0x1
+ 742 020f 9C       		.byte	0x9c
+ 743 0210 25020000 		.4byte	0x225
+ 744 0214 0B       		.uleb128 0xb
+ 745 0215 74000000 		.4byte	.LASF35
+ 746 0219 01       		.byte	0x1
+ 747 021a B002     		.2byte	0x2b0
+ 748 021c 6B000000 		.4byte	0x6b
+ 749 0220 00000000 		.4byte	.LLST0
+ 750 0224 00       		.byte	0
+ 751 0225 07       		.uleb128 0x7
+ 752 0226 5F000000 		.4byte	.LASF36
+ 753 022a 01       		.byte	0x1
+ 754 022b FB02     		.2byte	0x2fb
+ 755 022d 00000000 		.4byte	.LFB15
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 28
 
 
- 757 028a FE010000 		.4byte	0x1fe
- 758 028e 10       		.uleb128 0x10
- 759 028f 2E000000 		.4byte	.LVL11
- 760 0293 EA000000 		.4byte	0xea
- 761 0297 0F       		.uleb128 0xf
- 762 0298 01       		.uleb128 0x1
- 763 0299 50       		.byte	0x50
- 764 029a 01       		.uleb128 0x1
- 765 029b 30       		.byte	0x30
- 766 029c 00       		.byte	0
- 767 029d 00       		.byte	0
- 768 029e 0C       		.uleb128 0xc
- 769 029f 4E000000 		.4byte	.LASF36
- 770 02a3 01       		.byte	0x1
- 771 02a4 D7       		.byte	0xd7
- 772 02a5 00000000 		.4byte	.LFB2
- 773 02a9 1C000000 		.4byte	.LFE2-.LFB2
- 774 02ad 01       		.uleb128 0x1
- 775 02ae 9C       		.byte	0x9c
- 776 02af C6020000 		.4byte	0x2c6
- 777 02b3 0B       		.uleb128 0xb
- 778 02b4 0C000000 		.4byte	.LVL12
- 779 02b8 27020000 		.4byte	0x227
- 780 02bc 0B       		.uleb128 0xb
- 781 02bd 16000000 		.4byte	.LVL13
- 782 02c1 C8000000 		.4byte	0xc8
- 783 02c5 00       		.byte	0
- 784 02c6 11       		.uleb128 0x11
- 785 02c7 CD020000 		.4byte	.LASF43
- 786 02cb 01       		.byte	0x1
- 787 02cc 1A       		.byte	0x1a
- 788 02cd 6B000000 		.4byte	0x6b
- 789 02d1 05       		.uleb128 0x5
- 790 02d2 03       		.byte	0x3
- 791 02d3 00000000 		.4byte	VideoTimer_initVar
- 792 02d7 12       		.uleb128 0x12
- 793 02d8 73020000 		.4byte	.LASF37
- 794 02dc 73020000 		.4byte	.LASF37
- 795 02e0 03       		.byte	0x3
- 796 02e1 7D       		.byte	0x7d
- 797 02e2 12       		.uleb128 0x12
- 798 02e3 97020000 		.4byte	.LASF38
- 799 02e7 97020000 		.4byte	.LASF38
- 800 02eb 03       		.byte	0x3
- 801 02ec 7E       		.byte	0x7e
- 802 02ed 00       		.byte	0
- 803              		.section	.debug_abbrev,"",%progbits
- 804              	.Ldebug_abbrev0:
- 805 0000 01       		.uleb128 0x1
- 806 0001 11       		.uleb128 0x11
- 807 0002 01       		.byte	0x1
- 808 0003 25       		.uleb128 0x25
- 809 0004 0E       		.uleb128 0xe
- 810 0005 13       		.uleb128 0x13
- 811 0006 0B       		.uleb128 0xb
- 812 0007 03       		.uleb128 0x3
- 813 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 29
+ 756 0231 14000000 		.4byte	.LFE15-.LFB15
+ 757 0235 01       		.uleb128 0x1
+ 758 0236 9C       		.byte	0x9c
+ 759 0237 4E020000 		.4byte	0x24e
+ 760 023b 0C       		.uleb128 0xc
+ 761 023c 08000000 		.4byte	.LVL7
+ 762 0240 AD010000 		.4byte	0x1ad
+ 763 0244 0C       		.uleb128 0xc
+ 764 0245 0C000000 		.4byte	.LVL8
+ 765 0249 21010000 		.4byte	0x121
+ 766 024d 00       		.byte	0
+ 767 024e 0D       		.uleb128 0xd
+ 768 024f 97030000 		.4byte	.LASF37
+ 769 0253 01       		.byte	0x1
+ 770 0254 2B       		.byte	0x2b
+ 771 0255 00000000 		.4byte	.LFB0
+ 772 0259 3C000000 		.4byte	.LFE0-.LFB0
+ 773 025d 01       		.uleb128 0x1
+ 774 025e 9C       		.byte	0x9c
+ 775 025f D8020000 		.4byte	0x2d8
+ 776 0263 0E       		.uleb128 0xe
+ 777 0264 45020000 		.4byte	.LASF44
+ 778 0268 01       		.byte	0x1
+ 779 0269 2F       		.byte	0x2f
+ 780 026a 6B000000 		.4byte	0x6b
+ 781 026e 1E000000 		.4byte	.LLST1
+ 782 0272 0F       		.uleb128 0xf
+ 783 0273 0A000000 		.4byte	.LVL9
+ 784 0277 88010000 		.4byte	0x188
+ 785 027b 86020000 		.4byte	0x286
+ 786 027f 10       		.uleb128 0x10
+ 787 0280 01       		.uleb128 0x1
+ 788 0281 50       		.byte	0x50
+ 789 0282 02       		.uleb128 0x2
+ 790 0283 09       		.byte	0x9
+ 791 0284 FF       		.byte	0xff
+ 792 0285 00       		.byte	0
+ 793 0286 0F       		.uleb128 0xf
+ 794 0287 12000000 		.4byte	.LVL10
+ 795 028b C3010000 		.4byte	0x1c3
+ 796 028f 9A020000 		.4byte	0x29a
+ 797 0293 10       		.uleb128 0x10
+ 798 0294 01       		.uleb128 0x1
+ 799 0295 50       		.byte	0x50
+ 800 0296 02       		.uleb128 0x2
+ 801 0297 09       		.byte	0x9
+ 802 0298 FF       		.byte	0xff
+ 803 0299 00       		.byte	0
+ 804 029a 0C       		.uleb128 0xc
+ 805 029b 16000000 		.4byte	.LVL11
+ 806 029f 11030000 		.4byte	0x311
+ 807 02a3 0C       		.uleb128 0xc
+ 808 02a4 24000000 		.4byte	.LVL12
+ 809 02a8 1C030000 		.4byte	0x31c
+ 810 02ac 0F       		.uleb128 0xf
+ 811 02ad 2A000000 		.4byte	.LVL13
+ 812 02b1 FE010000 		.4byte	0x1fe
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 29
 
 
- 814 0009 1B       		.uleb128 0x1b
- 815 000a 0E       		.uleb128 0xe
- 816 000b 55       		.uleb128 0x55
- 817 000c 17       		.uleb128 0x17
- 818 000d 11       		.uleb128 0x11
- 819 000e 01       		.uleb128 0x1
- 820 000f 10       		.uleb128 0x10
- 821 0010 17       		.uleb128 0x17
- 822 0011 00       		.byte	0
- 823 0012 00       		.byte	0
- 824 0013 02       		.uleb128 0x2
- 825 0014 24       		.uleb128 0x24
- 826 0015 00       		.byte	0
- 827 0016 0B       		.uleb128 0xb
- 828 0017 0B       		.uleb128 0xb
- 829 0018 3E       		.uleb128 0x3e
- 830 0019 0B       		.uleb128 0xb
- 831 001a 03       		.uleb128 0x3
- 832 001b 0E       		.uleb128 0xe
- 833 001c 00       		.byte	0
- 834 001d 00       		.byte	0
- 835 001e 03       		.uleb128 0x3
- 836 001f 24       		.uleb128 0x24
- 837 0020 00       		.byte	0
- 838 0021 0B       		.uleb128 0xb
- 839 0022 0B       		.uleb128 0xb
- 840 0023 3E       		.uleb128 0x3e
- 841 0024 0B       		.uleb128 0xb
- 842 0025 03       		.uleb128 0x3
- 843 0026 08       		.uleb128 0x8
- 844 0027 00       		.byte	0
- 845 0028 00       		.byte	0
- 846 0029 04       		.uleb128 0x4
- 847 002a 16       		.uleb128 0x16
- 848 002b 00       		.byte	0
- 849 002c 03       		.uleb128 0x3
- 850 002d 0E       		.uleb128 0xe
- 851 002e 3A       		.uleb128 0x3a
- 852 002f 0B       		.uleb128 0xb
- 853 0030 3B       		.uleb128 0x3b
- 854 0031 05       		.uleb128 0x5
- 855 0032 49       		.uleb128 0x49
- 856 0033 13       		.uleb128 0x13
- 857 0034 00       		.byte	0
- 858 0035 00       		.byte	0
- 859 0036 05       		.uleb128 0x5
- 860 0037 35       		.uleb128 0x35
- 861 0038 00       		.byte	0
- 862 0039 49       		.uleb128 0x49
- 863 003a 13       		.uleb128 0x13
- 864 003b 00       		.byte	0
- 865 003c 00       		.byte	0
- 866 003d 06       		.uleb128 0x6
- 867 003e 2E       		.uleb128 0x2e
- 868 003f 00       		.byte	0
- 869 0040 3F       		.uleb128 0x3f
- 870 0041 19       		.uleb128 0x19
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 30
+ 813 02b5 BF020000 		.4byte	0x2bf
+ 814 02b9 10       		.uleb128 0x10
+ 815 02ba 01       		.uleb128 0x1
+ 816 02bb 50       		.byte	0x50
+ 817 02bc 01       		.uleb128 0x1
+ 818 02bd 30       		.byte	0x30
+ 819 02be 00       		.byte	0
+ 820 02bf 0C       		.uleb128 0xc
+ 821 02c0 2E000000 		.4byte	.LVL14
+ 822 02c4 25020000 		.4byte	0x225
+ 823 02c8 11       		.uleb128 0x11
+ 824 02c9 34000000 		.4byte	.LVL15
+ 825 02cd EA000000 		.4byte	0xea
+ 826 02d1 10       		.uleb128 0x10
+ 827 02d2 01       		.uleb128 0x1
+ 828 02d3 50       		.byte	0x50
+ 829 02d4 01       		.uleb128 0x1
+ 830 02d5 32       		.byte	0x32
+ 831 02d6 00       		.byte	0
+ 832 02d7 00       		.byte	0
+ 833 02d8 0D       		.uleb128 0xd
+ 834 02d9 4E000000 		.4byte	.LASF38
+ 835 02dd 01       		.byte	0x1
+ 836 02de D7       		.byte	0xd7
+ 837 02df 00000000 		.4byte	.LFB2
+ 838 02e3 1C000000 		.4byte	.LFE2-.LFB2
+ 839 02e7 01       		.uleb128 0x1
+ 840 02e8 9C       		.byte	0x9c
+ 841 02e9 00030000 		.4byte	0x300
+ 842 02ed 0C       		.uleb128 0xc
+ 843 02ee 0C000000 		.4byte	.LVL16
+ 844 02f2 4E020000 		.4byte	0x24e
+ 845 02f6 0C       		.uleb128 0xc
+ 846 02f7 16000000 		.4byte	.LVL17
+ 847 02fb C8000000 		.4byte	0xc8
+ 848 02ff 00       		.byte	0
+ 849 0300 12       		.uleb128 0x12
+ 850 0301 DC020000 		.4byte	.LASF45
+ 851 0305 01       		.byte	0x1
+ 852 0306 1A       		.byte	0x1a
+ 853 0307 6B000000 		.4byte	0x6b
+ 854 030b 05       		.uleb128 0x5
+ 855 030c 03       		.byte	0x3
+ 856 030d 00000000 		.4byte	VideoTimer_initVar
+ 857 0311 13       		.uleb128 0x13
+ 858 0312 82020000 		.4byte	.LASF39
+ 859 0316 82020000 		.4byte	.LASF39
+ 860 031a 03       		.byte	0x3
+ 861 031b 7D       		.byte	0x7d
+ 862 031c 13       		.uleb128 0x13
+ 863 031d A6020000 		.4byte	.LASF40
+ 864 0321 A6020000 		.4byte	.LASF40
+ 865 0325 03       		.byte	0x3
+ 866 0326 7E       		.byte	0x7e
+ 867 0327 00       		.byte	0
+ 868              		.section	.debug_abbrev,"",%progbits
+ 869              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 30
 
 
- 871 0042 03       		.uleb128 0x3
- 872 0043 0E       		.uleb128 0xe
- 873 0044 3A       		.uleb128 0x3a
- 874 0045 0B       		.uleb128 0xb
- 875 0046 3B       		.uleb128 0x3b
- 876 0047 0B       		.uleb128 0xb
- 877 0048 27       		.uleb128 0x27
- 878 0049 19       		.uleb128 0x19
- 879 004a 11       		.uleb128 0x11
- 880 004b 01       		.uleb128 0x1
- 881 004c 12       		.uleb128 0x12
- 882 004d 06       		.uleb128 0x6
- 883 004e 40       		.uleb128 0x40
- 884 004f 18       		.uleb128 0x18
- 885 0050 9742     		.uleb128 0x2117
- 886 0052 19       		.uleb128 0x19
- 887 0053 00       		.byte	0
- 888 0054 00       		.byte	0
- 889 0055 07       		.uleb128 0x7
- 890 0056 2E       		.uleb128 0x2e
- 891 0057 01       		.byte	0x1
- 892 0058 3F       		.uleb128 0x3f
- 893 0059 19       		.uleb128 0x19
- 894 005a 03       		.uleb128 0x3
- 895 005b 0E       		.uleb128 0xe
- 896 005c 3A       		.uleb128 0x3a
- 897 005d 0B       		.uleb128 0xb
- 898 005e 3B       		.uleb128 0x3b
- 899 005f 05       		.uleb128 0x5
- 900 0060 27       		.uleb128 0x27
- 901 0061 19       		.uleb128 0x19
- 902 0062 11       		.uleb128 0x11
- 903 0063 01       		.uleb128 0x1
- 904 0064 12       		.uleb128 0x12
- 905 0065 06       		.uleb128 0x6
- 906 0066 40       		.uleb128 0x40
- 907 0067 18       		.uleb128 0x18
- 908 0068 9742     		.uleb128 0x2117
- 909 006a 19       		.uleb128 0x19
- 910 006b 01       		.uleb128 0x1
- 911 006c 13       		.uleb128 0x13
- 912 006d 00       		.byte	0
- 913 006e 00       		.byte	0
- 914 006f 08       		.uleb128 0x8
- 915 0070 05       		.uleb128 0x5
- 916 0071 00       		.byte	0
- 917 0072 03       		.uleb128 0x3
- 918 0073 0E       		.uleb128 0xe
- 919 0074 3A       		.uleb128 0x3a
- 920 0075 0B       		.uleb128 0xb
- 921 0076 3B       		.uleb128 0x3b
- 922 0077 05       		.uleb128 0x5
- 923 0078 49       		.uleb128 0x49
- 924 0079 13       		.uleb128 0x13
- 925 007a 02       		.uleb128 0x2
- 926 007b 18       		.uleb128 0x18
- 927 007c 00       		.byte	0
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 31
+ 870 0000 01       		.uleb128 0x1
+ 871 0001 11       		.uleb128 0x11
+ 872 0002 01       		.byte	0x1
+ 873 0003 25       		.uleb128 0x25
+ 874 0004 0E       		.uleb128 0xe
+ 875 0005 13       		.uleb128 0x13
+ 876 0006 0B       		.uleb128 0xb
+ 877 0007 03       		.uleb128 0x3
+ 878 0008 0E       		.uleb128 0xe
+ 879 0009 1B       		.uleb128 0x1b
+ 880 000a 0E       		.uleb128 0xe
+ 881 000b 55       		.uleb128 0x55
+ 882 000c 17       		.uleb128 0x17
+ 883 000d 11       		.uleb128 0x11
+ 884 000e 01       		.uleb128 0x1
+ 885 000f 10       		.uleb128 0x10
+ 886 0010 17       		.uleb128 0x17
+ 887 0011 00       		.byte	0
+ 888 0012 00       		.byte	0
+ 889 0013 02       		.uleb128 0x2
+ 890 0014 24       		.uleb128 0x24
+ 891 0015 00       		.byte	0
+ 892 0016 0B       		.uleb128 0xb
+ 893 0017 0B       		.uleb128 0xb
+ 894 0018 3E       		.uleb128 0x3e
+ 895 0019 0B       		.uleb128 0xb
+ 896 001a 03       		.uleb128 0x3
+ 897 001b 0E       		.uleb128 0xe
+ 898 001c 00       		.byte	0
+ 899 001d 00       		.byte	0
+ 900 001e 03       		.uleb128 0x3
+ 901 001f 24       		.uleb128 0x24
+ 902 0020 00       		.byte	0
+ 903 0021 0B       		.uleb128 0xb
+ 904 0022 0B       		.uleb128 0xb
+ 905 0023 3E       		.uleb128 0x3e
+ 906 0024 0B       		.uleb128 0xb
+ 907 0025 03       		.uleb128 0x3
+ 908 0026 08       		.uleb128 0x8
+ 909 0027 00       		.byte	0
+ 910 0028 00       		.byte	0
+ 911 0029 04       		.uleb128 0x4
+ 912 002a 16       		.uleb128 0x16
+ 913 002b 00       		.byte	0
+ 914 002c 03       		.uleb128 0x3
+ 915 002d 0E       		.uleb128 0xe
+ 916 002e 3A       		.uleb128 0x3a
+ 917 002f 0B       		.uleb128 0xb
+ 918 0030 3B       		.uleb128 0x3b
+ 919 0031 05       		.uleb128 0x5
+ 920 0032 49       		.uleb128 0x49
+ 921 0033 13       		.uleb128 0x13
+ 922 0034 00       		.byte	0
+ 923 0035 00       		.byte	0
+ 924 0036 05       		.uleb128 0x5
+ 925 0037 35       		.uleb128 0x35
+ 926 0038 00       		.byte	0
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 31
 
 
- 928 007d 00       		.byte	0
- 929 007e 09       		.uleb128 0x9
- 930 007f 2E       		.uleb128 0x2e
- 931 0080 00       		.byte	0
- 932 0081 3F       		.uleb128 0x3f
- 933 0082 19       		.uleb128 0x19
- 934 0083 03       		.uleb128 0x3
- 935 0084 0E       		.uleb128 0xe
- 936 0085 3A       		.uleb128 0x3a
- 937 0086 0B       		.uleb128 0xb
- 938 0087 3B       		.uleb128 0x3b
- 939 0088 05       		.uleb128 0x5
- 940 0089 27       		.uleb128 0x27
- 941 008a 19       		.uleb128 0x19
- 942 008b 11       		.uleb128 0x11
- 943 008c 01       		.uleb128 0x1
- 944 008d 12       		.uleb128 0x12
- 945 008e 06       		.uleb128 0x6
- 946 008f 40       		.uleb128 0x40
- 947 0090 18       		.uleb128 0x18
- 948 0091 9742     		.uleb128 0x2117
- 949 0093 19       		.uleb128 0x19
- 950 0094 00       		.byte	0
- 951 0095 00       		.byte	0
- 952 0096 0A       		.uleb128 0xa
- 953 0097 2E       		.uleb128 0x2e
- 954 0098 00       		.byte	0
- 955 0099 3F       		.uleb128 0x3f
- 956 009a 19       		.uleb128 0x19
- 957 009b 03       		.uleb128 0x3
- 958 009c 0E       		.uleb128 0xe
- 959 009d 3A       		.uleb128 0x3a
- 960 009e 0B       		.uleb128 0xb
- 961 009f 3B       		.uleb128 0x3b
- 962 00a0 05       		.uleb128 0x5
- 963 00a1 27       		.uleb128 0x27
- 964 00a2 19       		.uleb128 0x19
- 965 00a3 49       		.uleb128 0x49
- 966 00a4 13       		.uleb128 0x13
- 967 00a5 11       		.uleb128 0x11
- 968 00a6 01       		.uleb128 0x1
- 969 00a7 12       		.uleb128 0x12
- 970 00a8 06       		.uleb128 0x6
- 971 00a9 40       		.uleb128 0x40
- 972 00aa 18       		.uleb128 0x18
- 973 00ab 9742     		.uleb128 0x2117
- 974 00ad 19       		.uleb128 0x19
- 975 00ae 00       		.byte	0
- 976 00af 00       		.byte	0
- 977 00b0 0B       		.uleb128 0xb
- 978 00b1 898201   		.uleb128 0x4109
- 979 00b4 00       		.byte	0
- 980 00b5 11       		.uleb128 0x11
- 981 00b6 01       		.uleb128 0x1
- 982 00b7 31       		.uleb128 0x31
- 983 00b8 13       		.uleb128 0x13
- 984 00b9 00       		.byte	0
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 32
+ 927 0039 49       		.uleb128 0x49
+ 928 003a 13       		.uleb128 0x13
+ 929 003b 00       		.byte	0
+ 930 003c 00       		.byte	0
+ 931 003d 06       		.uleb128 0x6
+ 932 003e 2E       		.uleb128 0x2e
+ 933 003f 00       		.byte	0
+ 934 0040 3F       		.uleb128 0x3f
+ 935 0041 19       		.uleb128 0x19
+ 936 0042 03       		.uleb128 0x3
+ 937 0043 0E       		.uleb128 0xe
+ 938 0044 3A       		.uleb128 0x3a
+ 939 0045 0B       		.uleb128 0xb
+ 940 0046 3B       		.uleb128 0x3b
+ 941 0047 0B       		.uleb128 0xb
+ 942 0048 27       		.uleb128 0x27
+ 943 0049 19       		.uleb128 0x19
+ 944 004a 11       		.uleb128 0x11
+ 945 004b 01       		.uleb128 0x1
+ 946 004c 12       		.uleb128 0x12
+ 947 004d 06       		.uleb128 0x6
+ 948 004e 40       		.uleb128 0x40
+ 949 004f 18       		.uleb128 0x18
+ 950 0050 9742     		.uleb128 0x2117
+ 951 0052 19       		.uleb128 0x19
+ 952 0053 00       		.byte	0
+ 953 0054 00       		.byte	0
+ 954 0055 07       		.uleb128 0x7
+ 955 0056 2E       		.uleb128 0x2e
+ 956 0057 01       		.byte	0x1
+ 957 0058 3F       		.uleb128 0x3f
+ 958 0059 19       		.uleb128 0x19
+ 959 005a 03       		.uleb128 0x3
+ 960 005b 0E       		.uleb128 0xe
+ 961 005c 3A       		.uleb128 0x3a
+ 962 005d 0B       		.uleb128 0xb
+ 963 005e 3B       		.uleb128 0x3b
+ 964 005f 05       		.uleb128 0x5
+ 965 0060 27       		.uleb128 0x27
+ 966 0061 19       		.uleb128 0x19
+ 967 0062 11       		.uleb128 0x11
+ 968 0063 01       		.uleb128 0x1
+ 969 0064 12       		.uleb128 0x12
+ 970 0065 06       		.uleb128 0x6
+ 971 0066 40       		.uleb128 0x40
+ 972 0067 18       		.uleb128 0x18
+ 973 0068 9742     		.uleb128 0x2117
+ 974 006a 19       		.uleb128 0x19
+ 975 006b 01       		.uleb128 0x1
+ 976 006c 13       		.uleb128 0x13
+ 977 006d 00       		.byte	0
+ 978 006e 00       		.byte	0
+ 979 006f 08       		.uleb128 0x8
+ 980 0070 05       		.uleb128 0x5
+ 981 0071 00       		.byte	0
+ 982 0072 03       		.uleb128 0x3
+ 983 0073 0E       		.uleb128 0xe
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 32
 
 
- 985 00ba 00       		.byte	0
- 986 00bb 0C       		.uleb128 0xc
- 987 00bc 2E       		.uleb128 0x2e
- 988 00bd 01       		.byte	0x1
- 989 00be 3F       		.uleb128 0x3f
- 990 00bf 19       		.uleb128 0x19
- 991 00c0 03       		.uleb128 0x3
- 992 00c1 0E       		.uleb128 0xe
- 993 00c2 3A       		.uleb128 0x3a
- 994 00c3 0B       		.uleb128 0xb
- 995 00c4 3B       		.uleb128 0x3b
- 996 00c5 0B       		.uleb128 0xb
- 997 00c6 27       		.uleb128 0x27
- 998 00c7 19       		.uleb128 0x19
- 999 00c8 11       		.uleb128 0x11
- 1000 00c9 01       		.uleb128 0x1
- 1001 00ca 12       		.uleb128 0x12
- 1002 00cb 06       		.uleb128 0x6
- 1003 00cc 40       		.uleb128 0x40
- 1004 00cd 18       		.uleb128 0x18
- 1005 00ce 9742     		.uleb128 0x2117
- 1006 00d0 19       		.uleb128 0x19
- 1007 00d1 01       		.uleb128 0x1
- 1008 00d2 13       		.uleb128 0x13
- 1009 00d3 00       		.byte	0
- 1010 00d4 00       		.byte	0
- 1011 00d5 0D       		.uleb128 0xd
- 1012 00d6 34       		.uleb128 0x34
- 1013 00d7 00       		.byte	0
- 1014 00d8 03       		.uleb128 0x3
- 1015 00d9 0E       		.uleb128 0xe
- 1016 00da 3A       		.uleb128 0x3a
- 1017 00db 0B       		.uleb128 0xb
- 1018 00dc 3B       		.uleb128 0x3b
- 1019 00dd 0B       		.uleb128 0xb
- 1020 00de 49       		.uleb128 0x49
- 1021 00df 13       		.uleb128 0x13
- 1022 00e0 02       		.uleb128 0x2
- 1023 00e1 17       		.uleb128 0x17
- 1024 00e2 00       		.byte	0
- 1025 00e3 00       		.byte	0
- 1026 00e4 0E       		.uleb128 0xe
- 1027 00e5 898201   		.uleb128 0x4109
- 1028 00e8 01       		.byte	0x1
- 1029 00e9 11       		.uleb128 0x11
- 1030 00ea 01       		.uleb128 0x1
- 1031 00eb 31       		.uleb128 0x31
- 1032 00ec 13       		.uleb128 0x13
- 1033 00ed 01       		.uleb128 0x1
- 1034 00ee 13       		.uleb128 0x13
- 1035 00ef 00       		.byte	0
- 1036 00f0 00       		.byte	0
- 1037 00f1 0F       		.uleb128 0xf
- 1038 00f2 8A8201   		.uleb128 0x410a
- 1039 00f5 00       		.byte	0
- 1040 00f6 02       		.uleb128 0x2
- 1041 00f7 18       		.uleb128 0x18
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 33
+ 984 0074 3A       		.uleb128 0x3a
+ 985 0075 0B       		.uleb128 0xb
+ 986 0076 3B       		.uleb128 0x3b
+ 987 0077 05       		.uleb128 0x5
+ 988 0078 49       		.uleb128 0x49
+ 989 0079 13       		.uleb128 0x13
+ 990 007a 02       		.uleb128 0x2
+ 991 007b 18       		.uleb128 0x18
+ 992 007c 00       		.byte	0
+ 993 007d 00       		.byte	0
+ 994 007e 09       		.uleb128 0x9
+ 995 007f 2E       		.uleb128 0x2e
+ 996 0080 00       		.byte	0
+ 997 0081 3F       		.uleb128 0x3f
+ 998 0082 19       		.uleb128 0x19
+ 999 0083 03       		.uleb128 0x3
+ 1000 0084 0E       		.uleb128 0xe
+ 1001 0085 3A       		.uleb128 0x3a
+ 1002 0086 0B       		.uleb128 0xb
+ 1003 0087 3B       		.uleb128 0x3b
+ 1004 0088 05       		.uleb128 0x5
+ 1005 0089 27       		.uleb128 0x27
+ 1006 008a 19       		.uleb128 0x19
+ 1007 008b 11       		.uleb128 0x11
+ 1008 008c 01       		.uleb128 0x1
+ 1009 008d 12       		.uleb128 0x12
+ 1010 008e 06       		.uleb128 0x6
+ 1011 008f 40       		.uleb128 0x40
+ 1012 0090 18       		.uleb128 0x18
+ 1013 0091 9742     		.uleb128 0x2117
+ 1014 0093 19       		.uleb128 0x19
+ 1015 0094 00       		.byte	0
+ 1016 0095 00       		.byte	0
+ 1017 0096 0A       		.uleb128 0xa
+ 1018 0097 2E       		.uleb128 0x2e
+ 1019 0098 00       		.byte	0
+ 1020 0099 3F       		.uleb128 0x3f
+ 1021 009a 19       		.uleb128 0x19
+ 1022 009b 03       		.uleb128 0x3
+ 1023 009c 0E       		.uleb128 0xe
+ 1024 009d 3A       		.uleb128 0x3a
+ 1025 009e 0B       		.uleb128 0xb
+ 1026 009f 3B       		.uleb128 0x3b
+ 1027 00a0 05       		.uleb128 0x5
+ 1028 00a1 27       		.uleb128 0x27
+ 1029 00a2 19       		.uleb128 0x19
+ 1030 00a3 49       		.uleb128 0x49
+ 1031 00a4 13       		.uleb128 0x13
+ 1032 00a5 11       		.uleb128 0x11
+ 1033 00a6 01       		.uleb128 0x1
+ 1034 00a7 12       		.uleb128 0x12
+ 1035 00a8 06       		.uleb128 0x6
+ 1036 00a9 40       		.uleb128 0x40
+ 1037 00aa 18       		.uleb128 0x18
+ 1038 00ab 9742     		.uleb128 0x2117
+ 1039 00ad 19       		.uleb128 0x19
+ 1040 00ae 00       		.byte	0
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 33
 
 
- 1042 00f8 9142     		.uleb128 0x2111
- 1043 00fa 18       		.uleb128 0x18
- 1044 00fb 00       		.byte	0
- 1045 00fc 00       		.byte	0
- 1046 00fd 10       		.uleb128 0x10
- 1047 00fe 898201   		.uleb128 0x4109
- 1048 0101 01       		.byte	0x1
- 1049 0102 11       		.uleb128 0x11
- 1050 0103 01       		.uleb128 0x1
- 1051 0104 31       		.uleb128 0x31
- 1052 0105 13       		.uleb128 0x13
- 1053 0106 00       		.byte	0
- 1054 0107 00       		.byte	0
- 1055 0108 11       		.uleb128 0x11
- 1056 0109 34       		.uleb128 0x34
- 1057 010a 00       		.byte	0
- 1058 010b 03       		.uleb128 0x3
- 1059 010c 0E       		.uleb128 0xe
- 1060 010d 3A       		.uleb128 0x3a
- 1061 010e 0B       		.uleb128 0xb
- 1062 010f 3B       		.uleb128 0x3b
- 1063 0110 0B       		.uleb128 0xb
- 1064 0111 49       		.uleb128 0x49
- 1065 0112 13       		.uleb128 0x13
- 1066 0113 3F       		.uleb128 0x3f
- 1067 0114 19       		.uleb128 0x19
- 1068 0115 02       		.uleb128 0x2
- 1069 0116 18       		.uleb128 0x18
- 1070 0117 00       		.byte	0
- 1071 0118 00       		.byte	0
- 1072 0119 12       		.uleb128 0x12
- 1073 011a 2E       		.uleb128 0x2e
- 1074 011b 00       		.byte	0
- 1075 011c 3F       		.uleb128 0x3f
- 1076 011d 19       		.uleb128 0x19
- 1077 011e 3C       		.uleb128 0x3c
- 1078 011f 19       		.uleb128 0x19
- 1079 0120 6E       		.uleb128 0x6e
- 1080 0121 0E       		.uleb128 0xe
- 1081 0122 03       		.uleb128 0x3
- 1082 0123 0E       		.uleb128 0xe
- 1083 0124 3A       		.uleb128 0x3a
- 1084 0125 0B       		.uleb128 0xb
- 1085 0126 3B       		.uleb128 0x3b
- 1086 0127 0B       		.uleb128 0xb
- 1087 0128 00       		.byte	0
- 1088 0129 00       		.byte	0
- 1089 012a 00       		.byte	0
- 1090              		.section	.debug_loc,"",%progbits
- 1091              	.Ldebug_loc0:
- 1092              	.LLST0:
- 1093 0000 16000000 		.4byte	.LVL8
- 1094 0004 23000000 		.4byte	.LVL9-1
- 1095 0008 0100     		.2byte	0x1
- 1096 000a 50       		.byte	0x50
- 1097 000b 00000000 		.4byte	0
- 1098 000f 00000000 		.4byte	0
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 34
+ 1041 00af 00       		.byte	0
+ 1042 00b0 0B       		.uleb128 0xb
+ 1043 00b1 05       		.uleb128 0x5
+ 1044 00b2 00       		.byte	0
+ 1045 00b3 03       		.uleb128 0x3
+ 1046 00b4 0E       		.uleb128 0xe
+ 1047 00b5 3A       		.uleb128 0x3a
+ 1048 00b6 0B       		.uleb128 0xb
+ 1049 00b7 3B       		.uleb128 0x3b
+ 1050 00b8 05       		.uleb128 0x5
+ 1051 00b9 49       		.uleb128 0x49
+ 1052 00ba 13       		.uleb128 0x13
+ 1053 00bb 02       		.uleb128 0x2
+ 1054 00bc 17       		.uleb128 0x17
+ 1055 00bd 00       		.byte	0
+ 1056 00be 00       		.byte	0
+ 1057 00bf 0C       		.uleb128 0xc
+ 1058 00c0 898201   		.uleb128 0x4109
+ 1059 00c3 00       		.byte	0
+ 1060 00c4 11       		.uleb128 0x11
+ 1061 00c5 01       		.uleb128 0x1
+ 1062 00c6 31       		.uleb128 0x31
+ 1063 00c7 13       		.uleb128 0x13
+ 1064 00c8 00       		.byte	0
+ 1065 00c9 00       		.byte	0
+ 1066 00ca 0D       		.uleb128 0xd
+ 1067 00cb 2E       		.uleb128 0x2e
+ 1068 00cc 01       		.byte	0x1
+ 1069 00cd 3F       		.uleb128 0x3f
+ 1070 00ce 19       		.uleb128 0x19
+ 1071 00cf 03       		.uleb128 0x3
+ 1072 00d0 0E       		.uleb128 0xe
+ 1073 00d1 3A       		.uleb128 0x3a
+ 1074 00d2 0B       		.uleb128 0xb
+ 1075 00d3 3B       		.uleb128 0x3b
+ 1076 00d4 0B       		.uleb128 0xb
+ 1077 00d5 27       		.uleb128 0x27
+ 1078 00d6 19       		.uleb128 0x19
+ 1079 00d7 11       		.uleb128 0x11
+ 1080 00d8 01       		.uleb128 0x1
+ 1081 00d9 12       		.uleb128 0x12
+ 1082 00da 06       		.uleb128 0x6
+ 1083 00db 40       		.uleb128 0x40
+ 1084 00dc 18       		.uleb128 0x18
+ 1085 00dd 9742     		.uleb128 0x2117
+ 1086 00df 19       		.uleb128 0x19
+ 1087 00e0 01       		.uleb128 0x1
+ 1088 00e1 13       		.uleb128 0x13
+ 1089 00e2 00       		.byte	0
+ 1090 00e3 00       		.byte	0
+ 1091 00e4 0E       		.uleb128 0xe
+ 1092 00e5 34       		.uleb128 0x34
+ 1093 00e6 00       		.byte	0
+ 1094 00e7 03       		.uleb128 0x3
+ 1095 00e8 0E       		.uleb128 0xe
+ 1096 00e9 3A       		.uleb128 0x3a
+ 1097 00ea 0B       		.uleb128 0xb
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 34
 
 
- 1099              		.section	.debug_aranges,"",%progbits
- 1100 0000 8C000000 		.4byte	0x8c
- 1101 0004 0200     		.2byte	0x2
- 1102 0006 00000000 		.4byte	.Ldebug_info0
- 1103 000a 04       		.byte	0x4
- 1104 000b 00       		.byte	0
- 1105 000c 0000     		.2byte	0
- 1106 000e 0000     		.2byte	0
- 1107 0010 00000000 		.4byte	.LFB1
- 1108 0014 10000000 		.4byte	.LFE1-.LFB1
- 1109 0018 00000000 		.4byte	.LFB3
- 1110 001c 10000000 		.4byte	.LFE3-.LFB3
- 1111 0020 00000000 		.4byte	.LFB4
- 1112 0024 0C000000 		.4byte	.LFE4-.LFB4
- 1113 0028 00000000 		.4byte	.LFB5
- 1114 002c 0C000000 		.4byte	.LFE5-.LFB5
- 1115 0030 00000000 		.4byte	.LFB6
- 1116 0034 0C000000 		.4byte	.LFE6-.LFB6
- 1117 0038 00000000 		.4byte	.LFB7
- 1118 003c 0C000000 		.4byte	.LFE7-.LFB7
- 1119 0040 00000000 		.4byte	.LFB8
- 1120 0044 0C000000 		.4byte	.LFE8-.LFB8
- 1121 0048 00000000 		.4byte	.LFB9
- 1122 004c 0C000000 		.4byte	.LFE9-.LFB9
- 1123 0050 00000000 		.4byte	.LFB10
- 1124 0054 0C000000 		.4byte	.LFE10-.LFB10
- 1125 0058 00000000 		.4byte	.LFB11
- 1126 005c 0C000000 		.4byte	.LFE11-.LFB11
- 1127 0060 00000000 		.4byte	.LFB12
- 1128 0064 0C000000 		.4byte	.LFE12-.LFB12
- 1129 0068 00000000 		.4byte	.LFB13
- 1130 006c 14000000 		.4byte	.LFE13-.LFB13
- 1131 0070 00000000 		.4byte	.LFB14
- 1132 0074 14000000 		.4byte	.LFE14-.LFB14
- 1133 0078 00000000 		.4byte	.LFB0
- 1134 007c 34000000 		.4byte	.LFE0-.LFB0
- 1135 0080 00000000 		.4byte	.LFB2
- 1136 0084 1C000000 		.4byte	.LFE2-.LFB2
- 1137 0088 00000000 		.4byte	0
- 1138 008c 00000000 		.4byte	0
- 1139              		.section	.debug_ranges,"",%progbits
- 1140              	.Ldebug_ranges0:
- 1141 0000 00000000 		.4byte	.LFB1
- 1142 0004 10000000 		.4byte	.LFE1
- 1143 0008 00000000 		.4byte	.LFB3
- 1144 000c 10000000 		.4byte	.LFE3
- 1145 0010 00000000 		.4byte	.LFB4
- 1146 0014 0C000000 		.4byte	.LFE4
- 1147 0018 00000000 		.4byte	.LFB5
- 1148 001c 0C000000 		.4byte	.LFE5
- 1149 0020 00000000 		.4byte	.LFB6
- 1150 0024 0C000000 		.4byte	.LFE6
- 1151 0028 00000000 		.4byte	.LFB7
- 1152 002c 0C000000 		.4byte	.LFE7
- 1153 0030 00000000 		.4byte	.LFB8
- 1154 0034 0C000000 		.4byte	.LFE8
- 1155 0038 00000000 		.4byte	.LFB9
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 35
+ 1098 00eb 3B       		.uleb128 0x3b
+ 1099 00ec 0B       		.uleb128 0xb
+ 1100 00ed 49       		.uleb128 0x49
+ 1101 00ee 13       		.uleb128 0x13
+ 1102 00ef 02       		.uleb128 0x2
+ 1103 00f0 17       		.uleb128 0x17
+ 1104 00f1 00       		.byte	0
+ 1105 00f2 00       		.byte	0
+ 1106 00f3 0F       		.uleb128 0xf
+ 1107 00f4 898201   		.uleb128 0x4109
+ 1108 00f7 01       		.byte	0x1
+ 1109 00f8 11       		.uleb128 0x11
+ 1110 00f9 01       		.uleb128 0x1
+ 1111 00fa 31       		.uleb128 0x31
+ 1112 00fb 13       		.uleb128 0x13
+ 1113 00fc 01       		.uleb128 0x1
+ 1114 00fd 13       		.uleb128 0x13
+ 1115 00fe 00       		.byte	0
+ 1116 00ff 00       		.byte	0
+ 1117 0100 10       		.uleb128 0x10
+ 1118 0101 8A8201   		.uleb128 0x410a
+ 1119 0104 00       		.byte	0
+ 1120 0105 02       		.uleb128 0x2
+ 1121 0106 18       		.uleb128 0x18
+ 1122 0107 9142     		.uleb128 0x2111
+ 1123 0109 18       		.uleb128 0x18
+ 1124 010a 00       		.byte	0
+ 1125 010b 00       		.byte	0
+ 1126 010c 11       		.uleb128 0x11
+ 1127 010d 898201   		.uleb128 0x4109
+ 1128 0110 01       		.byte	0x1
+ 1129 0111 11       		.uleb128 0x11
+ 1130 0112 01       		.uleb128 0x1
+ 1131 0113 31       		.uleb128 0x31
+ 1132 0114 13       		.uleb128 0x13
+ 1133 0115 00       		.byte	0
+ 1134 0116 00       		.byte	0
+ 1135 0117 12       		.uleb128 0x12
+ 1136 0118 34       		.uleb128 0x34
+ 1137 0119 00       		.byte	0
+ 1138 011a 03       		.uleb128 0x3
+ 1139 011b 0E       		.uleb128 0xe
+ 1140 011c 3A       		.uleb128 0x3a
+ 1141 011d 0B       		.uleb128 0xb
+ 1142 011e 3B       		.uleb128 0x3b
+ 1143 011f 0B       		.uleb128 0xb
+ 1144 0120 49       		.uleb128 0x49
+ 1145 0121 13       		.uleb128 0x13
+ 1146 0122 3F       		.uleb128 0x3f
+ 1147 0123 19       		.uleb128 0x19
+ 1148 0124 02       		.uleb128 0x2
+ 1149 0125 18       		.uleb128 0x18
+ 1150 0126 00       		.byte	0
+ 1151 0127 00       		.byte	0
+ 1152 0128 13       		.uleb128 0x13
+ 1153 0129 2E       		.uleb128 0x2e
+ 1154 012a 00       		.byte	0
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 35
 
 
- 1156 003c 0C000000 		.4byte	.LFE9
- 1157 0040 00000000 		.4byte	.LFB10
- 1158 0044 0C000000 		.4byte	.LFE10
- 1159 0048 00000000 		.4byte	.LFB11
- 1160 004c 0C000000 		.4byte	.LFE11
- 1161 0050 00000000 		.4byte	.LFB12
- 1162 0054 0C000000 		.4byte	.LFE12
- 1163 0058 00000000 		.4byte	.LFB13
- 1164 005c 14000000 		.4byte	.LFE13
- 1165 0060 00000000 		.4byte	.LFB14
- 1166 0064 14000000 		.4byte	.LFE14
- 1167 0068 00000000 		.4byte	.LFB0
- 1168 006c 34000000 		.4byte	.LFE0
- 1169 0070 00000000 		.4byte	.LFB2
- 1170 0074 1C000000 		.4byte	.LFE2
- 1171 0078 00000000 		.4byte	0
- 1172 007c 00000000 		.4byte	0
- 1173              		.section	.debug_line,"",%progbits
- 1174              	.Ldebug_line0:
- 1175 0000 71010000 		.section	.debug_str,"MS",%progbits,1
- 1175      02005200 
- 1175      00000201 
- 1175      FB0E0D00 
- 1175      01010101 
- 1176              	.LASF15:
- 1177 0000 72656731 		.ascii	"reg16\000"
- 1177      3600
- 1178              	.LASF31:
- 1179 0006 56696465 		.ascii	"VideoTimer_WriteCounter\000"
- 1179      6F54696D 
- 1179      65725F57 
- 1179      72697465 
- 1179      436F756E 
- 1180              	.LASF29:
- 1181 001e 70657269 		.ascii	"period\000"
- 1181      6F6400
- 1182              	.LASF27:
- 1183 0025 56696465 		.ascii	"VideoTimer_ReadPeriod\000"
- 1183      6F54696D 
- 1183      65725F52 
- 1183      65616450 
- 1183      6572696F 
- 1184              	.LASF3:
- 1185 003b 73686F72 		.ascii	"short unsigned int\000"
- 1185      7420756E 
- 1185      7369676E 
- 1185      65642069 
- 1185      6E7400
- 1186              	.LASF36:
- 1187 004e 56696465 		.ascii	"VideoTimer_Start\000"
- 1187      6F54696D 
- 1187      65725F53 
- 1187      74617274 
- 1187      00
- 1188              	.LASF34:
- 1189 005f 56696465 		.ascii	"VideoTimer_ClearFIFO\000"
- 1189      6F54696D 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 36
+ 1155 012b 3F       		.uleb128 0x3f
+ 1156 012c 19       		.uleb128 0x19
+ 1157 012d 3C       		.uleb128 0x3c
+ 1158 012e 19       		.uleb128 0x19
+ 1159 012f 6E       		.uleb128 0x6e
+ 1160 0130 0E       		.uleb128 0xe
+ 1161 0131 03       		.uleb128 0x3
+ 1162 0132 0E       		.uleb128 0xe
+ 1163 0133 3A       		.uleb128 0x3a
+ 1164 0134 0B       		.uleb128 0xb
+ 1165 0135 3B       		.uleb128 0x3b
+ 1166 0136 0B       		.uleb128 0xb
+ 1167 0137 00       		.byte	0
+ 1168 0138 00       		.byte	0
+ 1169 0139 00       		.byte	0
+ 1170              		.section	.debug_loc,"",%progbits
+ 1171              	.Ldebug_loc0:
+ 1172              	.LLST0:
+ 1173 0000 00000000 		.4byte	.LVL4
+ 1174 0004 04000000 		.4byte	.LVL5
+ 1175 0008 0100     		.2byte	0x1
+ 1176 000a 50       		.byte	0x50
+ 1177 000b 04000000 		.4byte	.LVL5
+ 1178 000f 12000000 		.4byte	.LVL6
+ 1179 0013 0100     		.2byte	0x1
+ 1180 0015 50       		.byte	0x50
+ 1181 0016 00000000 		.4byte	0
+ 1182 001a 00000000 		.4byte	0
+ 1183              	.LLST1:
+ 1184 001e 16000000 		.4byte	.LVL11
+ 1185 0022 23000000 		.4byte	.LVL12-1
+ 1186 0026 0100     		.2byte	0x1
+ 1187 0028 50       		.byte	0x50
+ 1188 0029 00000000 		.4byte	0
+ 1189 002d 00000000 		.4byte	0
+ 1190              		.section	.debug_aranges,"",%progbits
+ 1191 0000 94000000 		.4byte	0x94
+ 1192 0004 0200     		.2byte	0x2
+ 1193 0006 00000000 		.4byte	.Ldebug_info0
+ 1194 000a 04       		.byte	0x4
+ 1195 000b 00       		.byte	0
+ 1196 000c 0000     		.2byte	0
+ 1197 000e 0000     		.2byte	0
+ 1198 0010 00000000 		.4byte	.LFB1
+ 1199 0014 10000000 		.4byte	.LFE1-.LFB1
+ 1200 0018 00000000 		.4byte	.LFB3
+ 1201 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1202 0020 00000000 		.4byte	.LFB4
+ 1203 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1204 0028 00000000 		.4byte	.LFB5
+ 1205 002c 0C000000 		.4byte	.LFE5-.LFB5
+ 1206 0030 00000000 		.4byte	.LFB6
+ 1207 0034 0C000000 		.4byte	.LFE6-.LFB6
+ 1208 0038 00000000 		.4byte	.LFB7
+ 1209 003c 0C000000 		.4byte	.LFE7-.LFB7
+ 1210 0040 00000000 		.4byte	.LFB8
+ 1211 0044 0C000000 		.4byte	.LFE8-.LFB8
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 36
 
 
- 1189      65725F43 
- 1189      6C656172 
- 1189      4649464F 
- 1190              	.LASF11:
- 1191 0074 666C6F61 		.ascii	"float\000"
- 1191      7400
- 1192              	.LASF28:
- 1193 007a 56696465 		.ascii	"VideoTimer_WritePeriod\000"
- 1193      6F54696D 
- 1193      65725F57 
- 1193      72697465 
- 1193      50657269 
- 1194              	.LASF19:
- 1195 0091 56696465 		.ascii	"VideoTimer_Stop\000"
- 1195      6F54696D 
- 1195      65725F53 
- 1195      746F7000 
- 1196              	.LASF1:
- 1197 00a1 756E7369 		.ascii	"unsigned char\000"
- 1197      676E6564 
- 1197      20636861 
- 1197      7200
- 1198              	.LASF39:
- 1199 00af 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1199      43313120 
- 1199      352E342E 
- 1199      31203230 
- 1199      31363036 
- 1200 00e2 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1200      20726576 
- 1200      6973696F 
- 1200      6E203233 
- 1200      37373135 
- 1201 0115 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1201      66756E63 
- 1201      74696F6E 
- 1201      2D736563 
- 1201      74696F6E 
- 1202              	.LASF41:
- 1203 013d 433A5C55 		.ascii	"C:\\Users\\nkhedkar\\Documents\\PSoC Creator\\ELE30"
- 1203      73657273 
- 1203      5C6E6B68 
- 1203      65646B61 
- 1203      725C446F 
- 1204 016b 3220576F 		.ascii	"2 Workspace\\navigation\\Navigation.cydsn\000"
- 1204      726B7370 
- 1204      6163655C 
- 1204      6E617669 
- 1204      67617469 
- 1205              	.LASF14:
- 1206 0193 72656738 		.ascii	"reg8\000"
- 1206      00
- 1207              	.LASF40:
- 1208 0198 47656E65 		.ascii	"Generated_Source\\PSoC5\\VideoTimer.c\000"
- 1208      72617465 
- 1208      645F536F 
- 1208      75726365 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 37
+ 1212 0048 00000000 		.4byte	.LFB9
+ 1213 004c 0C000000 		.4byte	.LFE9-.LFB9
+ 1214 0050 00000000 		.4byte	.LFB10
+ 1215 0054 0C000000 		.4byte	.LFE10-.LFB10
+ 1216 0058 00000000 		.4byte	.LFB11
+ 1217 005c 0C000000 		.4byte	.LFE11-.LFB11
+ 1218 0060 00000000 		.4byte	.LFB12
+ 1219 0064 0C000000 		.4byte	.LFE12-.LFB12
+ 1220 0068 00000000 		.4byte	.LFB13
+ 1221 006c 14000000 		.4byte	.LFE13-.LFB13
+ 1222 0070 00000000 		.4byte	.LFB14
+ 1223 0074 1C000000 		.4byte	.LFE14-.LFB14
+ 1224 0078 00000000 		.4byte	.LFB15
+ 1225 007c 14000000 		.4byte	.LFE15-.LFB15
+ 1226 0080 00000000 		.4byte	.LFB0
+ 1227 0084 3C000000 		.4byte	.LFE0-.LFB0
+ 1228 0088 00000000 		.4byte	.LFB2
+ 1229 008c 1C000000 		.4byte	.LFE2-.LFB2
+ 1230 0090 00000000 		.4byte	0
+ 1231 0094 00000000 		.4byte	0
+ 1232              		.section	.debug_ranges,"",%progbits
+ 1233              	.Ldebug_ranges0:
+ 1234 0000 00000000 		.4byte	.LFB1
+ 1235 0004 10000000 		.4byte	.LFE1
+ 1236 0008 00000000 		.4byte	.LFB3
+ 1237 000c 10000000 		.4byte	.LFE3
+ 1238 0010 00000000 		.4byte	.LFB4
+ 1239 0014 0C000000 		.4byte	.LFE4
+ 1240 0018 00000000 		.4byte	.LFB5
+ 1241 001c 0C000000 		.4byte	.LFE5
+ 1242 0020 00000000 		.4byte	.LFB6
+ 1243 0024 0C000000 		.4byte	.LFE6
+ 1244 0028 00000000 		.4byte	.LFB7
+ 1245 002c 0C000000 		.4byte	.LFE7
+ 1246 0030 00000000 		.4byte	.LFB8
+ 1247 0034 0C000000 		.4byte	.LFE8
+ 1248 0038 00000000 		.4byte	.LFB9
+ 1249 003c 0C000000 		.4byte	.LFE9
+ 1250 0040 00000000 		.4byte	.LFB10
+ 1251 0044 0C000000 		.4byte	.LFE10
+ 1252 0048 00000000 		.4byte	.LFB11
+ 1253 004c 0C000000 		.4byte	.LFE11
+ 1254 0050 00000000 		.4byte	.LFB12
+ 1255 0054 0C000000 		.4byte	.LFE12
+ 1256 0058 00000000 		.4byte	.LFB13
+ 1257 005c 14000000 		.4byte	.LFE13
+ 1258 0060 00000000 		.4byte	.LFB14
+ 1259 0064 1C000000 		.4byte	.LFE14
+ 1260 0068 00000000 		.4byte	.LFB15
+ 1261 006c 14000000 		.4byte	.LFE15
+ 1262 0070 00000000 		.4byte	.LFB0
+ 1263 0074 3C000000 		.4byte	.LFE0
+ 1264 0078 00000000 		.4byte	.LFB2
+ 1265 007c 1C000000 		.4byte	.LFE2
+ 1266 0080 00000000 		.4byte	0
+ 1267 0084 00000000 		.4byte	0
+ 1268              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 37
 
 
- 1208      5C50536F 
- 1209              	.LASF5:
- 1210 01bc 6C6F6E67 		.ascii	"long unsigned int\000"
- 1210      20756E73 
- 1210      69676E65 
- 1210      6420696E 
- 1210      7400
- 1211              	.LASF9:
- 1212 01ce 75696E74 		.ascii	"uint8\000"
- 1212      3800
- 1213              	.LASF26:
- 1214 01d4 636F6E74 		.ascii	"control\000"
- 1214      726F6C00 
- 1215              	.LASF18:
- 1216 01dc 56696465 		.ascii	"VideoTimer_Enable\000"
- 1216      6F54696D 
- 1216      65725F45 
- 1216      6E61626C 
- 1216      6500
- 1217              	.LASF21:
- 1218 01ee 56696465 		.ascii	"VideoTimer_ReadStatusRegister\000"
- 1218      6F54696D 
- 1218      65725F52 
- 1218      65616453 
- 1218      74617475 
- 1219              	.LASF20:
- 1220 020c 56696465 		.ascii	"VideoTimer_SoftwareCapture\000"
- 1220      6F54696D 
- 1220      65725F53 
- 1220      6F667477 
- 1220      61726543 
- 1221              	.LASF32:
- 1222 0227 636F756E 		.ascii	"counter\000"
- 1222      74657200 
- 1223              	.LASF12:
- 1224 022f 646F7562 		.ascii	"double\000"
- 1224      6C6500
- 1225              	.LASF42:
- 1226 0236 56696465 		.ascii	"VideoTimer_interruptState\000"
- 1226      6F54696D 
- 1226      65725F69 
- 1226      6E746572 
- 1226      72757074 
- 1227              	.LASF10:
- 1228 0250 75696E74 		.ascii	"uint16\000"
- 1228      313600
- 1229              	.LASF23:
- 1230 0257 56696465 		.ascii	"VideoTimer_SetInterruptMode\000"
- 1230      6F54696D 
- 1230      65725F53 
- 1230      6574496E 
- 1230      74657272 
- 1231              	.LASF37:
- 1232 0273 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 1232      74657243 
- 1232      72697469 
- 1232      63616C53 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 38
+ 1269              	.Ldebug_line0:
+ 1270 0000 83010000 		.section	.debug_str,"MS",%progbits,1
+ 1270      02005200 
+ 1270      00000201 
+ 1270      FB0E0D00 
+ 1270      01010101 
+ 1271              	.LASF15:
+ 1272 0000 72656731 		.ascii	"reg16\000"
+ 1272      3600
+ 1273              	.LASF31:
+ 1274 0006 56696465 		.ascii	"VideoTimer_WriteCounter\000"
+ 1274      6F54696D 
+ 1274      65725F57 
+ 1274      72697465 
+ 1274      436F756E 
+ 1275              	.LASF29:
+ 1276 001e 70657269 		.ascii	"period\000"
+ 1276      6F6400
+ 1277              	.LASF27:
+ 1278 0025 56696465 		.ascii	"VideoTimer_ReadPeriod\000"
+ 1278      6F54696D 
+ 1278      65725F52 
+ 1278      65616450 
+ 1278      6572696F 
+ 1279              	.LASF3:
+ 1280 003b 73686F72 		.ascii	"short unsigned int\000"
+ 1280      7420756E 
+ 1280      7369676E 
+ 1280      65642069 
+ 1280      6E7400
+ 1281              	.LASF38:
+ 1282 004e 56696465 		.ascii	"VideoTimer_Start\000"
+ 1282      6F54696D 
+ 1282      65725F53 
+ 1282      74617274 
+ 1282      00
+ 1283              	.LASF36:
+ 1284 005f 56696465 		.ascii	"VideoTimer_ClearFIFO\000"
+ 1284      6F54696D 
+ 1284      65725F43 
+ 1284      6C656172 
+ 1284      4649464F 
+ 1285              	.LASF35:
+ 1286 0074 696E7465 		.ascii	"interruptCount\000"
+ 1286      72727570 
+ 1286      74436F75 
+ 1286      6E7400
+ 1287              	.LASF11:
+ 1288 0083 666C6F61 		.ascii	"float\000"
+ 1288      7400
+ 1289              	.LASF28:
+ 1290 0089 56696465 		.ascii	"VideoTimer_WritePeriod\000"
+ 1290      6F54696D 
+ 1290      65725F57 
+ 1290      72697465 
+ 1290      50657269 
+ 1291              	.LASF19:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 38
 
 
- 1232      65637469 
- 1233              	.LASF8:
- 1234 028a 756E7369 		.ascii	"unsigned int\000"
- 1234      676E6564 
- 1234      20696E74 
- 1234      00
- 1235              	.LASF38:
- 1236 0297 43794578 		.ascii	"CyExitCriticalSection\000"
- 1236      69744372 
- 1236      69746963 
- 1236      616C5365 
- 1236      6374696F 
- 1237              	.LASF24:
- 1238 02ad 56696465 		.ascii	"VideoTimer_WriteControlRegister\000"
- 1238      6F54696D 
- 1238      65725F57 
- 1238      72697465 
- 1238      436F6E74 
- 1239              	.LASF43:
- 1240 02cd 56696465 		.ascii	"VideoTimer_initVar\000"
- 1240      6F54696D 
- 1240      65725F69 
- 1240      6E697456 
- 1240      617200
- 1241              	.LASF17:
- 1242 02e0 73697A65 		.ascii	"sizetype\000"
- 1242      74797065 
- 1242      00
- 1243              	.LASF6:
- 1244 02e9 6C6F6E67 		.ascii	"long long int\000"
- 1244      206C6F6E 
- 1244      6720696E 
- 1244      7400
- 1245              	.LASF25:
- 1246 02f7 696E7465 		.ascii	"interruptMode\000"
- 1246      72727570 
- 1246      744D6F64 
- 1246      6500
- 1247              	.LASF30:
- 1248 0305 56696465 		.ascii	"VideoTimer_ReadCapture\000"
- 1248      6F54696D 
- 1248      65725F52 
- 1248      65616443 
- 1248      61707475 
- 1249              	.LASF22:
- 1250 031c 56696465 		.ascii	"VideoTimer_ReadControlRegister\000"
- 1250      6F54696D 
- 1250      65725F52 
- 1250      65616443 
- 1250      6F6E7472 
- 1251              	.LASF2:
- 1252 033b 73686F72 		.ascii	"short int\000"
- 1252      7420696E 
- 1252      7400
- 1253              	.LASF4:
- 1254 0345 6C6F6E67 		.ascii	"long int\000"
- 1254      20696E74 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccDX3RDU.s 			page 39
+ 1292 00a0 56696465 		.ascii	"VideoTimer_Stop\000"
+ 1292      6F54696D 
+ 1292      65725F53 
+ 1292      746F7000 
+ 1293              	.LASF1:
+ 1294 00b0 756E7369 		.ascii	"unsigned char\000"
+ 1294      676E6564 
+ 1294      20636861 
+ 1294      7200
+ 1295              	.LASF41:
+ 1296 00be 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1296      43313120 
+ 1296      352E342E 
+ 1296      31203230 
+ 1296      31363036 
+ 1297 00f1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1297      20726576 
+ 1297      6973696F 
+ 1297      6E203233 
+ 1297      37373135 
+ 1298 0124 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1298      66756E63 
+ 1298      74696F6E 
+ 1298      2D736563 
+ 1298      74696F6E 
+ 1299              	.LASF43:
+ 1300 014c 433A5C55 		.ascii	"C:\\Users\\nkhedkar\\Documents\\PSoC Creator\\ELE30"
+ 1300      73657273 
+ 1300      5C6E6B68 
+ 1300      65646B61 
+ 1300      725C446F 
+ 1301 017a 3220576F 		.ascii	"2 Workspace\\navigation\\Navigation.cydsn\000"
+ 1301      726B7370 
+ 1301      6163655C 
+ 1301      6E617669 
+ 1301      67617469 
+ 1302              	.LASF14:
+ 1303 01a2 72656738 		.ascii	"reg8\000"
+ 1303      00
+ 1304              	.LASF42:
+ 1305 01a7 47656E65 		.ascii	"Generated_Source\\PSoC5\\VideoTimer.c\000"
+ 1305      72617465 
+ 1305      645F536F 
+ 1305      75726365 
+ 1305      5C50536F 
+ 1306              	.LASF5:
+ 1307 01cb 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1307      20756E73 
+ 1307      69676E65 
+ 1307      6420696E 
+ 1307      7400
+ 1308              	.LASF9:
+ 1309 01dd 75696E74 		.ascii	"uint8\000"
+ 1309      3800
+ 1310              	.LASF26:
+ 1311 01e3 636F6E74 		.ascii	"control\000"
+ 1311      726F6C00 
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 39
 
 
- 1254      00
- 1255              	.LASF13:
- 1256 034e 63686172 		.ascii	"char\000"
- 1256      00
- 1257              	.LASF16:
- 1258 0353 6C6F6E67 		.ascii	"long double\000"
- 1258      20646F75 
- 1258      626C6500 
- 1259              	.LASF0:
- 1260 035f 7369676E 		.ascii	"signed char\000"
- 1260      65642063 
- 1260      68617200 
- 1261              	.LASF35:
- 1262 036b 56696465 		.ascii	"VideoTimer_Init\000"
- 1262      6F54696D 
- 1262      65725F49 
- 1262      6E697400 
- 1263              	.LASF33:
- 1264 037b 56696465 		.ascii	"VideoTimer_ReadCounter\000"
- 1264      6F54696D 
- 1264      65725F52 
- 1264      65616443 
- 1264      6F756E74 
- 1265              	.LASF7:
- 1266 0392 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1266      206C6F6E 
- 1266      6720756E 
- 1266      7369676E 
- 1266      65642069 
- 1267              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1312              	.LASF18:
+ 1313 01eb 56696465 		.ascii	"VideoTimer_Enable\000"
+ 1313      6F54696D 
+ 1313      65725F45 
+ 1313      6E61626C 
+ 1313      6500
+ 1314              	.LASF21:
+ 1315 01fd 56696465 		.ascii	"VideoTimer_ReadStatusRegister\000"
+ 1315      6F54696D 
+ 1315      65725F52 
+ 1315      65616453 
+ 1315      74617475 
+ 1316              	.LASF20:
+ 1317 021b 56696465 		.ascii	"VideoTimer_SoftwareCapture\000"
+ 1317      6F54696D 
+ 1317      65725F53 
+ 1317      6F667477 
+ 1317      61726543 
+ 1318              	.LASF32:
+ 1319 0236 636F756E 		.ascii	"counter\000"
+ 1319      74657200 
+ 1320              	.LASF12:
+ 1321 023e 646F7562 		.ascii	"double\000"
+ 1321      6C6500
+ 1322              	.LASF44:
+ 1323 0245 56696465 		.ascii	"VideoTimer_interruptState\000"
+ 1323      6F54696D 
+ 1323      65725F69 
+ 1323      6E746572 
+ 1323      72757074 
+ 1324              	.LASF10:
+ 1325 025f 75696E74 		.ascii	"uint16\000"
+ 1325      313600
+ 1326              	.LASF23:
+ 1327 0266 56696465 		.ascii	"VideoTimer_SetInterruptMode\000"
+ 1327      6F54696D 
+ 1327      65725F53 
+ 1327      6574496E 
+ 1327      74657272 
+ 1328              	.LASF39:
+ 1329 0282 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1329      74657243 
+ 1329      72697469 
+ 1329      63616C53 
+ 1329      65637469 
+ 1330              	.LASF8:
+ 1331 0299 756E7369 		.ascii	"unsigned int\000"
+ 1331      676E6564 
+ 1331      20696E74 
+ 1331      00
+ 1332              	.LASF40:
+ 1333 02a6 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1333      69744372 
+ 1333      69746963 
+ 1333      616C5365 
+ 1333      6374696F 
+ 1334              	.LASF24:
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 40
+
+
+ 1335 02bc 56696465 		.ascii	"VideoTimer_WriteControlRegister\000"
+ 1335      6F54696D 
+ 1335      65725F57 
+ 1335      72697465 
+ 1335      436F6E74 
+ 1336              	.LASF45:
+ 1337 02dc 56696465 		.ascii	"VideoTimer_initVar\000"
+ 1337      6F54696D 
+ 1337      65725F69 
+ 1337      6E697456 
+ 1337      617200
+ 1338              	.LASF17:
+ 1339 02ef 73697A65 		.ascii	"sizetype\000"
+ 1339      74797065 
+ 1339      00
+ 1340              	.LASF6:
+ 1341 02f8 6C6F6E67 		.ascii	"long long int\000"
+ 1341      206C6F6E 
+ 1341      6720696E 
+ 1341      7400
+ 1342              	.LASF25:
+ 1343 0306 696E7465 		.ascii	"interruptMode\000"
+ 1343      72727570 
+ 1343      744D6F64 
+ 1343      6500
+ 1344              	.LASF30:
+ 1345 0314 56696465 		.ascii	"VideoTimer_ReadCapture\000"
+ 1345      6F54696D 
+ 1345      65725F52 
+ 1345      65616443 
+ 1345      61707475 
+ 1346              	.LASF22:
+ 1347 032b 56696465 		.ascii	"VideoTimer_ReadControlRegister\000"
+ 1347      6F54696D 
+ 1347      65725F52 
+ 1347      65616443 
+ 1347      6F6E7472 
+ 1348              	.LASF2:
+ 1349 034a 73686F72 		.ascii	"short int\000"
+ 1349      7420696E 
+ 1349      7400
+ 1350              	.LASF34:
+ 1351 0354 56696465 		.ascii	"VideoTimer_SetInterruptCount\000"
+ 1351      6F54696D 
+ 1351      65725F53 
+ 1351      6574496E 
+ 1351      74657272 
+ 1352              	.LASF4:
+ 1353 0371 6C6F6E67 		.ascii	"long int\000"
+ 1353      20696E74 
+ 1353      00
+ 1354              	.LASF13:
+ 1355 037a 63686172 		.ascii	"char\000"
+ 1355      00
+ 1356              	.LASF16:
+ 1357 037f 6C6F6E67 		.ascii	"long double\000"
+ 1357      20646F75 
+ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccyu7s9u.s 			page 41
+
+
+ 1357      626C6500 
+ 1358              	.LASF0:
+ 1359 038b 7369676E 		.ascii	"signed char\000"
+ 1359      65642063 
+ 1359      68617200 
+ 1360              	.LASF37:
+ 1361 0397 56696465 		.ascii	"VideoTimer_Init\000"
+ 1361      6F54696D 
+ 1361      65725F49 
+ 1361      6E697400 
+ 1362              	.LASF33:
+ 1363 03a7 56696465 		.ascii	"VideoTimer_ReadCounter\000"
+ 1363      6F54696D 
+ 1363      65725F52 
+ 1363      65616443 
+ 1363      6F756E74 
+ 1364              	.LASF7:
+ 1365 03be 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1365      206C6F6E 
+ 1365      6720756E 
+ 1365      7369676E 
+ 1365      65642069 
+ 1366              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

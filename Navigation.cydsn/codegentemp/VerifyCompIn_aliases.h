@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Vcomp_225V.h  
+* File Name: VerifyCompIn.h  
 * Version 2.20
 *
 * Description:
@@ -15,8 +15,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_Vcomp_225V_ALIASES_H) /* Pins Vcomp_225V_ALIASES_H */
-#define CY_PINS_Vcomp_225V_ALIASES_H
+#if !defined(CY_PINS_VerifyCompIn_ALIASES_H) /* Pins VerifyCompIn_ALIASES_H */
+#define CY_PINS_VerifyCompIn_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,12 +25,12 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define Vcomp_225V_0			(Vcomp_225V__0__PC)
-#define Vcomp_225V_0_INTR	((uint16)((uint16)0x0001u << Vcomp_225V__0__SHIFT))
+#define VerifyCompIn_0			(VerifyCompIn__0__PC)
+#define VerifyCompIn_0_INTR	((uint16)((uint16)0x0001u << VerifyCompIn__0__SHIFT))
 
-#define Vcomp_225V_INTR_ALL	 ((uint16)(Vcomp_225V_0_INTR))
+#define VerifyCompIn_INTR_ALL	 ((uint16)(VerifyCompIn_0_INTR))
 
-#endif /* End Pins Vcomp_225V_ALIASES_H */
+#endif /* End Pins VerifyCompIn_ALIASES_H */
 
 
 /* [] END OF FILE */

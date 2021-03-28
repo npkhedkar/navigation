@@ -125,11 +125,15 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CamOut_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CamOut.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\CamOut.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Comp.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Comp.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Comp_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VSync_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VSync.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VSync.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\HSync_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\HSync.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\HSync.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\StartFrame.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\StartFrame.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VideoTimer.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VideoTimer.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VideoTimer_PM.c</File>
@@ -138,26 +142,18 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEven.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Black.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Black.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Counter.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Counter.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Counter_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Comp_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Comp_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Comp_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Vcomp_225V_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Vcomp_225V.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Vcomp_225V.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyLeftBlackEdge_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyLeftBlackEdge.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyLeftBlackEdge.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\FirstLine_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\FirstLine.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\FirstLine.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEvenTimer.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEvenTimer.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\OddEvenTimer_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_3.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompOut_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompOut.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompOut.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompIn_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompIn.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VerifyCompIn.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VDAC.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VDAC.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\VDAC_PM.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\Export\ARM_GCC_Generic">

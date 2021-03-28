@@ -43,7 +43,7 @@ extern uint8 VideoTimer_initVar;
 #define VideoTimer_SoftwareTriggerMode        0u
 #define VideoTimer_UsingHWEnable              1u
 #define VideoTimer_EnableTriggerMode          0u
-#define VideoTimer_InterruptOnCaptureCount    0u
+#define VideoTimer_InterruptOnCaptureCount    1u
 #define VideoTimer_RunModeUsed                0u
 #define VideoTimer_ControlRegRemoved          0u
 
@@ -169,17 +169,17 @@ void VideoTimer_Wakeup(void)        ;
 ***************************************/
 
 #define VideoTimer_INIT_PERIOD             65535u
-#define VideoTimer_INIT_CAPTURE_MODE       ((uint8)((uint8)2u << VideoTimer_CTRL_CAP_MODE_SHIFT))
+#define VideoTimer_INIT_CAPTURE_MODE       ((uint8)((uint8)1u << VideoTimer_CTRL_CAP_MODE_SHIFT))
 #define VideoTimer_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << VideoTimer_CTRL_TRIG_MODE_SHIFT))
 #if (VideoTimer_UsingFixedFunction)
     #define VideoTimer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << VideoTimer_STATUS_TC_INT_MASK_SHIFT)) | \
-                                                  ((uint8)((uint8)0 << VideoTimer_STATUS_CAPTURE_INT_MASK_SHIFT)))
+                                                  ((uint8)((uint8)1 << VideoTimer_STATUS_CAPTURE_INT_MASK_SHIFT)))
 #else
     #define VideoTimer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << VideoTimer_STATUS_TC_INT_MASK_SHIFT)) | \
-                                                 ((uint8)((uint8)0 << VideoTimer_STATUS_CAPTURE_INT_MASK_SHIFT)) | \
+                                                 ((uint8)((uint8)1 << VideoTimer_STATUS_CAPTURE_INT_MASK_SHIFT)) | \
                                                  ((uint8)((uint8)0 << VideoTimer_STATUS_FIFOFULL_INT_MASK_SHIFT)))
 #endif /* (VideoTimer_UsingFixedFunction) */
-#define VideoTimer_INIT_CAPTURE_COUNT      (2u)
+#define VideoTimer_INIT_CAPTURE_COUNT      (8u)
 #define VideoTimer_INIT_INT_CAPTURE_COUNT  ((uint8)((uint8)(1u - 1u) << VideoTimer_CTRL_INTCNT_SHIFT))
 
 

@@ -50,36 +50,32 @@
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyLeftBlackEdge_aliases.h" value="HEADER;;;;;VerifyLeftBlackEdge" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyLeftBlackEdge.c" value="SOURCE_C;CortexM3;;;;VerifyLeftBlackEdge" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyLeftBlackEdge.h" value="HEADER;;;;;VerifyLeftBlackEdge" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VSync_aliases.h" value="HEADER;;;;;VSync" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VSync.c" value="SOURCE_C;CortexM3;;;;VSync" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VSync.h" value="HEADER;;;;;VSync" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\HSync_aliases.h" value="HEADER;;;;;HSync" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\HSync.c" value="SOURCE_C;CortexM3;;;;HSync" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\HSync.h" value="HEADER;;;;;HSync" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyCompIn_aliases.h" value="HEADER;;;;;VerifyCompIn" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyCompIn.c" value="SOURCE_C;CortexM3;;;;VerifyCompIn" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyCompIn.h" value="HEADER;;;;;VerifyCompIn" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VideoTimer.c" value="SOURCE_C;CortexM3;;;;VideoTimer" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VideoTimer.h" value="HEADER;;;;;VideoTimer" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VideoTimer_PM.c" value="SOURCE_C;CortexM3;;;;VideoTimer" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\OddEvenTimer.c" value="SOURCE_C;CortexM3;;;;OddEvenTimer" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\OddEvenTimer.h" value="HEADER;;;;;OddEvenTimer" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\OddEvenTimer_PM.c" value="SOURCE_C;CortexM3;;;;OddEvenTimer" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Counter.c" value="SOURCE_C;CortexM3;;;;Counter" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Counter.h" value="HEADER;;;;;Counter" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Counter_PM.c" value="SOURCE_C;CortexM3;;;;Counter" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\StartFrame.c" value="SOURCE_C;CortexM3;;;;StartFrame" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\StartFrame.h" value="HEADER;;;;;StartFrame" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Comp_1.c" value="SOURCE_C;CortexM3;;;;Comp_1" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Comp_1.h" value="HEADER;;;;;Comp_1" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Comp_1_PM.c" value="SOURCE_C;CortexM3;;;;Comp_1" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Comp.c" value="SOURCE_C;CortexM3;;;;Comp" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Comp.h" value="HEADER;;;;;Comp" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Comp_PM.c" value="SOURCE_C;CortexM3;;;;Comp" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Black.c" value="SOURCE_C;CortexM3;;;;Black" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Black.h" value="HEADER;;;;;Black" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\OddEven_aliases.h" value="HEADER;;;;;OddEven" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\OddEven.c" value="SOURCE_C;CortexM3;;;;OddEven" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\OddEven.h" value="HEADER;;;;;OddEven" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Clock_3.c" value="SOURCE_C;CortexM3;;;;Clock_3" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Clock_3.h" value="HEADER;;;;;Clock_3" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Vcomp_225V_aliases.h" value="HEADER;;;;;Vcomp_225V" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Vcomp_225V.c" value="SOURCE_C;CortexM3;;;;Vcomp_225V" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\Vcomp_225V.h" value="HEADER;;;;;Vcomp_225V" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\FirstLine_aliases.h" value="HEADER;;;;;FirstLine" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\FirstLine.c" value="SOURCE_C;CortexM3;;;;FirstLine" />
-  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\FirstLine.h" value="HEADER;;;;;FirstLine" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyCompOut_aliases.h" value="HEADER;;;;;VerifyCompOut" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyCompOut.c" value="SOURCE_C;CortexM3;;;;VerifyCompOut" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VerifyCompOut.h" value="HEADER;;;;;VerifyCompOut" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VDAC.c" value="SOURCE_C;CortexM3;;;;VDAC" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VDAC.h" value="HEADER;;;;;VDAC" />
+  <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\VDAC_PM.c" value="SOURCE_C;CortexM3;;;;VDAC" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
   <file name="C:\Users\nkhedkar\Documents\PSoC Creator\ELE302 Workspace\navigation\Navigation.cydsn\codegentemp\LCD_LCDPort_aliases.h" value="HEADER;;;;;LCD_LCDPort" />

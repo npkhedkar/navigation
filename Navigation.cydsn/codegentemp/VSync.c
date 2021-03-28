@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: FirstLine.c  
+* File Name: VSync.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "FirstLine.h"
+#include "VSync.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 FirstLine__PORT == 15 && ((FirstLine__MASK & 0xC0) != 0))
+	 VSync__PORT == 15 && ((VSync__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: FirstLine_Write
+* Function Name: VSync_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet FirstLine_SUT.c usage_FirstLine_Write
+*  \snippet VSync_SUT.c usage_VSync_Write
 *******************************************************************************/
-void FirstLine_Write(uint8 value)
+void VSync_Write(uint8 value)
 {
-    uint8 staticBits = (FirstLine_DR & (uint8)(~FirstLine_MASK));
-    FirstLine_DR = staticBits | ((uint8)(value << FirstLine_SHIFT) & FirstLine_MASK);
+    uint8 staticBits = (VSync_DR & (uint8)(~VSync_MASK));
+    VSync_DR = staticBits | ((uint8)(value << VSync_SHIFT) & VSync_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: FirstLine_SetDriveMode
+* Function Name: VSync_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void FirstLine_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet FirstLine_SUT.c usage_FirstLine_SetDriveMode
+*  \snippet VSync_SUT.c usage_VSync_SetDriveMode
 *******************************************************************************/
-void FirstLine_SetDriveMode(uint8 mode)
+void VSync_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(FirstLine_0, mode);
+	CyPins_SetPinDriveMode(VSync_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: FirstLine_Read
+* Function Name: VSync_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void FirstLine_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet FirstLine_SUT.c usage_FirstLine_Read  
+*  \snippet VSync_SUT.c usage_VSync_Read  
 *******************************************************************************/
-uint8 FirstLine_Read(void)
+uint8 VSync_Read(void)
 {
-    return (FirstLine_PS & FirstLine_MASK) >> FirstLine_SHIFT;
+    return (VSync_PS & VSync_MASK) >> VSync_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: FirstLine_ReadDataReg
+* Function Name: VSync_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 FirstLine_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred FirstLine_Read() API because the 
-* FirstLine_ReadDataReg() reads the data register instead of the status 
+* preferred VSync_Read() API because the 
+* VSync_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 FirstLine_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet FirstLine_SUT.c usage_FirstLine_ReadDataReg 
+*  \snippet VSync_SUT.c usage_VSync_ReadDataReg 
 *******************************************************************************/
-uint8 FirstLine_ReadDataReg(void)
+uint8 VSync_ReadDataReg(void)
 {
-    return (FirstLine_DR & FirstLine_MASK) >> FirstLine_SHIFT;
+    return (VSync_DR & VSync_MASK) >> VSync_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(FirstLine_INTSTAT) 
+#if defined(VSync_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: FirstLine_SetInterruptMode
+    * Function Name: VSync_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 FirstLine_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use FirstLine_INTR_ALL to configure the
+    *  component. Or you may use VSync_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - FirstLine_0_INTR       (First pin in the list)
-    *  - FirstLine_1_INTR       (Second pin in the list)
+    *  - VSync_0_INTR       (First pin in the list)
+    *  - VSync_1_INTR       (Second pin in the list)
     *  - ...
-    *  - FirstLine_INTR_ALL     (All pins in Pins component)
+    *  - VSync_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 FirstLine_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet FirstLine_SUT.c usage_FirstLine_SetInterruptMode
+    *  \snippet VSync_SUT.c usage_VSync_SetInterruptMode
     *******************************************************************************/
-    void FirstLine_SetInterruptMode(uint16 position, uint16 mode)
+    void VSync_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & FirstLine_0_INTR) != 0u) 
+		if((position & VSync_0_INTR) != 0u) 
 		{ 
-			 FirstLine_0_INTTYPE_REG = (uint8)mode; 
+			 VSync_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: FirstLine_ClearInterrupt
+    * Function Name: VSync_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 FirstLine_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet FirstLine_SUT.c usage_FirstLine_ClearInterrupt
+    *  \snippet VSync_SUT.c usage_VSync_ClearInterrupt
     *******************************************************************************/
-    uint8 FirstLine_ClearInterrupt(void)
+    uint8 VSync_ClearInterrupt(void)
     {
-        return (FirstLine_INTSTAT & FirstLine_MASK) >> FirstLine_SHIFT;
+        return (VSync_INTSTAT & VSync_MASK) >> VSync_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 
