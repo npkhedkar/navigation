@@ -30,7 +30,7 @@ int oldTime = 0;
 int currentTime = 0;
 
 
-double setSpeed = 4.0;      // optimal speed target [ft/s]
+double setSpeed = 2.0;      // optimal speed target [ft/s]
 double KP = 280;            // proportional control param
 double KI = 5;              // integral control param
 double KD = 15;             // derivative control param
@@ -62,27 +62,32 @@ int OEFREQ = 30;            // frequency of original frame reads (since 2 copies
 
 // interrupt flags
 int hallFlag = 0;
-int newFrameFlag = 0;
-// int useCamFlag = 0;
 int blackFlag = 0;
 
 // navigation
-double firstPixelTime;
-int XSHSync = 16;           // number of hSync highs after oddeven high before frame begins
+double firstPixelTime = 445; // the location (in timer) of the left edge of the black line
+int CENTERSERVO = 155;     // default PWM setting for the center servo
+int setservo;              // saves the current servo alignment
+int oldsetservo = 155;
+double servoKP = 1;
+double servoKI;
+double servoKD;
+
+double pixelError;
+
 
 
 // interrupt sets hall flag to 1 when magnet is passed over HE
 CY_ISR(inter1) {
     hallFlag = 1;
+    Timer_ReadStatusRegister();
 }
 
-/*
 CY_ISR(inter2) {
-    newFrameFlag = 1;
+    VideoTimer_ReadStatusRegister(); // reset blackflag register 
 }
-*/
 
-CY_ISR(inter4) {
+CY_ISR(inter3) {
     blackFlag = 1;
 }
 
@@ -99,30 +104,30 @@ int main(void)
     UART_Start();
     PWM_Start();
     
-    //test
-    // OddEvenTimer_Start();
-    
+    // VideoTimer
     VideoTimer_Start();
-    // VideoTimer_Stop();
-    /*
-    Counter_Start();
-    // Counter_Stop();
-    StartFrame_Start();
-    StartFrame_SetVector(inter2);
-    */
     
     // VDAC
     VDAC_Start();
     VDAC_SetSpeed(VDAC_LOWSPEED);
     VDAC_SetRange(VDAC_RANGE_1V);
-    VDAC_SetValue(162);
+    VDAC_SetValue(128);
     
     // Comparator
     Comp_Start();
     Comp_SetSpeed(Comp_HIGHSPEED);
- 
+    
+    // Servo PWM
+    ServoPWM_Start();
+    ServoPWM_WriteCompare(CENTERSERVO);
+    
+    // Video Frame Interrupt
+    NewFrame_Start();
+    NewFrame_SetVector(inter2);
+    
+    // Black Edge Interrupt
     Black_Start();
-    Black_SetVector(inter4);
+    Black_SetVector(inter3);
     
     /*
     PWM_WriteCompare(200);
@@ -132,33 +137,47 @@ int main(void)
     LCD_PrintString(strbuf);
     */
     
-    
-    LPS = LPF * FPS; // lines per second
-    HFREQ = 1.0 / LPS;// hsync freq
-    int halfLPF = LPF / 2 + 1;
     int blackTime;
-    
 
     for(;;)
-    { 
-        if (newFrameFlag == 1) {
-            //Counter_Start();
-            //OddEvenTimer_Init();
-            newFrameFlag = 0;
-        }
+    {
         if (blackFlag == 1) { // collect data
             blackTime = COUNTDOWN - VideoTimer_ReadCapture();
+            
             /*
-            sprintf(uartbuf, "Black pixel location: %d,", blackTime);
+            // Bang Bang test
+            if (blackTime < 440) {
+                setservo = 100; // go left
+            } else if (blackTime > 450) {
+                setservo = 198; // go right
+            } else {
+                setservo = 155; // go straight
+            }
+            ServoPWM_WriteCompare(setservo);
+            */
+            /*
+            // print black timer (UART)
+            sprintf(uartbuf, "Black edge Time: %d\n", blackTime);
             UART_PutString(uartbuf);
             */
+            
+            // PID Control
+            oldsetservo = setservo;
+            pixelError = firstPixelTime - blackTime;
+            setservo = -5 * pixelError + 155; // kp = -10
+            if (setservo > 198) {setservo = 198; }
+            else if (setservo < 105 || oldsetservo - setservo > 105) {setservo = 105; }
+            ServoPWM_WriteCompare((uint8) setservo);
+            
+            // LCD out
             LCD_ClearDisplay();
             sprintf(strbuf, "Location: %d,", blackTime);
             LCD_PrintString(strbuf);
             
-            blackFlag = 0;
+            // reset flag
+            blackFlag = 0;    
         }
-        /*
+        
         if(hallFlag == 1){
             // Stops robot movement after predetermined number of ticks (~40 feet)
             if(ticks > TICKCUTOFF) {
@@ -221,7 +240,6 @@ int main(void)
             // stop interrupt
             hallFlag = 0;
         }
-        */
         
       
         

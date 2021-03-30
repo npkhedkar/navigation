@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 1
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 1
 
 
    1              		.syntax unified
@@ -19,14 +19,14 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.inter1,"ax",%progbits
+  19              		.section	.text.inter3,"ax",%progbits
   20              		.align	2
-  21              		.global	inter1
+  21              		.global	inter3
   22              		.thumb
   23              		.thumb_func
-  24              		.type	inter1, %function
-  25              	inter1:
-  26              	.LFB64:
+  24              		.type	inter3, %function
+  25              	inter3:
+  26              	.LFB66:
   27              		.file 1 "main.c"
    1:main.c        **** /* ========================================
    2:main.c        ****  *
@@ -58,12 +58,12 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 1
   28:main.c        **** // used to deal with countdown timer underflow issues
   29:main.c        **** int oldTime = 0;
   30:main.c        **** int currentTime = 0;
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 2
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 2
 
 
   31:main.c        **** 
   32:main.c        **** 
-  33:main.c        **** double setSpeed = 4.0;      // optimal speed target [ft/s]
+  33:main.c        **** double setSpeed = 2.0;      // optimal speed target [ft/s]
   34:main.c        **** double KP = 280;            // proportional control param
   35:main.c        **** double KI = 5;              // integral control param
   36:main.c        **** double KD = 15;             // derivative control param
@@ -95,1932 +95,2863 @@ ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 1
   62:main.c        **** 
   63:main.c        **** // interrupt flags
   64:main.c        **** int hallFlag = 0;
-  65:main.c        **** int newFrameFlag = 0;
-  66:main.c        **** // int useCamFlag = 0;
-  67:main.c        **** int blackFlag = 0;
-  68:main.c        **** 
-  69:main.c        **** // navigation
-  70:main.c        **** double firstPixelTime;
-  71:main.c        **** int XSHSync = 16;           // number of hSync highs after oddeven high before frame begins
-  72:main.c        **** 
-  73:main.c        **** 
-  74:main.c        **** // interrupt sets hall flag to 1 when magnet is passed over HE
-  75:main.c        **** CY_ISR(inter1) {
-  28              		.loc 1 75 0
+  65:main.c        **** int blackFlag = 0;
+  66:main.c        **** 
+  67:main.c        **** // navigation
+  68:main.c        **** double firstPixelTime = 445; // the location (in timer) of the left edge of the black line
+  69:main.c        **** int CENTERSERVO = 155;     // default PWM setting for the center servo
+  70:main.c        **** int setservo;              // saves the current servo alignment
+  71:main.c        **** int oldsetservo = 155;
+  72:main.c        **** double servoKP = 1;
+  73:main.c        **** double servoKI;
+  74:main.c        **** double servoKD;
+  75:main.c        **** 
+  76:main.c        **** double pixelError;
+  77:main.c        **** 
+  78:main.c        **** 
+  79:main.c        **** 
+  80:main.c        **** // interrupt sets hall flag to 1 when magnet is passed over HE
+  81:main.c        **** CY_ISR(inter1) {
+  82:main.c        ****     hallFlag = 1;
+  83:main.c        ****     Timer_ReadStatusRegister();
+  84:main.c        **** }
+  85:main.c        **** 
+  86:main.c        **** CY_ISR(inter2) {
+  87:main.c        ****     VideoTimer_ReadStatusRegister(); // reset blackflag register 
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 3
+
+
+  88:main.c        **** }
+  89:main.c        **** 
+  90:main.c        **** CY_ISR(inter3) {
+  28              		.loc 1 90 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32              		@ link register save eliminated.
-  76:main.c        ****     hallFlag = 1;
-  33              		.loc 1 76 0
+  91:main.c        ****     blackFlag = 1;
+  33              		.loc 1 91 0
   34 0000 0122     		movs	r2, #1
   35 0002 014B     		ldr	r3, .L2
   36 0004 1A60     		str	r2, [r3]
   37 0006 7047     		bx	lr
   38              	.L3:
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 3
-
-
   39              		.align	2
   40              	.L2:
   41 0008 00000000 		.word	.LANCHOR0
   42              		.cfi_endproc
-  43              	.LFE64:
-  44              		.size	inter1, .-inter1
-  45              		.section	.text.inter4,"ax",%progbits
+  43              	.LFE66:
+  44              		.size	inter3, .-inter3
+  45              		.section	.text.inter1,"ax",%progbits
   46              		.align	2
-  47              		.global	inter4
+  47              		.global	inter1
   48              		.thumb
   49              		.thumb_func
-  50              		.type	inter4, %function
-  51              	inter4:
-  52              	.LFB65:
-  77:main.c        **** }
-  78:main.c        **** 
-  79:main.c        **** /*
-  80:main.c        **** CY_ISR(inter2) {
-  81:main.c        ****     newFrameFlag = 1;
-  82:main.c        **** }
-  83:main.c        **** */
-  84:main.c        **** 
-  85:main.c        **** CY_ISR(inter4) {
-  53              		.loc 1 85 0
+  50              		.type	inter1, %function
+  51              	inter1:
+  52              	.LFB64:
+  81:main.c        ****     hallFlag = 1;
+  53              		.loc 1 81 0
   54              		.cfi_startproc
   55              		@ args = 0, pretend = 0, frame = 0
   56              		@ frame_needed = 0, uses_anonymous_args = 0
-  57              		@ link register save eliminated.
-  86:main.c        ****     blackFlag = 1;
-  58              		.loc 1 86 0
-  59 0000 0122     		movs	r2, #1
-  60 0002 014B     		ldr	r3, .L5
-  61 0004 5A60     		str	r2, [r3, #4]
-  62 0006 7047     		bx	lr
-  63              	.L6:
-  64              		.align	2
-  65              	.L5:
-  66 0008 00000000 		.word	.LANCHOR0
-  67              		.cfi_endproc
-  68              	.LFE65:
-  69              		.size	inter4, .-inter4
-  70              		.global	__aeabi_i2d
-  71              		.global	__aeabi_ddiv
-  72              		.global	__aeabi_dsub
-  73              		.global	__aeabi_d2iz
-  74              		.section	.text.main,"ax",%progbits
-  75              		.align	2
-  76              		.global	main
-  77              		.thumb
-  78              		.thumb_func
-  79              		.type	main, %function
-  80              	main:
-  81              	.LFB66:
+  57 0000 08B5     		push	{r3, lr}
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 3, -8
+  60              		.cfi_offset 14, -4
+  82:main.c        ****     Timer_ReadStatusRegister();
+  61              		.loc 1 82 0
+  62 0002 0122     		movs	r2, #1
+  63 0004 024B     		ldr	r3, .L6
+  64 0006 5A60     		str	r2, [r3, #4]
+  83:main.c        **** }
+  65              		.loc 1 83 0
+  66 0008 FFF7FEFF 		bl	Timer_ReadStatusRegister
+  67              	.LVL0:
+  68 000c 08BD     		pop	{r3, pc}
+  69              	.L7:
+  70 000e 00BF     		.align	2
+  71              	.L6:
+  72 0010 00000000 		.word	.LANCHOR0
+  73              		.cfi_endproc
+  74              	.LFE64:
+  75              		.size	inter1, .-inter1
+  76              		.section	.text.inter2,"ax",%progbits
+  77              		.align	2
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 4
+
+
+  78              		.global	inter2
+  79              		.thumb
+  80              		.thumb_func
+  81              		.type	inter2, %function
+  82              	inter2:
+  83              	.LFB65:
+  86:main.c        ****     VideoTimer_ReadStatusRegister(); // reset blackflag register 
+  84              		.loc 1 86 0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88 0000 08B5     		push	{r3, lr}
+  89              		.cfi_def_cfa_offset 8
+  90              		.cfi_offset 3, -8
+  91              		.cfi_offset 14, -4
   87:main.c        **** }
-  88:main.c        **** 
-  89:main.c        **** int main(void)
-  90:main.c        **** {
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 4
+  92              		.loc 1 87 0
+  93 0002 FFF7FEFF 		bl	VideoTimer_ReadStatusRegister
+  94              	.LVL1:
+  95 0006 08BD     		pop	{r3, pc}
+  96              		.cfi_endproc
+  97              	.LFE65:
+  98              		.size	inter2, .-inter2
+  99              		.global	__aeabi_i2d
+ 100              		.global	__aeabi_dsub
+ 101              		.global	__aeabi_d2iz
+ 102              		.global	__aeabi_dmul
+ 103              		.global	__aeabi_dadd
+ 104              		.global	__aeabi_ddiv
+ 105              		.global	__aeabi_dcmpgt
+ 106              		.global	__aeabi_dcmplt
+ 107              		.global	__aeabi_d2uiz
+ 108              		.global	__aeabi_ui2d
+ 109              		.section	.text.main,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	main
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	main, %function
+ 115              	main:
+ 116              	.LFB67:
+  92:main.c        **** }
+  93:main.c        **** 
+  94:main.c        **** int main(void)
+  95:main.c        **** {
+ 117              		.loc 1 95 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 16
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 122              		.cfi_def_cfa_offset 32
+ 123              		.cfi_offset 4, -32
+ 124              		.cfi_offset 5, -28
+ 125              		.cfi_offset 6, -24
+ 126              		.cfi_offset 7, -20
+ 127              		.cfi_offset 8, -16
+ 128              		.cfi_offset 9, -12
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 5
 
 
-  82              		.loc 1 90 0
-  83              		.cfi_startproc
-  84              		@ args = 0, pretend = 0, frame = 16
-  85              		@ frame_needed = 0, uses_anonymous_args = 0
-  86 0000 30B5     		push	{r4, r5, lr}
-  87              		.cfi_def_cfa_offset 12
-  88              		.cfi_offset 4, -12
-  89              		.cfi_offset 5, -8
-  90              		.cfi_offset 14, -4
-  91 0002 85B0     		sub	sp, sp, #20
-  92              		.cfi_def_cfa_offset 32
-  91:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
-  93              		.loc 1 91 0
-  94              		.syntax unified
-  95              	@ 91 "main.c" 1
-  96 0004 62B6     		CPSIE   i
-  97              	@ 0 "" 2
-  92:main.c        ****     char strbuf[16];
-  93:main.c        ****     
-  94:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-  95:main.c        ****     LCD_Start();
-  98              		.loc 1 95 0
-  99              		.thumb
- 100              		.syntax unified
- 101 0006 FFF7FEFF 		bl	LCD_Start
- 102              	.LVL0:
-  96:main.c        ****     HE_Interrupt_Start();
- 103              		.loc 1 96 0
- 104 000a FFF7FEFF 		bl	HE_Interrupt_Start
- 105              	.LVL1:
-  97:main.c        ****     HE_Interrupt_SetVector(inter1);
- 106              		.loc 1 97 0
- 107 000e 2E48     		ldr	r0, .L12
- 108 0010 FFF7FEFF 		bl	HE_Interrupt_SetVector
- 109              	.LVL2:
-  98:main.c        ****     Timer_Start();
- 110              		.loc 1 98 0
- 111 0014 FFF7FEFF 		bl	Timer_Start
- 112              	.LVL3:
-  99:main.c        ****     UART_Start();
- 113              		.loc 1 99 0
- 114 0018 FFF7FEFF 		bl	UART_Start
- 115              	.LVL4:
- 100:main.c        ****     PWM_Start();
- 116              		.loc 1 100 0
- 117 001c FFF7FEFF 		bl	PWM_Start
- 118              	.LVL5:
- 101:main.c        ****     
- 102:main.c        ****     //test
- 103:main.c        ****     // OddEvenTimer_Start();
- 104:main.c        ****     
- 105:main.c        ****     VideoTimer_Start();
- 119              		.loc 1 105 0
- 120 0020 FFF7FEFF 		bl	VideoTimer_Start
- 121              	.LVL6:
- 106:main.c        ****     // VideoTimer_Stop();
- 107:main.c        ****     /*
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 5
+ 129              		.cfi_offset 10, -8
+ 130              		.cfi_offset 14, -4
+ 131 0004 8CB0     		sub	sp, sp, #48
+ 132              		.cfi_def_cfa_offset 80
+  96:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 133              		.loc 1 96 0
+ 134              		.syntax unified
+ 135              	@ 96 "main.c" 1
+ 136 0006 62B6     		CPSIE   i
+ 137              	@ 0 "" 2
+  97:main.c        ****     char strbuf[16];
+  98:main.c        ****     
+  99:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ 100:main.c        ****     LCD_Start();
+ 138              		.loc 1 100 0
+ 139              		.thumb
+ 140              		.syntax unified
+ 141 0008 FFF7FEFF 		bl	LCD_Start
+ 142              	.LVL2:
+ 101:main.c        ****     HE_Interrupt_Start();
+ 143              		.loc 1 101 0
+ 144 000c FFF7FEFF 		bl	HE_Interrupt_Start
+ 145              	.LVL3:
+ 102:main.c        ****     HE_Interrupt_SetVector(inter1);
+ 146              		.loc 1 102 0
+ 147 0010 AB48     		ldr	r0, .L28+16
+ 148 0012 FFF7FEFF 		bl	HE_Interrupt_SetVector
+ 149              	.LVL4:
+ 103:main.c        ****     Timer_Start();
+ 150              		.loc 1 103 0
+ 151 0016 FFF7FEFF 		bl	Timer_Start
+ 152              	.LVL5:
+ 104:main.c        ****     UART_Start();
+ 153              		.loc 1 104 0
+ 154 001a FFF7FEFF 		bl	UART_Start
+ 155              	.LVL6:
+ 105:main.c        ****     PWM_Start();
+ 156              		.loc 1 105 0
+ 157 001e FFF7FEFF 		bl	PWM_Start
+ 158              	.LVL7:
+ 106:main.c        ****     
+ 107:main.c        ****     // VideoTimer
+ 108:main.c        ****     VideoTimer_Start();
+ 159              		.loc 1 108 0
+ 160 0022 FFF7FEFF 		bl	VideoTimer_Start
+ 161              	.LVL8:
+ 109:main.c        ****     
+ 110:main.c        ****     // VDAC
+ 111:main.c        ****     VDAC_Start();
+ 162              		.loc 1 111 0
+ 163 0026 FFF7FEFF 		bl	VDAC_Start
+ 164              	.LVL9:
+ 112:main.c        ****     VDAC_SetSpeed(VDAC_LOWSPEED);
+ 165              		.loc 1 112 0
+ 166 002a 0020     		movs	r0, #0
+ 167 002c FFF7FEFF 		bl	VDAC_SetSpeed
+ 168              	.LVL10:
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 6
 
 
- 108:main.c        ****     Counter_Start();
- 109:main.c        ****     // Counter_Stop();
- 110:main.c        ****     StartFrame_Start();
- 111:main.c        ****     StartFrame_SetVector(inter2);
- 112:main.c        ****     */
- 113:main.c        ****     
- 114:main.c        ****     // VDAC
- 115:main.c        ****     VDAC_Start();
- 122              		.loc 1 115 0
- 123 0024 FFF7FEFF 		bl	VDAC_Start
- 124              	.LVL7:
- 116:main.c        ****     VDAC_SetSpeed(VDAC_LOWSPEED);
- 125              		.loc 1 116 0
- 126 0028 0020     		movs	r0, #0
- 127 002a FFF7FEFF 		bl	VDAC_SetSpeed
- 128              	.LVL8:
- 117:main.c        ****     VDAC_SetRange(VDAC_RANGE_1V);
- 129              		.loc 1 117 0
- 130 002e 0020     		movs	r0, #0
- 131 0030 FFF7FEFF 		bl	VDAC_SetRange
- 132              	.LVL9:
- 118:main.c        ****     VDAC_SetValue(162);
- 133              		.loc 1 118 0
- 134 0034 A220     		movs	r0, #162
- 135 0036 FFF7FEFF 		bl	VDAC_SetValue
- 136              	.LVL10:
+ 113:main.c        ****     VDAC_SetRange(VDAC_RANGE_1V);
+ 169              		.loc 1 113 0
+ 170 0030 0020     		movs	r0, #0
+ 171 0032 FFF7FEFF 		bl	VDAC_SetRange
+ 172              	.LVL11:
+ 114:main.c        ****     VDAC_SetValue(128);
+ 173              		.loc 1 114 0
+ 174 0036 8020     		movs	r0, #128
+ 175 0038 FFF7FEFF 		bl	VDAC_SetValue
+ 176              	.LVL12:
+ 115:main.c        ****     
+ 116:main.c        ****     // Comparator
+ 117:main.c        ****     Comp_Start();
+ 177              		.loc 1 117 0
+ 178 003c FFF7FEFF 		bl	Comp_Start
+ 179              	.LVL13:
+ 118:main.c        ****     Comp_SetSpeed(Comp_HIGHSPEED);
+ 180              		.loc 1 118 0
+ 181 0040 0120     		movs	r0, #1
+ 182 0042 FFF7FEFF 		bl	Comp_SetSpeed
+ 183              	.LVL14:
  119:main.c        ****     
- 120:main.c        ****     // Comparator
- 121:main.c        ****     Comp_Start();
- 137              		.loc 1 121 0
- 138 003a FFF7FEFF 		bl	Comp_Start
- 139              	.LVL11:
- 122:main.c        ****     Comp_SetSpeed(Comp_HIGHSPEED);
- 140              		.loc 1 122 0
- 141 003e 0120     		movs	r0, #1
- 142 0040 FFF7FEFF 		bl	Comp_SetSpeed
- 143              	.LVL12:
- 123:main.c        ****  
- 124:main.c        ****     Black_Start();
- 144              		.loc 1 124 0
- 145 0044 FFF7FEFF 		bl	Black_Start
- 146              	.LVL13:
- 125:main.c        ****     Black_SetVector(inter4);
- 147              		.loc 1 125 0
- 148 0048 2048     		ldr	r0, .L12+4
- 149 004a FFF7FEFF 		bl	Black_SetVector
- 150              	.LVL14:
- 126:main.c        ****     
- 127:main.c        ****     /*
- 128:main.c        ****     PWM_WriteCompare(200);
- 129:main.c        ****     
- 130:main.c        ****     sprintf(strbuf,"Optimal speed: %.0f,", setSpeed);
- 131:main.c        ****     LCD_Position(0,0);
- 132:main.c        ****     LCD_PrintString(strbuf);
- 133:main.c        ****     */
+ 120:main.c        ****     // Servo PWM
+ 121:main.c        ****     ServoPWM_Start();
+ 184              		.loc 1 121 0
+ 185 0046 FFF7FEFF 		bl	ServoPWM_Start
+ 186              	.LVL15:
+ 122:main.c        ****     ServoPWM_WriteCompare(CENTERSERVO);
+ 187              		.loc 1 122 0
+ 188 004a 9E4B     		ldr	r3, .L28+20
+ 189 004c 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 190 004e FFF7FEFF 		bl	ServoPWM_WriteCompare
+ 191              	.LVL16:
+ 123:main.c        ****     
+ 124:main.c        ****     // Video Frame Interrupt
+ 125:main.c        ****     NewFrame_Start();
+ 192              		.loc 1 125 0
+ 193 0052 FFF7FEFF 		bl	NewFrame_Start
+ 194              	.LVL17:
+ 126:main.c        ****     NewFrame_SetVector(inter2);
+ 195              		.loc 1 126 0
+ 196 0056 9C48     		ldr	r0, .L28+24
+ 197 0058 FFF7FEFF 		bl	NewFrame_SetVector
+ 198              	.LVL18:
+ 127:main.c        ****     
+ 128:main.c        ****     // Black Edge Interrupt
+ 129:main.c        ****     Black_Start();
+ 199              		.loc 1 129 0
+ 200 005c FFF7FEFF 		bl	Black_Start
+ 201              	.LVL19:
+ 130:main.c        ****     Black_SetVector(inter3);
+ 202              		.loc 1 130 0
+ 203 0060 9A48     		ldr	r0, .L28+28
+ 204 0062 FFF7FEFF 		bl	Black_SetVector
+ 205              	.LVL20:
+ 206              	.L15:
+ 131:main.c        ****     
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 7
+
+
+ 132:main.c        ****     /*
+ 133:main.c        ****     PWM_WriteCompare(200);
  134:main.c        ****     
- 135:main.c        ****     
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 6
-
-
- 136:main.c        ****     LPS = LPF * FPS; // lines per second
- 151              		.loc 1 136 0
- 152 004e 204B     		ldr	r3, .L12+8
- 153 0050 1868     		ldr	r0, [r3]
- 154 0052 5B68     		ldr	r3, [r3, #4]
- 155 0054 03FB00F0 		mul	r0, r3, r0
- 156 0058 1E4B     		ldr	r3, .L12+12
- 157 005a 1860     		str	r0, [r3]
- 137:main.c        ****     HFREQ = 1.0 / LPS;// hsync freq
- 158              		.loc 1 137 0
- 159 005c FFF7FEFF 		bl	__aeabi_i2d
- 160              	.LVL15:
- 161 0060 0246     		mov	r2, r0
- 162 0062 0B46     		mov	r3, r1
- 163 0064 0020     		movs	r0, #0
- 164 0066 1C49     		ldr	r1, .L12+16
- 165 0068 FFF7FEFF 		bl	__aeabi_ddiv
- 166              	.LVL16:
- 167 006c 1B4B     		ldr	r3, .L12+20
- 168 006e C3E90001 		strd	r0, [r3]
- 169              	.LVL17:
- 170              	.L9:
- 138:main.c        ****     int halfLPF = LPF / 2 + 1;
- 139:main.c        ****     int blackTime;
- 140:main.c        ****     
+ 135:main.c        ****     sprintf(strbuf,"Optimal speed: %.0f,", setSpeed);
+ 136:main.c        ****     LCD_Position(0,0);
+ 137:main.c        ****     LCD_PrintString(strbuf);
+ 138:main.c        ****     */
+ 139:main.c        ****     
+ 140:main.c        ****     int blackTime;
  141:main.c        **** 
  142:main.c        ****     for(;;)
- 143:main.c        ****     { 
- 144:main.c        ****         if (newFrameFlag == 1) {
- 171              		.loc 1 144 0
- 172 0072 1B4B     		ldr	r3, .L12+24
- 173 0074 9B68     		ldr	r3, [r3, #8]
- 174 0076 012B     		cmp	r3, #1
- 175 0078 02D1     		bne	.L8
- 145:main.c        ****             //Counter_Start();
- 146:main.c        ****             //OddEvenTimer_Init();
- 147:main.c        ****             newFrameFlag = 0;
- 176              		.loc 1 147 0
- 177 007a 0022     		movs	r2, #0
- 178 007c 184B     		ldr	r3, .L12+24
- 179 007e 9A60     		str	r2, [r3, #8]
- 180              	.L8:
- 148:main.c        ****         }
- 149:main.c        ****         if (blackFlag == 1) { // collect data
- 181              		.loc 1 149 0
- 182 0080 174B     		ldr	r3, .L12+24
- 183 0082 5B68     		ldr	r3, [r3, #4]
- 184 0084 012B     		cmp	r3, #1
- 185 0086 F4D1     		bne	.L9
- 150:main.c        ****             blackTime = COUNTDOWN - VideoTimer_ReadCapture();
- 186              		.loc 1 150 0
- 187 0088 114B     		ldr	r3, .L12+8
- 188 008a D3E90245 		ldrd	r4, [r3, #8]
- 189 008e FFF7FEFF 		bl	VideoTimer_ReadCapture
- 190              	.LVL18:
- 191 0092 FFF7FEFF 		bl	__aeabi_i2d
- 192              	.LVL19:
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 7
+ 143:main.c        ****     {
+ 144:main.c        ****         if (blackFlag == 1) { // collect data
+ 207              		.loc 1 144 0
+ 208 0066 9A4B     		ldr	r3, .L28+32
+ 209 0068 1B68     		ldr	r3, [r3]
+ 210 006a 012B     		cmp	r3, #1
+ 211 006c 48D1     		bne	.L11
+ 145:main.c        ****             blackTime = COUNTDOWN - VideoTimer_ReadCapture();
+ 212              		.loc 1 145 0
+ 213 006e 954C     		ldr	r4, .L28+20
+ 214 0070 D4E90267 		ldrd	r6, [r4, #8]
+ 215 0074 FFF7FEFF 		bl	VideoTimer_ReadCapture
+ 216              	.LVL21:
+ 217 0078 FFF7FEFF 		bl	__aeabi_i2d
+ 218              	.LVL22:
+ 219 007c 0246     		mov	r2, r0
+ 220 007e 0B46     		mov	r3, r1
+ 221 0080 3046     		mov	r0, r6
+ 222 0082 3946     		mov	r1, r7
+ 223 0084 FFF7FEFF 		bl	__aeabi_dsub
+ 224              	.LVL23:
+ 225 0088 FFF7FEFF 		bl	__aeabi_d2iz
+ 226              	.LVL24:
+ 227 008c 0746     		mov	r7, r0
+ 228              	.LVL25:
+ 146:main.c        ****             
+ 147:main.c        ****             /*
+ 148:main.c        ****             // Bang Bang test
+ 149:main.c        ****             if (blackTime < 440) {
+ 150:main.c        ****                 setservo = 100; // go left
+ 151:main.c        ****             } else if (blackTime > 450) {
+ 152:main.c        ****                 setservo = 198; // go right
+ 153:main.c        ****             } else {
+ 154:main.c        ****                 setservo = 155; // go straight
+ 155:main.c        ****             }
+ 156:main.c        ****             ServoPWM_WriteCompare(setservo);
+ 157:main.c        ****             */
+ 158:main.c        ****             /*
+ 159:main.c        ****             // print black timer (UART)
+ 160:main.c        ****             sprintf(uartbuf, "Black edge Time: %d\n", blackTime);
+ 161:main.c        ****             UART_PutString(uartbuf);
+ 162:main.c        ****             */
+ 163:main.c        ****             
+ 164:main.c        ****             // PID Control
+ 165:main.c        ****             oldsetservo = setservo;
+ 229              		.loc 1 165 0
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 8
 
 
- 193 0096 0246     		mov	r2, r0
- 194 0098 0B46     		mov	r3, r1
- 195 009a 2046     		mov	r0, r4
- 196 009c 2946     		mov	r1, r5
- 197 009e FFF7FEFF 		bl	__aeabi_dsub
- 198              	.LVL20:
- 199 00a2 FFF7FEFF 		bl	__aeabi_d2iz
- 200              	.LVL21:
- 201 00a6 0446     		mov	r4, r0
- 202              	.LVL22:
- 151:main.c        ****             /*
- 152:main.c        ****             sprintf(uartbuf, "Black pixel location: %d,", blackTime);
- 153:main.c        ****             UART_PutString(uartbuf);
- 154:main.c        ****             */
- 155:main.c        ****             LCD_ClearDisplay();
- 203              		.loc 1 155 0
- 204 00a8 0120     		movs	r0, #1
- 205              	.LVL23:
- 206 00aa FFF7FEFF 		bl	LCD_WriteControl
- 207              	.LVL24:
- 156:main.c        ****             sprintf(strbuf, "Location: %d,", blackTime);
- 208              		.loc 1 156 0
- 209 00ae 2246     		mov	r2, r4
- 210 00b0 0C49     		ldr	r1, .L12+28
- 211 00b2 6846     		mov	r0, sp
- 212 00b4 FFF7FEFF 		bl	sprintf
- 213              	.LVL25:
- 157:main.c        ****             LCD_PrintString(strbuf);
- 214              		.loc 1 157 0
- 215 00b8 6846     		mov	r0, sp
- 216 00ba FFF7FEFF 		bl	LCD_PrintString
- 217              	.LVL26:
- 158:main.c        ****             
- 159:main.c        ****             blackFlag = 0;
- 218              		.loc 1 159 0
- 219 00be 0022     		movs	r2, #0
- 220 00c0 074B     		ldr	r3, .L12+24
- 221 00c2 5A60     		str	r2, [r3, #4]
- 222 00c4 D5E7     		b	.L9
- 223              	.L13:
- 224 00c6 00BF     		.align	2
- 225              	.L12:
- 226 00c8 00000000 		.word	inter1
- 227 00cc 00000000 		.word	inter4
- 228 00d0 00000000 		.word	.LANCHOR1
- 229 00d4 00000000 		.word	LPS
- 230 00d8 0000F03F 		.word	1072693248
- 231 00dc 00000000 		.word	HFREQ
- 232 00e0 00000000 		.word	.LANCHOR0
- 233 00e4 00000000 		.word	.LC0
- 234              		.cfi_endproc
- 235              	.LFE66:
- 236              		.size	main, .-main
- 237              		.global	XSHSync
- 238              		.comm	firstPixelTime,8,8
- 239              		.global	blackFlag
- 240              		.global	newFrameFlag
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 8
+ 230 008e 914D     		ldr	r5, .L28+36
+ 231 0090 2E68     		ldr	r6, [r5]
+ 232 0092 2661     		str	r6, [r4, #16]
+ 166:main.c        ****             pixelError = firstPixelTime - blackTime;
+ 233              		.loc 1 166 0
+ 234 0094 FFF7FEFF 		bl	__aeabi_i2d
+ 235              	.LVL26:
+ 236 0098 0246     		mov	r2, r0
+ 237 009a 0B46     		mov	r3, r1
+ 238 009c D4E90601 		ldrd	r0, [r4, #24]
+ 239 00a0 FFF7FEFF 		bl	__aeabi_dsub
+ 240              	.LVL27:
+ 241 00a4 8C4B     		ldr	r3, .L28+40
+ 242 00a6 C3E90001 		strd	r0, [r3]
+ 167:main.c        ****             setservo = -5 * pixelError + 155; // kp = -10
+ 243              		.loc 1 167 0
+ 244 00aa 0022     		movs	r2, #0
+ 245 00ac 8B4B     		ldr	r3, .L28+44
+ 246 00ae FFF7FEFF 		bl	__aeabi_dmul
+ 247              	.LVL28:
+ 248 00b2 7FA3     		adr	r3, .L28
+ 249 00b4 D3E90023 		ldrd	r2, [r3]
+ 250 00b8 FFF7FEFF 		bl	__aeabi_dadd
+ 251              	.LVL29:
+ 252 00bc FFF7FEFF 		bl	__aeabi_d2iz
+ 253              	.LVL30:
+ 254 00c0 2860     		str	r0, [r5]
+ 168:main.c        ****             if (setservo > 198) {setservo = 198; }
+ 255              		.loc 1 168 0
+ 256 00c2 C628     		cmp	r0, #198
+ 257 00c4 02DD     		ble	.L12
+ 258              		.loc 1 168 0 is_stmt 0 discriminator 1
+ 259 00c6 C622     		movs	r2, #198
+ 260 00c8 2A60     		str	r2, [r5]
+ 261 00ca 07E0     		b	.L13
+ 262              	.L12:
+ 169:main.c        ****             else if (setservo < 105 || oldsetservo - setservo > 105) {setservo = 105; }
+ 263              		.loc 1 169 0 is_stmt 1
+ 264 00cc 6828     		cmp	r0, #104
+ 265 00ce 02DD     		ble	.L14
+ 266              		.loc 1 169 0 is_stmt 0 discriminator 2
+ 267 00d0 301A     		subs	r0, r6, r0
+ 268 00d2 6928     		cmp	r0, #105
+ 269 00d4 02DD     		ble	.L13
+ 270              	.L14:
+ 271              		.loc 1 169 0 discriminator 3
+ 272 00d6 6922     		movs	r2, #105
+ 273 00d8 7E4B     		ldr	r3, .L28+36
+ 274 00da 1A60     		str	r2, [r3]
+ 275              	.L13:
+ 170:main.c        ****             ServoPWM_WriteCompare((uint8) setservo);
+ 276              		.loc 1 170 0 is_stmt 1
+ 277 00dc 7D4B     		ldr	r3, .L28+36
+ 278 00de 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 279 00e0 FFF7FEFF 		bl	ServoPWM_WriteCompare
+ 280              	.LVL31:
+ 171:main.c        ****             
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 9
 
 
- 241              		.global	hallFlag
- 242              		.global	OEFREQ
- 243              		.global	VFREQ
- 244              		.comm	HFREQ,8,8
- 245              		.comm	LPS,4,4
- 246              		.global	LPF
- 247              		.global	FPS
- 248              		.global	PICHEIGHT
- 249              		.global	PICWIDTH
- 250              		.comm	lineTime,8,8
- 251              		.comm	dutyCycle,8,8
- 252              		.comm	avgError,8,8
- 253              		.global	sum
- 254              		.comm	errorDiff,8,8
- 255              		.global	oldError
- 256              		.comm	error,8,8
- 257              		.comm	speed,8,8
- 258              		.comm	eTime,8,8
- 259              		.comm	uartbuf,128,4
- 260              		.comm	strbuf,16,4
- 261              		.global	KD
- 262              		.global	KI
- 263              		.global	KP
- 264              		.global	setSpeed
- 265              		.global	currentTime
- 266              		.global	oldTime
- 267              		.global	TICKCUTOFF
- 268              		.global	OFF
- 269              		.global	ON
- 270              		.global	COUNTDOWN
- 271              		.global	FREQ
- 272              		.global	LENGTH
- 273              		.global	PI
- 274              		.global	time
- 275              		.global	ticks
- 276              		.data
- 277              		.align	3
- 278              		.set	.LANCHOR1,. + 0
- 279              		.type	LPF, %object
- 280              		.size	LPF, 4
- 281              	LPF:
- 282 0000 0D020000 		.word	525
- 283              		.type	FPS, %object
- 284              		.size	FPS, 4
- 285              	FPS:
- 286 0004 1E000000 		.word	30
- 287              		.type	COUNTDOWN, %object
- 288              		.size	COUNTDOWN, 8
- 289              	COUNTDOWN:
- 290 0008 00000000 		.word	0
- 291 000c 0000F040 		.word	1089470464
- 292              		.type	XSHSync, %object
- 293              		.size	XSHSync, 4
- 294              	XSHSync:
- 295 0010 10000000 		.word	16
- 296              		.type	OEFREQ, %object
- 297              		.size	OEFREQ, 4
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 9
+ 172:main.c        ****             // LCD out
+ 173:main.c        ****             LCD_ClearDisplay();
+ 281              		.loc 1 173 0
+ 282 00e4 0120     		movs	r0, #1
+ 283 00e6 FFF7FEFF 		bl	LCD_WriteControl
+ 284              	.LVL32:
+ 174:main.c        ****             sprintf(strbuf, "Location: %d,", blackTime);
+ 285              		.loc 1 174 0
+ 286 00ea 3A46     		mov	r2, r7
+ 287 00ec 7C49     		ldr	r1, .L28+48
+ 288 00ee 08A8     		add	r0, sp, #32
+ 289 00f0 FFF7FEFF 		bl	sprintf
+ 290              	.LVL33:
+ 175:main.c        ****             LCD_PrintString(strbuf);
+ 291              		.loc 1 175 0
+ 292 00f4 08A8     		add	r0, sp, #32
+ 293 00f6 FFF7FEFF 		bl	LCD_PrintString
+ 294              	.LVL34:
+ 176:main.c        ****             
+ 177:main.c        ****             // reset flag
+ 178:main.c        ****             blackFlag = 0;    
+ 295              		.loc 1 178 0
+ 296 00fa 0022     		movs	r2, #0
+ 297 00fc 744B     		ldr	r3, .L28+32
+ 298 00fe 1A60     		str	r2, [r3]
+ 299              	.LVL35:
+ 300              	.L11:
+ 179:main.c        ****         }
+ 180:main.c        ****         
+ 181:main.c        ****         if(hallFlag == 1){
+ 301              		.loc 1 181 0
+ 302 0100 734B     		ldr	r3, .L28+32
+ 303 0102 5B68     		ldr	r3, [r3, #4]
+ 304 0104 012B     		cmp	r3, #1
+ 305 0106 AED1     		bne	.L15
+ 182:main.c        ****             // Stops robot movement after predetermined number of ticks (~40 feet)
+ 183:main.c        ****             if(ticks > TICKCUTOFF) {
+ 306              		.loc 1 183 0
+ 307 0108 714B     		ldr	r3, .L28+32
+ 308 010a 9868     		ldr	r0, [r3, #8]
+ 309 010c 6D4B     		ldr	r3, .L28+20
+ 310 010e 1B6A     		ldr	r3, [r3, #32]
+ 311 0110 9842     		cmp	r0, r3
+ 312 0112 1CDD     		ble	.L16
+ 184:main.c        ****                 sprintf(uartbuf, "Total Time: %.3f, Length: %.3f\n", time, ticks*LENGTH);
+ 313              		.loc 1 184 0
+ 314 0114 6E4B     		ldr	r3, .L28+32
+ 315 0116 D3E90467 		ldrd	r6, [r3, #16]
+ 316 011a 724C     		ldr	r4, .L28+52
+ 317 011c FFF7FEFF 		bl	__aeabi_i2d
+ 318              	.LVL36:
+ 319 0120 684B     		ldr	r3, .L28+20
+ 320 0122 D3E90A23 		ldrd	r2, [r3, #40]
+ 321 0126 FFF7FEFF 		bl	__aeabi_dmul
+ 322              	.LVL37:
+ 323 012a CDE90001 		strd	r0, [sp]
+ 324 012e 3246     		mov	r2, r6
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 10
 
 
- 298              	OEFREQ:
- 299 0014 1E000000 		.word	30
- 300              		.type	VFREQ, %object
- 301              		.size	VFREQ, 4
- 302              	VFREQ:
- 303 0018 3C000000 		.word	60
- 304              		.type	PICHEIGHT, %object
- 305              		.size	PICHEIGHT, 4
- 306              	PICHEIGHT:
- 307 001c F0000000 		.word	240
- 308              		.type	PICWIDTH, %object
- 309              		.size	PICWIDTH, 4
- 310              	PICWIDTH:
- 311 0020 40010000 		.word	320
- 312 0024 00000000 		.space	4
- 313              		.type	oldError, %object
- 314              		.size	oldError, 8
- 315              	oldError:
- 316 0028 00000000 		.word	0
- 317 002c 00001040 		.word	1074790400
- 318              		.type	KD, %object
- 319              		.size	KD, 8
- 320              	KD:
- 321 0030 00000000 		.word	0
- 322 0034 00002E40 		.word	1076756480
- 323              		.type	KI, %object
- 324              		.size	KI, 8
- 325              	KI:
- 326 0038 00000000 		.word	0
- 327 003c 00001440 		.word	1075052544
- 328              		.type	KP, %object
- 329              		.size	KP, 8
- 330              	KP:
- 331 0040 00000000 		.word	0
- 332 0044 00807140 		.word	1081180160
- 333              		.type	setSpeed, %object
- 334              		.size	setSpeed, 8
- 335              	setSpeed:
- 336 0048 00000000 		.word	0
- 337 004c 00001040 		.word	1074790400
- 338              		.type	TICKCUTOFF, %object
- 339              		.size	TICKCUTOFF, 4
- 340              	TICKCUTOFF:
- 341 0050 52010000 		.word	338
- 342              		.type	ON, %object
- 343              		.size	ON, 4
- 344              	ON:
- 345 0054 FF000000 		.word	255
- 346              		.type	FREQ, %object
- 347              		.size	FREQ, 8
- 348              	FREQ:
- 349 0058 00000000 		.word	0
- 350 005c 0088C340 		.word	1086556160
- 351              		.type	LENGTH, %object
- 352              		.size	LENGTH, 8
- 353              	LENGTH:
- 354 0060 13F241CF 		.word	-817761773
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 10
+ 325 0130 3B46     		mov	r3, r7
+ 326 0132 6D49     		ldr	r1, .L28+56
+ 327 0134 2046     		mov	r0, r4
+ 328 0136 FFF7FEFF 		bl	sprintf
+ 329              	.LVL38:
+ 185:main.c        ****                 UART_PutString(uartbuf);
+ 330              		.loc 1 185 0
+ 331 013a 2046     		mov	r0, r4
+ 332 013c FFF7FEFF 		bl	UART_PutString
+ 333              	.LVL39:
+ 186:main.c        ****                 PWM_WriteCompare(0);
+ 334              		.loc 1 186 0
+ 335 0140 0020     		movs	r0, #0
+ 336 0142 FFF7FEFF 		bl	PWM_WriteCompare
+ 337              	.LVL40:
+ 187:main.c        ****                 
+ 188:main.c        ****                 // kills UART reciver
+ 189:main.c        ****                 UART_PutString("&&&");
+ 338              		.loc 1 189 0
+ 339 0146 6948     		ldr	r0, .L28+60
+ 340 0148 FFF7FEFF 		bl	UART_PutString
+ 341              	.LVL41:
+ 342 014c 17E1     		b	.L17
+ 343              	.L16:
+ 190:main.c        ****             }
+ 191:main.c        ****             else {    
+ 192:main.c        ****                 // deals with timer underflow
+ 193:main.c        ****                 currentTime = Timer_ReadCapture();
+ 344              		.loc 1 193 0
+ 345 014e FFF7FEFF 		bl	Timer_ReadCapture
+ 346              	.LVL42:
+ 347 0152 0446     		mov	r4, r0
+ 348 0154 5E4B     		ldr	r3, .L28+32
+ 349 0156 9861     		str	r0, [r3, #24]
+ 194:main.c        ****                 if (currentTime >= oldTime)
+ 350              		.loc 1 194 0
+ 351 0158 D869     		ldr	r0, [r3, #28]
+ 352 015a 8442     		cmp	r4, r0
+ 353 015c 0ADB     		blt	.L18
+ 195:main.c        ****                     oldTime += COUNTDOWN;
+ 354              		.loc 1 195 0
+ 355 015e FFF7FEFF 		bl	__aeabi_i2d
+ 356              	.LVL43:
+ 357 0162 584B     		ldr	r3, .L28+20
+ 358 0164 D3E90223 		ldrd	r2, [r3, #8]
+ 359 0168 FFF7FEFF 		bl	__aeabi_dadd
+ 360              	.LVL44:
+ 361 016c FFF7FEFF 		bl	__aeabi_d2iz
+ 362              	.LVL45:
+ 363 0170 574B     		ldr	r3, .L28+32
+ 364 0172 D861     		str	r0, [r3, #28]
+ 365              	.L18:
+ 196:main.c        ****                 
+ 197:main.c        ****                 // elapsed time calc
+ 198:main.c        ****                 eTime = (oldTime - currentTime)/FREQ;
+ 366              		.loc 1 198 0
+ 367 0174 DFF85881 		ldr	r8, .L28+32
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 11
 
 
- 355 0064 66D5BF3F 		.word	1069536614
- 356              		.type	PI, %object
- 357              		.size	PI, 8
- 358              	PI:
- 359 0068 7A008BFC 		.word	-57999238
- 360 006c FA210940 		.word	1074340346
- 361              		.section	.rodata.str1.4,"aMS",%progbits,1
- 362              		.align	2
- 363              	.LC0:
- 364 0000 4C6F6361 		.ascii	"Location: %d,\000"
- 364      74696F6E 
- 364      3A202564 
- 364      2C00
- 365              		.bss
- 366              		.align	3
- 367              		.set	.LANCHOR0,. + 0
- 368              		.type	hallFlag, %object
- 369              		.size	hallFlag, 4
- 370              	hallFlag:
- 371 0000 00000000 		.space	4
- 372              		.type	blackFlag, %object
- 373              		.size	blackFlag, 4
- 374              	blackFlag:
- 375 0004 00000000 		.space	4
- 376              		.type	newFrameFlag, %object
- 377              		.size	newFrameFlag, 4
- 378              	newFrameFlag:
- 379 0008 00000000 		.space	4
- 380 000c 00000000 		.space	4
- 381              		.type	sum, %object
- 382              		.size	sum, 8
- 383              	sum:
- 384 0010 00000000 		.space	8
- 384      00000000 
- 385              		.type	currentTime, %object
- 386              		.size	currentTime, 4
- 387              	currentTime:
- 388 0018 00000000 		.space	4
- 389              		.type	oldTime, %object
- 390              		.size	oldTime, 4
- 391              	oldTime:
- 392 001c 00000000 		.space	4
- 393              		.type	OFF, %object
- 394              		.size	OFF, 4
- 395              	OFF:
- 396 0020 00000000 		.space	4
- 397 0024 00000000 		.space	4
- 398              		.type	time, %object
- 399              		.size	time, 8
- 400              	time:
- 401 0028 00000000 		.space	8
- 401      00000000 
- 402              		.type	ticks, %object
- 403              		.size	ticks, 4
- 404              	ticks:
- 405 0030 00000000 		.space	4
- 406              		.text
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 11
+ 368 0178 D8F81C00 		ldr	r0, [r8, #28]
+ 369 017c 001B     		subs	r0, r0, r4
+ 370 017e FFF7FEFF 		bl	__aeabi_i2d
+ 371              	.LVL46:
+ 372 0182 DFF840A1 		ldr	r10, .L28+20
+ 373 0186 DAE90C23 		ldrd	r2, [r10, #48]
+ 374 018a FFF7FEFF 		bl	__aeabi_ddiv
+ 375              	.LVL47:
+ 376 018e 0646     		mov	r6, r0
+ 377 0190 0F46     		mov	r7, r1
+ 378 0192 574B     		ldr	r3, .L28+64
+ 379 0194 C3E90067 		strd	r6, [r3]
+ 199:main.c        ****                 oldTime = currentTime;
+ 380              		.loc 1 199 0
+ 381 0198 C8F81C40 		str	r4, [r8, #28]
+ 200:main.c        ****                 
+ 201:main.c        ****                 // accounting for total ticks and time (used for final mean speed confirmation)
+ 202:main.c        ****                 ticks += 1;
+ 382              		.loc 1 202 0
+ 383 019c D8F80830 		ldr	r3, [r8, #8]
+ 384 01a0 0133     		adds	r3, r3, #1
+ 385 01a2 C8F80830 		str	r3, [r8, #8]
+ 203:main.c        ****                 time += eTime;
+ 386              		.loc 1 203 0
+ 387 01a6 0246     		mov	r2, r0
+ 388 01a8 0B46     		mov	r3, r1
+ 389 01aa D8E90401 		ldrd	r0, [r8, #16]
+ 390 01ae FFF7FEFF 		bl	__aeabi_dadd
+ 391              	.LVL48:
+ 392 01b2 C8E90401 		strd	r0, [r8, #16]
+ 204:main.c        ****                 
+ 205:main.c        ****                 speed = LENGTH/eTime; // current speed [ft/s]
+ 393              		.loc 1 205 0
+ 394 01b6 3246     		mov	r2, r6
+ 395 01b8 3B46     		mov	r3, r7
+ 396 01ba DAE90A01 		ldrd	r0, [r10, #40]
+ 397 01be FFF7FEFF 		bl	__aeabi_ddiv
+ 398              	.LVL49:
+ 399 01c2 4C4C     		ldr	r4, .L28+68
+ 400 01c4 C4E90001 		strd	r0, [r4]
+ 206:main.c        ****                 
+ 207:main.c        ****                 // used for bench testing psoc speed functionality
+ 208:main.c        ****                 LCD_ClearDisplay();
+ 401              		.loc 1 208 0
+ 402 01c8 0120     		movs	r0, #1
+ 403 01ca FFF7FEFF 		bl	LCD_WriteControl
+ 404              	.LVL50:
+ 209:main.c        ****                 sprintf(strbuf,"%-16.4f",speed);
+ 405              		.loc 1 209 0
+ 406 01ce D4E90023 		ldrd	r2, [r4]
+ 407 01d2 4949     		ldr	r1, .L28+72
+ 408 01d4 08A8     		add	r0, sp, #32
+ 409 01d6 FFF7FEFF 		bl	sprintf
+ 410              	.LVL51:
+ 210:main.c        ****                 LCD_Position(0,0);
+ 411              		.loc 1 210 0
+ 412 01da 0021     		movs	r1, #0
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 12
 
 
- 407              	.Letext0:
- 408              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 409              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
- 410              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
- 411              		.file 5 "Generated_Source\\PSoC5/LCD.h"
- 412              		.file 6 "Generated_Source\\PSoC5/HE_Interrupt.h"
- 413              		.file 7 "Generated_Source\\PSoC5/Timer.h"
- 414              		.file 8 "Generated_Source\\PSoC5/UART.h"
- 415              		.file 9 "Generated_Source\\PSoC5/PWM.h"
- 416              		.file 10 "Generated_Source\\PSoC5/VideoTimer.h"
- 417              		.file 11 "Generated_Source\\PSoC5/VDAC.h"
- 418              		.file 12 "Generated_Source\\PSoC5/Comp.h"
- 419              		.file 13 "Generated_Source\\PSoC5/Black.h"
- 420              		.file 14 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4
- 421              		.section	.debug_info,"",%progbits
- 422              	.Ldebug_info0:
- 423 0000 B4050000 		.4byte	0x5b4
- 424 0004 0400     		.2byte	0x4
- 425 0006 00000000 		.4byte	.Ldebug_abbrev0
- 426 000a 04       		.byte	0x4
- 427 000b 01       		.uleb128 0x1
- 428 000c 31030000 		.4byte	.LASF68
- 429 0010 0C       		.byte	0xc
- 430 0011 BD020000 		.4byte	.LASF69
- 431 0015 1E010000 		.4byte	.LASF70
- 432 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 433 001d 00000000 		.4byte	0
- 434 0021 00000000 		.4byte	.Ldebug_line0
- 435 0025 02       		.uleb128 0x2
- 436 0026 01       		.byte	0x1
- 437 0027 06       		.byte	0x6
- 438 0028 B4000000 		.4byte	.LASF0
- 439 002c 02       		.uleb128 0x2
- 440 002d 01       		.byte	0x1
- 441 002e 08       		.byte	0x8
- 442 002f 80010000 		.4byte	.LASF1
- 443 0033 02       		.uleb128 0x2
- 444 0034 02       		.byte	0x2
- 445 0035 05       		.byte	0x5
- 446 0036 6A000000 		.4byte	.LASF2
- 447 003a 02       		.uleb128 0x2
- 448 003b 02       		.byte	0x2
- 449 003c 07       		.byte	0x7
- 450 003d 39020000 		.4byte	.LASF3
- 451 0041 03       		.uleb128 0x3
- 452 0042 E8020000 		.4byte	.LASF9
- 453 0046 02       		.byte	0x2
- 454 0047 3F       		.byte	0x3f
- 455 0048 4C000000 		.4byte	0x4c
- 456 004c 02       		.uleb128 0x2
- 457 004d 04       		.byte	0x4
- 458 004e 05       		.byte	0x5
- 459 004f 09010000 		.4byte	.LASF4
- 460 0053 02       		.uleb128 0x2
- 461 0054 04       		.byte	0x4
- 462 0055 07       		.byte	0x7
- 463 0056 C4020000 		.4byte	.LASF5
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 12
+ 413 01dc 0846     		mov	r0, r1
+ 414 01de FFF7FEFF 		bl	LCD_Position
+ 415              	.LVL52:
+ 211:main.c        ****                 LCD_PrintString(strbuf);
+ 416              		.loc 1 211 0
+ 417 01e2 08A8     		add	r0, sp, #32
+ 418 01e4 FFF7FEFF 		bl	LCD_PrintString
+ 419              	.LVL53:
+ 212:main.c        ****                 
+ 213:main.c        ****                 // used in kp error
+ 214:main.c        ****                 error = setSpeed - speed;
+ 420              		.loc 1 214 0
+ 421 01e8 D4E90023 		ldrd	r2, [r4]
+ 422 01ec DAE90E01 		ldrd	r0, [r10, #56]
+ 423 01f0 FFF7FEFF 		bl	__aeabi_dsub
+ 424              	.LVL54:
+ 425 01f4 0446     		mov	r4, r0
+ 426 01f6 0D46     		mov	r5, r1
+ 427 01f8 404B     		ldr	r3, .L28+76
+ 428 01fa C3E90045 		strd	r4, [r3]
+ 215:main.c        ****                 
+ 216:main.c        ****                 // used in ki error
+ 217:main.c        ****                 sum += error;             
+ 429              		.loc 1 217 0
+ 430 01fe D8E90823 		ldrd	r2, [r8, #32]
+ 431 0202 FFF7FEFF 		bl	__aeabi_dadd
+ 432              	.LVL55:
+ 433 0206 0646     		mov	r6, r0
+ 434 0208 0F46     		mov	r7, r1
+ 435 020a C8E90867 		strd	r6, [r8, #32]
+ 218:main.c        ****                 avgError = sum / ticks;
+ 436              		.loc 1 218 0
+ 437 020e D8F80800 		ldr	r0, [r8, #8]
+ 438 0212 FFF7FEFF 		bl	__aeabi_i2d
+ 439              	.LVL56:
+ 440 0216 0246     		mov	r2, r0
+ 441 0218 0B46     		mov	r3, r1
+ 442 021a 3046     		mov	r0, r6
+ 443 021c 3946     		mov	r1, r7
+ 444 021e FFF7FEFF 		bl	__aeabi_ddiv
+ 445              	.LVL57:
+ 446 0222 8046     		mov	r8, r0
+ 447 0224 8946     		mov	r9, r1
+ 448 0226 364B     		ldr	r3, .L28+80
+ 449 0228 C3E90089 		strd	r8, [r3]
+ 219:main.c        ****  
+ 220:main.c        ****                 // used in kd error
+ 221:main.c        ****                 errorDiff = error - oldError;
+ 450              		.loc 1 221 0
+ 451 022c DAE91023 		ldrd	r2, [r10, #64]
+ 452 0230 2046     		mov	r0, r4
+ 453 0232 2946     		mov	r1, r5
+ 454 0234 FFF7FEFF 		bl	__aeabi_dsub
+ 455              	.LVL58:
+ 456 0238 0646     		mov	r6, r0
+ 457 023a 0F46     		mov	r7, r1
+ 458 023c 314B     		ldr	r3, .L28+84
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 13
 
 
- 464 005a 02       		.uleb128 0x2
- 465 005b 08       		.byte	0x8
- 466 005c 05       		.byte	0x5
- 467 005d 8B000000 		.4byte	.LASF6
- 468 0061 02       		.uleb128 0x2
- 469 0062 08       		.byte	0x8
- 470 0063 07       		.byte	0x7
- 471 0064 B5010000 		.4byte	.LASF7
- 472 0068 04       		.uleb128 0x4
- 473 0069 04       		.byte	0x4
- 474 006a 05       		.byte	0x5
- 475 006b 696E7400 		.ascii	"int\000"
- 476 006f 02       		.uleb128 0x2
- 477 0070 04       		.byte	0x4
- 478 0071 07       		.byte	0x7
- 479 0072 E4010000 		.4byte	.LASF8
- 480 0076 03       		.uleb128 0x3
- 481 0077 66020000 		.4byte	.LASF10
- 482 007b 03       		.byte	0x3
- 483 007c 2C       		.byte	0x2c
- 484 007d 41000000 		.4byte	0x41
- 485 0081 02       		.uleb128 0x2
- 486 0082 04       		.byte	0x4
- 487 0083 04       		.byte	0x4
- 488 0084 CE000000 		.4byte	.LASF11
- 489 0088 02       		.uleb128 0x2
- 490 0089 08       		.byte	0x8
- 491 008a 04       		.byte	0x4
- 492 008b E1020000 		.4byte	.LASF12
- 493 008f 02       		.uleb128 0x2
- 494 0090 01       		.byte	0x1
- 495 0091 08       		.byte	0x8
- 496 0092 4C020000 		.4byte	.LASF13
- 497 0096 02       		.uleb128 0x2
- 498 0097 08       		.byte	0x8
- 499 0098 04       		.byte	0x4
- 500 0099 74010000 		.4byte	.LASF14
- 501 009d 02       		.uleb128 0x2
- 502 009e 04       		.byte	0x4
- 503 009f 07       		.byte	0x7
- 504 00a0 74000000 		.4byte	.LASF15
- 505 00a4 05       		.uleb128 0x5
- 506 00a5 76020000 		.4byte	.LASF16
- 507 00a9 01       		.byte	0x1
- 508 00aa 4B       		.byte	0x4b
- 509 00ab 00000000 		.4byte	.LFB64
- 510 00af 0C000000 		.4byte	.LFE64-.LFB64
- 511 00b3 01       		.uleb128 0x1
- 512 00b4 9C       		.byte	0x9c
- 513 00b5 05       		.uleb128 0x5
- 514 00b6 7D020000 		.4byte	.LASF17
- 515 00ba 01       		.byte	0x1
- 516 00bb 55       		.byte	0x55
- 517 00bc 00000000 		.4byte	.LFB65
- 518 00c0 0C000000 		.4byte	.LFE65-.LFB65
- 519 00c4 01       		.uleb128 0x1
- 520 00c5 9C       		.byte	0x9c
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 13
+ 459 023e C3E90067 		strd	r6, [r3]
+ 222:main.c        ****                 oldError = error;
+ 460              		.loc 1 222 0
+ 461 0242 CAE91045 		strd	r4, [r10, #64]
+ 223:main.c        ****                 
+ 224:main.c        ****                 // controller response
+ 225:main.c        ****                 dutyCycle = KP*error + KI*avgError + KD*errorDiff;
+ 462              		.loc 1 225 0
+ 463 0246 DAE91223 		ldrd	r2, [r10, #72]
+ 464 024a 2046     		mov	r0, r4
+ 465 024c 2946     		mov	r1, r5
+ 466 024e FFF7FEFF 		bl	__aeabi_dmul
+ 467              	.LVL59:
+ 468 0252 0446     		mov	r4, r0
+ 469 0254 0D46     		mov	r5, r1
+ 470 0256 DAE91423 		ldrd	r2, [r10, #80]
+ 471 025a 4046     		mov	r0, r8
+ 472 025c 4946     		mov	r1, r9
+ 473 025e FFF7FEFF 		bl	__aeabi_dmul
+ 474              	.LVL60:
+ 475 0262 0246     		mov	r2, r0
+ 476 0264 0B46     		mov	r3, r1
+ 477 0266 2046     		mov	r0, r4
+ 478 0268 2946     		mov	r1, r5
+ 479 026a FFF7FEFF 		bl	__aeabi_dadd
+ 480              	.LVL61:
+ 481 026e 0446     		mov	r4, r0
+ 482 0270 0D46     		mov	r5, r1
+ 483 0272 DAE91623 		ldrd	r2, [r10, #88]
+ 484 0276 3046     		mov	r0, r6
+ 485 0278 3946     		mov	r1, r7
+ 486 027a FFF7FEFF 		bl	__aeabi_dmul
+ 487              	.LVL62:
+ 488 027e 0246     		mov	r2, r0
+ 489 0280 0B46     		mov	r3, r1
+ 490 0282 2046     		mov	r0, r4
+ 491 0284 2946     		mov	r1, r5
+ 492 0286 FFF7FEFF 		bl	__aeabi_dadd
+ 493              	.LVL63:
+ 494 028a 0446     		mov	r4, r0
+ 495 028c 0D46     		mov	r5, r1
+ 496 028e 1E4B     		ldr	r3, .L28+88
+ 497 0290 C3E90045 		strd	r4, [r3]
+ 226:main.c        ****                 
+ 227:main.c        ****                 // ensures that the duty cycle is within the range [0,255]
+ 228:main.c        ****                 if(dutyCycle > 255) { dutyCycle = ON;}
+ 498              		.loc 1 228 0
+ 499 0294 08A3     		adr	r3, .L28+8
+ 500 0296 D3E90023 		ldrd	r2, [r3]
+ 501 029a FFF7FEFF 		bl	__aeabi_dcmpgt
+ 502              	.LVL64:
+ 503 029e A8B3     		cbz	r0, .L26
+ 504              		.loc 1 228 0 is_stmt 0 discriminator 1
+ 505 02a0 DAF86000 		ldr	r0, [r10, #96]
+ 506 02a4 FFF7FEFF 		bl	__aeabi_i2d
+ 507              	.LVL65:
+ 508 02a8 174B     		ldr	r3, .L28+88
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 14
 
 
- 521 00c6 06       		.uleb128 0x6
- 522 00c7 86000000 		.4byte	.LASF71
- 523 00cb 01       		.byte	0x1
- 524 00cc 59       		.byte	0x59
- 525 00cd 68000000 		.4byte	0x68
- 526 00d1 00000000 		.4byte	.LFB66
- 527 00d5 E8000000 		.4byte	.LFE66-.LFB66
- 528 00d9 01       		.uleb128 0x1
- 529 00da 9C       		.byte	0x9c
- 530 00db 23020000 		.4byte	0x223
- 531 00df 07       		.uleb128 0x7
- 532 00e0 2B000000 		.4byte	.LASF18
- 533 00e4 01       		.byte	0x1
- 534 00e5 5C       		.byte	0x5c
- 535 00e6 23020000 		.4byte	0x223
- 536 00ea 02       		.uleb128 0x2
- 537 00eb 91       		.byte	0x91
- 538 00ec 60       		.sleb128 -32
- 539 00ed 08       		.uleb128 0x8
- 540 00ee 1C030000 		.4byte	.LASF72
- 541 00f2 01       		.byte	0x1
- 542 00f3 8A       		.byte	0x8a
- 543 00f4 68000000 		.4byte	0x68
- 544 00f8 09       		.uleb128 0x9
- 545 00f9 F3000000 		.4byte	.LASF19
- 546 00fd 01       		.byte	0x1
- 547 00fe 8B       		.byte	0x8b
- 548 00ff 68000000 		.4byte	0x68
- 549 0103 00000000 		.4byte	.LLST0
- 550 0107 0A       		.uleb128 0xa
- 551 0108 0A000000 		.4byte	.LVL0
- 552 010c E6040000 		.4byte	0x4e6
- 553 0110 0A       		.uleb128 0xa
- 554 0111 0E000000 		.4byte	.LVL1
- 555 0115 F1040000 		.4byte	0x4f1
- 556 0119 0B       		.uleb128 0xb
- 557 011a 14000000 		.4byte	.LVL2
- 558 011e FC040000 		.4byte	0x4fc
- 559 0122 30010000 		.4byte	0x130
- 560 0126 0C       		.uleb128 0xc
- 561 0127 01       		.uleb128 0x1
- 562 0128 50       		.byte	0x50
- 563 0129 05       		.uleb128 0x5
- 564 012a 03       		.byte	0x3
- 565 012b 00000000 		.4byte	inter1
- 566 012f 00       		.byte	0
- 567 0130 0A       		.uleb128 0xa
- 568 0131 18000000 		.4byte	.LVL3
- 569 0135 07050000 		.4byte	0x507
- 570 0139 0A       		.uleb128 0xa
- 571 013a 1C000000 		.4byte	.LVL4
- 572 013e 12050000 		.4byte	0x512
- 573 0142 0A       		.uleb128 0xa
- 574 0143 20000000 		.4byte	.LVL5
- 575 0147 1D050000 		.4byte	0x51d
- 576 014b 0A       		.uleb128 0xa
- 577 014c 24000000 		.4byte	.LVL6
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 14
+ 509 02aa C3E90001 		strd	r0, [r3]
+ 510 02ae 3BE0     		b	.L21
+ 511              	.L29:
+ 512              		.align	3
+ 513              	.L28:
+ 514 02b0 00000000 		.word	0
+ 515 02b4 00606340 		.word	1080254464
+ 516 02b8 00000000 		.word	0
+ 517 02bc 00E06F40 		.word	1081073664
+ 518 02c0 00000000 		.word	inter1
+ 519 02c4 00000000 		.word	.LANCHOR1
+ 520 02c8 00000000 		.word	inter2
+ 521 02cc 00000000 		.word	inter3
+ 522 02d0 00000000 		.word	.LANCHOR0
+ 523 02d4 00000000 		.word	setservo
+ 524 02d8 00000000 		.word	pixelError
+ 525 02dc 000014C0 		.word	-1072431104
+ 526 02e0 00000000 		.word	.LC0
+ 527 02e4 00000000 		.word	uartbuf
+ 528 02e8 10000000 		.word	.LC1
+ 529 02ec 30000000 		.word	.LC2
+ 530 02f0 00000000 		.word	eTime
+ 531 02f4 00000000 		.word	speed
+ 532 02f8 34000000 		.word	.LC3
+ 533 02fc 00000000 		.word	error
+ 534 0300 00000000 		.word	avgError
+ 535 0304 00000000 		.word	errorDiff
+ 536 0308 00000000 		.word	dutyCycle
+ 537              	.L26:
+ 229:main.c        ****                 else if(dutyCycle < 0) { dutyCycle = OFF;}
+ 538              		.loc 1 229 0 is_stmt 1
+ 539 030c 0022     		movs	r2, #0
+ 540 030e 0023     		movs	r3, #0
+ 541 0310 2046     		mov	r0, r4
+ 542 0312 2946     		mov	r1, r5
+ 543 0314 FFF7FEFF 		bl	__aeabi_dcmplt
+ 544              	.LVL66:
+ 545 0318 30B1     		cbz	r0, .L21
+ 546              		.loc 1 229 0 is_stmt 0 discriminator 1
+ 547 031a 1B4B     		ldr	r3, .L30
+ 548 031c 986A     		ldr	r0, [r3, #40]
+ 549 031e FFF7FEFF 		bl	__aeabi_i2d
+ 550              	.LVL67:
+ 551 0322 1A4B     		ldr	r3, .L30+4
+ 552 0324 C3E90001 		strd	r0, [r3]
+ 553              	.L21:
+ 230:main.c        ****                 dutyCycle = (uint8) dutyCycle;
+ 554              		.loc 1 230 0 is_stmt 1
+ 555 0328 184C     		ldr	r4, .L30+4
+ 556 032a D4E90001 		ldrd	r0, [r4]
+ 557 032e FFF7FEFF 		bl	__aeabi_d2uiz
+ 558              	.LVL68:
+ 559 0332 C5B2     		uxtb	r5, r0
+ 560 0334 2846     		mov	r0, r5
+ 561 0336 FFF7FEFF 		bl	__aeabi_ui2d
+ 562              	.LVL69:
+ 563 033a C4E90001 		strd	r0, [r4]
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 15
 
 
- 578 0150 28050000 		.4byte	0x528
- 579 0154 0A       		.uleb128 0xa
- 580 0155 28000000 		.4byte	.LVL7
- 581 0159 33050000 		.4byte	0x533
- 582 015d 0B       		.uleb128 0xb
- 583 015e 2E000000 		.4byte	.LVL8
- 584 0162 3E050000 		.4byte	0x53e
- 585 0166 70010000 		.4byte	0x170
- 586 016a 0C       		.uleb128 0xc
- 587 016b 01       		.uleb128 0x1
- 588 016c 50       		.byte	0x50
- 589 016d 01       		.uleb128 0x1
- 590 016e 30       		.byte	0x30
- 591 016f 00       		.byte	0
- 592 0170 0B       		.uleb128 0xb
- 593 0171 34000000 		.4byte	.LVL9
- 594 0175 49050000 		.4byte	0x549
- 595 0179 83010000 		.4byte	0x183
- 596 017d 0C       		.uleb128 0xc
- 597 017e 01       		.uleb128 0x1
- 598 017f 50       		.byte	0x50
- 599 0180 01       		.uleb128 0x1
- 600 0181 30       		.byte	0x30
- 601 0182 00       		.byte	0
- 602 0183 0B       		.uleb128 0xb
- 603 0184 3A000000 		.4byte	.LVL10
- 604 0188 54050000 		.4byte	0x554
- 605 018c 97010000 		.4byte	0x197
- 606 0190 0C       		.uleb128 0xc
- 607 0191 01       		.uleb128 0x1
- 608 0192 50       		.byte	0x50
- 609 0193 02       		.uleb128 0x2
- 610 0194 09       		.byte	0x9
- 611 0195 A2       		.byte	0xa2
- 612 0196 00       		.byte	0
- 613 0197 0A       		.uleb128 0xa
- 614 0198 3E000000 		.4byte	.LVL11
- 615 019c 5F050000 		.4byte	0x55f
- 616 01a0 0B       		.uleb128 0xb
- 617 01a1 44000000 		.4byte	.LVL12
- 618 01a5 6A050000 		.4byte	0x56a
- 619 01a9 B3010000 		.4byte	0x1b3
- 620 01ad 0C       		.uleb128 0xc
- 621 01ae 01       		.uleb128 0x1
- 622 01af 50       		.byte	0x50
- 623 01b0 01       		.uleb128 0x1
- 624 01b1 31       		.byte	0x31
- 625 01b2 00       		.byte	0
- 626 01b3 0A       		.uleb128 0xa
- 627 01b4 48000000 		.4byte	.LVL13
- 628 01b8 75050000 		.4byte	0x575
- 629 01bc 0B       		.uleb128 0xb
- 630 01bd 4E000000 		.4byte	.LVL14
- 631 01c1 80050000 		.4byte	0x580
- 632 01c5 D3010000 		.4byte	0x1d3
- 633 01c9 0C       		.uleb128 0xc
- 634 01ca 01       		.uleb128 0x1
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 15
+ 231:main.c        ****                
+ 232:main.c        ****                 // output duty cycle
+ 233:main.c        ****                 PWM_WriteCompare(dutyCycle);
+ 564              		.loc 1 233 0
+ 565 033e 2846     		mov	r0, r5
+ 566 0340 FFF7FEFF 		bl	PWM_WriteCompare
+ 567              	.LVL70:
+ 234:main.c        ****                 
+ 235:main.c        ****                 // remote UART data collection
+ 236:main.c        ****                 sprintf(uartbuf, "Tick Num: %5d, Current Speed: %5.2f, Error: %5.2f, Duty Cycle: %5
+ 568              		.loc 1 236 0
+ 569 0344 104B     		ldr	r3, .L30
+ 570 0346 9A68     		ldr	r2, [r3, #8]
+ 571 0348 114D     		ldr	r5, .L30+8
+ 572 034a 124B     		ldr	r3, .L30+12
+ 573 034c D3E90001 		ldrd	r0, [r3]
+ 574 0350 CDE90601 		strd	r0, [sp, #24]
+ 575 0354 D4E90001 		ldrd	r0, [r4]
+ 576 0358 CDE90401 		strd	r0, [sp, #16]
+ 577 035c 0E4B     		ldr	r3, .L30+16
+ 578 035e D3E90001 		ldrd	r0, [r3]
+ 579 0362 CDE90201 		strd	r0, [sp, #8]
+ 580 0366 0D4B     		ldr	r3, .L30+20
+ 581 0368 D3E90001 		ldrd	r0, [r3]
+ 582 036c CDE90001 		strd	r0, [sp]
+ 583 0370 0B49     		ldr	r1, .L30+24
+ 584 0372 2846     		mov	r0, r5
+ 585 0374 FFF7FEFF 		bl	sprintf
+ 586              	.LVL71:
+ 237:main.c        ****                 UART_PutString(uartbuf);
+ 587              		.loc 1 237 0
+ 588 0378 2846     		mov	r0, r5
+ 589 037a FFF7FEFF 		bl	UART_PutString
+ 590              	.LVL72:
+ 591              	.L17:
+ 238:main.c        ****             }
+ 239:main.c        ****             
+ 240:main.c        ****             // stop interrupt
+ 241:main.c        ****             hallFlag = 0;
+ 592              		.loc 1 241 0
+ 593 037e 0022     		movs	r2, #0
+ 594 0380 014B     		ldr	r3, .L30
+ 595 0382 5A60     		str	r2, [r3, #4]
+ 596 0384 6FE6     		b	.L15
+ 597              	.L31:
+ 598 0386 00BF     		.align	2
+ 599              	.L30:
+ 600 0388 00000000 		.word	.LANCHOR0
+ 601 038c 00000000 		.word	dutyCycle
+ 602 0390 00000000 		.word	uartbuf
+ 603 0394 00000000 		.word	eTime
+ 604 0398 00000000 		.word	error
+ 605 039c 00000000 		.word	speed
+ 606 03a0 3C000000 		.word	.LC4
+ 607              		.cfi_endproc
+ 608              	.LFE67:
+ 609              		.size	main, .-main
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 16
 
 
- 635 01cb 50       		.byte	0x50
- 636 01cc 05       		.uleb128 0x5
- 637 01cd 03       		.byte	0x3
- 638 01ce 00000000 		.4byte	inter4
- 639 01d2 00       		.byte	0
- 640 01d3 0A       		.uleb128 0xa
- 641 01d4 92000000 		.4byte	.LVL18
- 642 01d8 8B050000 		.4byte	0x58b
- 643 01dc 0B       		.uleb128 0xb
- 644 01dd AE000000 		.4byte	.LVL24
- 645 01e1 96050000 		.4byte	0x596
- 646 01e5 EF010000 		.4byte	0x1ef
- 647 01e9 0C       		.uleb128 0xc
- 648 01ea 01       		.uleb128 0x1
- 649 01eb 50       		.byte	0x50
- 650 01ec 01       		.uleb128 0x1
- 651 01ed 31       		.byte	0x31
- 652 01ee 00       		.byte	0
- 653 01ef 0B       		.uleb128 0xb
- 654 01f0 B8000000 		.4byte	.LVL25
- 655 01f4 A1050000 		.4byte	0x5a1
- 656 01f8 12020000 		.4byte	0x212
- 657 01fc 0C       		.uleb128 0xc
- 658 01fd 01       		.uleb128 0x1
- 659 01fe 50       		.byte	0x50
- 660 01ff 02       		.uleb128 0x2
- 661 0200 7D       		.byte	0x7d
- 662 0201 00       		.sleb128 0
- 663 0202 0C       		.uleb128 0xc
- 664 0203 01       		.uleb128 0x1
- 665 0204 51       		.byte	0x51
- 666 0205 05       		.uleb128 0x5
- 667 0206 03       		.byte	0x3
- 668 0207 00000000 		.4byte	.LC0
- 669 020b 0C       		.uleb128 0xc
- 670 020c 01       		.uleb128 0x1
- 671 020d 52       		.byte	0x52
- 672 020e 02       		.uleb128 0x2
- 673 020f 74       		.byte	0x74
- 674 0210 00       		.sleb128 0
- 675 0211 00       		.byte	0
- 676 0212 0D       		.uleb128 0xd
- 677 0213 BE000000 		.4byte	.LVL26
- 678 0217 AC050000 		.4byte	0x5ac
- 679 021b 0C       		.uleb128 0xc
- 680 021c 01       		.uleb128 0x1
- 681 021d 50       		.byte	0x50
- 682 021e 02       		.uleb128 0x2
- 683 021f 7D       		.byte	0x7d
- 684 0220 00       		.sleb128 0
- 685 0221 00       		.byte	0
- 686 0222 00       		.byte	0
- 687 0223 0E       		.uleb128 0xe
- 688 0224 8F000000 		.4byte	0x8f
- 689 0228 33020000 		.4byte	0x233
- 690 022c 0F       		.uleb128 0xf
- 691 022d 9D000000 		.4byte	0x9d
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 16
+ 610              		.comm	pixelError,8,8
+ 611              		.comm	servoKD,8,8
+ 612              		.comm	servoKI,8,8
+ 613              		.global	servoKP
+ 614              		.global	oldsetservo
+ 615              		.comm	setservo,4,4
+ 616              		.global	CENTERSERVO
+ 617              		.global	firstPixelTime
+ 618              		.global	blackFlag
+ 619              		.global	hallFlag
+ 620              		.global	OEFREQ
+ 621              		.global	VFREQ
+ 622              		.comm	HFREQ,8,8
+ 623              		.comm	LPS,4,4
+ 624              		.global	LPF
+ 625              		.global	FPS
+ 626              		.global	PICHEIGHT
+ 627              		.global	PICWIDTH
+ 628              		.comm	lineTime,8,8
+ 629              		.comm	dutyCycle,8,8
+ 630              		.comm	avgError,8,8
+ 631              		.global	sum
+ 632              		.comm	errorDiff,8,8
+ 633              		.global	oldError
+ 634              		.comm	error,8,8
+ 635              		.comm	speed,8,8
+ 636              		.comm	eTime,8,8
+ 637              		.comm	uartbuf,128,4
+ 638              		.comm	strbuf,16,4
+ 639              		.global	KD
+ 640              		.global	KI
+ 641              		.global	KP
+ 642              		.global	setSpeed
+ 643              		.global	currentTime
+ 644              		.global	oldTime
+ 645              		.global	TICKCUTOFF
+ 646              		.global	OFF
+ 647              		.global	ON
+ 648              		.global	COUNTDOWN
+ 649              		.global	FREQ
+ 650              		.global	LENGTH
+ 651              		.global	PI
+ 652              		.global	time
+ 653              		.global	ticks
+ 654              		.data
+ 655              		.align	3
+ 656              		.set	.LANCHOR1,. + 0
+ 657              		.type	CENTERSERVO, %object
+ 658              		.size	CENTERSERVO, 4
+ 659              	CENTERSERVO:
+ 660 0000 9B000000 		.word	155
+ 661 0004 00000000 		.space	4
+ 662              		.type	COUNTDOWN, %object
+ 663              		.size	COUNTDOWN, 8
+ 664              	COUNTDOWN:
+ 665 0008 00000000 		.word	0
+ 666 000c 0000F040 		.word	1089470464
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 17
 
 
- 692 0231 0F       		.byte	0xf
- 693 0232 00       		.byte	0
- 694 0233 10       		.uleb128 0x10
- 695 0234 24030000 		.4byte	.LASF20
- 696 0238 04       		.byte	0x4
- 697 0239 1207     		.2byte	0x712
- 698 023b 3F020000 		.4byte	0x23f
- 699 023f 11       		.uleb128 0x11
- 700 0240 76000000 		.4byte	0x76
- 701 0244 12       		.uleb128 0x12
- 702 0245 13000000 		.4byte	.LASF21
- 703 0249 01       		.byte	0x1
- 704 024a 10       		.byte	0x10
- 705 024b 68000000 		.4byte	0x68
- 706 024f 05       		.uleb128 0x5
- 707 0250 03       		.byte	0x3
- 708 0251 00000000 		.4byte	ticks
- 709 0255 12       		.uleb128 0x12
- 710 0256 1B020000 		.4byte	.LASF22
- 711 025a 01       		.byte	0x1
- 712 025b 11       		.byte	0x11
- 713 025c 88000000 		.4byte	0x88
- 714 0260 05       		.uleb128 0x5
- 715 0261 03       		.byte	0x3
- 716 0262 00000000 		.4byte	time
- 717 0266 13       		.uleb128 0x13
- 718 0267 504900   		.ascii	"PI\000"
- 719 026a 01       		.byte	0x1
- 720 026b 14       		.byte	0x14
- 721 026c 88000000 		.4byte	0x88
- 722 0270 05       		.uleb128 0x5
- 723 0271 03       		.byte	0x3
- 724 0272 00000000 		.4byte	PI
- 725 0276 12       		.uleb128 0x12
- 726 0277 AD000000 		.4byte	.LASF23
- 727 027b 01       		.byte	0x1
- 728 027c 15       		.byte	0x15
- 729 027d 88000000 		.4byte	0x88
- 730 0281 05       		.uleb128 0x5
- 731 0282 03       		.byte	0x3
- 732 0283 00000000 		.4byte	LENGTH
- 733 0287 12       		.uleb128 0x12
- 734 0288 32000000 		.4byte	.LASF24
- 735 028c 01       		.byte	0x1
- 736 028d 16       		.byte	0x16
- 737 028e 88000000 		.4byte	0x88
- 738 0292 05       		.uleb128 0x5
- 739 0293 03       		.byte	0x3
- 740 0294 00000000 		.4byte	FREQ
- 741 0298 12       		.uleb128 0x12
- 742 0299 B3020000 		.4byte	.LASF25
- 743 029d 01       		.byte	0x1
- 744 029e 17       		.byte	0x17
- 745 029f 88000000 		.4byte	0x88
- 746 02a3 05       		.uleb128 0x5
- 747 02a4 03       		.byte	0x3
- 748 02a5 00000000 		.4byte	COUNTDOWN
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 17
+ 667              		.type	oldsetservo, %object
+ 668              		.size	oldsetservo, 4
+ 669              	oldsetservo:
+ 670 0010 9B000000 		.word	155
+ 671 0014 00000000 		.space	4
+ 672              		.type	firstPixelTime, %object
+ 673              		.size	firstPixelTime, 8
+ 674              	firstPixelTime:
+ 675 0018 00000000 		.word	0
+ 676 001c 00D07B40 		.word	1081856000
+ 677              		.type	TICKCUTOFF, %object
+ 678              		.size	TICKCUTOFF, 4
+ 679              	TICKCUTOFF:
+ 680 0020 52010000 		.word	338
+ 681 0024 00000000 		.space	4
+ 682              		.type	LENGTH, %object
+ 683              		.size	LENGTH, 8
+ 684              	LENGTH:
+ 685 0028 13F241CF 		.word	-817761773
+ 686 002c 66D5BF3F 		.word	1069536614
+ 687              		.type	FREQ, %object
+ 688              		.size	FREQ, 8
+ 689              	FREQ:
+ 690 0030 00000000 		.word	0
+ 691 0034 0088C340 		.word	1086556160
+ 692              		.type	setSpeed, %object
+ 693              		.size	setSpeed, 8
+ 694              	setSpeed:
+ 695 0038 00000000 		.word	0
+ 696 003c 00000040 		.word	1073741824
+ 697              		.type	oldError, %object
+ 698              		.size	oldError, 8
+ 699              	oldError:
+ 700 0040 00000000 		.word	0
+ 701 0044 00001040 		.word	1074790400
+ 702              		.type	KP, %object
+ 703              		.size	KP, 8
+ 704              	KP:
+ 705 0048 00000000 		.word	0
+ 706 004c 00807140 		.word	1081180160
+ 707              		.type	KI, %object
+ 708              		.size	KI, 8
+ 709              	KI:
+ 710 0050 00000000 		.word	0
+ 711 0054 00001440 		.word	1075052544
+ 712              		.type	KD, %object
+ 713              		.size	KD, 8
+ 714              	KD:
+ 715 0058 00000000 		.word	0
+ 716 005c 00002E40 		.word	1076756480
+ 717              		.type	ON, %object
+ 718              		.size	ON, 4
+ 719              	ON:
+ 720 0060 FF000000 		.word	255
+ 721 0064 00000000 		.space	4
+ 722              		.type	servoKP, %object
+ 723              		.size	servoKP, 8
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 18
 
 
- 749 02a9 13       		.uleb128 0x13
- 750 02aa 4F4E00   		.ascii	"ON\000"
- 751 02ad 01       		.byte	0x1
- 752 02ae 18       		.byte	0x18
- 753 02af 68000000 		.4byte	0x68
- 754 02b3 05       		.uleb128 0x5
- 755 02b4 03       		.byte	0x3
- 756 02b5 00000000 		.4byte	ON
- 757 02b9 13       		.uleb128 0x13
- 758 02ba 4F464600 		.ascii	"OFF\000"
- 759 02be 01       		.byte	0x1
- 760 02bf 19       		.byte	0x19
- 761 02c0 68000000 		.4byte	0x68
- 762 02c4 05       		.uleb128 0x5
- 763 02c5 03       		.byte	0x3
- 764 02c6 00000000 		.4byte	OFF
- 765 02ca 12       		.uleb128 0x12
- 766 02cb D6020000 		.4byte	.LASF26
- 767 02cf 01       		.byte	0x1
- 768 02d0 1A       		.byte	0x1a
- 769 02d1 68000000 		.4byte	0x68
- 770 02d5 05       		.uleb128 0x5
- 771 02d6 03       		.byte	0x3
- 772 02d7 00000000 		.4byte	TICKCUTOFF
- 773 02db 12       		.uleb128 0x12
- 774 02dc 99000000 		.4byte	.LASF27
- 775 02e0 01       		.byte	0x1
- 776 02e1 1D       		.byte	0x1d
- 777 02e2 68000000 		.4byte	0x68
- 778 02e6 05       		.uleb128 0x5
- 779 02e7 03       		.byte	0x3
- 780 02e8 00000000 		.4byte	oldTime
- 781 02ec 12       		.uleb128 0x12
- 782 02ed A1000000 		.4byte	.LASF28
- 783 02f1 01       		.byte	0x1
- 784 02f2 1E       		.byte	0x1e
- 785 02f3 68000000 		.4byte	0x68
- 786 02f7 05       		.uleb128 0x5
- 787 02f8 03       		.byte	0x3
- 788 02f9 00000000 		.4byte	currentTime
- 789 02fd 12       		.uleb128 0x12
- 790 02fe 19000000 		.4byte	.LASF29
- 791 0302 01       		.byte	0x1
- 792 0303 21       		.byte	0x21
- 793 0304 88000000 		.4byte	0x88
- 794 0308 05       		.uleb128 0x5
- 795 0309 03       		.byte	0x3
- 796 030a 00000000 		.4byte	setSpeed
- 797 030e 13       		.uleb128 0x13
- 798 030f 4B5000   		.ascii	"KP\000"
- 799 0312 01       		.byte	0x1
- 800 0313 22       		.byte	0x22
- 801 0314 88000000 		.4byte	0x88
- 802 0318 05       		.uleb128 0x5
- 803 0319 03       		.byte	0x3
- 804 031a 00000000 		.4byte	KP
- 805 031e 13       		.uleb128 0x13
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 18
+ 724              	servoKP:
+ 725 0068 00000000 		.word	0
+ 726 006c 0000F03F 		.word	1072693248
+ 727              		.type	OEFREQ, %object
+ 728              		.size	OEFREQ, 4
+ 729              	OEFREQ:
+ 730 0070 1E000000 		.word	30
+ 731              		.type	VFREQ, %object
+ 732              		.size	VFREQ, 4
+ 733              	VFREQ:
+ 734 0074 3C000000 		.word	60
+ 735              		.type	LPF, %object
+ 736              		.size	LPF, 4
+ 737              	LPF:
+ 738 0078 0D020000 		.word	525
+ 739              		.type	FPS, %object
+ 740              		.size	FPS, 4
+ 741              	FPS:
+ 742 007c 1E000000 		.word	30
+ 743              		.type	PICHEIGHT, %object
+ 744              		.size	PICHEIGHT, 4
+ 745              	PICHEIGHT:
+ 746 0080 F0000000 		.word	240
+ 747              		.type	PICWIDTH, %object
+ 748              		.size	PICWIDTH, 4
+ 749              	PICWIDTH:
+ 750 0084 40010000 		.word	320
+ 751              		.type	PI, %object
+ 752              		.size	PI, 8
+ 753              	PI:
+ 754 0088 7A008BFC 		.word	-57999238
+ 755 008c FA210940 		.word	1074340346
+ 756              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 757              		.align	2
+ 758              	.LC0:
+ 759 0000 4C6F6361 		.ascii	"Location: %d,\000"
+ 759      74696F6E 
+ 759      3A202564 
+ 759      2C00
+ 760 000e 0000     		.space	2
+ 761              	.LC1:
+ 762 0010 546F7461 		.ascii	"Total Time: %.3f, Length: %.3f\012\000"
+ 762      6C205469 
+ 762      6D653A20 
+ 762      252E3366 
+ 762      2C204C65 
+ 763              	.LC2:
+ 764 0030 26262600 		.ascii	"&&&\000"
+ 765              	.LC3:
+ 766 0034 252D3136 		.ascii	"%-16.4f\000"
+ 766      2E346600 
+ 767              	.LC4:
+ 768 003c 5469636B 		.ascii	"Tick Num: %5d, Current Speed: %5.2f, Error: %5.2f, "
+ 768      204E756D 
+ 768      3A202535 
+ 768      642C2043 
+ 768      75727265 
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 19
 
 
- 806 031f 4B4900   		.ascii	"KI\000"
- 807 0322 01       		.byte	0x1
- 808 0323 23       		.byte	0x23
- 809 0324 88000000 		.4byte	0x88
- 810 0328 05       		.uleb128 0x5
- 811 0329 03       		.byte	0x3
- 812 032a 00000000 		.4byte	KI
- 813 032e 13       		.uleb128 0x13
- 814 032f 4B4400   		.ascii	"KD\000"
- 815 0332 01       		.byte	0x1
- 816 0333 24       		.byte	0x24
- 817 0334 88000000 		.4byte	0x88
- 818 0338 05       		.uleb128 0x5
- 819 0339 03       		.byte	0x3
- 820 033a 00000000 		.4byte	KD
- 821 033e 12       		.uleb128 0x12
- 822 033f 2B000000 		.4byte	.LASF18
- 823 0343 01       		.byte	0x1
- 824 0344 26       		.byte	0x26
- 825 0345 23020000 		.4byte	0x223
- 826 0349 05       		.uleb128 0x5
- 827 034a 03       		.byte	0x3
- 828 034b 00000000 		.4byte	strbuf
- 829 034f 0E       		.uleb128 0xe
- 830 0350 8F000000 		.4byte	0x8f
- 831 0354 5F030000 		.4byte	0x35f
- 832 0358 0F       		.uleb128 0xf
- 833 0359 9D000000 		.4byte	0x9d
- 834 035d 7F       		.byte	0x7f
- 835 035e 00       		.byte	0
- 836 035f 12       		.uleb128 0x12
- 837 0360 6E020000 		.4byte	.LASF30
- 838 0364 01       		.byte	0x1
- 839 0365 27       		.byte	0x27
- 840 0366 4F030000 		.4byte	0x34f
- 841 036a 05       		.uleb128 0x5
- 842 036b 03       		.byte	0x3
- 843 036c 00000000 		.4byte	uartbuf
- 844 0370 12       		.uleb128 0x12
- 845 0371 15020000 		.4byte	.LASF31
- 846 0375 01       		.byte	0x1
- 847 0376 29       		.byte	0x29
- 848 0377 88000000 		.4byte	0x88
- 849 037b 05       		.uleb128 0x5
- 850 037c 03       		.byte	0x3
- 851 037d 00000000 		.4byte	eTime
- 852 0381 12       		.uleb128 0x12
- 853 0382 0F020000 		.4byte	.LASF32
- 854 0386 01       		.byte	0x1
- 855 0387 2A       		.byte	0x2a
- 856 0388 88000000 		.4byte	0x88
- 857 038c 05       		.uleb128 0x5
- 858 038d 03       		.byte	0x3
- 859 038e 00000000 		.4byte	speed
- 860 0392 12       		.uleb128 0x12
- 861 0393 16030000 		.4byte	.LASF33
- 862 0397 01       		.byte	0x1
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 19
+ 769 006f 44757479 		.ascii	"Duty Cycle: %5.2f, eTime: %5.4f\012\000"
+ 769      20437963 
+ 769      6C653A20 
+ 769      25352E32 
+ 769      662C2065 
+ 770              		.bss
+ 771              		.align	3
+ 772              		.set	.LANCHOR0,. + 0
+ 773              		.type	blackFlag, %object
+ 774              		.size	blackFlag, 4
+ 775              	blackFlag:
+ 776 0000 00000000 		.space	4
+ 777              		.type	hallFlag, %object
+ 778              		.size	hallFlag, 4
+ 779              	hallFlag:
+ 780 0004 00000000 		.space	4
+ 781              		.type	ticks, %object
+ 782              		.size	ticks, 4
+ 783              	ticks:
+ 784 0008 00000000 		.space	4
+ 785 000c 00000000 		.space	4
+ 786              		.type	time, %object
+ 787              		.size	time, 8
+ 788              	time:
+ 789 0010 00000000 		.space	8
+ 789      00000000 
+ 790              		.type	currentTime, %object
+ 791              		.size	currentTime, 4
+ 792              	currentTime:
+ 793 0018 00000000 		.space	4
+ 794              		.type	oldTime, %object
+ 795              		.size	oldTime, 4
+ 796              	oldTime:
+ 797 001c 00000000 		.space	4
+ 798              		.type	sum, %object
+ 799              		.size	sum, 8
+ 800              	sum:
+ 801 0020 00000000 		.space	8
+ 801      00000000 
+ 802              		.type	OFF, %object
+ 803              		.size	OFF, 4
+ 804              	OFF:
+ 805 0028 00000000 		.space	4
+ 806              		.text
+ 807              	.Letext0:
+ 808              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 809              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 810              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 811              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 812              		.file 6 "Generated_Source\\PSoC5/Timer.h"
+ 813              		.file 7 "Generated_Source\\PSoC5/VideoTimer.h"
+ 814              		.file 8 "Generated_Source\\PSoC5/LCD.h"
+ 815              		.file 9 "Generated_Source\\PSoC5/HE_Interrupt.h"
+ 816              		.file 10 "Generated_Source\\PSoC5/UART.h"
+ 817              		.file 11 "Generated_Source\\PSoC5/PWM.h"
+ 818              		.file 12 "Generated_Source\\PSoC5/VDAC.h"
+ 819              		.file 13 "Generated_Source\\PSoC5/Comp.h"
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 20
 
 
- 863 0398 2B       		.byte	0x2b
- 864 0399 88000000 		.4byte	0x88
- 865 039d 05       		.uleb128 0x5
- 866 039e 03       		.byte	0x3
- 867 039f 00000000 		.4byte	error
- 868 03a3 12       		.uleb128 0x12
- 869 03a4 06030000 		.4byte	.LASF34
- 870 03a8 01       		.byte	0x1
- 871 03a9 2D       		.byte	0x2d
- 872 03aa 88000000 		.4byte	0x88
- 873 03ae 05       		.uleb128 0x5
- 874 03af 03       		.byte	0x3
- 875 03b0 00000000 		.4byte	oldError
- 876 03b4 12       		.uleb128 0x12
- 877 03b5 2F020000 		.4byte	.LASF35
- 878 03b9 01       		.byte	0x1
- 879 03ba 2E       		.byte	0x2e
- 880 03bb 88000000 		.4byte	0x88
- 881 03bf 05       		.uleb128 0x5
- 882 03c0 03       		.byte	0x3
- 883 03c1 00000000 		.4byte	errorDiff
- 884 03c5 13       		.uleb128 0x13
- 885 03c6 73756D00 		.ascii	"sum\000"
- 886 03ca 01       		.byte	0x1
- 887 03cb 30       		.byte	0x30
- 888 03cc 88000000 		.4byte	0x88
- 889 03d0 05       		.uleb128 0x5
- 890 03d1 03       		.byte	0x3
- 891 03d2 00000000 		.4byte	sum
- 892 03d6 12       		.uleb128 0x12
- 893 03d7 CD030000 		.4byte	.LASF36
- 894 03db 01       		.byte	0x1
- 895 03dc 31       		.byte	0x31
- 896 03dd 88000000 		.4byte	0x88
- 897 03e1 05       		.uleb128 0x5
- 898 03e2 03       		.byte	0x3
- 899 03e3 00000000 		.4byte	avgError
- 900 03e7 12       		.uleb128 0x12
- 901 03e8 51020000 		.4byte	.LASF37
- 902 03ec 01       		.byte	0x1
- 903 03ed 33       		.byte	0x33
- 904 03ee 88000000 		.4byte	0x88
- 905 03f2 05       		.uleb128 0x5
- 906 03f3 03       		.byte	0x3
- 907 03f4 00000000 		.4byte	dutyCycle
- 908 03f8 12       		.uleb128 0x12
- 909 03f9 22000000 		.4byte	.LASF38
- 910 03fd 01       		.byte	0x1
- 911 03fe 35       		.byte	0x35
- 912 03ff 88000000 		.4byte	0x88
- 913 0403 05       		.uleb128 0x5
- 914 0404 03       		.byte	0x3
- 915 0405 00000000 		.4byte	lineTime
- 916 0409 12       		.uleb128 0x12
- 917 040a 20020000 		.4byte	.LASF39
- 918 040e 01       		.byte	0x1
- 919 040f 36       		.byte	0x36
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 20
+ 820              		.file 14 "Generated_Source\\PSoC5/ServoPWM.h"
+ 821              		.file 15 "Generated_Source\\PSoC5/NewFrame.h"
+ 822              		.file 16 "Generated_Source\\PSoC5/Black.h"
+ 823              		.file 17 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4
+ 824              		.section	.debug_info,"",%progbits
+ 825              	.Ldebug_info0:
+ 826 0000 E5070000 		.4byte	0x7e5
+ 827 0004 0400     		.2byte	0x4
+ 828 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 829 000a 04       		.byte	0x4
+ 830 000b 01       		.uleb128 0x1
+ 831 000c F0030000 		.4byte	.LASF84
+ 832 0010 0C       		.byte	0xc
+ 833 0011 0F030000 		.4byte	.LASF85
+ 834 0015 4A030000 		.4byte	.LASF86
+ 835 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 836 001d 00000000 		.4byte	0
+ 837 0021 00000000 		.4byte	.Ldebug_line0
+ 838 0025 02       		.uleb128 0x2
+ 839 0026 01       		.byte	0x1
+ 840 0027 06       		.byte	0x6
+ 841 0028 35010000 		.4byte	.LASF0
+ 842 002c 02       		.uleb128 0x2
+ 843 002d 01       		.byte	0x1
+ 844 002e 08       		.byte	0x8
+ 845 002f CD010000 		.4byte	.LASF1
+ 846 0033 02       		.uleb128 0x2
+ 847 0034 02       		.byte	0x2
+ 848 0035 05       		.byte	0x5
+ 849 0036 A5000000 		.4byte	.LASF2
+ 850 003a 02       		.uleb128 0x2
+ 851 003b 02       		.byte	0x2
+ 852 003c 07       		.byte	0x7
+ 853 003d 85020000 		.4byte	.LASF3
+ 854 0041 03       		.uleb128 0x3
+ 855 0042 8C030000 		.4byte	.LASF9
+ 856 0046 02       		.byte	0x2
+ 857 0047 3F       		.byte	0x3f
+ 858 0048 4C000000 		.4byte	0x4c
+ 859 004c 02       		.uleb128 0x2
+ 860 004d 04       		.byte	0x4
+ 861 004e 05       		.byte	0x5
+ 862 004f A3010000 		.4byte	.LASF4
+ 863 0053 02       		.uleb128 0x2
+ 864 0054 04       		.byte	0x4
+ 865 0055 07       		.byte	0x7
+ 866 0056 16030000 		.4byte	.LASF5
+ 867 005a 02       		.uleb128 0x2
+ 868 005b 08       		.byte	0x8
+ 869 005c 05       		.byte	0x5
+ 870 005d C6000000 		.4byte	.LASF6
+ 871 0061 02       		.uleb128 0x2
+ 872 0062 08       		.byte	0x8
+ 873 0063 07       		.byte	0x7
+ 874 0064 FA010000 		.4byte	.LASF7
+ 875 0068 04       		.uleb128 0x4
+ 876 0069 04       		.byte	0x4
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 21
 
 
- 920 0410 68000000 		.4byte	0x68
- 921 0414 05       		.uleb128 0x5
- 922 0415 03       		.byte	0x3
- 923 0416 00000000 		.4byte	PICWIDTH
- 924 041a 12       		.uleb128 0x12
- 925 041b A9020000 		.4byte	.LASF40
- 926 041f 01       		.byte	0x1
- 927 0420 37       		.byte	0x37
- 928 0421 68000000 		.4byte	0x68
- 929 0425 05       		.uleb128 0x5
- 930 0426 03       		.byte	0x3
- 931 0427 00000000 		.4byte	PICHEIGHT
- 932 042b 13       		.uleb128 0x13
- 933 042c 46505300 		.ascii	"FPS\000"
- 934 0430 01       		.byte	0x1
- 935 0431 38       		.byte	0x38
- 936 0432 68000000 		.4byte	0x68
- 937 0436 05       		.uleb128 0x5
- 938 0437 03       		.byte	0x3
- 939 0438 00000000 		.4byte	FPS
- 940 043c 13       		.uleb128 0x13
- 941 043d 4C504600 		.ascii	"LPF\000"
- 942 0441 01       		.byte	0x1
- 943 0442 39       		.byte	0x39
- 944 0443 68000000 		.4byte	0x68
- 945 0447 05       		.uleb128 0x5
- 946 0448 03       		.byte	0x3
- 947 0449 00000000 		.4byte	LPF
- 948 044d 13       		.uleb128 0x13
- 949 044e 4C505300 		.ascii	"LPS\000"
- 950 0452 01       		.byte	0x1
- 951 0453 3A       		.byte	0x3a
- 952 0454 68000000 		.4byte	0x68
- 953 0458 05       		.uleb128 0x5
- 954 0459 03       		.byte	0x3
- 955 045a 00000000 		.4byte	LPS
- 956 045e 12       		.uleb128 0x12
- 957 045f 84020000 		.4byte	.LASF41
- 958 0463 01       		.byte	0x1
- 959 0464 3B       		.byte	0x3b
- 960 0465 88000000 		.4byte	0x88
- 961 0469 05       		.uleb128 0x5
- 962 046a 03       		.byte	0x3
- 963 046b 00000000 		.4byte	HFREQ
- 964 046f 12       		.uleb128 0x12
- 965 0470 29020000 		.4byte	.LASF42
- 966 0474 01       		.byte	0x1
- 967 0475 3C       		.byte	0x3c
- 968 0476 68000000 		.4byte	0x68
- 969 047a 05       		.uleb128 0x5
- 970 047b 03       		.byte	0x3
- 971 047c 00000000 		.4byte	VFREQ
- 972 0480 12       		.uleb128 0x12
- 973 0481 0F030000 		.4byte	.LASF43
- 974 0485 01       		.byte	0x1
- 975 0486 3D       		.byte	0x3d
- 976 0487 68000000 		.4byte	0x68
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 21
+ 877 006a 05       		.byte	0x5
+ 878 006b 696E7400 		.ascii	"int\000"
+ 879 006f 02       		.uleb128 0x2
+ 880 0070 04       		.byte	0x4
+ 881 0071 07       		.byte	0x7
+ 882 0072 24020000 		.4byte	.LASF8
+ 883 0076 03       		.uleb128 0x3
+ 884 0077 B2020000 		.4byte	.LASF10
+ 885 007b 03       		.byte	0x3
+ 886 007c 2C       		.byte	0x2c
+ 887 007d 41000000 		.4byte	0x41
+ 888 0081 05       		.uleb128 0x5
+ 889 0082 25010000 		.4byte	.LASF11
+ 890 0086 04       		.byte	0x4
+ 891 0087 E401     		.2byte	0x1e4
+ 892 0089 2C000000 		.4byte	0x2c
+ 893 008d 02       		.uleb128 0x2
+ 894 008e 04       		.byte	0x4
+ 895 008f 04       		.byte	0x4
+ 896 0090 4F010000 		.4byte	.LASF12
+ 897 0094 02       		.uleb128 0x2
+ 898 0095 08       		.byte	0x8
+ 899 0096 04       		.byte	0x4
+ 900 0097 D1030000 		.4byte	.LASF13
+ 901 009b 02       		.uleb128 0x2
+ 902 009c 01       		.byte	0x1
+ 903 009d 08       		.byte	0x8
+ 904 009e 98020000 		.4byte	.LASF14
+ 905 00a2 02       		.uleb128 0x2
+ 906 00a3 08       		.byte	0x8
+ 907 00a4 04       		.byte	0x4
+ 908 00a5 C1010000 		.4byte	.LASF15
+ 909 00a9 02       		.uleb128 0x2
+ 910 00aa 04       		.byte	0x4
+ 911 00ab 07       		.byte	0x7
+ 912 00ac AF000000 		.4byte	.LASF16
+ 913 00b0 06       		.uleb128 0x6
+ 914 00b1 D0020000 		.4byte	.LASF87
+ 915 00b5 01       		.byte	0x1
+ 916 00b6 5A       		.byte	0x5a
+ 917 00b7 00000000 		.4byte	.LFB66
+ 918 00bb 0C000000 		.4byte	.LFE66-.LFB66
+ 919 00bf 01       		.uleb128 0x1
+ 920 00c0 9C       		.byte	0x9c
+ 921 00c1 07       		.uleb128 0x7
+ 922 00c2 C2020000 		.4byte	.LASF17
+ 923 00c6 01       		.byte	0x1
+ 924 00c7 51       		.byte	0x51
+ 925 00c8 00000000 		.4byte	.LFB64
+ 926 00cc 14000000 		.4byte	.LFE64-.LFB64
+ 927 00d0 01       		.uleb128 0x1
+ 928 00d1 9C       		.byte	0x9c
+ 929 00d2 E0000000 		.4byte	0xe0
+ 930 00d6 08       		.uleb128 0x8
+ 931 00d7 0C000000 		.4byte	.LVL0
+ 932 00db A9060000 		.4byte	0x6a9
+ 933 00df 00       		.byte	0
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 22
 
 
- 977 048b 05       		.uleb128 0x5
- 978 048c 03       		.byte	0x3
- 979 048d 00000000 		.4byte	OEFREQ
- 980 0491 12       		.uleb128 0x12
- 981 0492 7D000000 		.4byte	.LASF44
- 982 0496 01       		.byte	0x1
- 983 0497 40       		.byte	0x40
- 984 0498 68000000 		.4byte	0x68
- 985 049c 05       		.uleb128 0x5
- 986 049d 03       		.byte	0x3
- 987 049e 00000000 		.4byte	hallFlag
- 988 04a2 12       		.uleb128 0x12
- 989 04a3 CC010000 		.4byte	.LASF45
- 990 04a7 01       		.byte	0x1
- 991 04a8 41       		.byte	0x41
- 992 04a9 68000000 		.4byte	0x68
- 993 04ad 05       		.uleb128 0x5
- 994 04ae 03       		.byte	0x3
- 995 04af 00000000 		.4byte	newFrameFlag
- 996 04b3 12       		.uleb128 0x12
- 997 04b4 D6030000 		.4byte	.LASF46
- 998 04b8 01       		.byte	0x1
- 999 04b9 43       		.byte	0x43
- 1000 04ba 68000000 		.4byte	0x68
- 1001 04be 05       		.uleb128 0x5
- 1002 04bf 03       		.byte	0x3
- 1003 04c0 00000000 		.4byte	blackFlag
- 1004 04c4 12       		.uleb128 0x12
- 1005 04c5 D4000000 		.4byte	.LASF47
- 1006 04c9 01       		.byte	0x1
- 1007 04ca 46       		.byte	0x46
- 1008 04cb 88000000 		.4byte	0x88
- 1009 04cf 05       		.uleb128 0x5
- 1010 04d0 03       		.byte	0x3
- 1011 04d1 00000000 		.4byte	firstPixelTime
- 1012 04d5 12       		.uleb128 0x12
- 1013 04d6 A1020000 		.4byte	.LASF48
- 1014 04da 01       		.byte	0x1
- 1015 04db 47       		.byte	0x47
- 1016 04dc 68000000 		.4byte	0x68
- 1017 04e0 05       		.uleb128 0x5
- 1018 04e1 03       		.byte	0x3
- 1019 04e2 00000000 		.4byte	XSHSync
- 1020 04e6 14       		.uleb128 0x14
- 1021 04e7 FC020000 		.4byte	.LASF49
- 1022 04eb FC020000 		.4byte	.LASF49
- 1023 04ef 05       		.byte	0x5
- 1024 04f0 38       		.byte	0x38
- 1025 04f1 14       		.uleb128 0x14
- 1026 04f2 00000000 		.4byte	.LASF50
- 1027 04f6 00000000 		.4byte	.LASF50
- 1028 04fa 06       		.byte	0x6
- 1029 04fb 17       		.byte	0x17
- 1030 04fc 14       		.uleb128 0x14
- 1031 04fd 8A020000 		.4byte	.LASF51
- 1032 0501 8A020000 		.4byte	.LASF51
- 1033 0505 06       		.byte	0x6
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 22
+ 934 00e0 07       		.uleb128 0x7
+ 935 00e1 C9020000 		.4byte	.LASF18
+ 936 00e5 01       		.byte	0x1
+ 937 00e6 56       		.byte	0x56
+ 938 00e7 00000000 		.4byte	.LFB65
+ 939 00eb 08000000 		.4byte	.LFE65-.LFB65
+ 940 00ef 01       		.uleb128 0x1
+ 941 00f0 9C       		.byte	0x9c
+ 942 00f1 FF000000 		.4byte	0xff
+ 943 00f5 08       		.uleb128 0x8
+ 944 00f6 06000000 		.4byte	.LVL1
+ 945 00fa B4060000 		.4byte	0x6b4
+ 946 00fe 00       		.byte	0
+ 947 00ff 09       		.uleb128 0x9
+ 948 0100 C1000000 		.4byte	.LASF88
+ 949 0104 01       		.byte	0x1
+ 950 0105 5E       		.byte	0x5e
+ 951 0106 68000000 		.4byte	0x68
+ 952 010a 00000000 		.4byte	.LFB67
+ 953 010e A4030000 		.4byte	.LFE67-.LFB67
+ 954 0112 01       		.uleb128 0x1
+ 955 0113 9C       		.byte	0x9c
+ 956 0114 91030000 		.4byte	0x391
+ 957 0118 0A       		.uleb128 0xa
+ 958 0119 3D000000 		.4byte	.LASF19
+ 959 011d 01       		.byte	0x1
+ 960 011e 61       		.byte	0x61
+ 961 011f 91030000 		.4byte	0x391
+ 962 0123 02       		.uleb128 0x2
+ 963 0124 91       		.byte	0x91
+ 964 0125 50       		.sleb128 -48
+ 965 0126 0B       		.uleb128 0xb
+ 966 0127 8D010000 		.4byte	.LASF20
+ 967 012b 01       		.byte	0x1
+ 968 012c 8C       		.byte	0x8c
+ 969 012d 68000000 		.4byte	0x68
+ 970 0131 00000000 		.4byte	.LLST0
+ 971 0135 08       		.uleb128 0x8
+ 972 0136 0C000000 		.4byte	.LVL2
+ 973 013a BF060000 		.4byte	0x6bf
+ 974 013e 08       		.uleb128 0x8
+ 975 013f 10000000 		.4byte	.LVL3
+ 976 0143 CA060000 		.4byte	0x6ca
+ 977 0147 0C       		.uleb128 0xc
+ 978 0148 16000000 		.4byte	.LVL4
+ 979 014c D5060000 		.4byte	0x6d5
+ 980 0150 5E010000 		.4byte	0x15e
+ 981 0154 0D       		.uleb128 0xd
+ 982 0155 01       		.uleb128 0x1
+ 983 0156 50       		.byte	0x50
+ 984 0157 05       		.uleb128 0x5
+ 985 0158 03       		.byte	0x3
+ 986 0159 00000000 		.4byte	inter1
+ 987 015d 00       		.byte	0
+ 988 015e 08       		.uleb128 0x8
+ 989 015f 1A000000 		.4byte	.LVL5
+ 990 0163 E0060000 		.4byte	0x6e0
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 23
 
 
- 1034 0506 1D       		.byte	0x1d
- 1035 0507 14       		.uleb128 0x14
- 1036 0508 FD000000 		.4byte	.LASF52
- 1037 050c FD000000 		.4byte	.LASF52
- 1038 0510 07       		.byte	0x7
- 1039 0511 5A       		.byte	0x5a
- 1040 0512 14       		.uleb128 0x14
- 1041 0513 5B020000 		.4byte	.LASF53
- 1042 0517 5B020000 		.4byte	.LASF53
- 1043 051b 08       		.byte	0x8
- 1044 051c 54       		.byte	0x54
- 1045 051d 14       		.uleb128 0x14
- 1046 051e F2020000 		.4byte	.LASF54
- 1047 0522 F2020000 		.4byte	.LASF54
- 1048 0526 09       		.byte	0x9
- 1049 0527 92       		.byte	0x92
- 1050 0528 14       		.uleb128 0x14
- 1051 0529 96010000 		.4byte	.LASF55
- 1052 052d 96010000 		.4byte	.LASF55
- 1053 0531 0A       		.byte	0xa
- 1054 0532 5A       		.byte	0x5a
- 1055 0533 14       		.uleb128 0x14
- 1056 0534 5F000000 		.4byte	.LASF56
- 1057 0538 5F000000 		.4byte	.LASF56
- 1058 053c 0B       		.byte	0xb
- 1059 053d 33       		.byte	0x33
- 1060 053e 14       		.uleb128 0x14
- 1061 053f C0000000 		.4byte	.LASF57
- 1062 0543 C0000000 		.4byte	.LASF57
- 1063 0547 0B       		.byte	0xb
- 1064 0548 35       		.byte	0x35
- 1065 0549 14       		.uleb128 0x14
- 1066 054a 01020000 		.4byte	.LASF58
- 1067 054e 01020000 		.4byte	.LASF58
- 1068 0552 0B       		.byte	0xb
- 1069 0553 36       		.byte	0x36
- 1070 0554 14       		.uleb128 0x14
- 1071 0555 BF030000 		.4byte	.LASF59
- 1072 0559 BF030000 		.4byte	.LASF59
- 1073 055d 0B       		.byte	0xb
- 1074 055e 37       		.byte	0x37
- 1075 055f 14       		.uleb128 0x14
- 1076 0560 D9010000 		.4byte	.LASF60
- 1077 0564 D9010000 		.4byte	.LASF60
- 1078 0568 0C       		.byte	0xc
- 1079 0569 3F       		.byte	0x3f
- 1080 056a 14       		.uleb128 0x14
- 1081 056b A7010000 		.4byte	.LASF61
- 1082 056f A7010000 		.4byte	.LASF61
- 1083 0573 0C       		.byte	0xc
- 1084 0574 41       		.byte	0x41
- 1085 0575 14       		.uleb128 0x14
- 1086 0576 12010000 		.4byte	.LASF62
- 1087 057a 12010000 		.4byte	.LASF62
- 1088 057e 0D       		.byte	0xd
- 1089 057f 17       		.byte	0x17
- 1090 0580 14       		.uleb128 0x14
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 23
+ 991 0167 08       		.uleb128 0x8
+ 992 0168 1E000000 		.4byte	.LVL6
+ 993 016c EB060000 		.4byte	0x6eb
+ 994 0170 08       		.uleb128 0x8
+ 995 0171 22000000 		.4byte	.LVL7
+ 996 0175 F6060000 		.4byte	0x6f6
+ 997 0179 08       		.uleb128 0x8
+ 998 017a 26000000 		.4byte	.LVL8
+ 999 017e 01070000 		.4byte	0x701
+ 1000 0182 08       		.uleb128 0x8
+ 1001 0183 2A000000 		.4byte	.LVL9
+ 1002 0187 0C070000 		.4byte	0x70c
+ 1003 018b 0C       		.uleb128 0xc
+ 1004 018c 30000000 		.4byte	.LVL10
+ 1005 0190 17070000 		.4byte	0x717
+ 1006 0194 9E010000 		.4byte	0x19e
+ 1007 0198 0D       		.uleb128 0xd
+ 1008 0199 01       		.uleb128 0x1
+ 1009 019a 50       		.byte	0x50
+ 1010 019b 01       		.uleb128 0x1
+ 1011 019c 30       		.byte	0x30
+ 1012 019d 00       		.byte	0
+ 1013 019e 0C       		.uleb128 0xc
+ 1014 019f 36000000 		.4byte	.LVL11
+ 1015 01a3 22070000 		.4byte	0x722
+ 1016 01a7 B1010000 		.4byte	0x1b1
+ 1017 01ab 0D       		.uleb128 0xd
+ 1018 01ac 01       		.uleb128 0x1
+ 1019 01ad 50       		.byte	0x50
+ 1020 01ae 01       		.uleb128 0x1
+ 1021 01af 30       		.byte	0x30
+ 1022 01b0 00       		.byte	0
+ 1023 01b1 0C       		.uleb128 0xc
+ 1024 01b2 3C000000 		.4byte	.LVL12
+ 1025 01b6 2D070000 		.4byte	0x72d
+ 1026 01ba C5010000 		.4byte	0x1c5
+ 1027 01be 0D       		.uleb128 0xd
+ 1028 01bf 01       		.uleb128 0x1
+ 1029 01c0 50       		.byte	0x50
+ 1030 01c1 02       		.uleb128 0x2
+ 1031 01c2 09       		.byte	0x9
+ 1032 01c3 80       		.byte	0x80
+ 1033 01c4 00       		.byte	0
+ 1034 01c5 08       		.uleb128 0x8
+ 1035 01c6 40000000 		.4byte	.LVL13
+ 1036 01ca 38070000 		.4byte	0x738
+ 1037 01ce 0C       		.uleb128 0xc
+ 1038 01cf 46000000 		.4byte	.LVL14
+ 1039 01d3 43070000 		.4byte	0x743
+ 1040 01d7 E1010000 		.4byte	0x1e1
+ 1041 01db 0D       		.uleb128 0xd
+ 1042 01dc 01       		.uleb128 0x1
+ 1043 01dd 50       		.byte	0x50
+ 1044 01de 01       		.uleb128 0x1
+ 1045 01df 31       		.byte	0x31
+ 1046 01e0 00       		.byte	0
+ 1047 01e1 08       		.uleb128 0x8
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 24
 
 
- 1091 0581 E3000000 		.4byte	.LASF63
- 1092 0585 E3000000 		.4byte	.LASF63
- 1093 0589 0D       		.byte	0xd
- 1094 058a 1D       		.byte	0x1d
- 1095 058b 14       		.uleb128 0x14
- 1096 058c 37000000 		.4byte	.LASF64
- 1097 0590 37000000 		.4byte	.LASF64
- 1098 0594 0A       		.byte	0xa
- 1099 0595 6B       		.byte	0x6b
- 1100 0596 14       		.uleb128 0x14
- 1101 0597 4E000000 		.4byte	.LASF65
- 1102 059b 4E000000 		.4byte	.LASF65
- 1103 059f 05       		.byte	0x5
- 1104 05a0 3A       		.byte	0x3a
- 1105 05a1 14       		.uleb128 0x14
- 1106 05a2 8E010000 		.4byte	.LASF66
- 1107 05a6 8E010000 		.4byte	.LASF66
- 1108 05aa 0E       		.byte	0xe
- 1109 05ab E7       		.byte	0xe7
- 1110 05ac 14       		.uleb128 0x14
- 1111 05ad F1010000 		.4byte	.LASF67
- 1112 05b1 F1010000 		.4byte	.LASF67
- 1113 05b5 05       		.byte	0x5
- 1114 05b6 3C       		.byte	0x3c
- 1115 05b7 00       		.byte	0
- 1116              		.section	.debug_abbrev,"",%progbits
- 1117              	.Ldebug_abbrev0:
- 1118 0000 01       		.uleb128 0x1
- 1119 0001 11       		.uleb128 0x11
- 1120 0002 01       		.byte	0x1
- 1121 0003 25       		.uleb128 0x25
- 1122 0004 0E       		.uleb128 0xe
- 1123 0005 13       		.uleb128 0x13
- 1124 0006 0B       		.uleb128 0xb
- 1125 0007 03       		.uleb128 0x3
- 1126 0008 0E       		.uleb128 0xe
- 1127 0009 1B       		.uleb128 0x1b
- 1128 000a 0E       		.uleb128 0xe
- 1129 000b 55       		.uleb128 0x55
- 1130 000c 17       		.uleb128 0x17
- 1131 000d 11       		.uleb128 0x11
- 1132 000e 01       		.uleb128 0x1
- 1133 000f 10       		.uleb128 0x10
- 1134 0010 17       		.uleb128 0x17
- 1135 0011 00       		.byte	0
- 1136 0012 00       		.byte	0
- 1137 0013 02       		.uleb128 0x2
- 1138 0014 24       		.uleb128 0x24
- 1139 0015 00       		.byte	0
- 1140 0016 0B       		.uleb128 0xb
- 1141 0017 0B       		.uleb128 0xb
- 1142 0018 3E       		.uleb128 0x3e
- 1143 0019 0B       		.uleb128 0xb
- 1144 001a 03       		.uleb128 0x3
- 1145 001b 0E       		.uleb128 0xe
- 1146 001c 00       		.byte	0
- 1147 001d 00       		.byte	0
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 24
+ 1048 01e2 4A000000 		.4byte	.LVL15
+ 1049 01e6 4E070000 		.4byte	0x74e
+ 1050 01ea 08       		.uleb128 0x8
+ 1051 01eb 52000000 		.4byte	.LVL16
+ 1052 01ef 59070000 		.4byte	0x759
+ 1053 01f3 08       		.uleb128 0x8
+ 1054 01f4 56000000 		.4byte	.LVL17
+ 1055 01f8 64070000 		.4byte	0x764
+ 1056 01fc 0C       		.uleb128 0xc
+ 1057 01fd 5C000000 		.4byte	.LVL18
+ 1058 0201 6F070000 		.4byte	0x76f
+ 1059 0205 13020000 		.4byte	0x213
+ 1060 0209 0D       		.uleb128 0xd
+ 1061 020a 01       		.uleb128 0x1
+ 1062 020b 50       		.byte	0x50
+ 1063 020c 05       		.uleb128 0x5
+ 1064 020d 03       		.byte	0x3
+ 1065 020e 00000000 		.4byte	inter2
+ 1066 0212 00       		.byte	0
+ 1067 0213 08       		.uleb128 0x8
+ 1068 0214 60000000 		.4byte	.LVL19
+ 1069 0218 7A070000 		.4byte	0x77a
+ 1070 021c 0C       		.uleb128 0xc
+ 1071 021d 66000000 		.4byte	.LVL20
+ 1072 0221 85070000 		.4byte	0x785
+ 1073 0225 33020000 		.4byte	0x233
+ 1074 0229 0D       		.uleb128 0xd
+ 1075 022a 01       		.uleb128 0x1
+ 1076 022b 50       		.byte	0x50
+ 1077 022c 05       		.uleb128 0x5
+ 1078 022d 03       		.byte	0x3
+ 1079 022e 00000000 		.4byte	inter3
+ 1080 0232 00       		.byte	0
+ 1081 0233 08       		.uleb128 0x8
+ 1082 0234 78000000 		.4byte	.LVL21
+ 1083 0238 90070000 		.4byte	0x790
+ 1084 023c 08       		.uleb128 0x8
+ 1085 023d E4000000 		.4byte	.LVL31
+ 1086 0241 59070000 		.4byte	0x759
+ 1087 0245 0C       		.uleb128 0xc
+ 1088 0246 EA000000 		.4byte	.LVL32
+ 1089 024a 9B070000 		.4byte	0x79b
+ 1090 024e 58020000 		.4byte	0x258
+ 1091 0252 0D       		.uleb128 0xd
+ 1092 0253 01       		.uleb128 0x1
+ 1093 0254 50       		.byte	0x50
+ 1094 0255 01       		.uleb128 0x1
+ 1095 0256 31       		.byte	0x31
+ 1096 0257 00       		.byte	0
+ 1097 0258 0C       		.uleb128 0xc
+ 1098 0259 F4000000 		.4byte	.LVL33
+ 1099 025d A6070000 		.4byte	0x7a6
+ 1100 0261 7B020000 		.4byte	0x27b
+ 1101 0265 0D       		.uleb128 0xd
+ 1102 0266 01       		.uleb128 0x1
+ 1103 0267 50       		.byte	0x50
+ 1104 0268 02       		.uleb128 0x2
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 25
 
 
- 1148 001e 03       		.uleb128 0x3
- 1149 001f 16       		.uleb128 0x16
- 1150 0020 00       		.byte	0
- 1151 0021 03       		.uleb128 0x3
- 1152 0022 0E       		.uleb128 0xe
- 1153 0023 3A       		.uleb128 0x3a
- 1154 0024 0B       		.uleb128 0xb
- 1155 0025 3B       		.uleb128 0x3b
- 1156 0026 0B       		.uleb128 0xb
- 1157 0027 49       		.uleb128 0x49
- 1158 0028 13       		.uleb128 0x13
- 1159 0029 00       		.byte	0
- 1160 002a 00       		.byte	0
- 1161 002b 04       		.uleb128 0x4
- 1162 002c 24       		.uleb128 0x24
- 1163 002d 00       		.byte	0
- 1164 002e 0B       		.uleb128 0xb
- 1165 002f 0B       		.uleb128 0xb
- 1166 0030 3E       		.uleb128 0x3e
- 1167 0031 0B       		.uleb128 0xb
- 1168 0032 03       		.uleb128 0x3
- 1169 0033 08       		.uleb128 0x8
- 1170 0034 00       		.byte	0
- 1171 0035 00       		.byte	0
- 1172 0036 05       		.uleb128 0x5
- 1173 0037 2E       		.uleb128 0x2e
- 1174 0038 00       		.byte	0
- 1175 0039 3F       		.uleb128 0x3f
- 1176 003a 19       		.uleb128 0x19
- 1177 003b 03       		.uleb128 0x3
- 1178 003c 0E       		.uleb128 0xe
- 1179 003d 3A       		.uleb128 0x3a
- 1180 003e 0B       		.uleb128 0xb
- 1181 003f 3B       		.uleb128 0x3b
- 1182 0040 0B       		.uleb128 0xb
- 1183 0041 27       		.uleb128 0x27
- 1184 0042 19       		.uleb128 0x19
- 1185 0043 11       		.uleb128 0x11
- 1186 0044 01       		.uleb128 0x1
- 1187 0045 12       		.uleb128 0x12
- 1188 0046 06       		.uleb128 0x6
- 1189 0047 40       		.uleb128 0x40
- 1190 0048 18       		.uleb128 0x18
- 1191 0049 9742     		.uleb128 0x2117
- 1192 004b 19       		.uleb128 0x19
- 1193 004c 00       		.byte	0
- 1194 004d 00       		.byte	0
- 1195 004e 06       		.uleb128 0x6
- 1196 004f 2E       		.uleb128 0x2e
- 1197 0050 01       		.byte	0x1
- 1198 0051 3F       		.uleb128 0x3f
- 1199 0052 19       		.uleb128 0x19
- 1200 0053 03       		.uleb128 0x3
- 1201 0054 0E       		.uleb128 0xe
- 1202 0055 3A       		.uleb128 0x3a
- 1203 0056 0B       		.uleb128 0xb
- 1204 0057 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 25
+ 1105 0269 91       		.byte	0x91
+ 1106 026a 50       		.sleb128 -48
+ 1107 026b 0D       		.uleb128 0xd
+ 1108 026c 01       		.uleb128 0x1
+ 1109 026d 51       		.byte	0x51
+ 1110 026e 05       		.uleb128 0x5
+ 1111 026f 03       		.byte	0x3
+ 1112 0270 00000000 		.4byte	.LC0
+ 1113 0274 0D       		.uleb128 0xd
+ 1114 0275 01       		.uleb128 0x1
+ 1115 0276 52       		.byte	0x52
+ 1116 0277 02       		.uleb128 0x2
+ 1117 0278 77       		.byte	0x77
+ 1118 0279 00       		.sleb128 0
+ 1119 027a 00       		.byte	0
+ 1120 027b 0C       		.uleb128 0xc
+ 1121 027c FA000000 		.4byte	.LVL34
+ 1122 0280 B1070000 		.4byte	0x7b1
+ 1123 0284 8F020000 		.4byte	0x28f
+ 1124 0288 0D       		.uleb128 0xd
+ 1125 0289 01       		.uleb128 0x1
+ 1126 028a 50       		.byte	0x50
+ 1127 028b 02       		.uleb128 0x2
+ 1128 028c 91       		.byte	0x91
+ 1129 028d 50       		.sleb128 -48
+ 1130 028e 00       		.byte	0
+ 1131 028f 0C       		.uleb128 0xc
+ 1132 0290 3A010000 		.4byte	.LVL38
+ 1133 0294 A6070000 		.4byte	0x7a6
+ 1134 0298 AC020000 		.4byte	0x2ac
+ 1135 029c 0D       		.uleb128 0xd
+ 1136 029d 01       		.uleb128 0x1
+ 1137 029e 50       		.byte	0x50
+ 1138 029f 02       		.uleb128 0x2
+ 1139 02a0 74       		.byte	0x74
+ 1140 02a1 00       		.sleb128 0
+ 1141 02a2 0D       		.uleb128 0xd
+ 1142 02a3 01       		.uleb128 0x1
+ 1143 02a4 51       		.byte	0x51
+ 1144 02a5 05       		.uleb128 0x5
+ 1145 02a6 03       		.byte	0x3
+ 1146 02a7 10000000 		.4byte	.LC1
+ 1147 02ab 00       		.byte	0
+ 1148 02ac 0C       		.uleb128 0xc
+ 1149 02ad 40010000 		.4byte	.LVL39
+ 1150 02b1 BC070000 		.4byte	0x7bc
+ 1151 02b5 C0020000 		.4byte	0x2c0
+ 1152 02b9 0D       		.uleb128 0xd
+ 1153 02ba 01       		.uleb128 0x1
+ 1154 02bb 50       		.byte	0x50
+ 1155 02bc 02       		.uleb128 0x2
+ 1156 02bd 74       		.byte	0x74
+ 1157 02be 00       		.sleb128 0
+ 1158 02bf 00       		.byte	0
+ 1159 02c0 0C       		.uleb128 0xc
+ 1160 02c1 46010000 		.4byte	.LVL40
+ 1161 02c5 C7070000 		.4byte	0x7c7
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 26
 
 
- 1205 0058 0B       		.uleb128 0xb
- 1206 0059 27       		.uleb128 0x27
- 1207 005a 19       		.uleb128 0x19
- 1208 005b 49       		.uleb128 0x49
- 1209 005c 13       		.uleb128 0x13
- 1210 005d 8701     		.uleb128 0x87
- 1211 005f 19       		.uleb128 0x19
- 1212 0060 11       		.uleb128 0x11
- 1213 0061 01       		.uleb128 0x1
- 1214 0062 12       		.uleb128 0x12
- 1215 0063 06       		.uleb128 0x6
- 1216 0064 40       		.uleb128 0x40
- 1217 0065 18       		.uleb128 0x18
- 1218 0066 9642     		.uleb128 0x2116
- 1219 0068 19       		.uleb128 0x19
- 1220 0069 01       		.uleb128 0x1
- 1221 006a 13       		.uleb128 0x13
- 1222 006b 00       		.byte	0
- 1223 006c 00       		.byte	0
- 1224 006d 07       		.uleb128 0x7
- 1225 006e 34       		.uleb128 0x34
- 1226 006f 00       		.byte	0
- 1227 0070 03       		.uleb128 0x3
- 1228 0071 0E       		.uleb128 0xe
- 1229 0072 3A       		.uleb128 0x3a
- 1230 0073 0B       		.uleb128 0xb
- 1231 0074 3B       		.uleb128 0x3b
- 1232 0075 0B       		.uleb128 0xb
- 1233 0076 49       		.uleb128 0x49
- 1234 0077 13       		.uleb128 0x13
- 1235 0078 02       		.uleb128 0x2
- 1236 0079 18       		.uleb128 0x18
- 1237 007a 00       		.byte	0
- 1238 007b 00       		.byte	0
- 1239 007c 08       		.uleb128 0x8
- 1240 007d 34       		.uleb128 0x34
- 1241 007e 00       		.byte	0
- 1242 007f 03       		.uleb128 0x3
- 1243 0080 0E       		.uleb128 0xe
- 1244 0081 3A       		.uleb128 0x3a
- 1245 0082 0B       		.uleb128 0xb
- 1246 0083 3B       		.uleb128 0x3b
- 1247 0084 0B       		.uleb128 0xb
- 1248 0085 49       		.uleb128 0x49
- 1249 0086 13       		.uleb128 0x13
- 1250 0087 00       		.byte	0
- 1251 0088 00       		.byte	0
- 1252 0089 09       		.uleb128 0x9
- 1253 008a 34       		.uleb128 0x34
- 1254 008b 00       		.byte	0
- 1255 008c 03       		.uleb128 0x3
- 1256 008d 0E       		.uleb128 0xe
- 1257 008e 3A       		.uleb128 0x3a
- 1258 008f 0B       		.uleb128 0xb
- 1259 0090 3B       		.uleb128 0x3b
- 1260 0091 0B       		.uleb128 0xb
- 1261 0092 49       		.uleb128 0x49
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 26
+ 1162 02c9 D3020000 		.4byte	0x2d3
+ 1163 02cd 0D       		.uleb128 0xd
+ 1164 02ce 01       		.uleb128 0x1
+ 1165 02cf 50       		.byte	0x50
+ 1166 02d0 01       		.uleb128 0x1
+ 1167 02d1 30       		.byte	0x30
+ 1168 02d2 00       		.byte	0
+ 1169 02d3 0C       		.uleb128 0xc
+ 1170 02d4 4C010000 		.4byte	.LVL41
+ 1171 02d8 BC070000 		.4byte	0x7bc
+ 1172 02dc EA020000 		.4byte	0x2ea
+ 1173 02e0 0D       		.uleb128 0xd
+ 1174 02e1 01       		.uleb128 0x1
+ 1175 02e2 50       		.byte	0x50
+ 1176 02e3 05       		.uleb128 0x5
+ 1177 02e4 03       		.byte	0x3
+ 1178 02e5 30000000 		.4byte	.LC2
+ 1179 02e9 00       		.byte	0
+ 1180 02ea 08       		.uleb128 0x8
+ 1181 02eb 52010000 		.4byte	.LVL42
+ 1182 02ef D2070000 		.4byte	0x7d2
+ 1183 02f3 0C       		.uleb128 0xc
+ 1184 02f4 CE010000 		.4byte	.LVL50
+ 1185 02f8 9B070000 		.4byte	0x79b
+ 1186 02fc 06030000 		.4byte	0x306
+ 1187 0300 0D       		.uleb128 0xd
+ 1188 0301 01       		.uleb128 0x1
+ 1189 0302 50       		.byte	0x50
+ 1190 0303 01       		.uleb128 0x1
+ 1191 0304 31       		.byte	0x31
+ 1192 0305 00       		.byte	0
+ 1193 0306 0C       		.uleb128 0xc
+ 1194 0307 DA010000 		.4byte	.LVL51
+ 1195 030b A6070000 		.4byte	0x7a6
+ 1196 030f 23030000 		.4byte	0x323
+ 1197 0313 0D       		.uleb128 0xd
+ 1198 0314 01       		.uleb128 0x1
+ 1199 0315 50       		.byte	0x50
+ 1200 0316 02       		.uleb128 0x2
+ 1201 0317 91       		.byte	0x91
+ 1202 0318 50       		.sleb128 -48
+ 1203 0319 0D       		.uleb128 0xd
+ 1204 031a 01       		.uleb128 0x1
+ 1205 031b 51       		.byte	0x51
+ 1206 031c 05       		.uleb128 0x5
+ 1207 031d 03       		.byte	0x3
+ 1208 031e 34000000 		.4byte	.LC3
+ 1209 0322 00       		.byte	0
+ 1210 0323 0C       		.uleb128 0xc
+ 1211 0324 E2010000 		.4byte	.LVL52
+ 1212 0328 DD070000 		.4byte	0x7dd
+ 1213 032c 3B030000 		.4byte	0x33b
+ 1214 0330 0D       		.uleb128 0xd
+ 1215 0331 01       		.uleb128 0x1
+ 1216 0332 50       		.byte	0x50
+ 1217 0333 01       		.uleb128 0x1
+ 1218 0334 30       		.byte	0x30
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 27
 
 
- 1262 0093 13       		.uleb128 0x13
- 1263 0094 02       		.uleb128 0x2
- 1264 0095 17       		.uleb128 0x17
- 1265 0096 00       		.byte	0
- 1266 0097 00       		.byte	0
- 1267 0098 0A       		.uleb128 0xa
- 1268 0099 898201   		.uleb128 0x4109
- 1269 009c 00       		.byte	0
- 1270 009d 11       		.uleb128 0x11
- 1271 009e 01       		.uleb128 0x1
- 1272 009f 31       		.uleb128 0x31
- 1273 00a0 13       		.uleb128 0x13
- 1274 00a1 00       		.byte	0
- 1275 00a2 00       		.byte	0
- 1276 00a3 0B       		.uleb128 0xb
- 1277 00a4 898201   		.uleb128 0x4109
- 1278 00a7 01       		.byte	0x1
- 1279 00a8 11       		.uleb128 0x11
- 1280 00a9 01       		.uleb128 0x1
- 1281 00aa 31       		.uleb128 0x31
- 1282 00ab 13       		.uleb128 0x13
- 1283 00ac 01       		.uleb128 0x1
- 1284 00ad 13       		.uleb128 0x13
- 1285 00ae 00       		.byte	0
- 1286 00af 00       		.byte	0
- 1287 00b0 0C       		.uleb128 0xc
- 1288 00b1 8A8201   		.uleb128 0x410a
- 1289 00b4 00       		.byte	0
- 1290 00b5 02       		.uleb128 0x2
- 1291 00b6 18       		.uleb128 0x18
- 1292 00b7 9142     		.uleb128 0x2111
- 1293 00b9 18       		.uleb128 0x18
- 1294 00ba 00       		.byte	0
- 1295 00bb 00       		.byte	0
- 1296 00bc 0D       		.uleb128 0xd
- 1297 00bd 898201   		.uleb128 0x4109
- 1298 00c0 01       		.byte	0x1
- 1299 00c1 11       		.uleb128 0x11
- 1300 00c2 01       		.uleb128 0x1
- 1301 00c3 31       		.uleb128 0x31
- 1302 00c4 13       		.uleb128 0x13
- 1303 00c5 00       		.byte	0
- 1304 00c6 00       		.byte	0
- 1305 00c7 0E       		.uleb128 0xe
- 1306 00c8 01       		.uleb128 0x1
- 1307 00c9 01       		.byte	0x1
- 1308 00ca 49       		.uleb128 0x49
- 1309 00cb 13       		.uleb128 0x13
- 1310 00cc 01       		.uleb128 0x1
- 1311 00cd 13       		.uleb128 0x13
- 1312 00ce 00       		.byte	0
- 1313 00cf 00       		.byte	0
- 1314 00d0 0F       		.uleb128 0xf
- 1315 00d1 21       		.uleb128 0x21
- 1316 00d2 00       		.byte	0
- 1317 00d3 49       		.uleb128 0x49
- 1318 00d4 13       		.uleb128 0x13
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 27
+ 1219 0335 0D       		.uleb128 0xd
+ 1220 0336 01       		.uleb128 0x1
+ 1221 0337 51       		.byte	0x51
+ 1222 0338 01       		.uleb128 0x1
+ 1223 0339 30       		.byte	0x30
+ 1224 033a 00       		.byte	0
+ 1225 033b 0C       		.uleb128 0xc
+ 1226 033c E8010000 		.4byte	.LVL53
+ 1227 0340 B1070000 		.4byte	0x7b1
+ 1228 0344 4F030000 		.4byte	0x34f
+ 1229 0348 0D       		.uleb128 0xd
+ 1230 0349 01       		.uleb128 0x1
+ 1231 034a 50       		.byte	0x50
+ 1232 034b 02       		.uleb128 0x2
+ 1233 034c 91       		.byte	0x91
+ 1234 034d 50       		.sleb128 -48
+ 1235 034e 00       		.byte	0
+ 1236 034f 0C       		.uleb128 0xc
+ 1237 0350 44030000 		.4byte	.LVL70
+ 1238 0354 C7070000 		.4byte	0x7c7
+ 1239 0358 63030000 		.4byte	0x363
+ 1240 035c 0D       		.uleb128 0xd
+ 1241 035d 01       		.uleb128 0x1
+ 1242 035e 50       		.byte	0x50
+ 1243 035f 02       		.uleb128 0x2
+ 1244 0360 75       		.byte	0x75
+ 1245 0361 00       		.sleb128 0
+ 1246 0362 00       		.byte	0
+ 1247 0363 0C       		.uleb128 0xc
+ 1248 0364 78030000 		.4byte	.LVL71
+ 1249 0368 A6070000 		.4byte	0x7a6
+ 1250 036c 80030000 		.4byte	0x380
+ 1251 0370 0D       		.uleb128 0xd
+ 1252 0371 01       		.uleb128 0x1
+ 1253 0372 50       		.byte	0x50
+ 1254 0373 02       		.uleb128 0x2
+ 1255 0374 75       		.byte	0x75
+ 1256 0375 00       		.sleb128 0
+ 1257 0376 0D       		.uleb128 0xd
+ 1258 0377 01       		.uleb128 0x1
+ 1259 0378 51       		.byte	0x51
+ 1260 0379 05       		.uleb128 0x5
+ 1261 037a 03       		.byte	0x3
+ 1262 037b 3C000000 		.4byte	.LC4
+ 1263 037f 00       		.byte	0
+ 1264 0380 0E       		.uleb128 0xe
+ 1265 0381 7E030000 		.4byte	.LVL72
+ 1266 0385 BC070000 		.4byte	0x7bc
+ 1267 0389 0D       		.uleb128 0xd
+ 1268 038a 01       		.uleb128 0x1
+ 1269 038b 50       		.byte	0x50
+ 1270 038c 02       		.uleb128 0x2
+ 1271 038d 75       		.byte	0x75
+ 1272 038e 00       		.sleb128 0
+ 1273 038f 00       		.byte	0
+ 1274 0390 00       		.byte	0
+ 1275 0391 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 28
 
 
- 1319 00d5 2F       		.uleb128 0x2f
- 1320 00d6 0B       		.uleb128 0xb
- 1321 00d7 00       		.byte	0
- 1322 00d8 00       		.byte	0
- 1323 00d9 10       		.uleb128 0x10
- 1324 00da 34       		.uleb128 0x34
- 1325 00db 00       		.byte	0
- 1326 00dc 03       		.uleb128 0x3
- 1327 00dd 0E       		.uleb128 0xe
- 1328 00de 3A       		.uleb128 0x3a
- 1329 00df 0B       		.uleb128 0xb
- 1330 00e0 3B       		.uleb128 0x3b
- 1331 00e1 05       		.uleb128 0x5
- 1332 00e2 49       		.uleb128 0x49
- 1333 00e3 13       		.uleb128 0x13
- 1334 00e4 3F       		.uleb128 0x3f
- 1335 00e5 19       		.uleb128 0x19
- 1336 00e6 3C       		.uleb128 0x3c
- 1337 00e7 19       		.uleb128 0x19
- 1338 00e8 00       		.byte	0
- 1339 00e9 00       		.byte	0
- 1340 00ea 11       		.uleb128 0x11
- 1341 00eb 35       		.uleb128 0x35
- 1342 00ec 00       		.byte	0
- 1343 00ed 49       		.uleb128 0x49
- 1344 00ee 13       		.uleb128 0x13
- 1345 00ef 00       		.byte	0
- 1346 00f0 00       		.byte	0
- 1347 00f1 12       		.uleb128 0x12
- 1348 00f2 34       		.uleb128 0x34
- 1349 00f3 00       		.byte	0
- 1350 00f4 03       		.uleb128 0x3
- 1351 00f5 0E       		.uleb128 0xe
- 1352 00f6 3A       		.uleb128 0x3a
- 1353 00f7 0B       		.uleb128 0xb
- 1354 00f8 3B       		.uleb128 0x3b
- 1355 00f9 0B       		.uleb128 0xb
- 1356 00fa 49       		.uleb128 0x49
- 1357 00fb 13       		.uleb128 0x13
- 1358 00fc 3F       		.uleb128 0x3f
- 1359 00fd 19       		.uleb128 0x19
- 1360 00fe 02       		.uleb128 0x2
- 1361 00ff 18       		.uleb128 0x18
- 1362 0100 00       		.byte	0
- 1363 0101 00       		.byte	0
- 1364 0102 13       		.uleb128 0x13
- 1365 0103 34       		.uleb128 0x34
- 1366 0104 00       		.byte	0
- 1367 0105 03       		.uleb128 0x3
- 1368 0106 08       		.uleb128 0x8
- 1369 0107 3A       		.uleb128 0x3a
- 1370 0108 0B       		.uleb128 0xb
- 1371 0109 3B       		.uleb128 0x3b
- 1372 010a 0B       		.uleb128 0xb
- 1373 010b 49       		.uleb128 0x49
- 1374 010c 13       		.uleb128 0x13
- 1375 010d 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 28
+ 1276 0392 9B000000 		.4byte	0x9b
+ 1277 0396 A1030000 		.4byte	0x3a1
+ 1278 039a 10       		.uleb128 0x10
+ 1279 039b A9000000 		.4byte	0xa9
+ 1280 039f 0F       		.byte	0xf
+ 1281 03a0 00       		.byte	0
+ 1282 03a1 11       		.uleb128 0x11
+ 1283 03a2 E3030000 		.4byte	.LASF21
+ 1284 03a6 05       		.byte	0x5
+ 1285 03a7 1207     		.2byte	0x712
+ 1286 03a9 AD030000 		.4byte	0x3ad
+ 1287 03ad 12       		.uleb128 0x12
+ 1288 03ae 76000000 		.4byte	0x76
+ 1289 03b2 13       		.uleb128 0x13
+ 1290 03b3 13000000 		.4byte	.LASF22
+ 1291 03b7 01       		.byte	0x1
+ 1292 03b8 10       		.byte	0x10
+ 1293 03b9 68000000 		.4byte	0x68
+ 1294 03bd 05       		.uleb128 0x5
+ 1295 03be 03       		.byte	0x3
+ 1296 03bf 00000000 		.4byte	ticks
+ 1297 03c3 13       		.uleb128 0x13
+ 1298 03c4 C6030000 		.4byte	.LASF23
+ 1299 03c8 01       		.byte	0x1
+ 1300 03c9 11       		.byte	0x11
+ 1301 03ca 94000000 		.4byte	0x94
+ 1302 03ce 05       		.uleb128 0x5
+ 1303 03cf 03       		.byte	0x3
+ 1304 03d0 00000000 		.4byte	time
+ 1305 03d4 14       		.uleb128 0x14
+ 1306 03d5 504900   		.ascii	"PI\000"
+ 1307 03d8 01       		.byte	0x1
+ 1308 03d9 14       		.byte	0x14
+ 1309 03da 94000000 		.4byte	0x94
+ 1310 03de 05       		.uleb128 0x5
+ 1311 03df 03       		.byte	0x3
+ 1312 03e0 00000000 		.4byte	PI
+ 1313 03e4 13       		.uleb128 0x13
+ 1314 03e5 03010000 		.4byte	.LASF24
+ 1315 03e9 01       		.byte	0x1
+ 1316 03ea 15       		.byte	0x15
+ 1317 03eb 94000000 		.4byte	0x94
+ 1318 03ef 05       		.uleb128 0x5
+ 1319 03f0 03       		.byte	0x3
+ 1320 03f1 00000000 		.4byte	LENGTH
+ 1321 03f5 13       		.uleb128 0x13
+ 1322 03f6 6D000000 		.4byte	.LASF25
+ 1323 03fa 01       		.byte	0x1
+ 1324 03fb 16       		.byte	0x16
+ 1325 03fc 94000000 		.4byte	0x94
+ 1326 0400 05       		.uleb128 0x5
+ 1327 0401 03       		.byte	0x3
+ 1328 0402 00000000 		.4byte	FREQ
+ 1329 0406 13       		.uleb128 0x13
+ 1330 0407 05030000 		.4byte	.LASF26
+ 1331 040b 01       		.byte	0x1
+ 1332 040c 17       		.byte	0x17
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 29
 
 
- 1376 010e 19       		.uleb128 0x19
- 1377 010f 02       		.uleb128 0x2
- 1378 0110 18       		.uleb128 0x18
- 1379 0111 00       		.byte	0
- 1380 0112 00       		.byte	0
- 1381 0113 14       		.uleb128 0x14
- 1382 0114 2E       		.uleb128 0x2e
- 1383 0115 00       		.byte	0
- 1384 0116 3F       		.uleb128 0x3f
- 1385 0117 19       		.uleb128 0x19
- 1386 0118 3C       		.uleb128 0x3c
- 1387 0119 19       		.uleb128 0x19
- 1388 011a 6E       		.uleb128 0x6e
- 1389 011b 0E       		.uleb128 0xe
- 1390 011c 03       		.uleb128 0x3
- 1391 011d 0E       		.uleb128 0xe
- 1392 011e 3A       		.uleb128 0x3a
- 1393 011f 0B       		.uleb128 0xb
- 1394 0120 3B       		.uleb128 0x3b
- 1395 0121 0B       		.uleb128 0xb
- 1396 0122 00       		.byte	0
- 1397 0123 00       		.byte	0
- 1398 0124 00       		.byte	0
- 1399              		.section	.debug_loc,"",%progbits
- 1400              	.Ldebug_loc0:
- 1401              	.LLST0:
- 1402 0000 A8000000 		.4byte	.LVL22
- 1403 0004 AA000000 		.4byte	.LVL23
- 1404 0008 0100     		.2byte	0x1
- 1405 000a 50       		.byte	0x50
- 1406 000b AA000000 		.4byte	.LVL23
- 1407 000f E8000000 		.4byte	.LFE66
- 1408 0013 0100     		.2byte	0x1
- 1409 0015 54       		.byte	0x54
- 1410 0016 00000000 		.4byte	0
- 1411 001a 00000000 		.4byte	0
- 1412              		.section	.debug_aranges,"",%progbits
- 1413 0000 2C000000 		.4byte	0x2c
- 1414 0004 0200     		.2byte	0x2
- 1415 0006 00000000 		.4byte	.Ldebug_info0
- 1416 000a 04       		.byte	0x4
- 1417 000b 00       		.byte	0
- 1418 000c 0000     		.2byte	0
- 1419 000e 0000     		.2byte	0
- 1420 0010 00000000 		.4byte	.LFB64
- 1421 0014 0C000000 		.4byte	.LFE64-.LFB64
- 1422 0018 00000000 		.4byte	.LFB65
- 1423 001c 0C000000 		.4byte	.LFE65-.LFB65
- 1424 0020 00000000 		.4byte	.LFB66
- 1425 0024 E8000000 		.4byte	.LFE66-.LFB66
- 1426 0028 00000000 		.4byte	0
- 1427 002c 00000000 		.4byte	0
- 1428              		.section	.debug_ranges,"",%progbits
- 1429              	.Ldebug_ranges0:
- 1430 0000 00000000 		.4byte	.LFB64
- 1431 0004 0C000000 		.4byte	.LFE64
- 1432 0008 00000000 		.4byte	.LFB65
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 29
+ 1333 040d 94000000 		.4byte	0x94
+ 1334 0411 05       		.uleb128 0x5
+ 1335 0412 03       		.byte	0x3
+ 1336 0413 00000000 		.4byte	COUNTDOWN
+ 1337 0417 14       		.uleb128 0x14
+ 1338 0418 4F4E00   		.ascii	"ON\000"
+ 1339 041b 01       		.byte	0x1
+ 1340 041c 18       		.byte	0x18
+ 1341 041d 68000000 		.4byte	0x68
+ 1342 0421 05       		.uleb128 0x5
+ 1343 0422 03       		.byte	0x3
+ 1344 0423 00000000 		.4byte	ON
+ 1345 0427 14       		.uleb128 0x14
+ 1346 0428 4F464600 		.ascii	"OFF\000"
+ 1347 042c 01       		.byte	0x1
+ 1348 042d 19       		.byte	0x19
+ 1349 042e 68000000 		.4byte	0x68
+ 1350 0432 05       		.uleb128 0x5
+ 1351 0433 03       		.byte	0x3
+ 1352 0434 00000000 		.4byte	OFF
+ 1353 0438 13       		.uleb128 0x13
+ 1354 0439 28030000 		.4byte	.LASF27
+ 1355 043d 01       		.byte	0x1
+ 1356 043e 1A       		.byte	0x1a
+ 1357 043f 68000000 		.4byte	0x68
+ 1358 0443 05       		.uleb128 0x5
+ 1359 0444 03       		.byte	0x3
+ 1360 0445 00000000 		.4byte	TICKCUTOFF
+ 1361 0449 13       		.uleb128 0x13
+ 1362 044a E0000000 		.4byte	.LASF28
+ 1363 044e 01       		.byte	0x1
+ 1364 044f 1D       		.byte	0x1d
+ 1365 0450 68000000 		.4byte	0x68
+ 1366 0454 05       		.uleb128 0x5
+ 1367 0455 03       		.byte	0x3
+ 1368 0456 00000000 		.4byte	oldTime
+ 1369 045a 13       		.uleb128 0x13
+ 1370 045b E8000000 		.4byte	.LASF29
+ 1371 045f 01       		.byte	0x1
+ 1372 0460 1E       		.byte	0x1e
+ 1373 0461 68000000 		.4byte	0x68
+ 1374 0465 05       		.uleb128 0x5
+ 1375 0466 03       		.byte	0x3
+ 1376 0467 00000000 		.4byte	currentTime
+ 1377 046b 13       		.uleb128 0x13
+ 1378 046c 19000000 		.4byte	.LASF30
+ 1379 0470 01       		.byte	0x1
+ 1380 0471 21       		.byte	0x21
+ 1381 0472 94000000 		.4byte	0x94
+ 1382 0476 05       		.uleb128 0x5
+ 1383 0477 03       		.byte	0x3
+ 1384 0478 00000000 		.4byte	setSpeed
+ 1385 047c 14       		.uleb128 0x14
+ 1386 047d 4B5000   		.ascii	"KP\000"
+ 1387 0480 01       		.byte	0x1
+ 1388 0481 22       		.byte	0x22
+ 1389 0482 94000000 		.4byte	0x94
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 30
 
 
- 1433 000c 0C000000 		.4byte	.LFE65
- 1434 0010 00000000 		.4byte	.LFB66
- 1435 0014 E8000000 		.4byte	.LFE66
- 1436 0018 00000000 		.4byte	0
- 1437 001c 00000000 		.4byte	0
- 1438              		.section	.debug_line,"",%progbits
- 1439              	.Ldebug_line0:
- 1440 0000 70020000 		.section	.debug_str,"MS",%progbits,1
- 1440      02001A02 
- 1440      00000201 
- 1440      FB0E0D00 
- 1440      01010101 
- 1441              	.LASF50:
- 1442 0000 48455F49 		.ascii	"HE_Interrupt_Start\000"
- 1442      6E746572 
- 1442      72757074 
- 1442      5F537461 
- 1442      727400
- 1443              	.LASF21:
- 1444 0013 7469636B 		.ascii	"ticks\000"
- 1444      7300
- 1445              	.LASF29:
- 1446 0019 73657453 		.ascii	"setSpeed\000"
- 1446      70656564 
- 1446      00
- 1447              	.LASF38:
- 1448 0022 6C696E65 		.ascii	"lineTime\000"
- 1448      54696D65 
- 1448      00
- 1449              	.LASF18:
- 1450 002b 73747262 		.ascii	"strbuf\000"
- 1450      756600
- 1451              	.LASF24:
- 1452 0032 46524551 		.ascii	"FREQ\000"
- 1452      00
- 1453              	.LASF64:
- 1454 0037 56696465 		.ascii	"VideoTimer_ReadCapture\000"
- 1454      6F54696D 
- 1454      65725F52 
- 1454      65616443 
- 1454      61707475 
- 1455              	.LASF65:
- 1456 004e 4C43445F 		.ascii	"LCD_WriteControl\000"
- 1456      57726974 
- 1456      65436F6E 
- 1456      74726F6C 
- 1456      00
- 1457              	.LASF56:
- 1458 005f 56444143 		.ascii	"VDAC_Start\000"
- 1458      5F537461 
- 1458      727400
- 1459              	.LASF2:
- 1460 006a 73686F72 		.ascii	"short int\000"
- 1460      7420696E 
- 1460      7400
- 1461              	.LASF15:
- 1462 0074 73697A65 		.ascii	"sizetype\000"
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 30
+ 1390 0486 05       		.uleb128 0x5
+ 1391 0487 03       		.byte	0x3
+ 1392 0488 00000000 		.4byte	KP
+ 1393 048c 14       		.uleb128 0x14
+ 1394 048d 4B4900   		.ascii	"KI\000"
+ 1395 0490 01       		.byte	0x1
+ 1396 0491 23       		.byte	0x23
+ 1397 0492 94000000 		.4byte	0x94
+ 1398 0496 05       		.uleb128 0x5
+ 1399 0497 03       		.byte	0x3
+ 1400 0498 00000000 		.4byte	KI
+ 1401 049c 14       		.uleb128 0x14
+ 1402 049d 4B4400   		.ascii	"KD\000"
+ 1403 04a0 01       		.byte	0x1
+ 1404 04a1 24       		.byte	0x24
+ 1405 04a2 94000000 		.4byte	0x94
+ 1406 04a6 05       		.uleb128 0x5
+ 1407 04a7 03       		.byte	0x3
+ 1408 04a8 00000000 		.4byte	KD
+ 1409 04ac 13       		.uleb128 0x13
+ 1410 04ad 3D000000 		.4byte	.LASF19
+ 1411 04b1 01       		.byte	0x1
+ 1412 04b2 26       		.byte	0x26
+ 1413 04b3 91030000 		.4byte	0x391
+ 1414 04b7 05       		.uleb128 0x5
+ 1415 04b8 03       		.byte	0x3
+ 1416 04b9 00000000 		.4byte	strbuf
+ 1417 04bd 0F       		.uleb128 0xf
+ 1418 04be 9B000000 		.4byte	0x9b
+ 1419 04c2 CD040000 		.4byte	0x4cd
+ 1420 04c6 10       		.uleb128 0x10
+ 1421 04c7 A9000000 		.4byte	0xa9
+ 1422 04cb 7F       		.byte	0x7f
+ 1423 04cc 00       		.byte	0
+ 1424 04cd 13       		.uleb128 0x13
+ 1425 04ce BA020000 		.4byte	.LASF31
+ 1426 04d2 01       		.byte	0x1
+ 1427 04d3 27       		.byte	0x27
+ 1428 04d4 BD040000 		.4byte	0x4bd
+ 1429 04d8 05       		.uleb128 0x5
+ 1430 04d9 03       		.byte	0x3
+ 1431 04da 00000000 		.4byte	uartbuf
+ 1432 04de 13       		.uleb128 0x13
+ 1433 04df 55020000 		.4byte	.LASF32
+ 1434 04e3 01       		.byte	0x1
+ 1435 04e4 29       		.byte	0x29
+ 1436 04e5 94000000 		.4byte	0x94
+ 1437 04e9 05       		.uleb128 0x5
+ 1438 04ea 03       		.byte	0x3
+ 1439 04eb 00000000 		.4byte	eTime
+ 1440 04ef 13       		.uleb128 0x13
+ 1441 04f0 4F020000 		.4byte	.LASF33
+ 1442 04f4 01       		.byte	0x1
+ 1443 04f5 2A       		.byte	0x2a
+ 1444 04f6 94000000 		.4byte	0x94
+ 1445 04fa 05       		.uleb128 0x5
+ 1446 04fb 03       		.byte	0x3
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 31
 
 
- 1462      74797065 
- 1462      00
- 1463              	.LASF44:
- 1464 007d 68616C6C 		.ascii	"hallFlag\000"
- 1464      466C6167 
- 1464      00
- 1465              	.LASF71:
- 1466 0086 6D61696E 		.ascii	"main\000"
- 1466      00
- 1467              	.LASF6:
- 1468 008b 6C6F6E67 		.ascii	"long long int\000"
- 1468      206C6F6E 
- 1468      6720696E 
- 1468      7400
- 1469              	.LASF27:
- 1470 0099 6F6C6454 		.ascii	"oldTime\000"
- 1470      696D6500 
- 1471              	.LASF28:
- 1472 00a1 63757272 		.ascii	"currentTime\000"
- 1472      656E7454 
- 1472      696D6500 
- 1473              	.LASF23:
- 1474 00ad 4C454E47 		.ascii	"LENGTH\000"
- 1474      544800
- 1475              	.LASF0:
- 1476 00b4 7369676E 		.ascii	"signed char\000"
- 1476      65642063 
- 1476      68617200 
- 1477              	.LASF57:
- 1478 00c0 56444143 		.ascii	"VDAC_SetSpeed\000"
- 1478      5F536574 
- 1478      53706565 
- 1478      6400
- 1479              	.LASF11:
- 1480 00ce 666C6F61 		.ascii	"float\000"
- 1480      7400
- 1481              	.LASF47:
- 1482 00d4 66697273 		.ascii	"firstPixelTime\000"
- 1482      74506978 
- 1482      656C5469 
- 1482      6D6500
- 1483              	.LASF63:
- 1484 00e3 426C6163 		.ascii	"Black_SetVector\000"
- 1484      6B5F5365 
- 1484      74566563 
- 1484      746F7200 
- 1485              	.LASF19:
- 1486 00f3 626C6163 		.ascii	"blackTime\000"
- 1486      6B54696D 
- 1486      6500
- 1487              	.LASF52:
- 1488 00fd 54696D65 		.ascii	"Timer_Start\000"
- 1488      725F5374 
- 1488      61727400 
- 1489              	.LASF4:
- 1490 0109 6C6F6E67 		.ascii	"long int\000"
- 1490      20696E74 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 31
+ 1447 04fc 00000000 		.4byte	speed
+ 1448 0500 13       		.uleb128 0x13
+ 1449 0501 CB030000 		.4byte	.LASF34
+ 1450 0505 01       		.byte	0x1
+ 1451 0506 2B       		.byte	0x2b
+ 1452 0507 94000000 		.4byte	0x94
+ 1453 050b 05       		.uleb128 0x5
+ 1454 050c 03       		.byte	0x3
+ 1455 050d 00000000 		.4byte	error
+ 1456 0511 13       		.uleb128 0x13
+ 1457 0512 FC020000 		.4byte	.LASF35
+ 1458 0516 01       		.byte	0x1
+ 1459 0517 2D       		.byte	0x2d
+ 1460 0518 94000000 		.4byte	0x94
+ 1461 051c 05       		.uleb128 0x5
+ 1462 051d 03       		.byte	0x3
+ 1463 051e 00000000 		.4byte	oldError
+ 1464 0522 13       		.uleb128 0x13
+ 1465 0523 7B020000 		.4byte	.LASF36
+ 1466 0527 01       		.byte	0x1
+ 1467 0528 2E       		.byte	0x2e
+ 1468 0529 94000000 		.4byte	0x94
+ 1469 052d 05       		.uleb128 0x5
+ 1470 052e 03       		.byte	0x3
+ 1471 052f 00000000 		.4byte	errorDiff
+ 1472 0533 14       		.uleb128 0x14
+ 1473 0534 73756D00 		.ascii	"sum\000"
+ 1474 0538 01       		.byte	0x1
+ 1475 0539 30       		.byte	0x30
+ 1476 053a 94000000 		.4byte	0x94
+ 1477 053e 05       		.uleb128 0x5
+ 1478 053f 03       		.byte	0x3
+ 1479 0540 00000000 		.4byte	sum
+ 1480 0544 13       		.uleb128 0x13
+ 1481 0545 8C040000 		.4byte	.LASF37
+ 1482 0549 01       		.byte	0x1
+ 1483 054a 31       		.byte	0x31
+ 1484 054b 94000000 		.4byte	0x94
+ 1485 054f 05       		.uleb128 0x5
+ 1486 0550 03       		.byte	0x3
+ 1487 0551 00000000 		.4byte	avgError
+ 1488 0555 13       		.uleb128 0x13
+ 1489 0556 9D020000 		.4byte	.LASF38
+ 1490 055a 01       		.byte	0x1
+ 1491 055b 33       		.byte	0x33
+ 1492 055c 94000000 		.4byte	0x94
+ 1493 0560 05       		.uleb128 0x5
+ 1494 0561 03       		.byte	0x3
+ 1495 0562 00000000 		.4byte	dutyCycle
+ 1496 0566 13       		.uleb128 0x13
+ 1497 0567 34000000 		.4byte	.LASF39
+ 1498 056b 01       		.byte	0x1
+ 1499 056c 35       		.byte	0x35
+ 1500 056d 94000000 		.4byte	0x94
+ 1501 0571 05       		.uleb128 0x5
+ 1502 0572 03       		.byte	0x3
+ 1503 0573 00000000 		.4byte	lineTime
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 32
 
 
- 1490      00
- 1491              	.LASF62:
- 1492 0112 426C6163 		.ascii	"Black_Start\000"
- 1492      6B5F5374 
- 1492      61727400 
- 1493              	.LASF70:
- 1494 011e 433A5C55 		.ascii	"C:\\Users\\nkhedkar\\Documents\\PSoC Creator\\ELE30"
- 1494      73657273 
- 1494      5C6E6B68 
- 1494      65646B61 
- 1494      725C446F 
- 1495 014c 3220576F 		.ascii	"2 Workspace\\navigation\\Navigation.cydsn\000"
- 1495      726B7370 
- 1495      6163655C 
- 1495      6E617669 
- 1495      67617469 
- 1496              	.LASF14:
- 1497 0174 6C6F6E67 		.ascii	"long double\000"
- 1497      20646F75 
- 1497      626C6500 
- 1498              	.LASF1:
- 1499 0180 756E7369 		.ascii	"unsigned char\000"
- 1499      676E6564 
- 1499      20636861 
- 1499      7200
- 1500              	.LASF66:
- 1501 018e 73707269 		.ascii	"sprintf\000"
- 1501      6E746600 
- 1502              	.LASF55:
- 1503 0196 56696465 		.ascii	"VideoTimer_Start\000"
- 1503      6F54696D 
- 1503      65725F53 
- 1503      74617274 
- 1503      00
- 1504              	.LASF61:
- 1505 01a7 436F6D70 		.ascii	"Comp_SetSpeed\000"
- 1505      5F536574 
- 1505      53706565 
- 1505      6400
- 1506              	.LASF7:
- 1507 01b5 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1507      206C6F6E 
- 1507      6720756E 
- 1507      7369676E 
- 1507      65642069 
- 1508              	.LASF45:
- 1509 01cc 6E657746 		.ascii	"newFrameFlag\000"
- 1509      72616D65 
- 1509      466C6167 
- 1509      00
- 1510              	.LASF60:
- 1511 01d9 436F6D70 		.ascii	"Comp_Start\000"
- 1511      5F537461 
- 1511      727400
- 1512              	.LASF8:
- 1513 01e4 756E7369 		.ascii	"unsigned int\000"
- 1513      676E6564 
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 32
+ 1504 0577 13       		.uleb128 0x13
+ 1505 0578 6C020000 		.4byte	.LASF40
+ 1506 057c 01       		.byte	0x1
+ 1507 057d 36       		.byte	0x36
+ 1508 057e 68000000 		.4byte	0x68
+ 1509 0582 05       		.uleb128 0x5
+ 1510 0583 03       		.byte	0x3
+ 1511 0584 00000000 		.4byte	PICWIDTH
+ 1512 0588 13       		.uleb128 0x13
+ 1513 0589 2A000000 		.4byte	.LASF41
+ 1514 058d 01       		.byte	0x1
+ 1515 058e 37       		.byte	0x37
+ 1516 058f 68000000 		.4byte	0x68
+ 1517 0593 05       		.uleb128 0x5
+ 1518 0594 03       		.byte	0x3
+ 1519 0595 00000000 		.4byte	PICHEIGHT
+ 1520 0599 14       		.uleb128 0x14
+ 1521 059a 46505300 		.ascii	"FPS\000"
+ 1522 059e 01       		.byte	0x1
+ 1523 059f 38       		.byte	0x38
+ 1524 05a0 68000000 		.4byte	0x68
+ 1525 05a4 05       		.uleb128 0x5
+ 1526 05a5 03       		.byte	0x3
+ 1527 05a6 00000000 		.4byte	FPS
+ 1528 05aa 14       		.uleb128 0x14
+ 1529 05ab 4C504600 		.ascii	"LPF\000"
+ 1530 05af 01       		.byte	0x1
+ 1531 05b0 39       		.byte	0x39
+ 1532 05b1 68000000 		.4byte	0x68
+ 1533 05b5 05       		.uleb128 0x5
+ 1534 05b6 03       		.byte	0x3
+ 1535 05b7 00000000 		.4byte	LPF
+ 1536 05bb 14       		.uleb128 0x14
+ 1537 05bc 4C505300 		.ascii	"LPS\000"
+ 1538 05c0 01       		.byte	0x1
+ 1539 05c1 3A       		.byte	0x3a
+ 1540 05c2 68000000 		.4byte	0x68
+ 1541 05c6 05       		.uleb128 0x5
+ 1542 05c7 03       		.byte	0x3
+ 1543 05c8 00000000 		.4byte	LPS
+ 1544 05cc 13       		.uleb128 0x13
+ 1545 05cd D7020000 		.4byte	.LASF42
+ 1546 05d1 01       		.byte	0x1
+ 1547 05d2 3B       		.byte	0x3b
+ 1548 05d3 94000000 		.4byte	0x94
+ 1549 05d7 05       		.uleb128 0x5
+ 1550 05d8 03       		.byte	0x3
+ 1551 05d9 00000000 		.4byte	HFREQ
+ 1552 05dd 13       		.uleb128 0x13
+ 1553 05de 75020000 		.4byte	.LASF43
+ 1554 05e2 01       		.byte	0x1
+ 1555 05e3 3C       		.byte	0x3c
+ 1556 05e4 68000000 		.4byte	0x68
+ 1557 05e8 05       		.uleb128 0x5
+ 1558 05e9 03       		.byte	0x3
+ 1559 05ea 00000000 		.4byte	VFREQ
+ 1560 05ee 13       		.uleb128 0x13
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 33
 
 
- 1513      20696E74 
- 1513      00
- 1514              	.LASF67:
- 1515 01f1 4C43445F 		.ascii	"LCD_PrintString\000"
- 1515      5072696E 
- 1515      74537472 
- 1515      696E6700 
- 1516              	.LASF58:
- 1517 0201 56444143 		.ascii	"VDAC_SetRange\000"
- 1517      5F536574 
- 1517      52616E67 
- 1517      6500
- 1518              	.LASF32:
- 1519 020f 73706565 		.ascii	"speed\000"
- 1519      6400
- 1520              	.LASF31:
- 1521 0215 6554696D 		.ascii	"eTime\000"
- 1521      6500
- 1522              	.LASF22:
- 1523 021b 74696D65 		.ascii	"time\000"
- 1523      00
- 1524              	.LASF39:
- 1525 0220 50494357 		.ascii	"PICWIDTH\000"
- 1525      49445448 
- 1525      00
- 1526              	.LASF42:
- 1527 0229 56465245 		.ascii	"VFREQ\000"
- 1527      5100
- 1528              	.LASF35:
- 1529 022f 6572726F 		.ascii	"errorDiff\000"
- 1529      72446966 
- 1529      6600
- 1530              	.LASF3:
- 1531 0239 73686F72 		.ascii	"short unsigned int\000"
- 1531      7420756E 
- 1531      7369676E 
- 1531      65642069 
- 1531      6E7400
- 1532              	.LASF13:
- 1533 024c 63686172 		.ascii	"char\000"
- 1533      00
- 1534              	.LASF37:
- 1535 0251 64757479 		.ascii	"dutyCycle\000"
- 1535      4379636C 
- 1535      6500
- 1536              	.LASF53:
- 1537 025b 55415254 		.ascii	"UART_Start\000"
- 1537      5F537461 
- 1537      727400
- 1538              	.LASF10:
- 1539 0266 696E7433 		.ascii	"int32_t\000"
- 1539      325F7400 
- 1540              	.LASF30:
- 1541 026e 75617274 		.ascii	"uartbuf\000"
- 1541      62756600 
- 1542              	.LASF16:
- 1543 0276 696E7465 		.ascii	"inter1\000"
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 33
+ 1561 05ef BF030000 		.4byte	.LASF44
+ 1562 05f3 01       		.byte	0x1
+ 1563 05f4 3D       		.byte	0x3d
+ 1564 05f5 68000000 		.4byte	0x68
+ 1565 05f9 05       		.uleb128 0x5
+ 1566 05fa 03       		.byte	0x3
+ 1567 05fb 00000000 		.4byte	OEFREQ
+ 1568 05ff 13       		.uleb128 0x13
+ 1569 0600 B8000000 		.4byte	.LASF45
+ 1570 0604 01       		.byte	0x1
+ 1571 0605 40       		.byte	0x40
+ 1572 0606 68000000 		.4byte	0x68
+ 1573 060a 05       		.uleb128 0x5
+ 1574 060b 03       		.byte	0x3
+ 1575 060c 00000000 		.4byte	hallFlag
+ 1576 0610 13       		.uleb128 0x13
+ 1577 0611 B3040000 		.4byte	.LASF46
+ 1578 0615 01       		.byte	0x1
+ 1579 0616 41       		.byte	0x41
+ 1580 0617 68000000 		.4byte	0x68
+ 1581 061b 05       		.uleb128 0x5
+ 1582 061c 03       		.byte	0x3
+ 1583 061d 00000000 		.4byte	blackFlag
+ 1584 0621 13       		.uleb128 0x13
+ 1585 0622 55010000 		.4byte	.LASF47
+ 1586 0626 01       		.byte	0x1
+ 1587 0627 44       		.byte	0x44
+ 1588 0628 94000000 		.4byte	0x94
+ 1589 062c 05       		.uleb128 0x5
+ 1590 062d 03       		.byte	0x3
+ 1591 062e 00000000 		.4byte	firstPixelTime
+ 1592 0632 13       		.uleb128 0x13
+ 1593 0633 0A010000 		.4byte	.LASF48
+ 1594 0637 01       		.byte	0x1
+ 1595 0638 45       		.byte	0x45
+ 1596 0639 68000000 		.4byte	0x68
+ 1597 063d 05       		.uleb128 0x5
+ 1598 063e 03       		.byte	0x3
+ 1599 063f 00000000 		.4byte	CENTERSERVO
+ 1600 0643 13       		.uleb128 0x13
+ 1601 0644 B8010000 		.4byte	.LASF49
+ 1602 0648 01       		.byte	0x1
+ 1603 0649 46       		.byte	0x46
+ 1604 064a 68000000 		.4byte	0x68
+ 1605 064e 05       		.uleb128 0x5
+ 1606 064f 03       		.byte	0x3
+ 1607 0650 00000000 		.4byte	setservo
+ 1608 0654 13       		.uleb128 0x13
+ 1609 0655 D4000000 		.4byte	.LASF50
+ 1610 0659 01       		.byte	0x1
+ 1611 065a 47       		.byte	0x47
+ 1612 065b 68000000 		.4byte	0x68
+ 1613 065f 05       		.uleb128 0x5
+ 1614 0660 03       		.byte	0x3
+ 1615 0661 00000000 		.4byte	oldsetservo
+ 1616 0665 13       		.uleb128 0x13
+ 1617 0666 33030000 		.4byte	.LASF51
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 34
 
 
- 1543      723100
- 1544              	.LASF17:
- 1545 027d 696E7465 		.ascii	"inter4\000"
- 1545      723400
- 1546              	.LASF41:
- 1547 0284 48465245 		.ascii	"HFREQ\000"
- 1547      5100
- 1548              	.LASF51:
- 1549 028a 48455F49 		.ascii	"HE_Interrupt_SetVector\000"
- 1549      6E746572 
- 1549      72757074 
- 1549      5F536574 
- 1549      56656374 
- 1550              	.LASF48:
- 1551 02a1 58534853 		.ascii	"XSHSync\000"
- 1551      796E6300 
- 1552              	.LASF40:
- 1553 02a9 50494348 		.ascii	"PICHEIGHT\000"
- 1553      45494748 
- 1553      5400
- 1554              	.LASF25:
- 1555 02b3 434F554E 		.ascii	"COUNTDOWN\000"
- 1555      54444F57 
- 1555      4E00
- 1556              	.LASF69:
- 1557 02bd 6D61696E 		.ascii	"main.c\000"
- 1557      2E6300
- 1558              	.LASF5:
- 1559 02c4 6C6F6E67 		.ascii	"long unsigned int\000"
- 1559      20756E73 
- 1559      69676E65 
- 1559      6420696E 
- 1559      7400
- 1560              	.LASF26:
- 1561 02d6 5449434B 		.ascii	"TICKCUTOFF\000"
- 1561      4355544F 
- 1561      464600
- 1562              	.LASF12:
- 1563 02e1 646F7562 		.ascii	"double\000"
- 1563      6C6500
- 1564              	.LASF9:
- 1565 02e8 5F5F696E 		.ascii	"__int32_t\000"
- 1565      7433325F 
- 1565      7400
- 1566              	.LASF54:
- 1567 02f2 50574D5F 		.ascii	"PWM_Start\000"
- 1567      53746172 
- 1567      7400
- 1568              	.LASF49:
- 1569 02fc 4C43445F 		.ascii	"LCD_Start\000"
- 1569      53746172 
- 1569      7400
- 1570              	.LASF34:
- 1571 0306 6F6C6445 		.ascii	"oldError\000"
- 1571      72726F72 
- 1571      00
- 1572              	.LASF43:
-ARM GAS  C:\Users\nkhedkar\AppData\Local\Temp\ccqdBoR5.s 			page 34
+ 1618 066a 01       		.byte	0x1
+ 1619 066b 48       		.byte	0x48
+ 1620 066c 94000000 		.4byte	0x94
+ 1621 0670 05       		.uleb128 0x5
+ 1622 0671 03       		.byte	0x3
+ 1623 0672 00000000 		.4byte	servoKP
+ 1624 0676 13       		.uleb128 0x13
+ 1625 0677 22000000 		.4byte	.LASF52
+ 1626 067b 01       		.byte	0x1
+ 1627 067c 49       		.byte	0x49
+ 1628 067d 94000000 		.4byte	0x94
+ 1629 0681 05       		.uleb128 0x5
+ 1630 0682 03       		.byte	0x3
+ 1631 0683 00000000 		.4byte	servoKI
+ 1632 0687 13       		.uleb128 0x13
+ 1633 0688 F4020000 		.4byte	.LASF53
+ 1634 068c 01       		.byte	0x1
+ 1635 068d 4A       		.byte	0x4a
+ 1636 068e 94000000 		.4byte	0x94
+ 1637 0692 05       		.uleb128 0x5
+ 1638 0693 03       		.byte	0x3
+ 1639 0694 00000000 		.4byte	servoKD
+ 1640 0698 13       		.uleb128 0x13
+ 1641 0699 D8030000 		.4byte	.LASF54
+ 1642 069d 01       		.byte	0x1
+ 1643 069e 4C       		.byte	0x4c
+ 1644 069f 94000000 		.4byte	0x94
+ 1645 06a3 05       		.uleb128 0x5
+ 1646 06a4 03       		.byte	0x3
+ 1647 06a5 00000000 		.4byte	pixelError
+ 1648 06a9 15       		.uleb128 0x15
+ 1649 06aa 74010000 		.4byte	.LASF55
+ 1650 06ae 74010000 		.4byte	.LASF55
+ 1651 06b2 06       		.byte	0x6
+ 1652 06b3 5E       		.byte	0x5e
+ 1653 06b4 15       		.uleb128 0x15
+ 1654 06b5 95040000 		.4byte	.LASF56
+ 1655 06b9 95040000 		.4byte	.LASF56
+ 1656 06bd 07       		.byte	0x7
+ 1657 06be 5E       		.byte	0x5e
+ 1658 06bf 15       		.uleb128 0x15
+ 1659 06c0 2B010000 		.4byte	.LASF57
+ 1660 06c4 2B010000 		.4byte	.LASF57
+ 1661 06c8 08       		.byte	0x8
+ 1662 06c9 38       		.byte	0x38
+ 1663 06ca 15       		.uleb128 0x15
+ 1664 06cb 00000000 		.4byte	.LASF58
+ 1665 06cf 00000000 		.4byte	.LASF58
+ 1666 06d3 09       		.byte	0x9
+ 1667 06d4 17       		.byte	0x17
+ 1668 06d5 15       		.uleb128 0x15
+ 1669 06d6 DD020000 		.4byte	.LASF59
+ 1670 06da DD020000 		.4byte	.LASF59
+ 1671 06de 09       		.byte	0x9
+ 1672 06df 1D       		.byte	0x1d
+ 1673 06e0 15       		.uleb128 0x15
+ 1674 06e1 97010000 		.4byte	.LASF60
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 35
 
 
- 1573 030f 4F454652 		.ascii	"OEFREQ\000"
- 1573      455100
- 1574              	.LASF33:
- 1575 0316 6572726F 		.ascii	"error\000"
- 1575      7200
- 1576              	.LASF72:
- 1577 031c 68616C66 		.ascii	"halfLPF\000"
- 1577      4C504600 
- 1578              	.LASF20:
- 1579 0324 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1579      52784275 
- 1579      66666572 
- 1579      00
- 1580              	.LASF68:
- 1581 0331 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1581      43313120 
- 1581      352E342E 
- 1581      31203230 
- 1581      31363036 
- 1582 0364 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1582      20726576 
- 1582      6973696F 
- 1582      6E203233 
- 1582      37373135 
- 1583 0397 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1583      66756E63 
- 1583      74696F6E 
- 1583      2D736563 
- 1583      74696F6E 
- 1584              	.LASF59:
- 1585 03bf 56444143 		.ascii	"VDAC_SetValue\000"
- 1585      5F536574 
- 1585      56616C75 
- 1585      6500
- 1586              	.LASF36:
- 1587 03cd 61766745 		.ascii	"avgError\000"
- 1587      72726F72 
- 1587      00
- 1588              	.LASF46:
- 1589 03d6 626C6163 		.ascii	"blackFlag\000"
- 1589      6B466C61 
- 1589      6700
- 1590              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1675 06e5 97010000 		.4byte	.LASF60
+ 1676 06e9 06       		.byte	0x6
+ 1677 06ea 5A       		.byte	0x5a
+ 1678 06eb 15       		.uleb128 0x15
+ 1679 06ec A7020000 		.4byte	.LASF61
+ 1680 06f0 A7020000 		.4byte	.LASF61
+ 1681 06f4 0A       		.byte	0xa
+ 1682 06f5 54       		.byte	0x54
+ 1683 06f6 15       		.uleb128 0x15
+ 1684 06f7 96030000 		.4byte	.LASF62
+ 1685 06fb 96030000 		.4byte	.LASF62
+ 1686 06ff 0B       		.byte	0xb
+ 1687 0700 92       		.byte	0x92
+ 1688 0701 15       		.uleb128 0x15
+ 1689 0702 DB010000 		.4byte	.LASF63
+ 1690 0706 DB010000 		.4byte	.LASF63
+ 1691 070a 07       		.byte	0x7
+ 1692 070b 5A       		.byte	0x5a
+ 1693 070c 15       		.uleb128 0x15
+ 1694 070d 9A000000 		.4byte	.LASF64
+ 1695 0711 9A000000 		.4byte	.LASF64
+ 1696 0715 0C       		.byte	0xc
+ 1697 0716 33       		.byte	0x33
+ 1698 0717 15       		.uleb128 0x15
+ 1699 0718 41010000 		.4byte	.LASF65
+ 1700 071c 41010000 		.4byte	.LASF65
+ 1701 0720 0C       		.byte	0xc
+ 1702 0721 35       		.byte	0x35
+ 1703 0722 15       		.uleb128 0x15
+ 1704 0723 41020000 		.4byte	.LASF66
+ 1705 0727 41020000 		.4byte	.LASF66
+ 1706 072b 0C       		.byte	0xc
+ 1707 072c 36       		.byte	0x36
+ 1708 072d 15       		.uleb128 0x15
+ 1709 072e 7E040000 		.4byte	.LASF67
+ 1710 0732 7E040000 		.4byte	.LASF67
+ 1711 0736 0C       		.byte	0xc
+ 1712 0737 37       		.byte	0x37
+ 1713 0738 15       		.uleb128 0x15
+ 1714 0739 19020000 		.4byte	.LASF68
+ 1715 073d 19020000 		.4byte	.LASF68
+ 1716 0741 0D       		.byte	0xd
+ 1717 0742 3F       		.byte	0x3f
+ 1718 0743 15       		.uleb128 0x15
+ 1719 0744 EC010000 		.4byte	.LASF69
+ 1720 0748 EC010000 		.4byte	.LASF69
+ 1721 074c 0D       		.byte	0xd
+ 1722 074d 41       		.byte	0x41
+ 1723 074e 15       		.uleb128 0x15
+ 1724 074f 3B030000 		.4byte	.LASF70
+ 1725 0753 3B030000 		.4byte	.LASF70
+ 1726 0757 0E       		.byte	0xe
+ 1727 0758 92       		.byte	0x92
+ 1728 0759 15       		.uleb128 0x15
+ 1729 075a 44000000 		.4byte	.LASF71
+ 1730 075e 44000000 		.4byte	.LASF71
+ 1731 0762 0E       		.byte	0xe
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 36
+
+
+ 1732 0763 C3       		.byte	0xc3
+ 1733 0764 15       		.uleb128 0x15
+ 1734 0765 F4000000 		.4byte	.LASF72
+ 1735 0769 F4000000 		.4byte	.LASF72
+ 1736 076d 0F       		.byte	0xf
+ 1737 076e 17       		.byte	0x17
+ 1738 076f 15       		.uleb128 0x15
+ 1739 0770 5A000000 		.4byte	.LASF73
+ 1740 0774 5A000000 		.4byte	.LASF73
+ 1741 0778 0F       		.byte	0xf
+ 1742 0779 1D       		.byte	0x1d
+ 1743 077a 15       		.uleb128 0x15
+ 1744 077b AC010000 		.4byte	.LASF74
+ 1745 077f AC010000 		.4byte	.LASF74
+ 1746 0783 10       		.byte	0x10
+ 1747 0784 17       		.byte	0x17
+ 1748 0785 15       		.uleb128 0x15
+ 1749 0786 64010000 		.4byte	.LASF75
+ 1750 078a 64010000 		.4byte	.LASF75
+ 1751 078e 10       		.byte	0x10
+ 1752 078f 1D       		.byte	0x1d
+ 1753 0790 15       		.uleb128 0x15
+ 1754 0791 72000000 		.4byte	.LASF76
+ 1755 0795 72000000 		.4byte	.LASF76
+ 1756 0799 07       		.byte	0x7
+ 1757 079a 6B       		.byte	0x6b
+ 1758 079b 15       		.uleb128 0x15
+ 1759 079c 89000000 		.4byte	.LASF77
+ 1760 07a0 89000000 		.4byte	.LASF77
+ 1761 07a4 08       		.byte	0x8
+ 1762 07a5 3A       		.byte	0x3a
+ 1763 07a6 15       		.uleb128 0x15
+ 1764 07a7 11020000 		.4byte	.LASF78
+ 1765 07ab 11020000 		.4byte	.LASF78
+ 1766 07af 11       		.byte	0x11
+ 1767 07b0 E7       		.byte	0xe7
+ 1768 07b1 15       		.uleb128 0x15
+ 1769 07b2 31020000 		.4byte	.LASF79
+ 1770 07b6 31020000 		.4byte	.LASF79
+ 1771 07ba 08       		.byte	0x8
+ 1772 07bb 3C       		.byte	0x3c
+ 1773 07bc 15       		.uleb128 0x15
+ 1774 07bd 16010000 		.4byte	.LASF80
+ 1775 07c1 16010000 		.4byte	.LASF80
+ 1776 07c5 0A       		.byte	0xa
+ 1777 07c6 8B       		.byte	0x8b
+ 1778 07c7 15       		.uleb128 0x15
+ 1779 07c8 5B020000 		.4byte	.LASF81
+ 1780 07cc 5B020000 		.4byte	.LASF81
+ 1781 07d0 0B       		.byte	0xb
+ 1782 07d1 C3       		.byte	0xc3
+ 1783 07d2 15       		.uleb128 0x15
+ 1784 07d3 A0030000 		.4byte	.LASF82
+ 1785 07d7 A0030000 		.4byte	.LASF82
+ 1786 07db 06       		.byte	0x6
+ 1787 07dc 6B       		.byte	0x6b
+ 1788 07dd 15       		.uleb128 0x15
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 37
+
+
+ 1789 07de B2030000 		.4byte	.LASF83
+ 1790 07e2 B2030000 		.4byte	.LASF83
+ 1791 07e6 08       		.byte	0x8
+ 1792 07e7 3D       		.byte	0x3d
+ 1793 07e8 00       		.byte	0
+ 1794              		.section	.debug_abbrev,"",%progbits
+ 1795              	.Ldebug_abbrev0:
+ 1796 0000 01       		.uleb128 0x1
+ 1797 0001 11       		.uleb128 0x11
+ 1798 0002 01       		.byte	0x1
+ 1799 0003 25       		.uleb128 0x25
+ 1800 0004 0E       		.uleb128 0xe
+ 1801 0005 13       		.uleb128 0x13
+ 1802 0006 0B       		.uleb128 0xb
+ 1803 0007 03       		.uleb128 0x3
+ 1804 0008 0E       		.uleb128 0xe
+ 1805 0009 1B       		.uleb128 0x1b
+ 1806 000a 0E       		.uleb128 0xe
+ 1807 000b 55       		.uleb128 0x55
+ 1808 000c 17       		.uleb128 0x17
+ 1809 000d 11       		.uleb128 0x11
+ 1810 000e 01       		.uleb128 0x1
+ 1811 000f 10       		.uleb128 0x10
+ 1812 0010 17       		.uleb128 0x17
+ 1813 0011 00       		.byte	0
+ 1814 0012 00       		.byte	0
+ 1815 0013 02       		.uleb128 0x2
+ 1816 0014 24       		.uleb128 0x24
+ 1817 0015 00       		.byte	0
+ 1818 0016 0B       		.uleb128 0xb
+ 1819 0017 0B       		.uleb128 0xb
+ 1820 0018 3E       		.uleb128 0x3e
+ 1821 0019 0B       		.uleb128 0xb
+ 1822 001a 03       		.uleb128 0x3
+ 1823 001b 0E       		.uleb128 0xe
+ 1824 001c 00       		.byte	0
+ 1825 001d 00       		.byte	0
+ 1826 001e 03       		.uleb128 0x3
+ 1827 001f 16       		.uleb128 0x16
+ 1828 0020 00       		.byte	0
+ 1829 0021 03       		.uleb128 0x3
+ 1830 0022 0E       		.uleb128 0xe
+ 1831 0023 3A       		.uleb128 0x3a
+ 1832 0024 0B       		.uleb128 0xb
+ 1833 0025 3B       		.uleb128 0x3b
+ 1834 0026 0B       		.uleb128 0xb
+ 1835 0027 49       		.uleb128 0x49
+ 1836 0028 13       		.uleb128 0x13
+ 1837 0029 00       		.byte	0
+ 1838 002a 00       		.byte	0
+ 1839 002b 04       		.uleb128 0x4
+ 1840 002c 24       		.uleb128 0x24
+ 1841 002d 00       		.byte	0
+ 1842 002e 0B       		.uleb128 0xb
+ 1843 002f 0B       		.uleb128 0xb
+ 1844 0030 3E       		.uleb128 0x3e
+ 1845 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 38
+
+
+ 1846 0032 03       		.uleb128 0x3
+ 1847 0033 08       		.uleb128 0x8
+ 1848 0034 00       		.byte	0
+ 1849 0035 00       		.byte	0
+ 1850 0036 05       		.uleb128 0x5
+ 1851 0037 16       		.uleb128 0x16
+ 1852 0038 00       		.byte	0
+ 1853 0039 03       		.uleb128 0x3
+ 1854 003a 0E       		.uleb128 0xe
+ 1855 003b 3A       		.uleb128 0x3a
+ 1856 003c 0B       		.uleb128 0xb
+ 1857 003d 3B       		.uleb128 0x3b
+ 1858 003e 05       		.uleb128 0x5
+ 1859 003f 49       		.uleb128 0x49
+ 1860 0040 13       		.uleb128 0x13
+ 1861 0041 00       		.byte	0
+ 1862 0042 00       		.byte	0
+ 1863 0043 06       		.uleb128 0x6
+ 1864 0044 2E       		.uleb128 0x2e
+ 1865 0045 00       		.byte	0
+ 1866 0046 3F       		.uleb128 0x3f
+ 1867 0047 19       		.uleb128 0x19
+ 1868 0048 03       		.uleb128 0x3
+ 1869 0049 0E       		.uleb128 0xe
+ 1870 004a 3A       		.uleb128 0x3a
+ 1871 004b 0B       		.uleb128 0xb
+ 1872 004c 3B       		.uleb128 0x3b
+ 1873 004d 0B       		.uleb128 0xb
+ 1874 004e 27       		.uleb128 0x27
+ 1875 004f 19       		.uleb128 0x19
+ 1876 0050 11       		.uleb128 0x11
+ 1877 0051 01       		.uleb128 0x1
+ 1878 0052 12       		.uleb128 0x12
+ 1879 0053 06       		.uleb128 0x6
+ 1880 0054 40       		.uleb128 0x40
+ 1881 0055 18       		.uleb128 0x18
+ 1882 0056 9742     		.uleb128 0x2117
+ 1883 0058 19       		.uleb128 0x19
+ 1884 0059 00       		.byte	0
+ 1885 005a 00       		.byte	0
+ 1886 005b 07       		.uleb128 0x7
+ 1887 005c 2E       		.uleb128 0x2e
+ 1888 005d 01       		.byte	0x1
+ 1889 005e 3F       		.uleb128 0x3f
+ 1890 005f 19       		.uleb128 0x19
+ 1891 0060 03       		.uleb128 0x3
+ 1892 0061 0E       		.uleb128 0xe
+ 1893 0062 3A       		.uleb128 0x3a
+ 1894 0063 0B       		.uleb128 0xb
+ 1895 0064 3B       		.uleb128 0x3b
+ 1896 0065 0B       		.uleb128 0xb
+ 1897 0066 27       		.uleb128 0x27
+ 1898 0067 19       		.uleb128 0x19
+ 1899 0068 11       		.uleb128 0x11
+ 1900 0069 01       		.uleb128 0x1
+ 1901 006a 12       		.uleb128 0x12
+ 1902 006b 06       		.uleb128 0x6
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 39
+
+
+ 1903 006c 40       		.uleb128 0x40
+ 1904 006d 18       		.uleb128 0x18
+ 1905 006e 9742     		.uleb128 0x2117
+ 1906 0070 19       		.uleb128 0x19
+ 1907 0071 01       		.uleb128 0x1
+ 1908 0072 13       		.uleb128 0x13
+ 1909 0073 00       		.byte	0
+ 1910 0074 00       		.byte	0
+ 1911 0075 08       		.uleb128 0x8
+ 1912 0076 898201   		.uleb128 0x4109
+ 1913 0079 00       		.byte	0
+ 1914 007a 11       		.uleb128 0x11
+ 1915 007b 01       		.uleb128 0x1
+ 1916 007c 31       		.uleb128 0x31
+ 1917 007d 13       		.uleb128 0x13
+ 1918 007e 00       		.byte	0
+ 1919 007f 00       		.byte	0
+ 1920 0080 09       		.uleb128 0x9
+ 1921 0081 2E       		.uleb128 0x2e
+ 1922 0082 01       		.byte	0x1
+ 1923 0083 3F       		.uleb128 0x3f
+ 1924 0084 19       		.uleb128 0x19
+ 1925 0085 03       		.uleb128 0x3
+ 1926 0086 0E       		.uleb128 0xe
+ 1927 0087 3A       		.uleb128 0x3a
+ 1928 0088 0B       		.uleb128 0xb
+ 1929 0089 3B       		.uleb128 0x3b
+ 1930 008a 0B       		.uleb128 0xb
+ 1931 008b 27       		.uleb128 0x27
+ 1932 008c 19       		.uleb128 0x19
+ 1933 008d 49       		.uleb128 0x49
+ 1934 008e 13       		.uleb128 0x13
+ 1935 008f 8701     		.uleb128 0x87
+ 1936 0091 19       		.uleb128 0x19
+ 1937 0092 11       		.uleb128 0x11
+ 1938 0093 01       		.uleb128 0x1
+ 1939 0094 12       		.uleb128 0x12
+ 1940 0095 06       		.uleb128 0x6
+ 1941 0096 40       		.uleb128 0x40
+ 1942 0097 18       		.uleb128 0x18
+ 1943 0098 9642     		.uleb128 0x2116
+ 1944 009a 19       		.uleb128 0x19
+ 1945 009b 01       		.uleb128 0x1
+ 1946 009c 13       		.uleb128 0x13
+ 1947 009d 00       		.byte	0
+ 1948 009e 00       		.byte	0
+ 1949 009f 0A       		.uleb128 0xa
+ 1950 00a0 34       		.uleb128 0x34
+ 1951 00a1 00       		.byte	0
+ 1952 00a2 03       		.uleb128 0x3
+ 1953 00a3 0E       		.uleb128 0xe
+ 1954 00a4 3A       		.uleb128 0x3a
+ 1955 00a5 0B       		.uleb128 0xb
+ 1956 00a6 3B       		.uleb128 0x3b
+ 1957 00a7 0B       		.uleb128 0xb
+ 1958 00a8 49       		.uleb128 0x49
+ 1959 00a9 13       		.uleb128 0x13
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 40
+
+
+ 1960 00aa 02       		.uleb128 0x2
+ 1961 00ab 18       		.uleb128 0x18
+ 1962 00ac 00       		.byte	0
+ 1963 00ad 00       		.byte	0
+ 1964 00ae 0B       		.uleb128 0xb
+ 1965 00af 34       		.uleb128 0x34
+ 1966 00b0 00       		.byte	0
+ 1967 00b1 03       		.uleb128 0x3
+ 1968 00b2 0E       		.uleb128 0xe
+ 1969 00b3 3A       		.uleb128 0x3a
+ 1970 00b4 0B       		.uleb128 0xb
+ 1971 00b5 3B       		.uleb128 0x3b
+ 1972 00b6 0B       		.uleb128 0xb
+ 1973 00b7 49       		.uleb128 0x49
+ 1974 00b8 13       		.uleb128 0x13
+ 1975 00b9 02       		.uleb128 0x2
+ 1976 00ba 17       		.uleb128 0x17
+ 1977 00bb 00       		.byte	0
+ 1978 00bc 00       		.byte	0
+ 1979 00bd 0C       		.uleb128 0xc
+ 1980 00be 898201   		.uleb128 0x4109
+ 1981 00c1 01       		.byte	0x1
+ 1982 00c2 11       		.uleb128 0x11
+ 1983 00c3 01       		.uleb128 0x1
+ 1984 00c4 31       		.uleb128 0x31
+ 1985 00c5 13       		.uleb128 0x13
+ 1986 00c6 01       		.uleb128 0x1
+ 1987 00c7 13       		.uleb128 0x13
+ 1988 00c8 00       		.byte	0
+ 1989 00c9 00       		.byte	0
+ 1990 00ca 0D       		.uleb128 0xd
+ 1991 00cb 8A8201   		.uleb128 0x410a
+ 1992 00ce 00       		.byte	0
+ 1993 00cf 02       		.uleb128 0x2
+ 1994 00d0 18       		.uleb128 0x18
+ 1995 00d1 9142     		.uleb128 0x2111
+ 1996 00d3 18       		.uleb128 0x18
+ 1997 00d4 00       		.byte	0
+ 1998 00d5 00       		.byte	0
+ 1999 00d6 0E       		.uleb128 0xe
+ 2000 00d7 898201   		.uleb128 0x4109
+ 2001 00da 01       		.byte	0x1
+ 2002 00db 11       		.uleb128 0x11
+ 2003 00dc 01       		.uleb128 0x1
+ 2004 00dd 31       		.uleb128 0x31
+ 2005 00de 13       		.uleb128 0x13
+ 2006 00df 00       		.byte	0
+ 2007 00e0 00       		.byte	0
+ 2008 00e1 0F       		.uleb128 0xf
+ 2009 00e2 01       		.uleb128 0x1
+ 2010 00e3 01       		.byte	0x1
+ 2011 00e4 49       		.uleb128 0x49
+ 2012 00e5 13       		.uleb128 0x13
+ 2013 00e6 01       		.uleb128 0x1
+ 2014 00e7 13       		.uleb128 0x13
+ 2015 00e8 00       		.byte	0
+ 2016 00e9 00       		.byte	0
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 41
+
+
+ 2017 00ea 10       		.uleb128 0x10
+ 2018 00eb 21       		.uleb128 0x21
+ 2019 00ec 00       		.byte	0
+ 2020 00ed 49       		.uleb128 0x49
+ 2021 00ee 13       		.uleb128 0x13
+ 2022 00ef 2F       		.uleb128 0x2f
+ 2023 00f0 0B       		.uleb128 0xb
+ 2024 00f1 00       		.byte	0
+ 2025 00f2 00       		.byte	0
+ 2026 00f3 11       		.uleb128 0x11
+ 2027 00f4 34       		.uleb128 0x34
+ 2028 00f5 00       		.byte	0
+ 2029 00f6 03       		.uleb128 0x3
+ 2030 00f7 0E       		.uleb128 0xe
+ 2031 00f8 3A       		.uleb128 0x3a
+ 2032 00f9 0B       		.uleb128 0xb
+ 2033 00fa 3B       		.uleb128 0x3b
+ 2034 00fb 05       		.uleb128 0x5
+ 2035 00fc 49       		.uleb128 0x49
+ 2036 00fd 13       		.uleb128 0x13
+ 2037 00fe 3F       		.uleb128 0x3f
+ 2038 00ff 19       		.uleb128 0x19
+ 2039 0100 3C       		.uleb128 0x3c
+ 2040 0101 19       		.uleb128 0x19
+ 2041 0102 00       		.byte	0
+ 2042 0103 00       		.byte	0
+ 2043 0104 12       		.uleb128 0x12
+ 2044 0105 35       		.uleb128 0x35
+ 2045 0106 00       		.byte	0
+ 2046 0107 49       		.uleb128 0x49
+ 2047 0108 13       		.uleb128 0x13
+ 2048 0109 00       		.byte	0
+ 2049 010a 00       		.byte	0
+ 2050 010b 13       		.uleb128 0x13
+ 2051 010c 34       		.uleb128 0x34
+ 2052 010d 00       		.byte	0
+ 2053 010e 03       		.uleb128 0x3
+ 2054 010f 0E       		.uleb128 0xe
+ 2055 0110 3A       		.uleb128 0x3a
+ 2056 0111 0B       		.uleb128 0xb
+ 2057 0112 3B       		.uleb128 0x3b
+ 2058 0113 0B       		.uleb128 0xb
+ 2059 0114 49       		.uleb128 0x49
+ 2060 0115 13       		.uleb128 0x13
+ 2061 0116 3F       		.uleb128 0x3f
+ 2062 0117 19       		.uleb128 0x19
+ 2063 0118 02       		.uleb128 0x2
+ 2064 0119 18       		.uleb128 0x18
+ 2065 011a 00       		.byte	0
+ 2066 011b 00       		.byte	0
+ 2067 011c 14       		.uleb128 0x14
+ 2068 011d 34       		.uleb128 0x34
+ 2069 011e 00       		.byte	0
+ 2070 011f 03       		.uleb128 0x3
+ 2071 0120 08       		.uleb128 0x8
+ 2072 0121 3A       		.uleb128 0x3a
+ 2073 0122 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 42
+
+
+ 2074 0123 3B       		.uleb128 0x3b
+ 2075 0124 0B       		.uleb128 0xb
+ 2076 0125 49       		.uleb128 0x49
+ 2077 0126 13       		.uleb128 0x13
+ 2078 0127 3F       		.uleb128 0x3f
+ 2079 0128 19       		.uleb128 0x19
+ 2080 0129 02       		.uleb128 0x2
+ 2081 012a 18       		.uleb128 0x18
+ 2082 012b 00       		.byte	0
+ 2083 012c 00       		.byte	0
+ 2084 012d 15       		.uleb128 0x15
+ 2085 012e 2E       		.uleb128 0x2e
+ 2086 012f 00       		.byte	0
+ 2087 0130 3F       		.uleb128 0x3f
+ 2088 0131 19       		.uleb128 0x19
+ 2089 0132 3C       		.uleb128 0x3c
+ 2090 0133 19       		.uleb128 0x19
+ 2091 0134 6E       		.uleb128 0x6e
+ 2092 0135 0E       		.uleb128 0xe
+ 2093 0136 03       		.uleb128 0x3
+ 2094 0137 0E       		.uleb128 0xe
+ 2095 0138 3A       		.uleb128 0x3a
+ 2096 0139 0B       		.uleb128 0xb
+ 2097 013a 3B       		.uleb128 0x3b
+ 2098 013b 0B       		.uleb128 0xb
+ 2099 013c 00       		.byte	0
+ 2100 013d 00       		.byte	0
+ 2101 013e 00       		.byte	0
+ 2102              		.section	.debug_loc,"",%progbits
+ 2103              	.Ldebug_loc0:
+ 2104              	.LLST0:
+ 2105 0000 8E000000 		.4byte	.LVL25
+ 2106 0004 97000000 		.4byte	.LVL26-1
+ 2107 0008 0100     		.2byte	0x1
+ 2108 000a 50       		.byte	0x50
+ 2109 000b 97000000 		.4byte	.LVL26-1
+ 2110 000f 00010000 		.4byte	.LVL35
+ 2111 0013 0100     		.2byte	0x1
+ 2112 0015 57       		.byte	0x57
+ 2113 0016 00000000 		.4byte	0
+ 2114 001a 00000000 		.4byte	0
+ 2115              		.section	.debug_aranges,"",%progbits
+ 2116 0000 34000000 		.4byte	0x34
+ 2117 0004 0200     		.2byte	0x2
+ 2118 0006 00000000 		.4byte	.Ldebug_info0
+ 2119 000a 04       		.byte	0x4
+ 2120 000b 00       		.byte	0
+ 2121 000c 0000     		.2byte	0
+ 2122 000e 0000     		.2byte	0
+ 2123 0010 00000000 		.4byte	.LFB66
+ 2124 0014 0C000000 		.4byte	.LFE66-.LFB66
+ 2125 0018 00000000 		.4byte	.LFB64
+ 2126 001c 14000000 		.4byte	.LFE64-.LFB64
+ 2127 0020 00000000 		.4byte	.LFB65
+ 2128 0024 08000000 		.4byte	.LFE65-.LFB65
+ 2129 0028 00000000 		.4byte	.LFB67
+ 2130 002c A4030000 		.4byte	.LFE67-.LFB67
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 43
+
+
+ 2131 0030 00000000 		.4byte	0
+ 2132 0034 00000000 		.4byte	0
+ 2133              		.section	.debug_ranges,"",%progbits
+ 2134              	.Ldebug_ranges0:
+ 2135 0000 00000000 		.4byte	.LFB66
+ 2136 0004 0C000000 		.4byte	.LFE66
+ 2137 0008 00000000 		.4byte	.LFB64
+ 2138 000c 14000000 		.4byte	.LFE64
+ 2139 0010 00000000 		.4byte	.LFB65
+ 2140 0014 08000000 		.4byte	.LFE65
+ 2141 0018 00000000 		.4byte	.LFB67
+ 2142 001c A4030000 		.4byte	.LFE67
+ 2143 0020 00000000 		.4byte	0
+ 2144 0024 00000000 		.4byte	0
+ 2145              		.section	.debug_line,"",%progbits
+ 2146              	.Ldebug_line0:
+ 2147 0000 F8020000 		.section	.debug_str,"MS",%progbits,1
+ 2147      02004302 
+ 2147      00000201 
+ 2147      FB0E0D00 
+ 2147      01010101 
+ 2148              	.LASF58:
+ 2149 0000 48455F49 		.ascii	"HE_Interrupt_Start\000"
+ 2149      6E746572 
+ 2149      72757074 
+ 2149      5F537461 
+ 2149      727400
+ 2150              	.LASF22:
+ 2151 0013 7469636B 		.ascii	"ticks\000"
+ 2151      7300
+ 2152              	.LASF30:
+ 2153 0019 73657453 		.ascii	"setSpeed\000"
+ 2153      70656564 
+ 2153      00
+ 2154              	.LASF52:
+ 2155 0022 73657276 		.ascii	"servoKI\000"
+ 2155      6F4B4900 
+ 2156              	.LASF41:
+ 2157 002a 50494348 		.ascii	"PICHEIGHT\000"
+ 2157      45494748 
+ 2157      5400
+ 2158              	.LASF39:
+ 2159 0034 6C696E65 		.ascii	"lineTime\000"
+ 2159      54696D65 
+ 2159      00
+ 2160              	.LASF19:
+ 2161 003d 73747262 		.ascii	"strbuf\000"
+ 2161      756600
+ 2162              	.LASF71:
+ 2163 0044 53657276 		.ascii	"ServoPWM_WriteCompare\000"
+ 2163      6F50574D 
+ 2163      5F577269 
+ 2163      7465436F 
+ 2163      6D706172 
+ 2164              	.LASF73:
+ 2165 005a 4E657746 		.ascii	"NewFrame_SetVector\000"
+ 2165      72616D65 
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 44
+
+
+ 2165      5F536574 
+ 2165      56656374 
+ 2165      6F7200
+ 2166              	.LASF25:
+ 2167 006d 46524551 		.ascii	"FREQ\000"
+ 2167      00
+ 2168              	.LASF76:
+ 2169 0072 56696465 		.ascii	"VideoTimer_ReadCapture\000"
+ 2169      6F54696D 
+ 2169      65725F52 
+ 2169      65616443 
+ 2169      61707475 
+ 2170              	.LASF77:
+ 2171 0089 4C43445F 		.ascii	"LCD_WriteControl\000"
+ 2171      57726974 
+ 2171      65436F6E 
+ 2171      74726F6C 
+ 2171      00
+ 2172              	.LASF64:
+ 2173 009a 56444143 		.ascii	"VDAC_Start\000"
+ 2173      5F537461 
+ 2173      727400
+ 2174              	.LASF2:
+ 2175 00a5 73686F72 		.ascii	"short int\000"
+ 2175      7420696E 
+ 2175      7400
+ 2176              	.LASF16:
+ 2177 00af 73697A65 		.ascii	"sizetype\000"
+ 2177      74797065 
+ 2177      00
+ 2178              	.LASF45:
+ 2179 00b8 68616C6C 		.ascii	"hallFlag\000"
+ 2179      466C6167 
+ 2179      00
+ 2180              	.LASF88:
+ 2181 00c1 6D61696E 		.ascii	"main\000"
+ 2181      00
+ 2182              	.LASF6:
+ 2183 00c6 6C6F6E67 		.ascii	"long long int\000"
+ 2183      206C6F6E 
+ 2183      6720696E 
+ 2183      7400
+ 2184              	.LASF50:
+ 2185 00d4 6F6C6473 		.ascii	"oldsetservo\000"
+ 2185      65747365 
+ 2185      72766F00 
+ 2186              	.LASF28:
+ 2187 00e0 6F6C6454 		.ascii	"oldTime\000"
+ 2187      696D6500 
+ 2188              	.LASF29:
+ 2189 00e8 63757272 		.ascii	"currentTime\000"
+ 2189      656E7454 
+ 2189      696D6500 
+ 2190              	.LASF72:
+ 2191 00f4 4E657746 		.ascii	"NewFrame_Start\000"
+ 2191      72616D65 
+ 2191      5F537461 
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 45
+
+
+ 2191      727400
+ 2192              	.LASF24:
+ 2193 0103 4C454E47 		.ascii	"LENGTH\000"
+ 2193      544800
+ 2194              	.LASF48:
+ 2195 010a 43454E54 		.ascii	"CENTERSERVO\000"
+ 2195      45525345 
+ 2195      52564F00 
+ 2196              	.LASF80:
+ 2197 0116 55415254 		.ascii	"UART_PutString\000"
+ 2197      5F507574 
+ 2197      53747269 
+ 2197      6E6700
+ 2198              	.LASF11:
+ 2199 0125 75696E74 		.ascii	"uint8\000"
+ 2199      3800
+ 2200              	.LASF57:
+ 2201 012b 4C43445F 		.ascii	"LCD_Start\000"
+ 2201      53746172 
+ 2201      7400
+ 2202              	.LASF0:
+ 2203 0135 7369676E 		.ascii	"signed char\000"
+ 2203      65642063 
+ 2203      68617200 
+ 2204              	.LASF65:
+ 2205 0141 56444143 		.ascii	"VDAC_SetSpeed\000"
+ 2205      5F536574 
+ 2205      53706565 
+ 2205      6400
+ 2206              	.LASF12:
+ 2207 014f 666C6F61 		.ascii	"float\000"
+ 2207      7400
+ 2208              	.LASF47:
+ 2209 0155 66697273 		.ascii	"firstPixelTime\000"
+ 2209      74506978 
+ 2209      656C5469 
+ 2209      6D6500
+ 2210              	.LASF75:
+ 2211 0164 426C6163 		.ascii	"Black_SetVector\000"
+ 2211      6B5F5365 
+ 2211      74566563 
+ 2211      746F7200 
+ 2212              	.LASF55:
+ 2213 0174 54696D65 		.ascii	"Timer_ReadStatusRegister\000"
+ 2213      725F5265 
+ 2213      61645374 
+ 2213      61747573 
+ 2213      52656769 
+ 2214              	.LASF20:
+ 2215 018d 626C6163 		.ascii	"blackTime\000"
+ 2215      6B54696D 
+ 2215      6500
+ 2216              	.LASF60:
+ 2217 0197 54696D65 		.ascii	"Timer_Start\000"
+ 2217      725F5374 
+ 2217      61727400 
+ 2218              	.LASF4:
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 46
+
+
+ 2219 01a3 6C6F6E67 		.ascii	"long int\000"
+ 2219      20696E74 
+ 2219      00
+ 2220              	.LASF74:
+ 2221 01ac 426C6163 		.ascii	"Black_Start\000"
+ 2221      6B5F5374 
+ 2221      61727400 
+ 2222              	.LASF49:
+ 2223 01b8 73657473 		.ascii	"setservo\000"
+ 2223      6572766F 
+ 2223      00
+ 2224              	.LASF15:
+ 2225 01c1 6C6F6E67 		.ascii	"long double\000"
+ 2225      20646F75 
+ 2225      626C6500 
+ 2226              	.LASF1:
+ 2227 01cd 756E7369 		.ascii	"unsigned char\000"
+ 2227      676E6564 
+ 2227      20636861 
+ 2227      7200
+ 2228              	.LASF63:
+ 2229 01db 56696465 		.ascii	"VideoTimer_Start\000"
+ 2229      6F54696D 
+ 2229      65725F53 
+ 2229      74617274 
+ 2229      00
+ 2230              	.LASF69:
+ 2231 01ec 436F6D70 		.ascii	"Comp_SetSpeed\000"
+ 2231      5F536574 
+ 2231      53706565 
+ 2231      6400
+ 2232              	.LASF7:
+ 2233 01fa 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2233      206C6F6E 
+ 2233      6720756E 
+ 2233      7369676E 
+ 2233      65642069 
+ 2234              	.LASF78:
+ 2235 0211 73707269 		.ascii	"sprintf\000"
+ 2235      6E746600 
+ 2236              	.LASF68:
+ 2237 0219 436F6D70 		.ascii	"Comp_Start\000"
+ 2237      5F537461 
+ 2237      727400
+ 2238              	.LASF8:
+ 2239 0224 756E7369 		.ascii	"unsigned int\000"
+ 2239      676E6564 
+ 2239      20696E74 
+ 2239      00
+ 2240              	.LASF79:
+ 2241 0231 4C43445F 		.ascii	"LCD_PrintString\000"
+ 2241      5072696E 
+ 2241      74537472 
+ 2241      696E6700 
+ 2242              	.LASF66:
+ 2243 0241 56444143 		.ascii	"VDAC_SetRange\000"
+ 2243      5F536574 
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 47
+
+
+ 2243      52616E67 
+ 2243      6500
+ 2244              	.LASF33:
+ 2245 024f 73706565 		.ascii	"speed\000"
+ 2245      6400
+ 2246              	.LASF32:
+ 2247 0255 6554696D 		.ascii	"eTime\000"
+ 2247      6500
+ 2248              	.LASF81:
+ 2249 025b 50574D5F 		.ascii	"PWM_WriteCompare\000"
+ 2249      57726974 
+ 2249      65436F6D 
+ 2249      70617265 
+ 2249      00
+ 2250              	.LASF40:
+ 2251 026c 50494357 		.ascii	"PICWIDTH\000"
+ 2251      49445448 
+ 2251      00
+ 2252              	.LASF43:
+ 2253 0275 56465245 		.ascii	"VFREQ\000"
+ 2253      5100
+ 2254              	.LASF36:
+ 2255 027b 6572726F 		.ascii	"errorDiff\000"
+ 2255      72446966 
+ 2255      6600
+ 2256              	.LASF3:
+ 2257 0285 73686F72 		.ascii	"short unsigned int\000"
+ 2257      7420756E 
+ 2257      7369676E 
+ 2257      65642069 
+ 2257      6E7400
+ 2258              	.LASF14:
+ 2259 0298 63686172 		.ascii	"char\000"
+ 2259      00
+ 2260              	.LASF38:
+ 2261 029d 64757479 		.ascii	"dutyCycle\000"
+ 2261      4379636C 
+ 2261      6500
+ 2262              	.LASF61:
+ 2263 02a7 55415254 		.ascii	"UART_Start\000"
+ 2263      5F537461 
+ 2263      727400
+ 2264              	.LASF10:
+ 2265 02b2 696E7433 		.ascii	"int32_t\000"
+ 2265      325F7400 
+ 2266              	.LASF31:
+ 2267 02ba 75617274 		.ascii	"uartbuf\000"
+ 2267      62756600 
+ 2268              	.LASF17:
+ 2269 02c2 696E7465 		.ascii	"inter1\000"
+ 2269      723100
+ 2270              	.LASF18:
+ 2271 02c9 696E7465 		.ascii	"inter2\000"
+ 2271      723200
+ 2272              	.LASF87:
+ 2273 02d0 696E7465 		.ascii	"inter3\000"
+ 2273      723300
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 48
+
+
+ 2274              	.LASF42:
+ 2275 02d7 48465245 		.ascii	"HFREQ\000"
+ 2275      5100
+ 2276              	.LASF59:
+ 2277 02dd 48455F49 		.ascii	"HE_Interrupt_SetVector\000"
+ 2277      6E746572 
+ 2277      72757074 
+ 2277      5F536574 
+ 2277      56656374 
+ 2278              	.LASF53:
+ 2279 02f4 73657276 		.ascii	"servoKD\000"
+ 2279      6F4B4400 
+ 2280              	.LASF35:
+ 2281 02fc 6F6C6445 		.ascii	"oldError\000"
+ 2281      72726F72 
+ 2281      00
+ 2282              	.LASF26:
+ 2283 0305 434F554E 		.ascii	"COUNTDOWN\000"
+ 2283      54444F57 
+ 2283      4E00
+ 2284              	.LASF85:
+ 2285 030f 6D61696E 		.ascii	"main.c\000"
+ 2285      2E6300
+ 2286              	.LASF5:
+ 2287 0316 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2287      20756E73 
+ 2287      69676E65 
+ 2287      6420696E 
+ 2287      7400
+ 2288              	.LASF27:
+ 2289 0328 5449434B 		.ascii	"TICKCUTOFF\000"
+ 2289      4355544F 
+ 2289      464600
+ 2290              	.LASF51:
+ 2291 0333 73657276 		.ascii	"servoKP\000"
+ 2291      6F4B5000 
+ 2292              	.LASF70:
+ 2293 033b 53657276 		.ascii	"ServoPWM_Start\000"
+ 2293      6F50574D 
+ 2293      5F537461 
+ 2293      727400
+ 2294              	.LASF86:
+ 2295 034a 433A5C55 		.ascii	"C:\\Users\\Dhyan\\Documents\\PSoC Creator\\navigati"
+ 2295      73657273 
+ 2295      5C446879 
+ 2295      616E5C44 
+ 2295      6F63756D 
+ 2296 0378 6F6E5C4E 		.ascii	"on\\Navigation.cydsn\000"
+ 2296      61766967 
+ 2296      6174696F 
+ 2296      6E2E6379 
+ 2296      64736E00 
+ 2297              	.LASF9:
+ 2298 038c 5F5F696E 		.ascii	"__int32_t\000"
+ 2298      7433325F 
+ 2298      7400
+ 2299              	.LASF62:
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 49
+
+
+ 2300 0396 50574D5F 		.ascii	"PWM_Start\000"
+ 2300      53746172 
+ 2300      7400
+ 2301              	.LASF82:
+ 2302 03a0 54696D65 		.ascii	"Timer_ReadCapture\000"
+ 2302      725F5265 
+ 2302      61644361 
+ 2302      70747572 
+ 2302      6500
+ 2303              	.LASF83:
+ 2304 03b2 4C43445F 		.ascii	"LCD_Position\000"
+ 2304      506F7369 
+ 2304      74696F6E 
+ 2304      00
+ 2305              	.LASF44:
+ 2306 03bf 4F454652 		.ascii	"OEFREQ\000"
+ 2306      455100
+ 2307              	.LASF23:
+ 2308 03c6 74696D65 		.ascii	"time\000"
+ 2308      00
+ 2309              	.LASF34:
+ 2310 03cb 6572726F 		.ascii	"error\000"
+ 2310      7200
+ 2311              	.LASF13:
+ 2312 03d1 646F7562 		.ascii	"double\000"
+ 2312      6C6500
+ 2313              	.LASF54:
+ 2314 03d8 70697865 		.ascii	"pixelError\000"
+ 2314      6C457272 
+ 2314      6F7200
+ 2315              	.LASF21:
+ 2316 03e3 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2316      52784275 
+ 2316      66666572 
+ 2316      00
+ 2317              	.LASF84:
+ 2318 03f0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2318      43313120 
+ 2318      352E342E 
+ 2318      31203230 
+ 2318      31363036 
+ 2319 0423 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2319      20726576 
+ 2319      6973696F 
+ 2319      6E203233 
+ 2319      37373135 
+ 2320 0456 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2320      66756E63 
+ 2320      74696F6E 
+ 2320      2D736563 
+ 2320      74696F6E 
+ 2321              	.LASF67:
+ 2322 047e 56444143 		.ascii	"VDAC_SetValue\000"
+ 2322      5F536574 
+ 2322      56616C75 
+ 2322      6500
+ 2323              	.LASF37:
+ARM GAS  C:\Users\Dhyan\AppData\Local\Temp\ccFxxXBE.s 			page 50
+
+
+ 2324 048c 61766745 		.ascii	"avgError\000"
+ 2324      72726F72 
+ 2324      00
+ 2325              	.LASF56:
+ 2326 0495 56696465 		.ascii	"VideoTimer_ReadStatusRegister\000"
+ 2326      6F54696D 
+ 2326      65725F52 
+ 2326      65616453 
+ 2326      74617475 
+ 2327              	.LASF46:
+ 2328 04b3 626C6163 		.ascii	"blackFlag\000"
+ 2328      6B466C61 
+ 2328      6700
+ 2329              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -268,7 +268,9 @@
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="Pin_1" />
       <Data key="a4d416c5-eceb-49f1-aa0b-8a7d8186af92" value="VerifyCompIn" />
       <Data key="a72f7013-54cb-48bb-8909-ab4bc0506397" value="VerifyCompOut" />
+      <Data key="b354a010-6f79-4666-8a90-54748f509459" value="Servo" />
       <Data key="cc78ecae-57a4-414b-ade0-9bf26a79be98" value="CamOut" />
+      <Data key="e18dec83-55ee-45ad-b9f5-5a69753a45e3" value="Pin_1" />
       <Data key="e62b2066-7149-4da1-8409-5e3e8f65809e" value="Pin_1" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="Motor" />
       <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Tx_1" />
@@ -3458,9 +3460,19 @@
         <Data key="Port Format" value="0,0" />
       </Group>
     </Group>
+    <Group key="b354a010-6f79-4666-8a90-54748f509459">
+      <Group key="0">
+        <Data key="Port Format" value="4,5" />
+      </Group>
+    </Group>
     <Group key="cc78ecae-57a4-414b-ade0-9bf26a79be98">
       <Group key="0">
         <Data key="Port Format" value="4,0" />
+      </Group>
+    </Group>
+    <Group key="e18dec83-55ee-45ad-b9f5-5a69753a45e3">
+      <Group key="0">
+        <Data key="Port Format" value="1,6" />
       </Group>
     </Group>
     <Group key="e62b2066-7149-4da1-8409-5e3e8f65809e">
@@ -3470,7 +3482,7 @@
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
       <Group key="0">
-        <Data key="Port Format" value="3,6" />
+        <Data key="Port Format" value="4,7" />
       </Group>
     </Group>
     <Group key="ed092b9b-d398-4703-be89-cebf998501f6">
