@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: VideoTimer_PM.c
+* File Name: VideoTimerL_PM.c
 * Version 2.80
 *
 *  Description:
@@ -16,13 +16,13 @@
 * the software package with which this file was provided.
 ********************************************************************************/
 
-#include "VideoTimer.h"
+#include "VideoTimerL.h"
 
-static VideoTimer_backupStruct VideoTimer_backup;
+static VideoTimerL_backupStruct VideoTimerL_backup;
 
 
 /*******************************************************************************
-* Function Name: VideoTimer_SaveConfig
+* Function Name: VideoTimerL_SaveConfig
 ********************************************************************************
 *
 * Summary:
@@ -35,29 +35,29 @@ static VideoTimer_backupStruct VideoTimer_backup;
 *  void
 *
 * Global variables:
-*  VideoTimer_backup:  Variables of this global structure are modified to
+*  VideoTimerL_backup:  Variables of this global structure are modified to
 *  store the values of non retention configuration registers when Sleep() API is
 *  called.
 *
 *******************************************************************************/
-void VideoTimer_SaveConfig(void) 
+void VideoTimerL_SaveConfig(void) 
 {
-    #if (!VideoTimer_UsingFixedFunction)
-        VideoTimer_backup.TimerUdb = VideoTimer_ReadCounter();
-        VideoTimer_backup.InterruptMaskValue = VideoTimer_STATUS_MASK;
-        #if (VideoTimer_UsingHWCaptureCounter)
-            VideoTimer_backup.TimerCaptureCounter = VideoTimer_ReadCaptureCount();
+    #if (!VideoTimerL_UsingFixedFunction)
+        VideoTimerL_backup.TimerUdb = VideoTimerL_ReadCounter();
+        VideoTimerL_backup.InterruptMaskValue = VideoTimerL_STATUS_MASK;
+        #if (VideoTimerL_UsingHWCaptureCounter)
+            VideoTimerL_backup.TimerCaptureCounter = VideoTimerL_ReadCaptureCount();
         #endif /* Back Up capture counter register  */
 
-        #if(!VideoTimer_UDB_CONTROL_REG_REMOVED)
-            VideoTimer_backup.TimerControlRegister = VideoTimer_ReadControlRegister();
+        #if(!VideoTimerL_UDB_CONTROL_REG_REMOVED)
+            VideoTimerL_backup.TimerControlRegister = VideoTimerL_ReadControlRegister();
         #endif /* Backup the enable state of the Timer component */
     #endif /* Backup non retention registers in UDB implementation. All fixed function registers are retention */
 }
 
 
 /*******************************************************************************
-* Function Name: VideoTimer_RestoreConfig
+* Function Name: VideoTimerL_RestoreConfig
 ********************************************************************************
 *
 * Summary:
@@ -70,29 +70,29 @@ void VideoTimer_SaveConfig(void)
 *  void
 *
 * Global variables:
-*  VideoTimer_backup:  Variables of this global structure are used to
+*  VideoTimerL_backup:  Variables of this global structure are used to
 *  restore the values of non retention registers on wakeup from sleep mode.
 *
 *******************************************************************************/
-void VideoTimer_RestoreConfig(void) 
+void VideoTimerL_RestoreConfig(void) 
 {   
-    #if (!VideoTimer_UsingFixedFunction)
+    #if (!VideoTimerL_UsingFixedFunction)
 
-        VideoTimer_WriteCounter(VideoTimer_backup.TimerUdb);
-        VideoTimer_STATUS_MASK =VideoTimer_backup.InterruptMaskValue;
-        #if (VideoTimer_UsingHWCaptureCounter)
-            VideoTimer_SetCaptureCount(VideoTimer_backup.TimerCaptureCounter);
+        VideoTimerL_WriteCounter(VideoTimerL_backup.TimerUdb);
+        VideoTimerL_STATUS_MASK =VideoTimerL_backup.InterruptMaskValue;
+        #if (VideoTimerL_UsingHWCaptureCounter)
+            VideoTimerL_SetCaptureCount(VideoTimerL_backup.TimerCaptureCounter);
         #endif /* Restore Capture counter register*/
 
-        #if(!VideoTimer_UDB_CONTROL_REG_REMOVED)
-            VideoTimer_WriteControlRegister(VideoTimer_backup.TimerControlRegister);
+        #if(!VideoTimerL_UDB_CONTROL_REG_REMOVED)
+            VideoTimerL_WriteControlRegister(VideoTimerL_backup.TimerControlRegister);
         #endif /* Restore the enable state of the Timer component */
     #endif /* Restore non retention registers in the UDB implementation only */
 }
 
 
 /*******************************************************************************
-* Function Name: VideoTimer_Sleep
+* Function Name: VideoTimerL_Sleep
 ********************************************************************************
 *
 * Summary:
@@ -105,32 +105,32 @@ void VideoTimer_RestoreConfig(void)
 *  void
 *
 * Global variables:
-*  VideoTimer_backup.TimerEnableState:  Is modified depending on the
+*  VideoTimerL_backup.TimerEnableState:  Is modified depending on the
 *  enable state of the block before entering sleep mode.
 *
 *******************************************************************************/
-void VideoTimer_Sleep(void) 
+void VideoTimerL_Sleep(void) 
 {
-    #if(!VideoTimer_UDB_CONTROL_REG_REMOVED)
+    #if(!VideoTimerL_UDB_CONTROL_REG_REMOVED)
         /* Save Counter's enable state */
-        if(VideoTimer_CTRL_ENABLE == (VideoTimer_CONTROL & VideoTimer_CTRL_ENABLE))
+        if(VideoTimerL_CTRL_ENABLE == (VideoTimerL_CONTROL & VideoTimerL_CTRL_ENABLE))
         {
             /* Timer is enabled */
-            VideoTimer_backup.TimerEnableState = 1u;
+            VideoTimerL_backup.TimerEnableState = 1u;
         }
         else
         {
             /* Timer is disabled */
-            VideoTimer_backup.TimerEnableState = 0u;
+            VideoTimerL_backup.TimerEnableState = 0u;
         }
     #endif /* Back up enable state from the Timer control register */
-    VideoTimer_Stop();
-    VideoTimer_SaveConfig();
+    VideoTimerL_Stop();
+    VideoTimerL_SaveConfig();
 }
 
 
 /*******************************************************************************
-* Function Name: VideoTimer_Wakeup
+* Function Name: VideoTimerL_Wakeup
 ********************************************************************************
 *
 * Summary:
@@ -143,17 +143,17 @@ void VideoTimer_Sleep(void)
 *  void
 *
 * Global variables:
-*  VideoTimer_backup.enableState:  Is used to restore the enable state of
+*  VideoTimerL_backup.enableState:  Is used to restore the enable state of
 *  block on wakeup from sleep mode.
 *
 *******************************************************************************/
-void VideoTimer_Wakeup(void) 
+void VideoTimerL_Wakeup(void) 
 {
-    VideoTimer_RestoreConfig();
-    #if(!VideoTimer_UDB_CONTROL_REG_REMOVED)
-        if(VideoTimer_backup.TimerEnableState == 1u)
+    VideoTimerL_RestoreConfig();
+    #if(!VideoTimerL_UDB_CONTROL_REG_REMOVED)
+        if(VideoTimerL_backup.TimerEnableState == 1u)
         {     /* Enable Timer's operation */
-                VideoTimer_Enable();
+                VideoTimerL_Enable();
         } /* Do nothing if Timer was disabled before */
     #endif /* Remove this code section if Control register is removed */
 }

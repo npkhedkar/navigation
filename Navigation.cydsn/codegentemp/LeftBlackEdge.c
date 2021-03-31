@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Black.c  
+* File Name: LeftBlackEdge.c  
 * Version 1.70
 *
 *  Description:
@@ -18,15 +18,15 @@
 
 #include <cydevice_trm.h>
 #include <CyLib.h>
-#include <Black.h>
+#include <LeftBlackEdge.h>
 #include "cyapicallbacks.h"
 
-#if !defined(Black__REMOVED) /* Check for removal by optimization */
+#if !defined(LeftBlackEdge__REMOVED) /* Check for removal by optimization */
 
 /*******************************************************************************
 *  Place your includes, defines and code here 
 ********************************************************************************/
-/* `#START Black_intc` */
+/* `#START LeftBlackEdge_intc` */
 
 /* `#END` */
 
@@ -42,7 +42,7 @@ CY_ISR_PROTO(IntDefaultHandler);
 
 
 /*******************************************************************************
-* Function Name: Black_Start
+* Function Name: LeftBlackEdge_Start
 ********************************************************************************
 *
 * Summary:
@@ -58,24 +58,24 @@ CY_ISR_PROTO(IntDefaultHandler);
 *   None
 *
 *******************************************************************************/
-void Black_Start(void)
+void LeftBlackEdge_Start(void)
 {
     /* For all we know the interrupt is active. */
-    Black_Disable();
+    LeftBlackEdge_Disable();
 
-    /* Set the ISR to point to the Black Interrupt. */
-    Black_SetVector(&Black_Interrupt);
+    /* Set the ISR to point to the LeftBlackEdge Interrupt. */
+    LeftBlackEdge_SetVector(&LeftBlackEdge_Interrupt);
 
     /* Set the priority. */
-    Black_SetPriority((uint8)Black_INTC_PRIOR_NUMBER);
+    LeftBlackEdge_SetPriority((uint8)LeftBlackEdge_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    Black_Enable();
+    LeftBlackEdge_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: Black_StartEx
+* Function Name: LeftBlackEdge_StartEx
 ********************************************************************************
 *
 * Summary:
@@ -101,24 +101,24 @@ void Black_Start(void)
 *   None
 *
 *******************************************************************************/
-void Black_StartEx(cyisraddress address)
+void LeftBlackEdge_StartEx(cyisraddress address)
 {
     /* For all we know the interrupt is active. */
-    Black_Disable();
+    LeftBlackEdge_Disable();
 
-    /* Set the ISR to point to the Black Interrupt. */
-    Black_SetVector(address);
+    /* Set the ISR to point to the LeftBlackEdge Interrupt. */
+    LeftBlackEdge_SetVector(address);
 
     /* Set the priority. */
-    Black_SetPriority((uint8)Black_INTC_PRIOR_NUMBER);
+    LeftBlackEdge_SetPriority((uint8)LeftBlackEdge_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    Black_Enable();
+    LeftBlackEdge_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: Black_Stop
+* Function Name: LeftBlackEdge_Stop
 ********************************************************************************
 *
 * Summary:
@@ -131,22 +131,22 @@ void Black_StartEx(cyisraddress address)
 *   None
 *
 *******************************************************************************/
-void Black_Stop(void)
+void LeftBlackEdge_Stop(void)
 {
     /* Disable this interrupt. */
-    Black_Disable();
+    LeftBlackEdge_Disable();
 
     /* Set the ISR to point to the passive one. */
-    Black_SetVector(&IntDefaultHandler);
+    LeftBlackEdge_SetVector(&IntDefaultHandler);
 }
 
 
 /*******************************************************************************
-* Function Name: Black_Interrupt
+* Function Name: LeftBlackEdge_Interrupt
 ********************************************************************************
 *
 * Summary:
-*   The default Interrupt Service Routine for Black.
+*   The default Interrupt Service Routine for LeftBlackEdge.
 *
 *   Add custom code between the coments to keep the next version of this file
 *   from over writting your code.
@@ -157,27 +157,27 @@ void Black_Stop(void)
 *   None
 *
 *******************************************************************************/
-CY_ISR(Black_Interrupt)
+CY_ISR(LeftBlackEdge_Interrupt)
 {
-    #ifdef Black_INTERRUPT_INTERRUPT_CALLBACK
-        Black_Interrupt_InterruptCallback();
-    #endif /* Black_INTERRUPT_INTERRUPT_CALLBACK */ 
+    #ifdef LeftBlackEdge_INTERRUPT_INTERRUPT_CALLBACK
+        LeftBlackEdge_Interrupt_InterruptCallback();
+    #endif /* LeftBlackEdge_INTERRUPT_INTERRUPT_CALLBACK */ 
 
     /*  Place your Interrupt code here. */
-    /* `#START Black_Interrupt` */
+    /* `#START LeftBlackEdge_Interrupt` */
 
     /* `#END` */
 }
 
 
 /*******************************************************************************
-* Function Name: Black_SetVector
+* Function Name: LeftBlackEdge_SetVector
 ********************************************************************************
 *
 * Summary:
-*   Change the ISR vector for the Interrupt. Note calling Black_Start
+*   Change the ISR vector for the Interrupt. Note calling LeftBlackEdge_Start
 *   will override any effect this method would have had. To set the vector 
-*   before the component has been started use Black_StartEx instead.
+*   before the component has been started use LeftBlackEdge_StartEx instead.
 * 
 *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
 *   used to provide consistent definition across compilers:
@@ -197,18 +197,18 @@ CY_ISR(Black_Interrupt)
 *   None
 *
 *******************************************************************************/
-void Black_SetVector(cyisraddress address)
+void LeftBlackEdge_SetVector(cyisraddress address)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    ramVectorTable[CYINT_IRQ_BASE + (uint32)Black__INTC_NUMBER] = address;
+    ramVectorTable[CYINT_IRQ_BASE + (uint32)LeftBlackEdge__INTC_NUMBER] = address;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_GetVector
+* Function Name: LeftBlackEdge_GetVector
 ********************************************************************************
 *
 * Summary:
@@ -221,26 +221,26 @@ void Black_SetVector(cyisraddress address)
 *   Address of the ISR in the interrupt vector table.
 *
 *******************************************************************************/
-cyisraddress Black_GetVector(void)
+cyisraddress LeftBlackEdge_GetVector(void)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    return ramVectorTable[CYINT_IRQ_BASE + (uint32)Black__INTC_NUMBER];
+    return ramVectorTable[CYINT_IRQ_BASE + (uint32)LeftBlackEdge__INTC_NUMBER];
 }
 
 
 /*******************************************************************************
-* Function Name: Black_SetPriority
+* Function Name: LeftBlackEdge_SetPriority
 ********************************************************************************
 *
 * Summary:
 *   Sets the Priority of the Interrupt. 
 *
-*   Note calling Black_Start or Black_StartEx will 
+*   Note calling LeftBlackEdge_Start or LeftBlackEdge_StartEx will 
 *   override any effect this API would have had. This API should only be called
-*   after Black_Start or Black_StartEx has been called. 
+*   after LeftBlackEdge_Start or LeftBlackEdge_StartEx has been called. 
 *   To set the initial priority for the component, use the Design-Wide Resources
 *   Interrupt Editor.
 *
@@ -255,14 +255,14 @@ cyisraddress Black_GetVector(void)
 *   None
 *
 *******************************************************************************/
-void Black_SetPriority(uint8 priority)
+void LeftBlackEdge_SetPriority(uint8 priority)
 {
-    *Black_INTC_PRIOR = priority << 5;
+    *LeftBlackEdge_INTC_PRIOR = priority << 5;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_GetPriority
+* Function Name: LeftBlackEdge_GetPriority
 ********************************************************************************
 *
 * Summary:
@@ -277,19 +277,19 @@ void Black_SetPriority(uint8 priority)
 *    PSoC 4: Priority is from 0 to 3.
 *
 *******************************************************************************/
-uint8 Black_GetPriority(void)
+uint8 LeftBlackEdge_GetPriority(void)
 {
     uint8 priority;
 
 
-    priority = *Black_INTC_PRIOR >> 5;
+    priority = *LeftBlackEdge_INTC_PRIOR >> 5;
 
     return priority;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_Enable
+* Function Name: LeftBlackEdge_Enable
 ********************************************************************************
 *
 * Summary:
@@ -304,15 +304,15 @@ uint8 Black_GetPriority(void)
 *   None
 *
 *******************************************************************************/
-void Black_Enable(void)
+void LeftBlackEdge_Enable(void)
 {
     /* Enable the general interrupt. */
-    *Black_INTC_SET_EN = Black__INTC_MASK;
+    *LeftBlackEdge_INTC_SET_EN = LeftBlackEdge__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_GetState
+* Function Name: LeftBlackEdge_GetState
 ********************************************************************************
 *
 * Summary:
@@ -325,15 +325,15 @@ void Black_Enable(void)
 *   1 if enabled, 0 if disabled.
 *
 *******************************************************************************/
-uint8 Black_GetState(void)
+uint8 LeftBlackEdge_GetState(void)
 {
     /* Get the state of the general interrupt. */
-    return ((*Black_INTC_SET_EN & (uint32)Black__INTC_MASK) != 0u) ? 1u:0u;
+    return ((*LeftBlackEdge_INTC_SET_EN & (uint32)LeftBlackEdge__INTC_MASK) != 0u) ? 1u:0u;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_Disable
+* Function Name: LeftBlackEdge_Disable
 ********************************************************************************
 *
 * Summary:
@@ -346,15 +346,15 @@ uint8 Black_GetState(void)
 *   None
 *
 *******************************************************************************/
-void Black_Disable(void)
+void LeftBlackEdge_Disable(void)
 {
     /* Disable the general interrupt. */
-    *Black_INTC_CLR_EN = Black__INTC_MASK;
+    *LeftBlackEdge_INTC_CLR_EN = LeftBlackEdge__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_SetPending
+* Function Name: LeftBlackEdge_SetPending
 ********************************************************************************
 *
 * Summary:
@@ -373,14 +373,14 @@ void Black_Disable(void)
 *   interrupts).
 *
 *******************************************************************************/
-void Black_SetPending(void)
+void LeftBlackEdge_SetPending(void)
 {
-    *Black_INTC_SET_PD = Black__INTC_MASK;
+    *LeftBlackEdge_INTC_SET_PD = LeftBlackEdge__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: Black_ClearPending
+* Function Name: LeftBlackEdge_ClearPending
 ********************************************************************************
 *
 * Summary:
@@ -398,9 +398,9 @@ void Black_SetPending(void)
 *   None
 *
 *******************************************************************************/
-void Black_ClearPending(void)
+void LeftBlackEdge_ClearPending(void)
 {
-    *Black_INTC_CLR_PD = Black__INTC_MASK;
+    *LeftBlackEdge_INTC_CLR_PD = LeftBlackEdge__INTC_MASK;
 }
 
 #endif /* End check for removal by optimization */

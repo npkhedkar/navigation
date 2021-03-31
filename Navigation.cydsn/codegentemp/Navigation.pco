@@ -1,5 +1,5 @@
 # Navigation
-# 2021-03-30 02:56:02Z
+# 2021-03-31 02:19:50Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -20,7 +20,7 @@ set_io "\LCD:LCDPort(5)\" iocell 2 5
 set_io "\LCD:LCDPort(6)\" iocell 2 6
 set_io "HallEffect(0)" iocell 12 0
 set_io "CamOut(0)" iocell 4 0
-set_io "VerifyLeftBlackEdge(0)" iocell 5 2
+set_io "LBlackEdge(0)" iocell 5 2
 set_io "VSync(0)" iocell 4 2
 set_io "HSync(0)" iocell 4 4
 set_io "VerifyCompIn(0)" iocell 5 4
@@ -28,78 +28,96 @@ set_io "OddEven(0)" iocell 4 6
 set_io "VerifyCompOut(0)" iocell 5 6
 set_io "Servo(0)" iocell 4 5
 set_io "Pin_1(0)" iocell 1 6
-set_location "\PWM:PWMUDB:status_2\" 2 5 1 2
-set_location "Net_243" 0 3 0 2
-set_location "\UART:BUART:counter_load_not\" 1 4 0 1
-set_location "\UART:BUART:tx_status_0\" 0 3 1 3
-set_location "\UART:BUART:tx_status_2\" 0 4 1 3
-set_location "\UART:BUART:rx_counter_load\" 1 4 0 2
+set_io "RBlackEdge(0)" iocell 5 0
+set_location "\PWM:PWMUDB:status_2\" 3 5 0 2
+set_location "Net_243" 0 3 0 3
+set_location "\UART:BUART:counter_load_not\" 0 3 0 1
+set_location "\UART:BUART:tx_status_0\" 0 3 0 2
+set_location "\UART:BUART:tx_status_2\" 2 5 0 2
+set_location "\UART:BUART:rx_counter_load\" 1 5 1 0
 set_location "\UART:BUART:rx_postpoll\" 1 5 0 3
-set_location "\UART:BUART:rx_status_4\" 0 5 0 1
-set_location "\UART:BUART:rx_status_5\" 0 5 1 2
-set_location "\Timer:TimerUDB:capt_fifo_load\" 3 0 1 0
-set_location "\Timer:TimerUDB:status_tc\" 3 0 0 0
-set_location "\VideoTimer:TimerUDB:capt_fifo_load\" 2 4 0 1
-set_location "\VideoTimer:TimerUDB:run_mode\" 2 4 0 0
-set_location "\VideoTimer:TimerUDB:status_tc\" 2 4 1 1
-set_location "Net_2541" 1 3 0 3
-set_location "Net_2535" 3 4 0 1
-set_location "\ServoPWM:PWMUDB:status_2\" 3 5 1 2
-set_location "\PWM:PWMUDB:genblk1:ctrlreg\" 2 5 6
-set_location "\PWM:PWMUDB:genblk8:stsreg\" 2 5 4
-set_location "\PWM:PWMUDB:sP8:pwmdp:u0\" 2 5 2
-set_location "\UART:BUART:sTX:TxShifter:u0\" 0 3 2
-set_location "\UART:BUART:sTX:sCLOCK:TxBitClkGen\" 1 3 2
-set_location "\UART:BUART:sTX:TxSts\" 0 4 4
-set_location "\UART:BUART:sRX:RxShifter:u0\" 0 5 2
+set_location "\UART:BUART:rx_status_4\" 1 3 0 1
+set_location "\UART:BUART:rx_status_5\" 1 3 1 2
+set_location "\Timer:TimerUDB:capt_fifo_load\" 3 0 0 2
+set_location "\Timer:TimerUDB:status_tc\" 3 3 1 2
+set_location "\VideoTimerL:TimerUDB:capt_fifo_load\" 3 3 1 3
+set_location "\VideoTimerL:TimerUDB:run_mode\" 2 3 0 2
+set_location "\VideoTimerL:TimerUDB:status_tc\" 2 4 1 3
+set_location "Net_2535" 2 0 1 0
+set_location "\ServoPWM:PWMUDB:status_2\" 2 3 0 1
+set_location "Net_2541" 3 3 1 1
+set_location "\VideoTimerR:TimerUDB:fifo_load_polarized\" 3 3 0 0
+set_location "\VideoTimerR:TimerUDB:status_tc\" 2 4 0 3
+set_location "\PWM:PWMUDB:genblk1:ctrlreg\" 3 5 6
+set_location "\PWM:PWMUDB:genblk8:stsreg\" 3 5 4
+set_location "\PWM:PWMUDB:sP8:pwmdp:u0\" 3 5 2
+set_location "\UART:BUART:sTX:TxShifter:u0\" 0 4 2
+set_location "\UART:BUART:sTX:sCLOCK:TxBitClkGen\" 0 3 2
+set_location "\UART:BUART:sTX:TxSts\" 0 5 4
+set_location "\UART:BUART:sRX:RxShifter:u0\" 1 5 2
 set_location "\UART:BUART:sRX:RxBitCounter\" 1 5 7
-set_location "\UART:BUART:sRX:RxSts\" 0 5 4
-set_location "\Timer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\" 2 0 6
+set_location "\UART:BUART:sRX:RxSts\" 1 4 4
+set_location "\Timer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\" 3 0 6
 set_location "\Timer:TimerUDB:rstSts:stsreg\" 3 0 4
 set_location "\Timer:TimerUDB:sT16:timerdp:u0\" 2 0 2
 set_location "\Timer:TimerUDB:sT16:timerdp:u1\" 3 0 2
-set_location "HE_Interrupt" interrupt -1 -1 1
-set_location "\VideoTimer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\" 2 4 6
-set_location "\VideoTimer:TimerUDB:rstSts:stsreg\" 2 4 4
-set_location "\VideoTimer:TimerUDB:sT16:timerdp:u0\" 3 4 2
-set_location "\VideoTimer:TimerUDB:sT16:timerdp:u1\" 2 4 2
-set_location "\Comp:ctComp\" comparatorcell -1 -1 1
-set_location "Black" interrupt -1 -1 0
+set_location "HE_Interrupt" interrupt -1 -1 0
+set_location "\VideoTimerL:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\" 2 3 6
+set_location "\VideoTimerL:TimerUDB:rstSts:stsreg\" 0 4 4
+set_location "\VideoTimerL:TimerUDB:sT16:timerdp:u0\" 2 3 2
+set_location "\VideoTimerL:TimerUDB:sT16:timerdp:u1\" 3 3 2
+set_location "\Comp1:ctComp\" comparatorcell -1 -1 3
+set_location "LeftBlackEdge" interrupt -1 -1 1
 set_location "\VDAC:viDAC8\" vidaccell -1 -1 1
-set_location "\ServoPWM:PWMUDB:genblk1:ctrlreg\" 3 5 6
-set_location "\ServoPWM:PWMUDB:genblk8:stsreg\" 3 5 4
-set_location "\ServoPWM:PWMUDB:sP8:pwmdp:u0\" 3 5 2
+set_location "\ServoPWM:PWMUDB:genblk1:ctrlreg\" 2 0 6
+set_location "\ServoPWM:PWMUDB:genblk8:stsreg\" 2 0 4
+set_location "\ServoPWM:PWMUDB:sP8:pwmdp:u0\" 1 3 2
 set_location "NewFrame" interrupt -1 -1 2
-set_location "\PWM:PWMUDB:runmode_enable\" 2 5 0 1
-set_location "\PWM:PWMUDB:prevCompare1\" 2 5 0 2
-set_location "\PWM:PWMUDB:status_0\" 2 5 0 3
+set_location "\Comp2:ctComp\" comparatorcell -1 -1 1
+set_location "RightBlackEdge" interrupt -1 -1 3
+set_location "\VideoTimerR:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\" 2 4 6
+set_location "\VideoTimerR:TimerUDB:sCapCount:counter\" 2 5 7
+set_location "\VideoTimerR:TimerUDB:rstSts:stsreg\" 2 4 4
+set_location "\VideoTimerR:TimerUDB:sT16:timerdp:u0\" 3 4 2
+set_location "\VideoTimerR:TimerUDB:sT16:timerdp:u1\" 2 4 2
+set_location "\PWM:PWMUDB:runmode_enable\" 3 0 1 3
+set_location "\PWM:PWMUDB:prevCompare1\" 3 5 0 3
+set_location "\PWM:PWMUDB:status_0\" 3 5 1 0
 set_location "Net_187" 3 5 0 0
-set_location "\UART:BUART:txn\" 0 3 1 2
-set_location "\UART:BUART:tx_state_1\" 1 3 1 0
-set_location "\UART:BUART:tx_state_0\" 0 3 0 0
-set_location "\UART:BUART:tx_state_2\" 1 3 0 1
-set_location "\UART:BUART:tx_bitclk\" 0 3 1 0
-set_location "\UART:BUART:tx_ctrl_mark_last\" 1 4 1 0
-set_location "\UART:BUART:rx_state_0\" 1 5 0 0
-set_location "\UART:BUART:rx_load_fifo\" 0 4 0 2
-set_location "\UART:BUART:rx_state_3\" 0 4 0 0
-set_location "\UART:BUART:rx_state_2\" 0 4 1 0
-set_location "\UART:BUART:rx_bitclk_enable\" 1 4 1 1
-set_location "\UART:BUART:rx_state_stop1_reg\" 1 4 1 3
-set_location "\UART:BUART:pollcount_1\" 1 5 1 2
-set_location "\UART:BUART:pollcount_0\" 1 5 1 0
-set_location "\UART:BUART:rx_status_3\" 1 5 1 1
-set_location "\UART:BUART:rx_last\" 0 4 1 2
-set_location "\Timer:TimerUDB:capture_last\" 2 0 1 3
-set_location "Net_184" 2 0 0 0
-set_location "MODIN6_1" 2 0 0 2
-set_location "MODIN6_0" 2 0 1 1
-set_location "\Timer:TimerUDB:capt_int_temp\" 3 0 1 1
-set_location "\VideoTimer:TimerUDB:capture_last\" 2 4 0 2
-set_location "\VideoTimer:TimerUDB:int_capt_count_1\" 2 5 1 3
-set_location "\VideoTimer:TimerUDB:int_capt_count_0\" 2 4 0 3
-set_location "\VideoTimer:TimerUDB:capt_int_temp\" 2 4 1 0
-set_location "\ServoPWM:PWMUDB:runmode_enable\" 3 5 1 0
-set_location "\ServoPWM:PWMUDB:prevCompare1\" 3 4 0 0
-set_location "\ServoPWM:PWMUDB:status_0\" 3 5 1 3
-set_location "Net_2703" 3 5 1 1
+set_location "\UART:BUART:txn\" 0 4 0 0
+set_location "\UART:BUART:tx_state_1\" 0 4 0 2
+set_location "\UART:BUART:tx_state_0\" 0 5 1 0
+set_location "\UART:BUART:tx_state_2\" 0 5 0 2
+set_location "\UART:BUART:tx_bitclk\" 0 4 1 1
+set_location "\UART:BUART:tx_ctrl_mark_last\" 1 4 0 3
+set_location "\UART:BUART:rx_state_0\" 1 4 0 0
+set_location "\UART:BUART:rx_load_fifo\" 1 3 1 1
+set_location "\UART:BUART:rx_state_3\" 1 4 0 2
+set_location "\UART:BUART:rx_state_2\" 1 3 1 0
+set_location "\UART:BUART:rx_bitclk_enable\" 1 5 1 1
+set_location "\UART:BUART:rx_state_stop1_reg\" 1 4 1 0
+set_location "\UART:BUART:pollcount_1\" 1 5 0 1
+set_location "\UART:BUART:pollcount_0\" 1 5 0 2
+set_location "\UART:BUART:rx_status_3\" 1 4 0 1
+set_location "\UART:BUART:rx_last\" 1 5 0 0
+set_location "\Timer:TimerUDB:capture_last\" 3 4 1 2
+set_location "Net_184" 3 4 0 0
+set_location "MODIN6_1" 3 0 1 0
+set_location "MODIN6_0" 3 0 0 3
+set_location "\Timer:TimerUDB:capt_int_temp\" 3 0 0 0
+set_location "\VideoTimerL:TimerUDB:capture_last\" 3 3 0 1
+set_location "MODIN9_1" 1 3 0 0
+set_location "MODIN9_0" 2 3 1 1
+set_location "\VideoTimerL:TimerUDB:capt_int_temp\" 0 3 0 0
+set_location "\ServoPWM:PWMUDB:runmode_enable\" 2 0 0 3
+set_location "\ServoPWM:PWMUDB:prevCompare1\" 2 0 0 1
+set_location "\ServoPWM:PWMUDB:status_0\" 2 0 0 0
+set_location "Net_2703" 2 0 0 2
+set_location "\VideoTimerR:TimerUDB:cntr_load\" 2 5 0 1
+set_location "\VideoTimerR:TimerUDB:tmp_fifo_load\" 2 5 0 0
+set_location "\VideoTimerR:TimerUDB:run_mode\" 2 4 1 2
+set_location "\VideoTimerR:TimerUDB:int_capt_count_1\" 2 3 0 3
+set_location "\VideoTimerR:TimerUDB:int_capt_count_0\" 2 5 1 0
+set_location "\VideoTimerR:TimerUDB:capt_int_temp\" 2 4 1 0
+set_location "\VideoTimerR:TimerUDB:runmode_enable\" 2 4 0 0
+set_location "\VideoTimerR:TimerUDB:trig_disable\" 2 4 0 2

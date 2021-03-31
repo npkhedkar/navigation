@@ -78,14 +78,15 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Black.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\CamOut.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_3.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp1.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp1_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp2.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp2_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
@@ -99,9 +100,11 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\HallEffect.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\HE_Interrupt.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\HSync.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD_LCDPort.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LeftBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\NewFrame.lst</v>
@@ -109,6 +112,8 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\RBlackEdge.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\RightBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Servo.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\ServoPWM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\ServoPWM_PM.lst</v>
@@ -123,9 +128,10 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VerifyCompIn.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VerifyCompOut.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VerifyLeftBlackEdge.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimer.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimer_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimerL.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimerL_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimerR.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VideoTimerR_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\VSync.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Navigation.elf</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Navigation.hex</v>
@@ -141,14 +147,15 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Black.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\CamOut.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_3.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp1.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp1_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp2.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Comp2_PM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
@@ -162,9 +169,11 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\HallEffect.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\HE_Interrupt.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\HSync.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD_LCDPort.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\LeftBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Motor.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\NewFrame.lst</v>
@@ -172,14 +181,11 @@
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_PM.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\RBlackEdge.lst</v>
+<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\RightBlackEdge.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Servo.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\ServoPWM.lst</v>
 <v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\ServoPWM_PM.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_PM.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
-<v>Navigation\Navigation\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -195,8 +201,10 @@
 <v>Navigation\Navigation\CY8C58LP Family Datasheet</v>
 <v>Navigation\Navigation\System Reference Guides</v>
 <v>Navigation\Navigation\System Reference Guides\cy_boot_v5_70</v>
+<v>Navigation\Navigation\and_v1_0.pdf</v>
 <v>Navigation\Navigation\CharLCD_v2_20.pdf</v>
-<v>Navigation\Navigation\Comp_v2_0.pdf</v>
+<v>Navigation\Navigation\Comp_v2_0</v>
+<v>Navigation\Navigation\Comp_v2_0\Comp_v2_0.pdf</v>
 <v>Navigation\Navigation\cy_clock_v2_20</v>
 <v>Navigation\Navigation\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Navigation\Navigation\cy_constant_v1_0.pdf</v>
@@ -220,8 +228,10 @@
 <v>Navigation\Navigation\CY8C58LP Family Datasheet</v>
 <v>Navigation\Navigation\System Reference Guides</v>
 <v>Navigation\Navigation\System Reference Guides\cy_boot_v5_70</v>
+<v>Navigation\Navigation\and_v1_0.pdf</v>
 <v>Navigation\Navigation\CharLCD_v2_20.pdf</v>
-<v>Navigation\Navigation\Comp_v2_0.pdf</v>
+<v>Navigation\Navigation\Comp_v2_0</v>
+<v>Navigation\Navigation\Comp_v2_0\Comp_v2_0.pdf</v>
 <v>Navigation\Navigation\cy_clock_v2_20</v>
 <v>Navigation\Navigation\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Navigation\Navigation\cy_constant_v1_0.pdf</v>

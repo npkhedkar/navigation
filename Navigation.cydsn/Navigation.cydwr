@@ -259,7 +259,7 @@
       <Data key="56cea22b-f70a-4583-bc3c-0a9e4cff6313" value="Vcomp_225V" />
       <Data key="532b380a-5392-4a12-82be-abf240c1a22b" value="FirstLine" />
       <Data key="938a8172-1fb1-4fe9-8d4b-d69f2cdc2a96" value="Pin_2" />
-      <Data key="3588e5c1-78a2-413b-9149-1ea4f7ccbc20" value="VerifyLeftBlackEdge" />
+      <Data key="3588e5c1-78a2-413b-9149-1ea4f7ccbc20" value="LBlackEdge" />
       <Data key="6144d70e-8187-4399-9df7-0cb573ad6832/ed092b9b-d398-4703-be89-cebf998501f6" value="LCD_LCDPort" />
       <Data key="058748b5-3f39-4331-b3bb-3527e0abcd0d" value="Pin_1" />
       <Data key="63822f11-da3e-49f3-9c2f-1c922616a469" value="Pin_1" />
@@ -268,6 +268,7 @@
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="Pin_1" />
       <Data key="a4d416c5-eceb-49f1-aa0b-8a7d8186af92" value="VerifyCompIn" />
       <Data key="a72f7013-54cb-48bb-8909-ab4bc0506397" value="VerifyCompOut" />
+      <Data key="a074d343-b8f9-4fd7-adf2-b6fb38a8d45d" value="RBlackEdge" />
       <Data key="b354a010-6f79-4666-8a90-54748f509459" value="Servo" />
       <Data key="cc78ecae-57a4-414b-ade0-9bf26a79be98" value="CamOut" />
       <Data key="e18dec83-55ee-45ad-b9f5-5a69753a45e3" value="Pin_1" />
@@ -3458,6 +3459,11 @@
     <Group key="a72f7013-54cb-48bb-8909-ab4bc0506397">
       <Group key="0">
         <Data key="Port Format" value="0,0" />
+      </Group>
+    </Group>
+    <Group key="a074d343-b8f9-4fd7-adf2-b6fb38a8d45d">
+      <Group key="0">
+        <Data key="Port Format" value="5,0" />
       </Group>
     </Group>
     <Group key="b354a010-6f79-4666-8a90-54748f509459">

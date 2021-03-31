@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Comp.c
+* File Name: Comp2.c
 * Version 2.0
 *
 * Description:
@@ -15,27 +15,27 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "Comp.h"
+#include "Comp2.h"
 
-uint8 Comp_initVar = 0u;
+uint8 Comp2_initVar = 0u;
 
 /* Internal functions definitoin */
-static void Comp_trimAdjust(uint8 nibble) ;
+static void Comp2_trimAdjust(uint8 nibble) ;
 
-/* static Comp_backupStruct  Comp_backup; */
+/* static Comp2_backupStruct  Comp2_backup; */
 #if (CY_PSOC5A)
-    static Comp_LOWPOWER_BACKUP_STRUCT  Comp_lowPowerBackup;
+    static Comp2_LOWPOWER_BACKUP_STRUCT  Comp2_lowPowerBackup;
 #endif /* CY_PSOC5A */
 
 /* variable to decide whether or not to restore the control register in 
    Enable() API for PSoC5A only */
 #if (CY_PSOC5A)
-    static uint8 Comp_restoreReg = 0u;
+    static uint8 Comp2_restoreReg = 0u;
 #endif /* CY_PSOC5A */
 
 
 /*******************************************************************************
-* Function Name: Comp_Init
+* Function Name: Comp2_Init
 ********************************************************************************
 *
 * Summary:
@@ -48,42 +48,42 @@ static void Comp_trimAdjust(uint8 nibble) ;
 *  void
 *
 *******************************************************************************/
-void Comp_Init(void) 
+void Comp2_Init(void) 
 {
     /* Set default speed/power */
-    Comp_SetSpeed(Comp_DEFAULT_SPEED);
+    Comp2_SetSpeed(Comp2_DEFAULT_SPEED);
 
     /* Set default Hysteresis */
-    #if ( Comp_DEFAULT_HYSTERESIS == 0u )
-        Comp_CR |= Comp_HYST_OFF;
+    #if ( Comp2_DEFAULT_HYSTERESIS == 0u )
+        Comp2_CR |= Comp2_HYST_OFF;
     #else
-        Comp_CR &= (uint8)(~Comp_HYST_OFF);
-    #endif /* Comp_DEFAULT_HYSTERESIS == 0u */
+        Comp2_CR &= (uint8)(~Comp2_HYST_OFF);
+    #endif /* Comp2_DEFAULT_HYSTERESIS == 0u */
     /* Power down override feature is not supported for PSoC5A. */
     #if (CY_PSOC3 || CY_PSOC5LP)
         /* Set default Power Down Override */
-        #if ( Comp_DEFAULT_PWRDWN_OVRD == 0u )
-            Comp_CR &= (uint8)(~Comp_PWRDWN_OVRD);
+        #if ( Comp2_DEFAULT_PWRDWN_OVRD == 0u )
+            Comp2_CR &= (uint8)(~Comp2_PWRDWN_OVRD);
         #else 
-            Comp_CR |= Comp_PWRDWN_OVRD;
-        #endif /* Comp_DEFAULT_PWRDWN_OVRD == 0u */
+            Comp2_CR |= Comp2_PWRDWN_OVRD;
+        #endif /* Comp2_DEFAULT_PWRDWN_OVRD == 0u */
     #endif /* CY_PSOC3 || CY_PSOC5LP */
     
     /* Set mux always on logic */
-    Comp_CR |= Comp_MX_AO;
+    Comp2_CR |= Comp2_MX_AO;
 
     /* Set default sync */
-    Comp_CLK &= (uint8)(~Comp_SYNCCLK_MASK);
-    #if ( Comp_DEFAULT_BYPASS_SYNC == 0u )
-        Comp_CLK |= Comp_SYNC_CLK_EN;
+    Comp2_CLK &= (uint8)(~Comp2_SYNCCLK_MASK);
+    #if ( Comp2_DEFAULT_BYPASS_SYNC == 0u )
+        Comp2_CLK |= Comp2_SYNC_CLK_EN;
     #else
-        Comp_CLK |= Comp_BYPASS_SYNC;
-    #endif /* Comp_DEFAULT_BYPASS_SYNC == 0u */
+        Comp2_CLK |= Comp2_BYPASS_SYNC;
+    #endif /* Comp2_DEFAULT_BYPASS_SYNC == 0u */
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_Enable
+* Function Name: Comp2_Enable
 ********************************************************************************
 *
 * Summary:
@@ -96,27 +96,27 @@ void Comp_Init(void)
 *  void
 *
 *******************************************************************************/
-void Comp_Enable(void) 
+void Comp2_Enable(void) 
 {
-    Comp_PWRMGR |= Comp_ACT_PWR_EN;
-    Comp_STBY_PWRMGR |= Comp_STBY_PWR_EN;
+    Comp2_PWRMGR |= Comp2_ACT_PWR_EN;
+    Comp2_STBY_PWRMGR |= Comp2_STBY_PWR_EN;
      
      /* This is to restore the value of register CR which is saved 
     in prior to the modification in stop() API */
     #if (CY_PSOC5A)
-        if(Comp_restoreReg == 1u)
+        if(Comp2_restoreReg == 1u)
         {
-            Comp_CR = Comp_lowPowerBackup.compCRReg;
+            Comp2_CR = Comp2_lowPowerBackup.compCRReg;
 
             /* Clear the flag */
-            Comp_restoreReg = 0u;
+            Comp2_restoreReg = 0u;
         }
     #endif /* CY_PSOC5A */
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_Start
+* Function Name: Comp2_Start
 ********************************************************************************
 *
 * Summary:
@@ -129,27 +129,27 @@ void Comp_Enable(void)
 *  void 
 *
 * Global variables:
-*  Comp_initVar: Is modified when this function is called for the 
+*  Comp2_initVar: Is modified when this function is called for the 
 *   first time. Is used to ensure that initialization happens only once.
 *  
 *******************************************************************************/
-void Comp_Start(void) 
+void Comp2_Start(void) 
 {
 
-    if ( Comp_initVar == 0u )
+    if ( Comp2_initVar == 0u )
     {
-        Comp_Init();
+        Comp2_Init();
         
-        Comp_initVar = 1u;
+        Comp2_initVar = 1u;
     }   
 
     /* Enable power to comparator */
-    Comp_Enable();    
+    Comp2_Enable();    
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_Stop
+* Function Name: Comp2_Stop
 ********************************************************************************
 *
 * Summary:
@@ -162,25 +162,25 @@ void Comp_Start(void)
 *  void
 *
 *******************************************************************************/
-void Comp_Stop(void) 
+void Comp2_Stop(void) 
 {
     /* Disable power to comparator */
-    Comp_PWRMGR &= (uint8)(~Comp_ACT_PWR_EN);
-    Comp_STBY_PWRMGR &= (uint8)(~Comp_STBY_PWR_EN);
+    Comp2_PWRMGR &= (uint8)(~Comp2_ACT_PWR_EN);
+    Comp2_STBY_PWRMGR &= (uint8)(~Comp2_STBY_PWR_EN);
     
     #if (CY_PSOC5A)
         /* Enable the variable */
-        Comp_restoreReg = 1u;
+        Comp2_restoreReg = 1u;
 
         /* Save the control register before clearing it */
-        Comp_lowPowerBackup.compCRReg = Comp_CR;
-        Comp_CR = Comp_COMP_REG_CLR;
+        Comp2_lowPowerBackup.compCRReg = Comp2_CR;
+        Comp2_CR = Comp2_COMP_REG_CLR;
     #endif /* CY_PSOC5A */
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_SetSpeed
+* Function Name: Comp2_SetSpeed
 ********************************************************************************
 *
 * Summary:
@@ -194,37 +194,37 @@ void Comp_Stop(void)
 *  void
 *
 *******************************************************************************/
-void Comp_SetSpeed(uint8 speed) 
+void Comp2_SetSpeed(uint8 speed) 
 {
     /* Clear and Set power level */    
-    Comp_CR = (Comp_CR & (uint8)(~Comp_PWR_MODE_MASK)) |
-                           (speed & Comp_PWR_MODE_MASK);
+    Comp2_CR = (Comp2_CR & (uint8)(~Comp2_PWR_MODE_MASK)) |
+                           (speed & Comp2_PWR_MODE_MASK);
 
     /* Set trim value for high speed comparator */
-    if(speed == Comp_HIGHSPEED)
+    if(speed == Comp2_HIGHSPEED)
     {
         /* PSoC5A */
         #if (CY_PSOC5A)
-            Comp_TR = Comp_HS_TRIM_TR0;
+            Comp2_TR = Comp2_HS_TRIM_TR0;
         #endif /* CY_PSOC5A */
         
         /* PSoC3, PSoC5LP or later */
         #if (CY_PSOC3 || CY_PSOC5LP) 
-            Comp_TR0 = Comp_HS_TRIM_TR0;
-            Comp_TR1 = Comp_HS_TRIM_TR1;
+            Comp2_TR0 = Comp2_HS_TRIM_TR0;
+            Comp2_TR1 = Comp2_HS_TRIM_TR1;
         #endif /* CY_PSOC3 || CY_PSOC5LP */
     }
     else
     {
     /* PSoC5A */
         #if (CY_PSOC5A)
-            Comp_TR = Comp_LS_TRIM_TR0;
+            Comp2_TR = Comp2_LS_TRIM_TR0;
         #endif /* CY_PSOC5A */
         
         /* PSoC3, PSoC5LP or later */
         #if (CY_PSOC3 || CY_PSOC5LP) 
-            Comp_TR0 = Comp_LS_TRIM_TR0;
-            Comp_TR1 = Comp_LS_TRIM_TR1;
+            Comp2_TR0 = Comp2_LS_TRIM_TR0;
+            Comp2_TR1 = Comp2_LS_TRIM_TR1;
         #endif /* CY_PSOC3 || CY_PSOC5LP */
     }
 
@@ -232,7 +232,7 @@ void Comp_SetSpeed(uint8 speed)
 
 
 /*******************************************************************************
-* Function Name: Comp_GetCompare
+* Function Name: Comp2_GetCompare
 ********************************************************************************
 *
 * Summary:
@@ -248,14 +248,14 @@ void Comp_SetSpeed(uint8 speed)
 *           non 0 - if Pos_Input greater than Neg_input.
 *
 *******************************************************************************/
-uint8 Comp_GetCompare(void) 
+uint8 Comp2_GetCompare(void) 
 {
-    return( Comp_WRK & Comp_CMP_OUT_MASK);
+    return( Comp2_WRK & Comp2_CMP_OUT_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_trimAdjust
+* Function Name: Comp2_trimAdjust
 ********************************************************************************
 *
 * Summary:
@@ -279,13 +279,13 @@ uint8 Comp_GetCompare(void)
 *  the comparator output to respond.
 *
 *******************************************************************************/
-static void Comp_trimAdjust(uint8 nibble) 
+static void Comp2_trimAdjust(uint8 nibble) 
 {
     uint8 trimCnt, trimCntMax;
     uint8 cmpState;   
 
     /* get current state of comparator output */
-    cmpState = Comp_WRK & Comp_CMP_OUT_MASK;
+    cmpState = Comp2_WRK & Comp2_CMP_OUT_MASK;
     
     if (nibble == 0u)
     {    
@@ -294,12 +294,12 @@ static void Comp_trimAdjust(uint8 nibble)
         {
             /* PSoC5A */
             #if (CY_PSOC5A)
-                Comp_TR |= Comp_CMP_TRIM1_DIR;
+                Comp2_TR |= Comp2_CMP_TRIM1_DIR;
             #endif /* CY_PSOC5A */
             
             /* PSoC3, PSoC5LP or later */
             #if (CY_PSOC3 || CY_PSOC5LP)
-                Comp_TR0 |= Comp_CMP_TR0_DIR;
+                Comp2_TR0 |= Comp2_CMP_TR0_DIR;
             #endif /* CY_PSOC3 || CY_PSOC5LP */
         }
     }
@@ -310,12 +310,12 @@ static void Comp_trimAdjust(uint8 nibble)
         {
             /* PSoC5A */
             #if (CY_PSOC5A)
-                Comp_TR |= Comp_CMP_TRIM2_DIR; 
+                Comp2_TR |= Comp2_CMP_TRIM2_DIR; 
             #endif /* CY_PSOC5A */
             
             /* PSoC3, PSoC5LP or later */
             #if (CY_PSOC3 || CY_PSOC5LP)
-                Comp_TR1 |= Comp_CMP_TR1_DIR;
+                Comp2_TR1 |= Comp2_CMP_TR1_DIR;
             #endif /* CY_PSOC3 || CY_PSOC5LP */
         }
     }
@@ -345,31 +345,31 @@ static void Comp_trimAdjust(uint8 nibble)
         {
             /* PSoC5A */
             #if (CY_PSOC5A)
-                Comp_TR += 1u;
+                Comp2_TR += 1u;
             #endif /* CY_PSOC5A */
             
             /* PSoC3, PSoC5LP or later */
             #if (CY_PSOC3 || CY_PSOC5LP)
-                Comp_TR0 += 1u;
+                Comp2_TR0 += 1u;
             #endif /* CY_PSOC3 || CY_PSOC5LP */
         }
         else
         {
             /* PSoC5A */
             #if (CY_PSOC5A)
-                Comp_TR += 0x10u;
+                Comp2_TR += 0x10u;
             #endif /* CY_PSOC5A */
             
             /* PSoC3, PSoC5LP or later */
             #if (CY_PSOC3 || CY_PSOC5LP)
-                Comp_TR1 += 1u;
+                Comp2_TR1 += 1u;
             #endif /* CY_PSOC3 || CY_PSOC5LP */
         }
         
         CyDelayUs(10u);
         
         /* Check for change in comparator output */
-        if ((Comp_WRK & Comp_CMP_OUT_MASK) != cmpState)
+        if ((Comp2_WRK & Comp2_CMP_OUT_MASK) != cmpState)
         {
             break;      /* output changed state, trim phase is complete */
         }        
@@ -378,7 +378,7 @@ static void Comp_trimAdjust(uint8 nibble)
 
 
 /*******************************************************************************
-* Function Name: Comp_ZeroCal
+* Function Name: Comp2_ZeroCal
 ********************************************************************************
 *
 * Summary:
@@ -444,7 +444,7 @@ static void Comp_trimAdjust(uint8 nibble)
 *  to the positive input of the comparator.
 *
 *******************************************************************************/
-uint16 Comp_ZeroCal(void) 
+uint16 Comp2_ZeroCal(void) 
 {
     uint8 tmpSW0;
     uint8 tmpSW2;
@@ -452,67 +452,67 @@ uint16 Comp_ZeroCal(void)
     uint8 tmpCR;
 
     /* Save a copy of routing registers associated with inP */
-    tmpSW0 = Comp_SW0;
-    tmpSW2 = Comp_SW2;
-    tmpSW3 = Comp_SW3;
+    tmpSW0 = Comp2_SW0;
+    tmpSW2 = Comp2_SW2;
+    tmpSW3 = Comp2_SW3;
 
      /* Clear routing for inP, retain routing for inN */
-    Comp_SW0 = 0x00u;
-    Comp_SW2 = 0x00u;
-    Comp_SW3 = tmpSW3 & (uint8)(~Comp_CMP_SW3_INPCTL_MASK);
+    Comp2_SW0 = 0x00u;
+    Comp2_SW2 = 0x00u;
+    Comp2_SW3 = tmpSW3 & (uint8)(~Comp2_CMP_SW3_INPCTL_MASK);
 
     /* Preserve original configuration
      * - turn off Hysteresis
      * - set calibration bit - shorts inN to inP
     */
-    tmpCR = Comp_CR;
-    Comp_CR |= (Comp_CAL_ON | Comp_HYST_OFF);
+    tmpCR = Comp2_CR;
+    Comp2_CR |= (Comp2_CAL_ON | Comp2_HYST_OFF);
     
     /* Write default low values to trim register - no offset adjust */
     /* PSoC5A */
     #if (CY_PSOC5A)
-        Comp_TR = Comp_DEFAULT_CMP_TRIM;
+        Comp2_TR = Comp2_DEFAULT_CMP_TRIM;
     #endif /* CY_PSOC5A */
     
     /* PSoC3, PSoC5LP or later */
     #if (CY_PSOC3 || CY_PSOC5LP)
-        Comp_TR0 = Comp_DEFAULT_CMP_TRIM;
-        Comp_TR1 = Comp_DEFAULT_CMP_TRIM;
+        Comp2_TR0 = Comp2_DEFAULT_CMP_TRIM;
+        Comp2_TR1 = Comp2_DEFAULT_CMP_TRIM;
     #endif /* CY_PSOC3 || CY_PSOC5LP */
 	
 	/* Two phase trim - slow modes, one phase trim - for fast */ 
-    if ( (Comp_CR & Comp_PWR_MODE_MASK) == Comp_PWR_MODE_FAST)
+    if ( (Comp2_CR & Comp2_PWR_MODE_MASK) == Comp2_PWR_MODE_FAST)
     {
-        Comp_trimAdjust(0u);
+        Comp2_trimAdjust(0u);
     }
     else /* default to trim for fast modes */
     {
-        Comp_trimAdjust(1u);
-		Comp_trimAdjust(0u);
+        Comp2_trimAdjust(1u);
+		Comp2_trimAdjust(0u);
     }
    
     /* Restore Config Register */
-    Comp_CR = tmpCR;
+    Comp2_CR = tmpCR;
     
     /* Restore routing registers for inP */
-    Comp_SW0 = tmpSW0;
-    Comp_SW2 = tmpSW2;
-    Comp_SW3 = tmpSW3;
+    Comp2_SW0 = tmpSW0;
+    Comp2_SW2 = tmpSW2;
+    Comp2_SW3 = tmpSW3;
     
     /* PSoC5A */
     #if (CY_PSOC5A)
-        return (uint16) Comp_TR;
+        return (uint16) Comp2_TR;
     #endif /* CY_PSOC5A */
     
     /* PSoC3, PSoC5LP or later */
     #if (CY_PSOC3 || CY_PSOC5LP)
-        return ((uint16)((uint16)Comp_TR1 << 8u) | (Comp_TR0));        
+        return ((uint16)((uint16)Comp2_TR1 << 8u) | (Comp2_TR0));        
     #endif /* CY_PSOC3 || CY_PSOC5LP */
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_LoadTrim
+* Function Name: Comp2_LoadTrim
 ********************************************************************************
 *
 * Summary:
@@ -526,21 +526,21 @@ uint16 Comp_ZeroCal(void)
 *  None
 *
 *******************************************************************************/
-void Comp_LoadTrim(uint16 trimVal) 
+void Comp2_LoadTrim(uint16 trimVal) 
 {
     /* Stores value in the Analog Comparator trim register */
     /* PSoC5A */
     #if (CY_PSOC5A)
-        Comp_TR = (uint8) trimVal;
+        Comp2_TR = (uint8) trimVal;
     #endif /* CY_PSOC5A */
     
     /* PSoC3, PSoC5LP or later */
     #if (CY_PSOC3 || CY_PSOC5LP)
         /* Stores value in the Analog Comparator trim register for P-type load */
-        Comp_TR0 = (uint8) trimVal;
+        Comp2_TR0 = (uint8) trimVal;
         
         /* Stores value in the Analog Comparator trim register for N-type load */
-        Comp_TR1 = (uint8) (trimVal >> 8); 
+        Comp2_TR1 = (uint8) (trimVal >> 8); 
     #endif /* CY_PSOC3 || CY_PSOC5LP */
 }
 
@@ -548,7 +548,7 @@ void Comp_LoadTrim(uint16 trimVal)
 #if (CY_PSOC3 || CY_PSOC5LP)
 
     /*******************************************************************************
-    * Function Name: Comp_PwrDwnOverrideEnable
+    * Function Name: Comp2_PwrDwnOverrideEnable
     ********************************************************************************
     *
     * Summary:
@@ -562,15 +562,15 @@ void Comp_LoadTrim(uint16 trimVal)
     *  None
     *
     *******************************************************************************/
-    void Comp_PwrDwnOverrideEnable(void) 
+    void Comp2_PwrDwnOverrideEnable(void) 
     {
         /* Set the pd_override bit in CMP_CR register */
-        Comp_CR |= Comp_PWRDWN_OVRD;
+        Comp2_CR |= Comp2_PWRDWN_OVRD;
     }
 
 
     /*******************************************************************************
-    * Function Name: Comp_PwrDwnOverrideDisable
+    * Function Name: Comp2_PwrDwnOverrideDisable
     ********************************************************************************
     *
     * Summary:
@@ -584,10 +584,10 @@ void Comp_LoadTrim(uint16 trimVal)
     *  None
     *
     *******************************************************************************/
-    void Comp_PwrDwnOverrideDisable(void) 
+    void Comp2_PwrDwnOverrideDisable(void) 
     {
         /* Reset the pd_override bit in CMP_CR register */
-        Comp_CR &= (uint8)(~Comp_PWRDWN_OVRD);
+        Comp2_CR &= (uint8)(~Comp2_PWRDWN_OVRD);
     }
 #endif /* (CY_PSOC3 || CY_PSOC5LP) */
 

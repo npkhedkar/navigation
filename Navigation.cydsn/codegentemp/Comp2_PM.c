@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: Comp.c
+* File Name: Comp2.c
 * Version 2.0
 *
 * Description:
@@ -16,13 +16,13 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "Comp.h"
+#include "Comp2.h"
 
-static Comp_backupStruct Comp_backup;
+static Comp2_backupStruct Comp2_backup;
 
 
 /*******************************************************************************
-* Function Name: Comp_SaveConfig
+* Function Name: Comp2_SaveConfig
 ********************************************************************************
 *
 * Summary:
@@ -35,14 +35,14 @@ static Comp_backupStruct Comp_backup;
 *  void
 *
 *******************************************************************************/
-void Comp_SaveConfig(void) 
+void Comp2_SaveConfig(void) 
 {
     /* Empty since all are system reset for retention flops */
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_RestoreConfig
+* Function Name: Comp2_RestoreConfig
 ********************************************************************************
 *
 * Summary:
@@ -55,14 +55,14 @@ void Comp_SaveConfig(void)
 *  void
 *
 ********************************************************************************/
-void Comp_RestoreConfig(void) 
+void Comp2_RestoreConfig(void) 
 {
     /* Empty since all are system reset for retention flops */    
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_Sleep
+* Function Name: Comp2_Sleep
 ********************************************************************************
 *
 * Summary:
@@ -75,31 +75,31 @@ void Comp_RestoreConfig(void)
 *  void
 *
 * Global variables:
-*  Comp_backup.enableState:  Is modified depending on the enable 
+*  Comp2_backup.enableState:  Is modified depending on the enable 
 *   state of the block before entering sleep mode.
 *
 *******************************************************************************/
-void Comp_Sleep(void) 
+void Comp2_Sleep(void) 
 {
     /* Save Comp's enable state */    
-    if(Comp_ACT_PWR_EN == (Comp_PWRMGR & Comp_ACT_PWR_EN))
+    if(Comp2_ACT_PWR_EN == (Comp2_PWRMGR & Comp2_ACT_PWR_EN))
     {
         /* Comp is enabled */
-        Comp_backup.enableState = 1u;
+        Comp2_backup.enableState = 1u;
     }
     else
     {
         /* Comp is disabled */
-        Comp_backup.enableState = 0u;
+        Comp2_backup.enableState = 0u;
     }    
     
-    Comp_Stop();
-    Comp_SaveConfig();
+    Comp2_Stop();
+    Comp2_SaveConfig();
 }
 
 
 /*******************************************************************************
-* Function Name: Comp_Wakeup
+* Function Name: Comp2_Wakeup
 ********************************************************************************
 *
 * Summary:
@@ -112,18 +112,18 @@ void Comp_Sleep(void)
 *  void
 *
 * Global variables:
-*  Comp_backup.enableState:  Is used to restore the enable state of 
+*  Comp2_backup.enableState:  Is used to restore the enable state of 
 *  block on wakeup from sleep mode.
 *
 *******************************************************************************/
-void Comp_Wakeup(void) 
+void Comp2_Wakeup(void) 
 {
-    Comp_RestoreConfig();
+    Comp2_RestoreConfig();
     
-    if(Comp_backup.enableState == 1u)
+    if(Comp2_backup.enableState == 1u)
     {
         /* Enable Comp's operation */
-        Comp_Enable();
+        Comp2_Enable();
 
     } /* Do nothing if Comp was disabled before */ 
 }

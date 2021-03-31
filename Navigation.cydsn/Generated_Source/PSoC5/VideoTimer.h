@@ -179,7 +179,7 @@ void VideoTimer_Wakeup(void)        ;
                                                  ((uint8)((uint8)1 << VideoTimer_STATUS_CAPTURE_INT_MASK_SHIFT)) | \
                                                  ((uint8)((uint8)0 << VideoTimer_STATUS_FIFOFULL_INT_MASK_SHIFT)))
 #endif /* (VideoTimer_UsingFixedFunction) */
-#define VideoTimer_INIT_CAPTURE_COUNT      (8u)
+#define VideoTimer_INIT_CAPTURE_COUNT      (3u)
 #define VideoTimer_INIT_INT_CAPTURE_COUNT  ((uint8)((uint8)(1u - 1u) << VideoTimer_CTRL_INTCNT_SHIFT))
 
 

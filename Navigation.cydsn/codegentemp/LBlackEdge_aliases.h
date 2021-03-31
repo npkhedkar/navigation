@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: VerifyLeftBlackEdge.h  
+* File Name: LBlackEdge.h  
 * Version 2.20
 *
 * Description:
@@ -15,8 +15,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_VerifyLeftBlackEdge_ALIASES_H) /* Pins VerifyLeftBlackEdge_ALIASES_H */
-#define CY_PINS_VerifyLeftBlackEdge_ALIASES_H
+#if !defined(CY_PINS_LBlackEdge_ALIASES_H) /* Pins LBlackEdge_ALIASES_H */
+#define CY_PINS_LBlackEdge_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,12 +25,12 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define VerifyLeftBlackEdge_0			(VerifyLeftBlackEdge__0__PC)
-#define VerifyLeftBlackEdge_0_INTR	((uint16)((uint16)0x0001u << VerifyLeftBlackEdge__0__SHIFT))
+#define LBlackEdge_0			(LBlackEdge__0__PC)
+#define LBlackEdge_0_INTR	((uint16)((uint16)0x0001u << LBlackEdge__0__SHIFT))
 
-#define VerifyLeftBlackEdge_INTR_ALL	 ((uint16)(VerifyLeftBlackEdge_0_INTR))
+#define LBlackEdge_INTR_ALL	 ((uint16)(LBlackEdge_0_INTR))
 
-#endif /* End Pins VerifyLeftBlackEdge_ALIASES_H */
+#endif /* End Pins LBlackEdge_ALIASES_H */
 
 
 /* [] END OF FILE */

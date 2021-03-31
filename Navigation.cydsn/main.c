@@ -23,14 +23,14 @@ double FREQ = 10000;        // clock freqency
 double COUNTDOWN = 65536;   // max of 8-bit counter for Timer module
 int ON = 255;               // sets pwm to 255
 int OFF = 0;                // sets pwm to 0
-int TICKCUTOFF = 338;       // maximum number of ticks seen before robot stops moving
+int TICKCUTOFF = 1500;       // maximum number of ticks seen before robot stops moving
 
 // used to deal with countdown timer underflow issues
 int oldTime = 0;
 int currentTime = 0;
 
 
-double setSpeed = 2.0;      // optimal speed target [ft/s]
+double setSpeed = 3.8;      // optimal speed target [ft/s]
 double KP = 280;            // proportional control param
 double KI = 5;              // integral control param
 double KD = 15;             // derivative control param
@@ -42,7 +42,7 @@ double eTime;               // elapsed time
 double speed;               // current calculated speed
 double error;               // delta between current speed and optimal speed
 
-double oldError = 4.0;      // error memory used in derivative control
+double oldError = 4;      // error memory used in derivative control
 double errorDiff;           // error delta for old and current error used in derivative control
 
 double sum = 0;             // error sum used in integral control
@@ -59,23 +59,29 @@ int LPS;                    // lines per second (LPF * FPS)
 double HFREQ;               // frequency of line reads
 int VFREQ = 60;             // frequency of frame reads
 int OEFREQ = 30;            // frequency of original frame reads (since 2 copies per frame)
+int ENDHSYNC = 484;         // empirical time when 1st HYSYNC is complete
 
 // interrupt flags
 int hallFlag = 0;
-int blackFlag = 0;
+int leftBlackFlag = 0;
+int rightBlackFlag = 0;
+int blackTimeL;
+int blackTimeR;
 
 // navigation
 double firstPixelTime = 445; // the location (in timer) of the left edge of the black line
 int CENTERSERVO = 155;     // default PWM setting for the center servo
 int setservo;              // saves the current servo alignment
 int oldsetservo = 155;
-double servoKP = 1;
-double servoKI;
+
+double servoKP = 1.80;
+double servoKI = 2;
 double servoKD;
 
 double pixelError;
-
-
+double servoSum = 0;
+double servoAvgError;
+double frames = 0;
 
 // interrupt sets hall flag to 1 when magnet is passed over HE
 CY_ISR(inter1) {
@@ -84,12 +90,20 @@ CY_ISR(inter1) {
 }
 
 CY_ISR(inter2) {
-    VideoTimer_ReadStatusRegister(); // reset blackflag register 
+    VideoTimerL_ReadStatusRegister(); // reset leftBlackflag register 
+    VideoTimerR_ReadStatusRegister(); // reset rightBlackflag register 
 }
 
 CY_ISR(inter3) {
-    blackFlag = 1;
+    leftBlackFlag = 1;
+    blackTimeL = COUNTDOWN - VideoTimerL_ReadCapture();
 }
+
+CY_ISR(inter4) {
+    rightBlackFlag = 1;
+    blackTimeR = COUNTDOWN - VideoTimerR_ReadCapture();
+}
+
 
 int main(void)
 {
@@ -105,7 +119,8 @@ int main(void)
     PWM_Start();
     
     // VideoTimer
-    VideoTimer_Start();
+    VideoTimerL_Start();
+    VideoTimerR_Start();
     
     // VDAC
     VDAC_Start();
@@ -114,8 +129,10 @@ int main(void)
     VDAC_SetValue(128);
     
     // Comparator
-    Comp_Start();
-    Comp_SetSpeed(Comp_HIGHSPEED);
+    Comp1_Start();
+    Comp1_SetSpeed(Comp1_HIGHSPEED);
+    Comp2_Start();
+    Comp2_SetSpeed(Comp2_HIGHSPEED);
     
     // Servo PWM
     ServoPWM_Start();
@@ -126,8 +143,10 @@ int main(void)
     NewFrame_SetVector(inter2);
     
     // Black Edge Interrupt
-    Black_Start();
-    Black_SetVector(inter3);
+    LeftBlackEdge_Start();
+    LeftBlackEdge_SetVector(inter3);
+    RightBlackEdge_Start();
+    RightBlackEdge_SetVector(inter4);
     
     /*
     PWM_WriteCompare(200);
@@ -136,46 +155,36 @@ int main(void)
     LCD_Position(0,0);
     LCD_PrintString(strbuf);
     */
-    
-    int blackTime;
 
     for(;;)
     {
-        if (blackFlag == 1) { // collect data
-            blackTime = COUNTDOWN - VideoTimer_ReadCapture();
-            
-            /*
-            // Bang Bang test
-            if (blackTime < 440) {
-                setservo = 100; // go left
-            } else if (blackTime > 450) {
-                setservo = 198; // go right
-            } else {
-                setservo = 155; // go straight
+        if (leftBlackFlag == 1 && rightBlackFlag == 1) {
+            if(blackTimeL <= blackTimeR && blackTimeR < ENDHSYNC) {
+                frames += 1;
+                
+                // PID Control
+                oldsetservo = setservo;
+                pixelError = firstPixelTime - blackTimeL;
+                
+                // used in ki error
+                servoSum += pixelError;             
+                servoAvgError = sum / frames;
+                
+                setservo = -servoKP * pixelError - servoKI * servoAvgError + 155;
+                if (setservo > 198) {setservo = 198; }
+                else if (setservo < 105) {setservo = 105; }
+                ServoPWM_WriteCompare((uint8) setservo);
+                
+                // LCD out
+                LCD_ClearDisplay();
+                sprintf(strbuf, "E: %3d", setservo);
+                LCD_PrintString(strbuf);
+                
             }
-            ServoPWM_WriteCompare(setservo);
-            */
-            /*
-            // print black timer (UART)
-            sprintf(uartbuf, "Black edge Time: %d\n", blackTime);
-            UART_PutString(uartbuf);
-            */
-            
-            // PID Control
-            oldsetservo = setservo;
-            pixelError = firstPixelTime - blackTime;
-            setservo = -5 * pixelError + 155; // kp = -10
-            if (setservo > 198) {setservo = 198; }
-            else if (setservo < 105 || oldsetservo - setservo > 105) {setservo = 105; }
-            ServoPWM_WriteCompare((uint8) setservo);
-            
-            // LCD out
-            LCD_ClearDisplay();
-            sprintf(strbuf, "Location: %d,", blackTime);
-            LCD_PrintString(strbuf);
-            
             // reset flag
-            blackFlag = 0;    
+            leftBlackFlag = 0;
+            rightBlackFlag = 0;
+            
         }
         
         if(hallFlag == 1){
@@ -204,11 +213,13 @@ int main(void)
                 
                 speed = LENGTH/eTime; // current speed [ft/s]
                 
+                /*
                 // used for bench testing psoc speed functionality
                 LCD_ClearDisplay();
                 sprintf(strbuf,"%-16.4f",speed);
                 LCD_Position(0,0);
                 LCD_PrintString(strbuf);
+                */
                 
                 // used in kp error
                 error = setSpeed - speed;
@@ -233,8 +244,8 @@ int main(void)
                 PWM_WriteCompare(dutyCycle);
                 
                 // remote UART data collection
-                sprintf(uartbuf, "Tick Num: %5d, Current Speed: %5.2f, Error: %5.2f, Duty Cycle: %5.2f, eTime: %5.4f\n", ticks, speed, error, dutyCycle, eTime);
-                UART_PutString(uartbuf);
+                // sprintf(uartbuf, "Tick Num: %5d, Current Speed: %5.2f, Error: %5.2f, Duty Cycle: %5.2f, eTime: %5.4f\n", ticks, speed, error, dutyCycle, eTime);
+                // UART_PutString(uartbuf);
             }
             
             // stop interrupt

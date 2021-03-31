@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: VerifyLeftBlackEdge.c  
+* File Name: LBlackEdge.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "VerifyLeftBlackEdge.h"
+#include "LBlackEdge.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 VerifyLeftBlackEdge__PORT == 15 && ((VerifyLeftBlackEdge__MASK & 0xC0) != 0))
+	 LBlackEdge__PORT == 15 && ((LBlackEdge__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: VerifyLeftBlackEdge_Write
+* Function Name: LBlackEdge_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet VerifyLeftBlackEdge_SUT.c usage_VerifyLeftBlackEdge_Write
+*  \snippet LBlackEdge_SUT.c usage_LBlackEdge_Write
 *******************************************************************************/
-void VerifyLeftBlackEdge_Write(uint8 value)
+void LBlackEdge_Write(uint8 value)
 {
-    uint8 staticBits = (VerifyLeftBlackEdge_DR & (uint8)(~VerifyLeftBlackEdge_MASK));
-    VerifyLeftBlackEdge_DR = staticBits | ((uint8)(value << VerifyLeftBlackEdge_SHIFT) & VerifyLeftBlackEdge_MASK);
+    uint8 staticBits = (LBlackEdge_DR & (uint8)(~LBlackEdge_MASK));
+    LBlackEdge_DR = staticBits | ((uint8)(value << LBlackEdge_SHIFT) & LBlackEdge_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: VerifyLeftBlackEdge_SetDriveMode
+* Function Name: LBlackEdge_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void VerifyLeftBlackEdge_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet VerifyLeftBlackEdge_SUT.c usage_VerifyLeftBlackEdge_SetDriveMode
+*  \snippet LBlackEdge_SUT.c usage_LBlackEdge_SetDriveMode
 *******************************************************************************/
-void VerifyLeftBlackEdge_SetDriveMode(uint8 mode)
+void LBlackEdge_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(VerifyLeftBlackEdge_0, mode);
+	CyPins_SetPinDriveMode(LBlackEdge_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: VerifyLeftBlackEdge_Read
+* Function Name: LBlackEdge_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void VerifyLeftBlackEdge_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet VerifyLeftBlackEdge_SUT.c usage_VerifyLeftBlackEdge_Read  
+*  \snippet LBlackEdge_SUT.c usage_LBlackEdge_Read  
 *******************************************************************************/
-uint8 VerifyLeftBlackEdge_Read(void)
+uint8 LBlackEdge_Read(void)
 {
-    return (VerifyLeftBlackEdge_PS & VerifyLeftBlackEdge_MASK) >> VerifyLeftBlackEdge_SHIFT;
+    return (LBlackEdge_PS & LBlackEdge_MASK) >> LBlackEdge_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: VerifyLeftBlackEdge_ReadDataReg
+* Function Name: LBlackEdge_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 VerifyLeftBlackEdge_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred VerifyLeftBlackEdge_Read() API because the 
-* VerifyLeftBlackEdge_ReadDataReg() reads the data register instead of the status 
+* preferred LBlackEdge_Read() API because the 
+* LBlackEdge_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 VerifyLeftBlackEdge_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet VerifyLeftBlackEdge_SUT.c usage_VerifyLeftBlackEdge_ReadDataReg 
+*  \snippet LBlackEdge_SUT.c usage_LBlackEdge_ReadDataReg 
 *******************************************************************************/
-uint8 VerifyLeftBlackEdge_ReadDataReg(void)
+uint8 LBlackEdge_ReadDataReg(void)
 {
-    return (VerifyLeftBlackEdge_DR & VerifyLeftBlackEdge_MASK) >> VerifyLeftBlackEdge_SHIFT;
+    return (LBlackEdge_DR & LBlackEdge_MASK) >> LBlackEdge_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(VerifyLeftBlackEdge_INTSTAT) 
+#if defined(LBlackEdge_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: VerifyLeftBlackEdge_SetInterruptMode
+    * Function Name: LBlackEdge_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 VerifyLeftBlackEdge_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use VerifyLeftBlackEdge_INTR_ALL to configure the
+    *  component. Or you may use LBlackEdge_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - VerifyLeftBlackEdge_0_INTR       (First pin in the list)
-    *  - VerifyLeftBlackEdge_1_INTR       (Second pin in the list)
+    *  - LBlackEdge_0_INTR       (First pin in the list)
+    *  - LBlackEdge_1_INTR       (Second pin in the list)
     *  - ...
-    *  - VerifyLeftBlackEdge_INTR_ALL     (All pins in Pins component)
+    *  - LBlackEdge_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 VerifyLeftBlackEdge_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet VerifyLeftBlackEdge_SUT.c usage_VerifyLeftBlackEdge_SetInterruptMode
+    *  \snippet LBlackEdge_SUT.c usage_LBlackEdge_SetInterruptMode
     *******************************************************************************/
-    void VerifyLeftBlackEdge_SetInterruptMode(uint16 position, uint16 mode)
+    void LBlackEdge_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & VerifyLeftBlackEdge_0_INTR) != 0u) 
+		if((position & LBlackEdge_0_INTR) != 0u) 
 		{ 
-			 VerifyLeftBlackEdge_0_INTTYPE_REG = (uint8)mode; 
+			 LBlackEdge_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: VerifyLeftBlackEdge_ClearInterrupt
+    * Function Name: LBlackEdge_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 VerifyLeftBlackEdge_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet VerifyLeftBlackEdge_SUT.c usage_VerifyLeftBlackEdge_ClearInterrupt
+    *  \snippet LBlackEdge_SUT.c usage_LBlackEdge_ClearInterrupt
     *******************************************************************************/
-    uint8 VerifyLeftBlackEdge_ClearInterrupt(void)
+    uint8 LBlackEdge_ClearInterrupt(void)
     {
-        return (VerifyLeftBlackEdge_INTSTAT & VerifyLeftBlackEdge_MASK) >> VerifyLeftBlackEdge_SHIFT;
+        return (LBlackEdge_INTSTAT & LBlackEdge_MASK) >> LBlackEdge_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

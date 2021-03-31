@@ -47,9 +47,9 @@
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\CamOut_aliases.h" value="HEADER;;;;;CamOut" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\CamOut.c" value="SOURCE_C;CortexM3;;;;CamOut" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\CamOut.h" value="HEADER;;;;;CamOut" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VerifyLeftBlackEdge_aliases.h" value="HEADER;;;;;VerifyLeftBlackEdge" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VerifyLeftBlackEdge.c" value="SOURCE_C;CortexM3;;;;VerifyLeftBlackEdge" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VerifyLeftBlackEdge.h" value="HEADER;;;;;VerifyLeftBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\LBlackEdge_aliases.h" value="HEADER;;;;;LBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\LBlackEdge.c" value="SOURCE_C;CortexM3;;;;LBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\LBlackEdge.h" value="HEADER;;;;;LBlackEdge" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VSync_aliases.h" value="HEADER;;;;;VSync" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VSync.c" value="SOURCE_C;CortexM3;;;;VSync" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VSync.h" value="HEADER;;;;;VSync" />
@@ -59,14 +59,14 @@
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VerifyCompIn_aliases.h" value="HEADER;;;;;VerifyCompIn" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VerifyCompIn.c" value="SOURCE_C;CortexM3;;;;VerifyCompIn" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VerifyCompIn.h" value="HEADER;;;;;VerifyCompIn" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimer.c" value="SOURCE_C;CortexM3;;;;VideoTimer" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimer.h" value="HEADER;;;;;VideoTimer" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimer_PM.c" value="SOURCE_C;CortexM3;;;;VideoTimer" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp.c" value="SOURCE_C;CortexM3;;;;Comp" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp.h" value="HEADER;;;;;Comp" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp_PM.c" value="SOURCE_C;CortexM3;;;;Comp" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Black.c" value="SOURCE_C;CortexM3;;;;Black" />
-  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Black.h" value="HEADER;;;;;Black" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimerL.c" value="SOURCE_C;CortexM3;;;;VideoTimerL" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimerL.h" value="HEADER;;;;;VideoTimerL" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimerL_PM.c" value="SOURCE_C;CortexM3;;;;VideoTimerL" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp1.c" value="SOURCE_C;CortexM3;;;;Comp1" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp1.h" value="HEADER;;;;;Comp1" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp1_PM.c" value="SOURCE_C;CortexM3;;;;Comp1" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\LeftBlackEdge.c" value="SOURCE_C;CortexM3;;;;LeftBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\LeftBlackEdge.h" value="HEADER;;;;;LeftBlackEdge" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\OddEven_aliases.h" value="HEADER;;;;;OddEven" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\OddEven.c" value="SOURCE_C;CortexM3;;;;OddEven" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\OddEven.h" value="HEADER;;;;;OddEven" />
@@ -89,6 +89,17 @@
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Pin_1_aliases.h" value="HEADER;;;;;Pin_1" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Pin_1.c" value="SOURCE_C;CortexM3;;;;Pin_1" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Pin_1.h" value="HEADER;;;;;Pin_1" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp2.c" value="SOURCE_C;CortexM3;;;;Comp2" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp2.h" value="HEADER;;;;;Comp2" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\Comp2_PM.c" value="SOURCE_C;CortexM3;;;;Comp2" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\RightBlackEdge.c" value="SOURCE_C;CortexM3;;;;RightBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\RightBlackEdge.h" value="HEADER;;;;;RightBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\RBlackEdge_aliases.h" value="HEADER;;;;;RBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\RBlackEdge.c" value="SOURCE_C;CortexM3;;;;RBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\RBlackEdge.h" value="HEADER;;;;;RBlackEdge" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimerR.c" value="SOURCE_C;CortexM3;;;;VideoTimerR" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimerR.h" value="HEADER;;;;;VideoTimerR" />
+  <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\VideoTimerR_PM.c" value="SOURCE_C;CortexM3;;;;VideoTimerR" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
   <file name="C:\Users\Dhyan\Documents\PSoC Creator\navigation\Navigation.cydsn\codegentemp\LCD_LCDPort_aliases.h" value="HEADER;;;;;LCD_LCDPort" />
