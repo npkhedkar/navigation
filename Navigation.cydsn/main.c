@@ -23,7 +23,7 @@ double FREQ = 10000;        // clock freqency
 double COUNTDOWN = 65536;   // max of 8-bit counter for Timer module
 int ON = 255;               // sets pwm to 255
 int OFF = 0;                // sets pwm to 0
-int TICKCUTOFF = 1500;       // maximum number of ticks seen before robot stops moving
+int TICKCUTOFF = 3000;       // maximum number of ticks seen before robot stops moving
 
 // used to deal with countdown timer underflow issues
 int oldTime = 0;
@@ -42,7 +42,7 @@ double eTime;               // elapsed time
 double speed;               // current calculated speed
 double error;               // delta between current speed and optimal speed
 
-double oldError = 4;      // error memory used in derivative control
+double oldError = 3.75;      // error memory used in derivative control
 double errorDiff;           // error delta for old and current error used in derivative control
 
 double sum = 0;             // error sum used in integral control
@@ -74,14 +74,16 @@ int CENTERSERVO = 155;     // default PWM setting for the center servo
 int setservo;              // saves the current servo alignment
 int oldsetservo = 155;
 
-double servoKP = 1.80;
-double servoKI = 2;
-double servoKD;
+double servoKP = 1.8; // 1.85 good
+double servoKI = 2.7; // 2.5 good
+double servoKD = 0.00;
 
 double pixelError;
 double servoSum = 0;
 double servoAvgError;
 double frames = 0;
+double oldPixelError = 0;
+double pixelErrorDiff;
 
 // interrupt sets hall flag to 1 when magnet is passed over HE
 CY_ISR(inter1) {
@@ -170,14 +172,18 @@ int main(void)
                 servoSum += pixelError;             
                 servoAvgError = sum / frames;
                 
-                setservo = -servoKP * pixelError - servoKI * servoAvgError + 155;
+                // kd
+                pixelErrorDiff = -pixelError + oldPixelError;
+                oldPixelError = pixelError;
+                
+                setservo = -servoKP * pixelError - servoKI * servoAvgError - servoKD * pixelErrorDiff + 155;
                 if (setservo > 198) {setservo = 198; }
                 else if (setservo < 105) {setservo = 105; }
                 ServoPWM_WriteCompare((uint8) setservo);
                 
                 // LCD out
                 LCD_ClearDisplay();
-                sprintf(strbuf, "E: %3d", setservo);
+                sprintf(strbuf, "E:%3d, T:%d", setservo, ticks);
                 LCD_PrintString(strbuf);
                 
             }
