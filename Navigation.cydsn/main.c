@@ -78,7 +78,7 @@ double servoKP = 1.8; // 1.85 good
 double servoKI = 2.7; // 2.5 good
 double servoKD = 0.00;
 
-double pixelError;
+int pixelError;
 double servoSum = 0;
 double servoAvgError;
 double frames = 0;
@@ -183,8 +183,12 @@ int main(void)
                 
                 // LCD out
                 LCD_ClearDisplay();
-                sprintf(strbuf, "E:%3d, T:%d", setservo, ticks);
+                sprintf(strbuf, "E:%5d, T:%5d", blackTimeL, ticks);
                 LCD_PrintString(strbuf);
+                
+                // remote UART data collection
+                sprintf(uartbuf, "Black Pixel L: %5d, Black Pixel R: %5d, Pixel Error: %5d, Duty Cycle: %5d\n", blackTimeL, blackTimeR, pixelError, setservo);
+                UART_PutString(uartbuf);
                 
             }
             // reset flag
