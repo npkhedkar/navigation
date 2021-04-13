@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Extract data from serial connection output file. Toggled between flat, up, and down test run text files
-fs = open(r"c:\Users\nkhedkar\Documents\PSoc Creator\ELE302 Workspace\navigation\psocOutputNavTrack1.txt", 'r')
+fs = open(r"c:\Users\nkhedkar\Documents\PSoc Creator\ELE302 Workspace\navigation\psocOutputNavTest.txt", 'r')
 savedLines = fs.readlines()
 fs.close()
 
